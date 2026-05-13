@@ -18,7 +18,7 @@ The dataset deliberately encodes a pattern that real RevOps teams encounter: cus
 
 - **Overview** — headline KPIs (ARR ~$X, NRR ~108%, GRR ~91%), MRR waterfall, and trailing-12-month retention trend. At first glance, the company looks healthy.
 - **Cohort Analysis** — the heatmap. Filter to "Self-Serve Promo" and the Q3 2024 cohort lights up red.
-- **Segment & Channel Deep-Dive** — quantifies the gap. Self-Serve Promo GRR comes in around 71% vs. ~93% for other channels.
+- **Segment & Channel Deep-Dive** — quantifies the gap. Self-Serve Promo logo churn comes in around 28% — nearly 2× the ~15% average across other channels — while its GRR (~92%) drags the bottom of the table.
 - **About** — methodology, metric formulas, and what I'd recommend at a real company (CSM intervention plan, channel-quality scoring, tighter promo gating).
 
 ## How it's built

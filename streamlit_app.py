@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from src import cohorts, metrics, viz
+from src import metrics, viz
 
 st.set_page_config(
     page_title="Cadenza Retention Analytics",

@@ -25,7 +25,7 @@ def test_logo_churn_jan_to_mar(tiny_subs):
     assert logo_churn(tiny_subs, "2024-01-01", "2024-03-01") == pytest.approx(0.25)
 
 
-def test_logo_churn_when_nobody_churns(tiny_subs):
+def test_logo_churn_feb_to_mar(tiny_subs):
     # Feb -> Mar: cohort = active in Feb = {1,2,3,4,5}. Active in Mar = {1,2,4,5}. Churned = 1 (CUST-3) -> 1/5 = 0.20
     assert logo_churn(tiny_subs, "2024-02-01", "2024-03-01") == pytest.approx(0.20)
 
@@ -37,7 +37,7 @@ def test_nrr_jan_to_mar(tiny_subs):
     assert nrr(tiny_subs, "2024-01-01", "2024-03-01") == pytest.approx(0.70)
 
 
-def test_nrr_includes_expansion_above_100(tiny_subs):
+def test_nrr_feb_to_mar_with_expansion_and_churn(tiny_subs):
     # Feb -> Mar: cohort = {1,2,3,4,5}, starting MRR = 100+250+300+350+500 = 1500
     # Their Mar MRR: 100+250+0+350+500 = 1200 -> NRR = 1200/1500 = 0.80
     assert nrr(tiny_subs, "2024-02-01", "2024-03-01") == pytest.approx(0.80)
