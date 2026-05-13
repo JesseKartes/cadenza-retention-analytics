@@ -174,3 +174,124 @@ _NAME_SUFFIXES = ["Labs", "Works", "Systems", "Logic", "Group", "Dynamics",
 
 def _fake_company_name(rng: np.random.Generator) -> str:
     return f"{rng.choice(_NAME_PREFIXES)} {rng.choice(_NAME_SUFFIXES)}"
+
+
+# --- Subscription & event simulation ---------------------------------------
+
+def generate_subscriptions_and_events(
+    customers: pd.DataFrame, cfg: GeneratorConfig
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Simulate month-by-month subscription state and lifecycle events.
+
+    Returns (subscriptions_df, events_df).
+    """
+    rng = np.random.default_rng(cfg.rng_seed + 1)
+    months = _months_between(cfg.start, cfg.end)
+
+    customers = customers.copy()
+    customers["signup_date_dt"] = pd.to_datetime(customers["signup_date"])
+
+    # Active state per customer: dict[customer_id] -> {seats, plan_tier, mrr, churned}
+    state: dict[str, dict] = {}
+
+    sub_rows = []
+    event_rows = []
+
+    for month in months:
+        # Activate customers whose signup_date is in this month
+        new_this_month = customers[
+            (customers["signup_date_dt"] >= month)
+            & (customers["signup_date_dt"] < month + pd.offsets.MonthBegin(1))
+        ]
+        for _, c in new_this_month.iterrows():
+            state[c["customer_id"]] = {
+                "seats": int(c["initial_seats"]),
+                "plan_tier": c["plan_tier_initial"],
+                "mrr": float(c["initial_mrr"]),
+                "churned": False,
+                "segment": c["segment"],
+                "channel": c["acquisition_channel"],
+            }
+            event_rows.append({
+                "customer_id": c["customer_id"],
+                "event_date": c["signup_date"],
+                "event_type": "signup",
+                "mrr_delta": float(c["initial_mrr"]),
+                "reason": f"New {c['segment']} customer via {c['acquisition_channel']}",
+            })
+
+        # Walk all active customers and decide their fate this month
+        for cust_id, s in list(state.items()):
+            if s["churned"]:
+                continue
+
+            # Churn check
+            churn_p = (
+                BASE_CHURN_PROB_BY_CHANNEL[s["channel"]]
+                * SEGMENT_CHURN_MULT[s["segment"]]
+                * _q1_churn_amplifier(month)
+            )
+            if rng.random() < churn_p:
+                event_rows.append({
+                    "customer_id": cust_id,
+                    "event_date": _mid_month(month).strftime("%Y-%m-%d"),
+                    "event_type": "churn",
+                    "mrr_delta": -s["mrr"],
+                    "reason": "Cancellation",
+                })
+                s["churned"] = True
+                continue
+
+            # Expansion check
+            if rng.random() < EXPANSION_PROB_BY_SEGMENT[s["segment"]]:
+                growth = rng.uniform(*EXPANSION_SEAT_GROWTH_RANGE)
+                new_seats = max(s["seats"] + 1, int(round(s["seats"] * (1 + growth))))
+                delta_mrr = (new_seats - s["seats"]) * PLAN_TIERS[s["plan_tier"]]
+                event_rows.append({
+                    "customer_id": cust_id,
+                    "event_date": _mid_month(month).strftime("%Y-%m-%d"),
+                    "event_type": "upgrade",
+                    "mrr_delta": delta_mrr,
+                    "reason": f"Seat expansion to {new_seats}",
+                })
+                s["seats"] = new_seats
+                s["mrr"] = new_seats * PLAN_TIERS[s["plan_tier"]]
+
+            # Contraction check (separate roll)
+            elif rng.random() < CONTRACTION_PROB_BY_SEGMENT[s["segment"]]:
+                loss = rng.uniform(*CONTRACTION_SEAT_LOSS_RANGE)
+                new_seats = max(1, int(round(s["seats"] * (1 - loss))))
+                delta_mrr = (new_seats - s["seats"]) * PLAN_TIERS[s["plan_tier"]]
+                event_rows.append({
+                    "customer_id": cust_id,
+                    "event_date": _mid_month(month).strftime("%Y-%m-%d"),
+                    "event_type": "downgrade",
+                    "mrr_delta": delta_mrr,
+                    "reason": f"Seat contraction to {new_seats}",
+                })
+                s["seats"] = new_seats
+                s["mrr"] = new_seats * PLAN_TIERS[s["plan_tier"]]
+
+        # Snapshot subscriptions for this month (active only)
+        for cust_id, s in state.items():
+            if s["churned"]:
+                continue
+            sub_rows.append({
+                "customer_id": cust_id,
+                "month": month.strftime("%Y-%m-%d"),
+                "mrr": s["mrr"],
+                "seats": s["seats"],
+                "plan_tier": s["plan_tier"],
+                "status": "active",
+            })
+
+    return pd.DataFrame(sub_rows), pd.DataFrame(event_rows)
+
+
+def _q1_churn_amplifier(month: pd.Timestamp) -> float:
+    """Slight Q1 churn elevation (budget cuts, renewals not renewed)."""
+    return 1.20 if month.month in (1, 2) else 1.0
+
+
+def _mid_month(month: pd.Timestamp) -> pd.Timestamp:
+    return month + pd.Timedelta(days=14)
