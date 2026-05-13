@@ -203,6 +203,7 @@ def generate_subscriptions_and_events(
             (customers["signup_date_dt"] >= month)
             & (customers["signup_date_dt"] < month + pd.offsets.MonthBegin(1))
         ]
+        activated_this_month: set[str] = set()
         for _, c in new_this_month.iterrows():
             state[c["customer_id"]] = {
                 "seats": int(c["initial_seats"]),
@@ -212,6 +213,7 @@ def generate_subscriptions_and_events(
                 "segment": c["segment"],
                 "channel": c["acquisition_channel"],
             }
+            activated_this_month.add(c["customer_id"])
             event_rows.append({
                 "customer_id": c["customer_id"],
                 "event_date": c["signup_date"],
@@ -220,9 +222,10 @@ def generate_subscriptions_and_events(
                 "reason": f"New {c['segment']} customer via {c['acquisition_channel']}",
             })
 
-        # Walk all active customers and decide their fate this month
+        # Walk active customers (excluding those that just signed up this month)
+        # and decide their fate this month
         for cust_id, s in list(state.items()):
-            if s["churned"]:
+            if s["churned"] or cust_id in activated_this_month:
                 continue
 
             # Churn check
