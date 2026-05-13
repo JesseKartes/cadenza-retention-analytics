@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.metrics import arr, logo_churn, gross_revenue_churn, grr, nrr
+from src.metrics import arr, logo_churn, gross_revenue_churn, grr, nrr, mrr_waterfall
 
 
 def test_arr_is_mrr_times_twelve(tiny_subs):
@@ -62,3 +62,23 @@ def test_gross_revenue_churn_is_one_minus_grr(tiny_subs):
 def test_grr_with_no_starting_customers_returns_one(tiny_subs):
     # Pick a month with no activity
     assert grr(tiny_subs, "2030-01-01", "2030-02-01") == 1.0
+
+
+def test_mrr_waterfall_jan_to_mar(tiny_subs, tiny_events):
+    # Starting MRR (Jan): 100+200+300+400 = 1000
+    # Period = events after 2024-01-01 and up to 2024-03-31
+    # New (signup, Feb): +500 (CUST-5)
+    # Expansion (Feb): +50 (CUST-2)
+    # Contraction (Feb): -50 (CUST-4)
+    # Churn (Mar): -300 (CUST-3)
+    # Ending MRR (Mar): 100+250+0+350+500 = 1200
+    result = mrr_waterfall(tiny_subs, tiny_events, "2024-01-01", "2024-03-01")
+    assert result["starting"] == pytest.approx(1000.0)
+    assert result["new"] == pytest.approx(500.0)
+    assert result["expansion"] == pytest.approx(50.0)
+    assert result["contraction"] == pytest.approx(-50.0)
+    assert result["churn"] == pytest.approx(-300.0)
+    assert result["ending"] == pytest.approx(1200.0)
+    # Waterfall identity must hold (within float precision)
+    walk = result["starting"] + result["new"] + result["expansion"] + result["contraction"] + result["churn"]
+    assert walk == pytest.approx(result["ending"])

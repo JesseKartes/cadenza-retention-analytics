@@ -77,3 +77,44 @@ def grr(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
 def gross_revenue_churn(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
     """Gross Revenue Churn = 1 - GRR."""
     return 1.0 - grr(subs, start_month, end_month)
+
+
+def mrr_waterfall(
+    subs: pd.DataFrame, events: pd.DataFrame, start_month: str, end_month: str
+) -> dict[str, float]:
+    """SaaS MRR waterfall for the period (start_month, end_month].
+
+    Returns a dict with starting, new, expansion, contraction (negative),
+    churn (negative), and ending. The identity
+        starting + new + expansion + contraction + churn = ending
+    must hold.
+
+    The period is exclusive of start_month and inclusive of end_month, so
+    that signups and changes occurring DURING the start month aren't double-counted
+    against the starting balance.
+    """
+    starting = float(_active(subs, start_month)["mrr"].sum())
+    ending = float(_active(subs, end_month)["mrr"].sum())
+
+    period_events = events[
+        (events["event_date"] > _end_of_month(start_month))
+        & (events["event_date"] <= _end_of_month(end_month))
+    ]
+
+    def _sum(event_type: str) -> float:
+        return float(period_events[period_events["event_type"] == event_type]["mrr_delta"].sum())
+
+    return {
+        "starting": starting,
+        "new": _sum("signup"),
+        "expansion": _sum("upgrade"),
+        "contraction": _sum("downgrade"),
+        "churn": _sum("churn"),
+        "ending": ending,
+    }
+
+
+def _end_of_month(month: str) -> str:
+    """Return YYYY-MM-DD of the last day of the month given a YYYY-MM-01 string."""
+    ts = pd.Timestamp(month)
+    return (ts + pd.offsets.MonthEnd(0)).strftime("%Y-%m-%d")
