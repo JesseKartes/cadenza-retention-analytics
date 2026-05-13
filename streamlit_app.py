@@ -36,7 +36,6 @@ def sidebar_filters(customers: pd.DataFrame, subs: pd.DataFrame) -> dict:
     st.sidebar.markdown("### Filters")
 
     months = sorted(subs["month"].unique())
-    end_default = months[-1]
     end_month = st.sidebar.selectbox("Reporting month", months, index=len(months) - 1)
 
     segments = ["All"] + sorted(customers["segment"].unique().tolist())
