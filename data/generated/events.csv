@@ -1,0 +1,1461 @@
+customer_id,event_date,event_type,mrr_delta,reason
+CUST-1001,2023-01-19,signup,5000.0,New Mid-Market customer via Inbound Marketing
+CUST-1002,2023-01-23,signup,3700.0,New Mid-Market customer via Self-Serve Promo
+CUST-1003,2023-01-12,signup,5760.0,New Mid-Market customer via Partner Referral
+CUST-1004,2023-01-05,signup,500.0,New SMB customer via Event/Conference
+CUST-1005,2023-01-06,signup,80500.0,New Enterprise customer via Event/Conference
+CUST-1006,2023-01-10,signup,360.0,New SMB customer via Partner Referral
+CUST-1007,2023-01-04,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1008,2023-01-18,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1009,2023-01-08,signup,8280.0,New Mid-Market customer via Event/Conference
+CUST-1010,2023-01-22,signup,480.0,New SMB customer via Outbound Sales
+CUST-1011,2023-01-04,signup,2040.0,New Mid-Market customer via Inbound Marketing
+CUST-1012,2023-01-16,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1013,2023-01-12,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1014,2023-01-24,signup,1950.0,New Mid-Market customer via Outbound Sales
+CUST-1015,2023-01-18,signup,1800.0,New SMB customer via Inbound Marketing
+CUST-1016,2023-01-21,signup,650.0,New SMB customer via Outbound Sales
+CUST-1017,2023-01-19,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1018,2023-01-26,signup,350.0,New SMB customer via Partner Referral
+CUST-1019,2023-02-08,signup,56000.0,New Enterprise customer via Event/Conference
+CUST-1020,2023-02-03,signup,7440.0,New Mid-Market customer via Inbound Marketing
+CUST-1021,2023-02-16,signup,650.0,New SMB customer via Outbound Sales
+CUST-1022,2023-02-09,signup,8040.0,New Mid-Market customer via Self-Serve Promo
+CUST-1023,2023-02-02,signup,650.0,New SMB customer via Outbound Sales
+CUST-1024,2023-02-22,signup,350.0,New SMB customer via Outbound Sales
+CUST-1025,2023-02-01,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1026,2023-02-19,signup,5280.0,New Mid-Market customer via Outbound Sales
+CUST-1027,2023-02-09,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1028,2023-02-15,signup,960.0,New SMB customer via Event/Conference
+CUST-1029,2023-02-18,signup,300.0,New SMB customer via Partner Referral
+CUST-1030,2023-02-07,signup,600.0,New SMB customer via Event/Conference
+CUST-1031,2023-02-09,signup,1800.0,New SMB customer via Event/Conference
+CUST-1032,2023-02-05,signup,720.0,New SMB customer via Outbound Sales
+CUST-1033,2023-02-21,signup,480.0,New SMB customer via Event/Conference
+CUST-1034,2023-02-10,signup,1680.0,New SMB customer via Inbound Marketing
+CUST-1035,2023-02-26,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1036,2023-02-10,signup,1100.0,New Mid-Market customer via Outbound Sales
+CUST-1001,2023-02-15,upgrade,250.0,Seat expansion to 21
+CUST-1006,2023-02-15,churn,-360.0,Cancellation
+CUST-1037,2023-03-27,signup,840.0,New SMB customer via Inbound Marketing
+CUST-1038,2023-03-01,signup,200.0,New SMB customer via Outbound Sales
+CUST-1039,2023-03-06,signup,400.0,New SMB customer via Partner Referral
+CUST-1040,2023-03-16,signup,2900.0,New Mid-Market customer via Outbound Sales
+CUST-1041,2023-03-26,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1042,2023-03-23,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1043,2023-03-26,signup,250.0,New SMB customer via Event/Conference
+CUST-1044,2023-03-08,signup,2150.0,New Mid-Market customer via Outbound Sales
+CUST-1045,2023-03-24,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1046,2023-03-26,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1047,2023-03-23,signup,1560.0,New SMB customer via Outbound Sales
+CUST-1048,2023-03-09,signup,360.0,New SMB customer via Outbound Sales
+CUST-1049,2023-03-05,signup,6000.0,New Mid-Market customer via Outbound Sales
+CUST-1050,2023-03-12,signup,150.0,New SMB customer via Outbound Sales
+CUST-1051,2023-03-24,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1052,2023-03-18,signup,150.0,New SMB customer via Outbound Sales
+CUST-1053,2023-03-03,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1054,2023-03-22,signup,2160.0,New Mid-Market customer via Outbound Sales
+CUST-1055,2023-03-22,signup,6240.0,New Mid-Market customer via Self-Serve Promo
+CUST-1056,2023-03-22,signup,450.0,New SMB customer via Event/Conference
+CUST-1001,2023-03-15,downgrade,-1000.0,Seat contraction to 17
+CUST-1004,2023-03-15,upgrade,50.0,Seat expansion to 11
+CUST-1029,2023-03-15,downgrade,-50.0,Seat contraction to 5
+CUST-1057,2023-04-12,signup,250.0,New SMB customer via Outbound Sales
+CUST-1058,2023-04-05,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1059,2023-04-09,signup,7320.0,New Mid-Market customer via Event/Conference
+CUST-1060,2023-04-21,signup,700.0,New SMB customer via Event/Conference
+CUST-1061,2023-04-24,signup,5400.0,New Mid-Market customer via Outbound Sales
+CUST-1062,2023-04-15,signup,500.0,New SMB customer via Self-Serve Promo
+CUST-1063,2023-04-22,signup,55000.0,New Enterprise customer via Event/Conference
+CUST-1064,2023-04-15,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1065,2023-04-15,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1066,2023-04-23,signup,1560.0,New SMB customer via Inbound Marketing
+CUST-1067,2023-04-21,signup,700.0,New SMB customer via Partner Referral
+CUST-1068,2023-04-22,signup,4200.0,New Mid-Market customer via Self-Serve Promo
+CUST-1069,2023-04-12,signup,1200.0,New SMB customer via Outbound Sales
+CUST-1070,2023-04-17,signup,1440.0,New SMB customer via Event/Conference
+CUST-1071,2023-04-04,signup,53250.0,New Enterprise customer via Self-Serve Promo
+CUST-1072,2023-04-15,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1073,2023-04-12,signup,4080.0,New Mid-Market customer via Outbound Sales
+CUST-1074,2023-04-02,signup,17750.0,New Mid-Market customer via Outbound Sales
+CUST-1075,2023-04-18,signup,4000.0,New Mid-Market customer via Outbound Sales
+CUST-1076,2023-04-13,signup,2400.0,New Mid-Market customer via Outbound Sales
+CUST-1010,2023-04-15,upgrade,120.0,Seat expansion to 5
+CUST-1016,2023-04-15,downgrade,-100.0,Seat contraction to 11
+CUST-1052,2023-04-15,upgrade,50.0,Seat expansion to 4
+CUST-1077,2023-05-01,signup,700.0,New SMB customer via Event/Conference
+CUST-1078,2023-05-08,signup,150.0,New SMB customer via Event/Conference
+CUST-1079,2023-05-19,signup,7920.0,New Mid-Market customer via Event/Conference
+CUST-1080,2023-05-15,signup,150.0,New SMB customer via Outbound Sales
+CUST-1081,2023-05-06,signup,2160.0,New Mid-Market customer via Outbound Sales
+CUST-1082,2023-05-02,signup,36720.0,New Enterprise customer via Partner Referral
+CUST-1083,2023-05-03,signup,1850.0,New Mid-Market customer via Self-Serve Promo
+CUST-1084,2023-05-24,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1085,2023-05-19,signup,5640.0,New Mid-Market customer via Inbound Marketing
+CUST-1086,2023-05-25,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1087,2023-05-12,signup,500.0,New SMB customer via Outbound Sales
+CUST-1088,2023-05-26,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1089,2023-05-07,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1090,2023-05-17,signup,5880.0,New Mid-Market customer via Partner Referral
+CUST-1091,2023-05-10,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1092,2023-05-20,signup,7080.0,New Mid-Market customer via Event/Conference
+CUST-1093,2023-05-04,signup,150.0,New SMB customer via Event/Conference
+CUST-1094,2023-05-14,signup,650.0,New SMB customer via Outbound Sales
+CUST-1095,2023-05-24,signup,6960.0,New Mid-Market customer via Outbound Sales
+CUST-1096,2023-05-14,signup,200.0,New SMB customer via Outbound Sales
+CUST-1008,2023-05-15,churn,-600.0,Cancellation
+CUST-1019,2023-05-15,upgrade,11000.0,Seat expansion to 268
+CUST-1021,2023-05-15,upgrade,100.0,Seat expansion to 15
+CUST-1039,2023-05-15,downgrade,-50.0,Seat contraction to 7
+CUST-1046,2023-05-15,upgrade,50.0,Seat expansion to 9
+CUST-1067,2023-05-15,upgrade,150.0,Seat expansion to 17
+CUST-1097,2023-06-20,signup,2760.0,New Mid-Market customer via Inbound Marketing
+CUST-1098,2023-06-13,signup,550.0,New SMB customer via Outbound Sales
+CUST-1099,2023-06-23,signup,3240.0,New Mid-Market customer via Event/Conference
+CUST-1100,2023-06-23,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1101,2023-06-25,signup,300.0,New SMB customer via Outbound Sales
+CUST-1102,2023-06-20,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1103,2023-06-18,signup,500.0,New SMB customer via Event/Conference
+CUST-1104,2023-06-24,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1105,2023-06-14,signup,840.0,New SMB customer via Self-Serve Promo
+CUST-1106,2023-06-23,signup,6000.0,New Mid-Market customer via Inbound Marketing
+CUST-1107,2023-06-05,signup,400.0,New SMB customer via Event/Conference
+CUST-1108,2023-06-12,signup,250.0,New SMB customer via Event/Conference
+CUST-1109,2023-06-18,signup,1080.0,New SMB customer via Outbound Sales
+CUST-1110,2023-06-14,signup,1320.0,New SMB customer via Self-Serve Promo
+CUST-1111,2023-06-20,signup,2250.0,New Mid-Market customer via Event/Conference
+CUST-1112,2023-06-05,signup,2500.0,New SMB customer via Event/Conference
+CUST-1113,2023-06-02,signup,1650.0,New Mid-Market customer via Inbound Marketing
+CUST-1114,2023-06-07,signup,58500.0,New Enterprise customer via Inbound Marketing
+CUST-1115,2023-06-25,signup,720.0,New SMB customer via Inbound Marketing
+CUST-1116,2023-06-26,signup,150.0,New SMB customer via Outbound Sales
+CUST-1084,2023-06-15,upgrade,150.0,Seat expansion to 18
+CUST-1117,2023-07-22,signup,4560.0,New Mid-Market customer via Event/Conference
+CUST-1118,2023-07-26,signup,300.0,New SMB customer via Event/Conference
+CUST-1119,2023-07-19,signup,1200.0,New SMB customer via Inbound Marketing
+CUST-1120,2023-07-20,signup,700.0,New SMB customer via Event/Conference
+CUST-1121,2023-07-03,signup,550.0,New SMB customer via Event/Conference
+CUST-1122,2023-07-21,signup,6960.0,New Mid-Market customer via Event/Conference
+CUST-1123,2023-07-17,signup,1440.0,New SMB customer via Event/Conference
+CUST-1124,2023-07-03,signup,700.0,New SMB customer via Outbound Sales
+CUST-1125,2023-07-10,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1126,2023-07-10,signup,8760.0,New Mid-Market customer via Inbound Marketing
+CUST-1127,2023-07-21,signup,750.0,New SMB customer via Event/Conference
+CUST-1128,2023-07-05,signup,550.0,New SMB customer via Outbound Sales
+CUST-1129,2023-07-22,signup,1200.0,New SMB customer via Inbound Marketing
+CUST-1130,2023-07-19,signup,57500.0,New Enterprise customer via Partner Referral
+CUST-1131,2023-07-18,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1132,2023-07-20,signup,1080.0,New SMB customer via Outbound Sales
+CUST-1133,2023-07-14,signup,300.0,New SMB customer via Outbound Sales
+CUST-1134,2023-07-25,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1135,2023-07-01,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1136,2023-07-01,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1014,2023-07-15,upgrade,200.0,Seat expansion to 43
+CUST-1016,2023-07-15,upgrade,100.0,Seat expansion to 13
+CUST-1019,2023-07-15,upgrade,15250.0,Seat expansion to 329
+CUST-1038,2023-07-15,churn,-200.0,Cancellation
+CUST-1042,2023-07-15,upgrade,150.0,Seat expansion to 18
+CUST-1047,2023-07-15,upgrade,240.0,Seat expansion to 15
+CUST-1067,2023-07-15,downgrade,-100.0,Seat contraction to 15
+CUST-1070,2023-07-15,churn,-1440.0,Cancellation
+CUST-1114,2023-07-15,upgrade,10750.0,Seat expansion to 277
+CUST-1137,2023-08-09,signup,3360.0,New Mid-Market customer via Event/Conference
+CUST-1138,2023-08-07,signup,450.0,New SMB customer via Outbound Sales
+CUST-1139,2023-08-02,signup,500.0,New SMB customer via Self-Serve Promo
+CUST-1140,2023-08-05,signup,700.0,New SMB customer via Outbound Sales
+CUST-1141,2023-08-23,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1142,2023-08-27,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1143,2023-08-27,signup,8400.0,New Mid-Market customer via Inbound Marketing
+CUST-1144,2023-08-09,signup,650.0,New SMB customer via Self-Serve Promo
+CUST-1145,2023-08-10,signup,600.0,New SMB customer via Outbound Sales
+CUST-1146,2023-08-23,signup,3000.0,New Mid-Market customer via Self-Serve Promo
+CUST-1147,2023-08-19,signup,550.0,New SMB customer via Outbound Sales
+CUST-1148,2023-08-15,signup,12000.0,New Enterprise customer via Outbound Sales
+CUST-1149,2023-08-15,signup,960.0,New SMB customer via Event/Conference
+CUST-1150,2023-08-10,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1151,2023-08-24,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1152,2023-08-15,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1153,2023-08-14,signup,8520.0,New Mid-Market customer via Event/Conference
+CUST-1154,2023-08-21,signup,650.0,New SMB customer via Inbound Marketing
+CUST-1155,2023-08-05,signup,720.0,New SMB customer via Outbound Sales
+CUST-1156,2023-08-24,signup,8040.0,New Mid-Market customer via Outbound Sales
+CUST-1017,2023-08-15,upgrade,50.0,Seat expansion to 10
+CUST-1035,2023-08-15,churn,-150.0,Cancellation
+CUST-1044,2023-08-15,upgrade,550.0,Seat expansion to 54
+CUST-1052,2023-08-15,upgrade,50.0,Seat expansion to 5
+CUST-1099,2023-08-15,upgrade,600.0,Seat expansion to 32
+CUST-1157,2023-09-20,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1158,2023-09-24,signup,1200.0,New SMB customer via Event/Conference
+CUST-1159,2023-09-27,signup,250.0,New SMB customer via Self-Serve Promo
+CUST-1160,2023-09-10,signup,6960.0,New Mid-Market customer via Inbound Marketing
+CUST-1161,2023-09-13,signup,1080.0,New SMB customer via Partner Referral
+CUST-1162,2023-09-09,signup,350.0,New SMB customer via Outbound Sales
+CUST-1163,2023-09-21,signup,27480.0,New Enterprise customer via Outbound Sales
+CUST-1164,2023-09-02,signup,300.0,New SMB customer via Outbound Sales
+CUST-1165,2023-09-18,signup,720.0,New SMB customer via Inbound Marketing
+CUST-1166,2023-09-09,signup,480.0,New SMB customer via Outbound Sales
+CUST-1167,2023-09-02,signup,66500.0,New Enterprise customer via Event/Conference
+CUST-1168,2023-09-21,signup,720.0,New SMB customer via Outbound Sales
+CUST-1169,2023-09-24,signup,200.0,New SMB customer via Outbound Sales
+CUST-1170,2023-09-03,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1171,2023-09-25,signup,300.0,New SMB customer via Event/Conference
+CUST-1172,2023-09-02,signup,3720.0,New Mid-Market customer via Outbound Sales
+CUST-1173,2023-09-10,signup,15000.0,New Mid-Market customer via Event/Conference
+CUST-1174,2023-09-03,signup,720.0,New SMB customer via Outbound Sales
+CUST-1175,2023-09-15,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1176,2023-09-23,signup,200.0,New SMB customer via Event/Conference
+CUST-1005,2023-09-15,upgrade,16500.0,Seat expansion to 388
+CUST-1013,2023-09-15,upgrade,50.0,Seat expansion to 8
+CUST-1042,2023-09-15,upgrade,200.0,Seat expansion to 22
+CUST-1043,2023-09-15,upgrade,50.0,Seat expansion to 6
+CUST-1074,2023-09-15,upgrade,3250.0,Seat expansion to 84
+CUST-1097,2023-09-15,upgrade,600.0,Seat expansion to 28
+CUST-1105,2023-09-15,upgrade,120.0,Seat expansion to 8
+CUST-1116,2023-09-15,downgrade,0.0,Seat contraction to 3
+CUST-1143,2023-09-15,churn,-8400.0,Cancellation
+CUST-1145,2023-09-15,upgrade,100.0,Seat expansion to 14
+CUST-1177,2023-10-01,signup,700.0,New SMB customer via Outbound Sales
+CUST-1178,2023-10-27,signup,700.0,New SMB customer via Partner Referral
+CUST-1179,2023-10-21,signup,1560.0,New SMB customer via Event/Conference
+CUST-1180,2023-10-26,signup,1200.0,New Mid-Market customer via Inbound Marketing
+CUST-1181,2023-10-06,signup,1560.0,New SMB customer via Self-Serve Promo
+CUST-1182,2023-10-08,signup,2000.0,New SMB customer via Outbound Sales
+CUST-1183,2023-10-18,signup,650.0,New SMB customer via Outbound Sales
+CUST-1184,2023-10-09,signup,700.0,New SMB customer via Self-Serve Promo
+CUST-1185,2023-10-05,signup,500.0,New SMB customer via Event/Conference
+CUST-1186,2023-10-21,signup,1560.0,New SMB customer via Inbound Marketing
+CUST-1187,2023-10-26,signup,350.0,New SMB customer via Partner Referral
+CUST-1188,2023-10-16,signup,1440.0,New SMB customer via Inbound Marketing
+CUST-1189,2023-10-12,signup,600.0,New SMB customer via Partner Referral
+CUST-1190,2023-10-20,signup,200.0,New SMB customer via Partner Referral
+CUST-1191,2023-10-24,signup,1800.0,New SMB customer via Outbound Sales
+CUST-1192,2023-10-08,signup,550.0,New SMB customer via Outbound Sales
+CUST-1193,2023-10-19,signup,5760.0,New Mid-Market customer via Outbound Sales
+CUST-1194,2023-10-20,signup,500.0,New SMB customer via Partner Referral
+CUST-1195,2023-10-24,signup,600.0,New SMB customer via Outbound Sales
+CUST-1196,2023-10-24,signup,5040.0,New Mid-Market customer via Event/Conference
+CUST-1197,2023-10-25,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1198,2023-10-07,signup,87250.0,New Enterprise customer via Self-Serve Promo
+CUST-1199,2023-10-08,signup,550.0,New SMB customer via Outbound Sales
+CUST-1024,2023-10-15,upgrade,50.0,Seat expansion to 8
+CUST-1031,2023-10-15,churn,-1800.0,Cancellation
+CUST-1034,2023-10-15,churn,-1680.0,Cancellation
+CUST-1050,2023-10-15,upgrade,50.0,Seat expansion to 4
+CUST-1062,2023-10-15,churn,-500.0,Cancellation
+CUST-1063,2023-10-15,upgrade,4250.0,Seat expansion to 237
+CUST-1080,2023-10-15,churn,-150.0,Cancellation
+CUST-1095,2023-10-15,upgrade,480.0,Seat expansion to 62
+CUST-1098,2023-10-15,churn,-550.0,Cancellation
+CUST-1138,2023-10-15,upgrade,50.0,Seat expansion to 10
+CUST-1139,2023-10-15,churn,-500.0,Cancellation
+CUST-1164,2023-10-15,churn,-300.0,Cancellation
+CUST-1200,2023-11-08,signup,1200.0,New SMB customer via Outbound Sales
+CUST-1201,2023-11-23,signup,480.0,New SMB customer via Inbound Marketing
+CUST-1202,2023-11-08,signup,3250.0,New SMB customer via Inbound Marketing
+CUST-1203,2023-11-27,signup,720.0,New SMB customer via Partner Referral
+CUST-1204,2023-11-07,signup,5750.0,New Mid-Market customer via Outbound Sales
+CUST-1205,2023-11-15,signup,5400.0,New Mid-Market customer via Outbound Sales
+CUST-1206,2023-11-01,signup,2750.0,New SMB customer via Event/Conference
+CUST-1207,2023-11-13,signup,3960.0,New Mid-Market customer via Event/Conference
+CUST-1208,2023-11-19,signup,360.0,New SMB customer via Inbound Marketing
+CUST-1209,2023-11-22,signup,1440.0,New SMB customer via Inbound Marketing
+CUST-1210,2023-11-09,signup,700.0,New SMB customer via Event/Conference
+CUST-1211,2023-11-12,signup,200.0,New SMB customer via Outbound Sales
+CUST-1212,2023-11-01,signup,150.0,New SMB customer via Event/Conference
+CUST-1213,2023-11-03,signup,2040.0,New Mid-Market customer via Inbound Marketing
+CUST-1214,2023-11-15,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1215,2023-11-21,signup,550.0,New SMB customer via Outbound Sales
+CUST-1216,2023-11-02,signup,480.0,New SMB customer via Outbound Sales
+CUST-1217,2023-11-11,signup,700.0,New SMB customer via Partner Referral
+CUST-1218,2023-11-13,signup,8880.0,New Mid-Market customer via Outbound Sales
+CUST-1219,2023-11-23,signup,4560.0,New Mid-Market customer via Inbound Marketing
+CUST-1220,2023-11-17,signup,150.0,New SMB customer via Partner Referral
+CUST-1221,2023-11-11,signup,2880.0,New Mid-Market customer via Event/Conference
+CUST-1222,2023-11-23,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1014,2023-11-15,upgrade,300.0,Seat expansion to 49
+CUST-1015,2023-11-15,upgrade,120.0,Seat expansion to 16
+CUST-1024,2023-11-15,upgrade,50.0,Seat expansion to 9
+CUST-1055,2023-11-15,churn,-6240.0,Cancellation
+CUST-1104,2023-11-15,downgrade,-50.0,Seat contraction to 11
+CUST-1110,2023-11-15,upgrade,120.0,Seat expansion to 12
+CUST-1111,2023-11-15,upgrade,400.0,Seat expansion to 53
+CUST-1177,2023-11-15,upgrade,100.0,Seat expansion to 16
+CUST-1178,2023-11-15,upgrade,100.0,Seat expansion to 16
+CUST-1183,2023-11-15,churn,-650.0,Cancellation
+CUST-1223,2023-12-05,signup,650.0,New SMB customer via Event/Conference
+CUST-1224,2023-12-10,signup,450.0,New SMB customer via Event/Conference
+CUST-1225,2023-12-03,signup,700.0,New SMB customer via Partner Referral
+CUST-1226,2023-12-05,signup,960.0,New SMB customer via Outbound Sales
+CUST-1227,2023-12-17,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1228,2023-12-02,signup,3450.0,New Mid-Market customer via Outbound Sales
+CUST-1229,2023-12-23,signup,480.0,New SMB customer via Event/Conference
+CUST-1230,2023-12-13,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1231,2023-12-14,signup,8500.0,New Mid-Market customer via Outbound Sales
+CUST-1232,2023-12-13,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1233,2023-12-16,signup,360.0,New SMB customer via Outbound Sales
+CUST-1234,2023-12-22,signup,960.0,New SMB customer via Partner Referral
+CUST-1235,2023-12-13,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1236,2023-12-15,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1237,2023-12-16,signup,7440.0,New Mid-Market customer via Inbound Marketing
+CUST-1238,2023-12-03,signup,3600.0,New Mid-Market customer via Event/Conference
+CUST-1239,2023-12-16,signup,17750.0,New Mid-Market customer via Inbound Marketing
+CUST-1240,2023-12-10,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1241,2023-12-22,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1242,2023-12-19,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1052,2023-12-15,upgrade,50.0,Seat expansion to 6
+CUST-1056,2023-12-15,upgrade,50.0,Seat expansion to 10
+CUST-1072,2023-12-15,churn,-550.0,Cancellation
+CUST-1079,2023-12-15,upgrade,1560.0,Seat expansion to 79
+CUST-1082,2023-12-15,upgrade,4560.0,Seat expansion to 344
+CUST-1089,2023-12-15,churn,-200.0,Cancellation
+CUST-1097,2023-12-15,upgrade,720.0,Seat expansion to 34
+CUST-1132,2023-12-15,upgrade,120.0,Seat expansion to 10
+CUST-1148,2023-12-15,upgrade,2150.0,Seat expansion to 283
+CUST-1159,2023-12-15,churn,-250.0,Cancellation
+CUST-1162,2023-12-15,upgrade,50.0,Seat expansion to 8
+CUST-1173,2023-12-15,upgrade,1500.0,Seat expansion to 66
+CUST-1179,2023-12-15,upgrade,360.0,Seat expansion to 16
+CUST-1185,2023-12-15,churn,-500.0,Cancellation
+CUST-1190,2023-12-15,churn,-200.0,Cancellation
+CUST-1197,2023-12-15,churn,-400.0,Cancellation
+CUST-1243,2024-01-27,signup,360.0,New SMB customer via Inbound Marketing
+CUST-1244,2024-01-04,signup,250.0,New SMB customer via Event/Conference
+CUST-1245,2024-01-17,signup,3000.0,New SMB customer via Inbound Marketing
+CUST-1246,2024-01-06,signup,840.0,New SMB customer via Outbound Sales
+CUST-1247,2024-01-15,signup,750.0,New SMB customer via Event/Conference
+CUST-1248,2024-01-22,signup,550.0,New SMB customer via Partner Referral
+CUST-1249,2024-01-04,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1250,2024-01-07,signup,350.0,New SMB customer via Event/Conference
+CUST-1251,2024-01-18,signup,1680.0,New SMB customer via Partner Referral
+CUST-1252,2024-01-13,signup,2000.0,New SMB customer via Inbound Marketing
+CUST-1253,2024-01-02,signup,9500.0,New Mid-Market customer via Inbound Marketing
+CUST-1254,2024-01-26,signup,1560.0,New SMB customer via Outbound Sales
+CUST-1255,2024-01-13,signup,7560.0,New Mid-Market customer via Inbound Marketing
+CUST-1256,2024-01-06,signup,750.0,New SMB customer via Outbound Sales
+CUST-1257,2024-01-27,signup,2640.0,New Mid-Market customer via Self-Serve Promo
+CUST-1258,2024-01-11,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1259,2024-01-13,signup,55750.0,New Enterprise customer via Self-Serve Promo
+CUST-1260,2024-01-16,signup,350.0,New SMB customer via Outbound Sales
+CUST-1023,2024-01-15,churn,-650.0,Cancellation
+CUST-1037,2024-01-15,downgrade,-120.0,Seat contraction to 6
+CUST-1053,2024-01-15,churn,-700.0,Cancellation
+CUST-1094,2024-01-15,churn,-650.0,Cancellation
+CUST-1134,2024-01-15,churn,-150.0,Cancellation
+CUST-1147,2024-01-15,upgrade,100.0,Seat expansion to 13
+CUST-1148,2024-01-15,upgrade,1650.0,Seat expansion to 316
+CUST-1193,2024-01-15,churn,-5760.0,Cancellation
+CUST-1209,2024-01-15,downgrade,-240.0,Seat contraction to 10
+CUST-1261,2024-02-05,signup,1700.0,New Mid-Market customer via Partner Referral
+CUST-1262,2024-02-24,signup,1800.0,New SMB customer via Inbound Marketing
+CUST-1263,2024-02-06,signup,200.0,New SMB customer via Outbound Sales
+CUST-1264,2024-02-14,signup,700.0,New SMB customer via Partner Referral
+CUST-1265,2024-02-03,signup,2520.0,New Mid-Market customer via Event/Conference
+CUST-1266,2024-02-04,signup,4920.0,New Mid-Market customer via Inbound Marketing
+CUST-1267,2024-02-12,signup,250.0,New SMB customer via Partner Referral
+CUST-1268,2024-02-23,signup,600.0,New SMB customer via Event/Conference
+CUST-1269,2024-02-27,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1270,2024-02-07,signup,450.0,New SMB customer via Outbound Sales
+CUST-1271,2024-02-25,signup,450.0,New SMB customer via Event/Conference
+CUST-1272,2024-02-25,signup,2160.0,New Mid-Market customer via Partner Referral
+CUST-1273,2024-02-18,signup,4920.0,New Mid-Market customer via Partner Referral
+CUST-1274,2024-02-10,signup,1800.0,New SMB customer via Inbound Marketing
+CUST-1275,2024-02-04,signup,840.0,New SMB customer via Outbound Sales
+CUST-1276,2024-02-16,signup,6360.0,New Mid-Market customer via Event/Conference
+CUST-1277,2024-02-15,signup,350.0,New SMB customer via Outbound Sales
+CUST-1278,2024-02-22,signup,7320.0,New Mid-Market customer via Outbound Sales
+CUST-1021,2024-02-15,downgrade,-100.0,Seat contraction to 13
+CUST-1040,2024-02-15,upgrade,250.0,Seat expansion to 63
+CUST-1057,2024-02-15,upgrade,50.0,Seat expansion to 6
+CUST-1092,2024-02-15,upgrade,1560.0,Seat expansion to 72
+CUST-1093,2024-02-15,churn,-150.0,Cancellation
+CUST-1121,2024-02-15,churn,-550.0,Cancellation
+CUST-1128,2024-02-15,churn,-550.0,Cancellation
+CUST-1154,2024-02-15,upgrade,150.0,Seat expansion to 16
+CUST-1163,2024-02-15,upgrade,1560.0,Seat expansion to 242
+CUST-1186,2024-02-15,downgrade,-120.0,Seat contraction to 12
+CUST-1196,2024-02-15,upgrade,600.0,Seat expansion to 47
+CUST-1235,2024-02-15,downgrade,-50.0,Seat contraction to 6
+CUST-1254,2024-02-15,churn,-1560.0,Cancellation
+CUST-1257,2024-02-15,churn,-2640.0,Cancellation
+CUST-1279,2024-03-15,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1280,2024-03-03,signup,360.0,New SMB customer via Self-Serve Promo
+CUST-1281,2024-03-05,signup,3120.0,New Mid-Market customer via Outbound Sales
+CUST-1282,2024-03-05,signup,400.0,New SMB customer via Self-Serve Promo
+CUST-1283,2024-03-07,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1284,2024-03-17,signup,1800.0,New SMB customer via Partner Referral
+CUST-1285,2024-03-13,signup,4320.0,New Mid-Market customer via Event/Conference
+CUST-1286,2024-03-13,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1287,2024-03-22,signup,3240.0,New Mid-Market customer via Outbound Sales
+CUST-1288,2024-03-04,signup,9000.0,New Mid-Market customer via Event/Conference
+CUST-1289,2024-03-16,signup,750.0,New SMB customer via Event/Conference
+CUST-1290,2024-03-21,signup,600.0,New SMB customer via Outbound Sales
+CUST-1291,2024-03-22,signup,250.0,New SMB customer via Outbound Sales
+CUST-1292,2024-03-12,signup,1680.0,New SMB customer via Partner Referral
+CUST-1293,2024-03-12,signup,99000.0,New Enterprise customer via Outbound Sales
+CUST-1294,2024-03-23,signup,7440.0,New Mid-Market customer via Inbound Marketing
+CUST-1295,2024-03-06,signup,250.0,New SMB customer via Event/Conference
+CUST-1296,2024-03-05,signup,1560.0,New SMB customer via Inbound Marketing
+CUST-1297,2024-03-24,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1298,2024-03-07,signup,75000.0,New Enterprise customer via Inbound Marketing
+CUST-1015,2024-03-15,upgrade,240.0,Seat expansion to 18
+CUST-1082,2024-03-15,upgrade,6240.0,Seat expansion to 396
+CUST-1090,2024-03-15,upgrade,480.0,Seat expansion to 53
+CUST-1104,2024-03-15,downgrade,-100.0,Seat contraction to 9
+CUST-1105,2024-03-15,churn,-960.0,Cancellation
+CUST-1116,2024-03-15,downgrade,0.0,Seat contraction to 3
+CUST-1127,2024-03-15,downgrade,-150.0,Seat contraction to 12
+CUST-1148,2024-03-15,upgrade,2600.0,Seat expansion to 368
+CUST-1149,2024-03-15,churn,-960.0,Cancellation
+CUST-1163,2024-03-15,upgrade,3000.0,Seat expansion to 267
+CUST-1179,2024-03-15,upgrade,240.0,Seat expansion to 18
+CUST-1299,2024-04-13,signup,2000.0,New Mid-Market customer via Self-Serve Promo
+CUST-1300,2024-04-06,signup,600.0,New SMB customer via Outbound Sales
+CUST-1301,2024-04-04,signup,300.0,New SMB customer via Outbound Sales
+CUST-1302,2024-04-07,signup,400.0,New SMB customer via Event/Conference
+CUST-1303,2024-04-25,signup,400.0,New SMB customer via Self-Serve Promo
+CUST-1304,2024-04-15,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1305,2024-04-26,signup,2880.0,New Mid-Market customer via Outbound Sales
+CUST-1306,2024-04-02,signup,4920.0,New Mid-Market customer via Inbound Marketing
+CUST-1307,2024-04-14,signup,350.0,New SMB customer via Outbound Sales
+CUST-1308,2024-04-22,signup,1200.0,New SMB customer via Self-Serve Promo
+CUST-1309,2024-04-22,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1310,2024-04-10,signup,7080.0,New Mid-Market customer via Event/Conference
+CUST-1311,2024-04-24,signup,68750.0,New Enterprise customer via Outbound Sales
+CUST-1312,2024-04-22,signup,1560.0,New SMB customer via Event/Conference
+CUST-1313,2024-04-23,signup,750.0,New SMB customer via Partner Referral
+CUST-1314,2024-04-13,signup,3360.0,New Mid-Market customer via Inbound Marketing
+CUST-1315,2024-04-26,signup,4800.0,New Mid-Market customer via Outbound Sales
+CUST-1316,2024-04-20,signup,1440.0,New SMB customer via Event/Conference
+CUST-1317,2024-04-07,signup,650.0,New SMB customer via Self-Serve Promo
+CUST-1318,2024-04-26,signup,8760.0,New Mid-Market customer via Partner Referral
+CUST-1088,2024-04-15,upgrade,150.0,Seat expansion to 14
+CUST-1090,2024-04-15,upgrade,480.0,Seat expansion to 57
+CUST-1095,2024-04-15,downgrade,-1080.0,Seat contraction to 53
+CUST-1099,2024-04-15,upgrade,480.0,Seat expansion to 36
+CUST-1114,2024-04-15,upgrade,14000.0,Seat expansion to 333
+CUST-1123,2024-04-15,churn,-1440.0,Cancellation
+CUST-1135,2024-04-15,upgrade,50.0,Seat expansion to 5
+CUST-1154,2024-04-15,upgrade,50.0,Seat expansion to 17
+CUST-1157,2024-04-15,churn,-1320.0,Cancellation
+CUST-1162,2024-04-15,downgrade,-50.0,Seat contraction to 7
+CUST-1171,2024-04-15,downgrade,-50.0,Seat contraction to 5
+CUST-1191,2024-04-15,upgrade,360.0,Seat expansion to 18
+CUST-1229,2024-04-15,upgrade,120.0,Seat expansion to 5
+CUST-1241,2024-04-15,churn,-500.0,Cancellation
+CUST-1245,2024-04-15,upgrade,750.0,Seat expansion to 15
+CUST-1293,2024-04-15,upgrade,11000.0,Seat expansion to 440
+CUST-1319,2024-05-24,signup,150.0,New SMB customer via Partner Referral
+CUST-1320,2024-05-05,signup,840.0,New SMB customer via Outbound Sales
+CUST-1321,2024-05-03,signup,200.0,New SMB customer via Outbound Sales
+CUST-1322,2024-05-15,signup,11760.0,New Enterprise customer via Outbound Sales
+CUST-1323,2024-05-18,signup,8250.0,New Mid-Market customer via Partner Referral
+CUST-1324,2024-05-02,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1325,2024-05-23,signup,650.0,New SMB customer via Outbound Sales
+CUST-1326,2024-05-06,signup,6720.0,New Mid-Market customer via Outbound Sales
+CUST-1327,2024-05-16,signup,750.0,New SMB customer via Event/Conference
+CUST-1328,2024-05-25,signup,500.0,New SMB customer via Partner Referral
+CUST-1329,2024-05-13,signup,600.0,New SMB customer via Partner Referral
+CUST-1330,2024-05-21,signup,480.0,New SMB customer via Inbound Marketing
+CUST-1331,2024-05-14,signup,500.0,New SMB customer via Self-Serve Promo
+CUST-1332,2024-05-27,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1333,2024-05-14,signup,840.0,New SMB customer via Inbound Marketing
+CUST-1334,2024-05-04,signup,750.0,New SMB customer via Outbound Sales
+CUST-1335,2024-05-01,signup,1440.0,New SMB customer via Self-Serve Promo
+CUST-1336,2024-05-06,signup,2880.0,New Mid-Market customer via Outbound Sales
+CUST-1337,2024-05-25,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1338,2024-05-20,signup,7320.0,New Mid-Market customer via Event/Conference
+CUST-1003,2024-05-15,upgrade,360.0,Seat expansion to 51
+CUST-1012,2024-05-15,churn,-1320.0,Cancellation
+CUST-1016,2024-05-15,upgrade,50.0,Seat expansion to 14
+CUST-1047,2024-05-15,churn,-1800.0,Cancellation
+CUST-1065,2024-05-15,downgrade,-50.0,Seat contraction to 10
+CUST-1106,2024-05-15,upgrade,1200.0,Seat expansion to 60
+CUST-1113,2024-05-15,upgrade,200.0,Seat expansion to 37
+CUST-1126,2024-05-15,downgrade,-1200.0,Seat contraction to 63
+CUST-1136,2024-05-15,upgrade,50.0,Seat expansion to 15
+CUST-1187,2024-05-15,upgrade,50.0,Seat expansion to 8
+CUST-1214,2024-05-15,downgrade,-50.0,Seat contraction to 11
+CUST-1221,2024-05-15,churn,-2880.0,Cancellation
+CUST-1228,2024-05-15,churn,-3450.0,Cancellation
+CUST-1233,2024-05-15,downgrade,-120.0,Seat contraction to 2
+CUST-1236,2024-05-15,upgrade,50.0,Seat expansion to 11
+CUST-1248,2024-05-15,upgrade,50.0,Seat expansion to 12
+CUST-1258,2024-05-15,downgrade,-150.0,Seat contraction to 12
+CUST-1285,2024-05-15,churn,-4320.0,Cancellation
+CUST-1339,2024-06-27,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1340,2024-06-11,signup,6360.0,New Mid-Market customer via Event/Conference
+CUST-1341,2024-06-27,signup,2000.0,New SMB customer via Inbound Marketing
+CUST-1342,2024-06-03,signup,650.0,New SMB customer via Inbound Marketing
+CUST-1343,2024-06-10,signup,1560.0,New SMB customer via Inbound Marketing
+CUST-1344,2024-06-02,signup,200.0,New SMB customer via Event/Conference
+CUST-1345,2024-06-05,signup,200.0,New SMB customer via Outbound Sales
+CUST-1346,2024-06-22,signup,300.0,New SMB customer via Outbound Sales
+CUST-1347,2024-06-12,signup,550.0,New SMB customer via Partner Referral
+CUST-1348,2024-06-17,signup,3150.0,New Mid-Market customer via Outbound Sales
+CUST-1349,2024-06-20,signup,200.0,New SMB customer via Outbound Sales
+CUST-1350,2024-06-21,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1351,2024-06-01,signup,840.0,New SMB customer via Inbound Marketing
+CUST-1352,2024-06-06,signup,1320.0,New SMB customer via Self-Serve Promo
+CUST-1353,2024-06-02,signup,250.0,New SMB customer via Partner Referral
+CUST-1354,2024-06-16,signup,960.0,New SMB customer via Outbound Sales
+CUST-1355,2024-06-26,signup,11500.0,New Mid-Market customer via Outbound Sales
+CUST-1356,2024-06-06,signup,80750.0,New Enterprise customer via Event/Conference
+CUST-1357,2024-06-12,signup,5280.0,New Mid-Market customer via Partner Referral
+CUST-1358,2024-06-05,signup,2880.0,New Mid-Market customer via Outbound Sales
+CUST-1020,2024-06-15,churn,-7440.0,Cancellation
+CUST-1037,2024-06-15,upgrade,120.0,Seat expansion to 7
+CUST-1044,2024-06-15,upgrade,250.0,Seat expansion to 59
+CUST-1059,2024-06-15,downgrade,-1200.0,Seat contraction to 51
+CUST-1081,2024-06-15,churn,-2160.0,Cancellation
+CUST-1091,2024-06-15,upgrade,50.0,Seat expansion to 10
+CUST-1092,2024-06-15,upgrade,1440.0,Seat expansion to 84
+CUST-1099,2024-06-15,upgrade,240.0,Seat expansion to 38
+CUST-1112,2024-06-15,upgrade,250.0,Seat expansion to 11
+CUST-1122,2024-06-15,upgrade,1560.0,Seat expansion to 71
+CUST-1131,2024-06-15,churn,-400.0,Cancellation
+CUST-1170,2024-06-15,upgrade,150.0,Seat expansion to 15
+CUST-1171,2024-06-15,upgrade,50.0,Seat expansion to 6
+CUST-1177,2024-06-15,upgrade,100.0,Seat expansion to 18
+CUST-1227,2024-06-15,downgrade,-100.0,Seat contraction to 13
+CUST-1229,2024-06-15,churn,-600.0,Cancellation
+CUST-1245,2024-06-15,upgrade,250.0,Seat expansion to 16
+CUST-1279,2024-06-15,churn,-600.0,Cancellation
+CUST-1286,2024-06-15,upgrade,50.0,Seat expansion to 4
+CUST-1313,2024-06-15,upgrade,150.0,Seat expansion to 18
+CUST-1359,2024-07-20,signup,480.0,New SMB customer via Inbound Marketing
+CUST-1360,2024-07-15,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1361,2024-07-07,signup,15500.0,New Mid-Market customer via Inbound Marketing
+CUST-1362,2024-07-15,signup,3750.0,New SMB customer via Partner Referral
+CUST-1363,2024-07-13,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1364,2024-07-09,signup,300.0,New SMB customer via Event/Conference
+CUST-1365,2024-07-24,signup,22800.0,New Enterprise customer via Partner Referral
+CUST-1366,2024-07-15,signup,200.0,New SMB customer via Partner Referral
+CUST-1367,2024-07-08,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1368,2024-07-12,signup,500.0,New SMB customer via Partner Referral
+CUST-1369,2024-07-11,signup,360.0,New SMB customer via Inbound Marketing
+CUST-1370,2024-07-24,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1371,2024-07-17,signup,3700.0,New Mid-Market customer via Event/Conference
+CUST-1372,2024-07-27,signup,8000.0,New Mid-Market customer via Partner Referral
+CUST-1373,2024-07-10,signup,650.0,New SMB customer via Inbound Marketing
+CUST-1374,2024-07-01,signup,150.0,New SMB customer via Event/Conference
+CUST-1375,2024-07-26,signup,600.0,New SMB customer via Outbound Sales
+CUST-1376,2024-07-20,signup,1080.0,New SMB customer via Inbound Marketing
+CUST-1377,2024-07-13,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1378,2024-07-07,signup,1680.0,New SMB customer via Inbound Marketing
+CUST-1379,2024-07-19,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1380,2024-07-09,signup,550.0,New SMB customer via Self-Serve Promo
+CUST-1381,2024-07-06,signup,3720.0,New Mid-Market customer via Self-Serve Promo
+CUST-1382,2024-07-26,signup,350.0,New SMB customer via Self-Serve Promo
+CUST-1383,2024-07-17,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1384,2024-07-04,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1385,2024-07-26,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1386,2024-07-23,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1387,2024-07-10,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1388,2024-07-17,signup,480.0,New SMB customer via Self-Serve Promo
+CUST-1389,2024-07-21,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1390,2024-07-20,signup,1560.0,New SMB customer via Self-Serve Promo
+CUST-1391,2024-07-21,signup,2000.0,New SMB customer via Self-Serve Promo
+CUST-1392,2024-07-22,signup,1320.0,New SMB customer via Self-Serve Promo
+CUST-1393,2024-07-02,signup,700.0,New SMB customer via Self-Serve Promo
+CUST-1394,2024-07-05,signup,720.0,New SMB customer via Self-Serve Promo
+CUST-1395,2024-07-12,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1396,2024-07-15,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1397,2024-07-27,signup,5400.0,New Mid-Market customer via Self-Serve Promo
+CUST-1398,2024-07-09,signup,480.0,New SMB customer via Self-Serve Promo
+CUST-1011,2024-07-15,churn,-2040.0,Cancellation
+CUST-1126,2024-07-15,upgrade,1200.0,Seat expansion to 73
+CUST-1179,2024-07-15,upgrade,480.0,Seat expansion to 22
+CUST-1187,2024-07-15,upgrade,50.0,Seat expansion to 9
+CUST-1189,2024-07-15,upgrade,100.0,Seat expansion to 14
+CUST-1204,2024-07-15,churn,-5750.0,Cancellation
+CUST-1214,2024-07-15,downgrade,-100.0,Seat contraction to 9
+CUST-1225,2024-07-15,churn,-700.0,Cancellation
+CUST-1245,2024-07-15,upgrade,500.0,Seat expansion to 18
+CUST-1271,2024-07-15,churn,-450.0,Cancellation
+CUST-1281,2024-07-15,upgrade,360.0,Seat expansion to 29
+CUST-1399,2024-08-20,signup,4560.0,New Mid-Market customer via Outbound Sales
+CUST-1400,2024-08-08,signup,6120.0,New Mid-Market customer via Outbound Sales
+CUST-1401,2024-08-06,signup,720.0,New SMB customer via Event/Conference
+CUST-1402,2024-08-20,signup,2500.0,New Mid-Market customer via Inbound Marketing
+CUST-1403,2024-08-25,signup,650.0,New SMB customer via Event/Conference
+CUST-1404,2024-08-09,signup,2520.0,New Mid-Market customer via Event/Conference
+CUST-1405,2024-08-07,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1406,2024-08-16,signup,150.0,New SMB customer via Partner Referral
+CUST-1407,2024-08-04,signup,11000.0,New Mid-Market customer via Self-Serve Promo
+CUST-1408,2024-08-13,signup,350.0,New SMB customer via Outbound Sales
+CUST-1409,2024-08-17,signup,300.0,New SMB customer via Outbound Sales
+CUST-1410,2024-08-08,signup,350.0,New SMB customer via Self-Serve Promo
+CUST-1411,2024-08-02,signup,840.0,New SMB customer via Event/Conference
+CUST-1412,2024-08-12,signup,36240.0,New Enterprise customer via Inbound Marketing
+CUST-1413,2024-08-24,signup,7800.0,New Mid-Market customer via Inbound Marketing
+CUST-1414,2024-08-02,signup,13000.0,New Mid-Market customer via Event/Conference
+CUST-1415,2024-08-12,signup,450.0,New SMB customer via Event/Conference
+CUST-1416,2024-08-14,signup,1750.0,New Mid-Market customer via Outbound Sales
+CUST-1417,2024-08-20,signup,600.0,New SMB customer via Outbound Sales
+CUST-1418,2024-08-17,signup,720.0,New SMB customer via Outbound Sales
+CUST-1419,2024-08-13,signup,3240.0,New Mid-Market customer via Self-Serve Promo
+CUST-1420,2024-08-08,signup,400.0,New SMB customer via Self-Serve Promo
+CUST-1421,2024-08-05,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1422,2024-08-17,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1423,2024-08-08,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1424,2024-08-23,signup,250.0,New SMB customer via Self-Serve Promo
+CUST-1425,2024-08-19,signup,200.0,New SMB customer via Self-Serve Promo
+CUST-1426,2024-08-19,signup,350.0,New SMB customer via Self-Serve Promo
+CUST-1427,2024-08-24,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1428,2024-08-20,signup,480.0,New SMB customer via Self-Serve Promo
+CUST-1429,2024-08-14,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1430,2024-08-03,signup,200.0,New SMB customer via Self-Serve Promo
+CUST-1431,2024-08-10,signup,150.0,New SMB customer via Self-Serve Promo
+CUST-1432,2024-08-24,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1433,2024-08-19,signup,400.0,New SMB customer via Self-Serve Promo
+CUST-1434,2024-08-08,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1435,2024-08-16,signup,700.0,New SMB customer via Self-Serve Promo
+CUST-1436,2024-08-27,signup,1750.0,New SMB customer via Self-Serve Promo
+CUST-1437,2024-08-22,signup,250.0,New SMB customer via Self-Serve Promo
+CUST-1438,2024-08-21,signup,700.0,New SMB customer via Self-Serve Promo
+CUST-1007,2024-08-15,upgrade,50.0,Seat expansion to 10
+CUST-1058,2024-08-15,churn,-350.0,Cancellation
+CUST-1068,2024-08-15,upgrade,960.0,Seat expansion to 43
+CUST-1110,2024-08-15,downgrade,-120.0,Seat contraction to 11
+CUST-1130,2024-08-15,upgrade,14250.0,Seat expansion to 287
+CUST-1135,2024-08-15,upgrade,50.0,Seat expansion to 6
+CUST-1146,2024-08-15,upgrade,240.0,Seat expansion to 27
+CUST-1176,2024-08-15,churn,-200.0,Cancellation
+CUST-1189,2024-08-15,upgrade,50.0,Seat expansion to 15
+CUST-1205,2024-08-15,upgrade,960.0,Seat expansion to 53
+CUST-1211,2024-08-15,upgrade,50.0,Seat expansion to 5
+CUST-1266,2024-08-15,upgrade,240.0,Seat expansion to 43
+CUST-1296,2024-08-15,upgrade,360.0,Seat expansion to 16
+CUST-1299,2024-08-15,downgrade,-300.0,Seat contraction to 34
+CUST-1306,2024-08-15,upgrade,600.0,Seat expansion to 46
+CUST-1348,2024-08-15,upgrade,650.0,Seat expansion to 76
+CUST-1367,2024-08-15,upgrade,50.0,Seat expansion to 7
+CUST-1393,2024-08-15,downgrade,-100.0,Seat contraction to 12
+CUST-1439,2024-09-12,signup,11250.0,New Mid-Market customer via Partner Referral
+CUST-1440,2024-09-04,signup,450.0,New SMB customer via Outbound Sales
+CUST-1441,2024-09-03,signup,1560.0,New SMB customer via Outbound Sales
+CUST-1442,2024-09-08,signup,600.0,New SMB customer via Partner Referral
+CUST-1443,2024-09-19,signup,8520.0,New Mid-Market customer via Inbound Marketing
+CUST-1444,2024-09-11,signup,1200.0,New SMB customer via Inbound Marketing
+CUST-1445,2024-09-16,signup,650.0,New SMB customer via Inbound Marketing
+CUST-1446,2024-09-17,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1447,2024-09-17,signup,1920.0,New Mid-Market customer via Partner Referral
+CUST-1448,2024-09-09,signup,300.0,New SMB customer via Event/Conference
+CUST-1449,2024-09-17,signup,840.0,New SMB customer via Self-Serve Promo
+CUST-1450,2024-09-10,signup,840.0,New SMB customer via Event/Conference
+CUST-1451,2024-09-11,signup,250.0,New SMB customer via Outbound Sales
+CUST-1452,2024-09-02,signup,450.0,New SMB customer via Outbound Sales
+CUST-1453,2024-09-17,signup,3550.0,New Mid-Market customer via Event/Conference
+CUST-1454,2024-09-18,signup,960.0,New SMB customer via Event/Conference
+CUST-1455,2024-09-01,signup,250.0,New SMB customer via Event/Conference
+CUST-1456,2024-09-17,signup,3600.0,New Mid-Market customer via Outbound Sales
+CUST-1457,2024-09-12,signup,550.0,New SMB customer via Partner Referral
+CUST-1458,2024-09-01,signup,200.0,New SMB customer via Event/Conference
+CUST-1459,2024-09-10,signup,650.0,New SMB customer via Self-Serve Promo
+CUST-1460,2024-09-26,signup,17500.0,New Mid-Market customer via Self-Serve Promo
+CUST-1461,2024-09-01,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1462,2024-09-22,signup,500.0,New SMB customer via Self-Serve Promo
+CUST-1463,2024-09-15,signup,200.0,New SMB customer via Self-Serve Promo
+CUST-1464,2024-09-15,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1465,2024-09-19,signup,5760.0,New Mid-Market customer via Self-Serve Promo
+CUST-1466,2024-09-17,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1467,2024-09-02,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1468,2024-09-18,signup,550.0,New SMB customer via Self-Serve Promo
+CUST-1469,2024-09-24,signup,650.0,New SMB customer via Self-Serve Promo
+CUST-1470,2024-09-20,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1471,2024-09-13,signup,250.0,New SMB customer via Self-Serve Promo
+CUST-1472,2024-09-23,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1473,2024-09-26,signup,1200.0,New SMB customer via Self-Serve Promo
+CUST-1474,2024-09-03,signup,550.0,New SMB customer via Self-Serve Promo
+CUST-1475,2024-09-24,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1476,2024-09-09,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1477,2024-09-26,signup,17500.0,New Mid-Market customer via Self-Serve Promo
+CUST-1478,2024-09-10,signup,750.0,New SMB customer via Self-Serve Promo
+CUST-1016,2024-09-15,downgrade,-100.0,Seat contraction to 12
+CUST-1039,2024-09-15,downgrade,-50.0,Seat contraction to 6
+CUST-1079,2024-09-15,churn,-9480.0,Cancellation
+CUST-1102,2024-09-15,upgrade,50.0,Seat expansion to 7
+CUST-1163,2024-09-15,upgrade,2280.0,Seat expansion to 286
+CUST-1194,2024-09-15,upgrade,100.0,Seat expansion to 12
+CUST-1237,2024-09-15,downgrade,-960.0,Seat contraction to 54
+CUST-1245,2024-09-15,churn,-4500.0,Cancellation
+CUST-1248,2024-09-15,downgrade,-50.0,Seat contraction to 11
+CUST-1253,2024-09-15,churn,-9500.0,Cancellation
+CUST-1321,2024-09-15,upgrade,50.0,Seat expansion to 5
+CUST-1329,2024-09-15,upgrade,100.0,Seat expansion to 14
+CUST-1346,2024-09-15,upgrade,50.0,Seat expansion to 7
+CUST-1347,2024-09-15,churn,-550.0,Cancellation
+CUST-1360,2024-09-15,churn,-600.0,Cancellation
+CUST-1370,2024-09-15,churn,-500.0,Cancellation
+CUST-1385,2024-09-15,churn,-150.0,Cancellation
+CUST-1391,2024-09-15,downgrade,-250.0,Seat contraction to 7
+CUST-1408,2024-09-15,upgrade,50.0,Seat expansion to 8
+CUST-1418,2024-09-15,churn,-720.0,Cancellation
+CUST-1423,2024-09-15,upgrade,50.0,Seat expansion to 7
+CUST-1430,2024-09-15,churn,-200.0,Cancellation
+CUST-1438,2024-09-15,churn,-700.0,Cancellation
+CUST-1479,2024-10-24,signup,650.0,New SMB customer via Outbound Sales
+CUST-1480,2024-10-07,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1481,2024-10-24,signup,3840.0,New Mid-Market customer via Self-Serve Promo
+CUST-1482,2024-10-05,signup,8160.0,New Mid-Market customer via Self-Serve Promo
+CUST-1483,2024-10-13,signup,360.0,New SMB customer via Event/Conference
+CUST-1484,2024-10-09,signup,400.0,New SMB customer via Outbound Sales
+CUST-1485,2024-10-22,signup,500.0,New SMB customer via Outbound Sales
+CUST-1486,2024-10-16,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1487,2024-10-13,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1488,2024-10-08,signup,1440.0,New SMB customer via Event/Conference
+CUST-1489,2024-10-19,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1490,2024-10-07,signup,11500.0,New Mid-Market customer via Inbound Marketing
+CUST-1491,2024-10-11,signup,750.0,New SMB customer via Event/Conference
+CUST-1492,2024-10-16,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1493,2024-10-18,signup,2450.0,New Mid-Market customer via Outbound Sales
+CUST-1494,2024-10-26,signup,720.0,New SMB customer via Outbound Sales
+CUST-1495,2024-10-14,signup,60750.0,New Enterprise customer via Outbound Sales
+CUST-1496,2024-10-23,signup,840.0,New SMB customer via Outbound Sales
+CUST-1497,2024-10-09,signup,600.0,New SMB customer via Event/Conference
+CUST-1498,2024-10-02,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1499,2024-10-05,signup,1080.0,New SMB customer via Outbound Sales
+CUST-1500,2024-10-21,signup,1800.0,New Mid-Market customer via Outbound Sales
+CUST-1501,2024-10-03,signup,480.0,New SMB customer via Self-Serve Promo
+CUST-1019,2024-10-15,upgrade,10750.0,Seat expansion to 372
+CUST-1140,2024-10-15,downgrade,-50.0,Seat contraction to 13
+CUST-1146,2024-10-15,upgrade,240.0,Seat expansion to 29
+CUST-1184,2024-10-15,churn,-700.0,Cancellation
+CUST-1186,2024-10-15,upgrade,120.0,Seat expansion to 13
+CUST-1230,2024-10-15,upgrade,200.0,Seat expansion to 19
+CUST-1369,2024-10-15,upgrade,120.0,Seat expansion to 4
+CUST-1380,2024-10-15,churn,-550.0,Cancellation
+CUST-1388,2024-10-15,churn,-480.0,Cancellation
+CUST-1396,2024-10-15,churn,-450.0,Cancellation
+CUST-1462,2024-10-15,churn,-500.0,Cancellation
+CUST-1469,2024-10-15,downgrade,-100.0,Seat contraction to 11
+CUST-1502,2024-11-16,signup,7560.0,New Mid-Market customer via Partner Referral
+CUST-1503,2024-11-02,signup,1920.0,New Mid-Market customer via Outbound Sales
+CUST-1504,2024-11-08,signup,2000.0,New SMB customer via Event/Conference
+CUST-1505,2024-11-10,signup,6120.0,New Mid-Market customer via Outbound Sales
+CUST-1506,2024-11-22,signup,450.0,New SMB customer via Outbound Sales
+CUST-1507,2024-11-19,signup,300.0,New SMB customer via Outbound Sales
+CUST-1508,2024-11-13,signup,750.0,New SMB customer via Event/Conference
+CUST-1509,2024-11-10,signup,7920.0,New Mid-Market customer via Inbound Marketing
+CUST-1510,2024-11-13,signup,39120.0,New Enterprise customer via Inbound Marketing
+CUST-1511,2024-11-05,signup,1560.0,New SMB customer via Inbound Marketing
+CUST-1512,2024-11-12,signup,850.0,New Mid-Market customer via Partner Referral
+CUST-1513,2024-11-25,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1514,2024-11-26,signup,2750.0,New SMB customer via Event/Conference
+CUST-1515,2024-11-06,signup,480.0,New SMB customer via Event/Conference
+CUST-1516,2024-11-26,signup,5160.0,New Mid-Market customer via Partner Referral
+CUST-1517,2024-11-12,signup,840.0,New SMB customer via Outbound Sales
+CUST-1518,2024-11-16,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1519,2024-11-23,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1520,2024-11-06,signup,7320.0,New Mid-Market customer via Partner Referral
+CUST-1521,2024-11-03,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1522,2024-11-07,signup,480.0,New SMB customer via Inbound Marketing
+CUST-1523,2024-11-04,signup,700.0,New SMB customer via Outbound Sales
+CUST-1524,2024-11-04,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1025,2024-11-15,churn,-300.0,Cancellation
+CUST-1036,2024-11-15,upgrade,250.0,Seat expansion to 27
+CUST-1049,2024-11-15,upgrade,600.0,Seat expansion to 55
+CUST-1063,2024-11-15,upgrade,3250.0,Seat expansion to 250
+CUST-1124,2024-11-15,downgrade,-50.0,Seat contraction to 13
+CUST-1158,2024-11-15,upgrade,120.0,Seat expansion to 11
+CUST-1167,2024-11-15,upgrade,15750.0,Seat expansion to 329
+CUST-1191,2024-11-15,churn,-2160.0,Cancellation
+CUST-1211,2024-11-15,upgrade,50.0,Seat expansion to 6
+CUST-1217,2024-11-15,upgrade,100.0,Seat expansion to 16
+CUST-1237,2024-11-15,upgrade,960.0,Seat expansion to 62
+CUST-1258,2024-11-15,churn,-600.0,Cancellation
+CUST-1288,2024-11-15,churn,-9000.0,Cancellation
+CUST-1311,2024-11-15,upgrade,6750.0,Seat expansion to 302
+CUST-1322,2024-11-15,upgrade,2760.0,Seat expansion to 121
+CUST-1324,2024-11-15,upgrade,100.0,Seat expansion to 14
+CUST-1352,2024-11-15,downgrade,-240.0,Seat contraction to 9
+CUST-1356,2024-11-15,upgrade,14750.0,Seat expansion to 382
+CUST-1359,2024-11-15,downgrade,-120.0,Seat contraction to 3
+CUST-1363,2024-11-15,churn,-400.0,Cancellation
+CUST-1378,2024-11-15,churn,-1680.0,Cancellation
+CUST-1395,2024-11-15,churn,-150.0,Cancellation
+CUST-1401,2024-11-15,upgrade,120.0,Seat expansion to 7
+CUST-1405,2024-11-15,downgrade,-240.0,Seat contraction to 12
+CUST-1417,2024-11-15,churn,-600.0,Cancellation
+CUST-1459,2024-11-15,upgrade,100.0,Seat expansion to 15
+CUST-1460,2024-11-15,upgrade,1750.0,Seat expansion to 77
+CUST-1500,2024-11-15,upgrade,450.0,Seat expansion to 45
+CUST-1525,2024-12-06,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1526,2024-12-24,signup,750.0,New SMB customer via Outbound Sales
+CUST-1527,2024-12-27,signup,400.0,New SMB customer via Event/Conference
+CUST-1528,2024-12-09,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1529,2024-12-02,signup,1200.0,New SMB customer via Partner Referral
+CUST-1530,2024-12-05,signup,5880.0,New Mid-Market customer via Outbound Sales
+CUST-1531,2024-12-01,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1532,2024-12-17,signup,750.0,New SMB customer via Outbound Sales
+CUST-1533,2024-12-19,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1534,2024-12-22,signup,250.0,New SMB customer via Event/Conference
+CUST-1535,2024-12-27,signup,250.0,New SMB customer via Outbound Sales
+CUST-1536,2024-12-04,signup,650.0,New SMB customer via Outbound Sales
+CUST-1537,2024-12-21,signup,12600.0,New Enterprise customer via Event/Conference
+CUST-1538,2024-12-15,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1539,2024-12-03,signup,17500.0,New Mid-Market customer via Self-Serve Promo
+CUST-1540,2024-12-05,signup,300.0,New SMB customer via Inbound Marketing
+CUST-1541,2024-12-26,signup,300.0,New SMB customer via Partner Referral
+CUST-1542,2024-12-17,signup,1560.0,New SMB customer via Self-Serve Promo
+CUST-1543,2024-12-02,signup,250.0,New SMB customer via Outbound Sales
+CUST-1544,2024-12-17,signup,150.0,New SMB customer via Outbound Sales
+CUST-1002,2024-12-15,churn,-3700.0,Cancellation
+CUST-1018,2024-12-15,upgrade,50.0,Seat expansion to 8
+CUST-1032,2024-12-15,upgrade,120.0,Seat expansion to 7
+CUST-1130,2024-12-15,upgrade,11000.0,Seat expansion to 331
+CUST-1142,2024-12-15,upgrade,240.0,Seat expansion to 16
+CUST-1148,2024-12-15,upgrade,3800.0,Seat expansion to 444
+CUST-1188,2024-12-15,downgrade,-120.0,Seat contraction to 11
+CUST-1255,2024-12-15,downgrade,-1080.0,Seat contraction to 54
+CUST-1268,2024-12-15,upgrade,100.0,Seat expansion to 14
+CUST-1278,2024-12-15,downgrade,-1320.0,Seat contraction to 50
+CUST-1280,2024-12-15,upgrade,120.0,Seat expansion to 4
+CUST-1299,2024-12-15,churn,-1700.0,Cancellation
+CUST-1301,2024-12-15,downgrade,-50.0,Seat contraction to 5
+CUST-1304,2024-12-15,churn,-1680.0,Cancellation
+CUST-1322,2024-12-15,upgrade,1800.0,Seat expansion to 136
+CUST-1348,2024-12-15,upgrade,600.0,Seat expansion to 88
+CUST-1387,2024-12-15,upgrade,150.0,Seat expansion to 18
+CUST-1390,2024-12-15,churn,-1560.0,Cancellation
+CUST-1401,2024-12-15,upgrade,240.0,Seat expansion to 9
+CUST-1414,2024-12-15,upgrade,2500.0,Seat expansion to 62
+CUST-1452,2024-12-15,upgrade,50.0,Seat expansion to 10
+CUST-1477,2024-12-15,upgrade,2750.0,Seat expansion to 81
+CUST-1501,2024-12-15,downgrade,0.0,Seat contraction to 4
+CUST-1505,2024-12-15,churn,-6120.0,Cancellation
+CUST-1519,2024-12-15,upgrade,50.0,Seat expansion to 8
+CUST-1520,2024-12-15,upgrade,600.0,Seat expansion to 66
+CUST-1545,2025-01-13,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1546,2025-01-18,signup,35750.0,New Enterprise customer via Outbound Sales
+CUST-1547,2025-01-16,signup,6600.0,New Mid-Market customer via Outbound Sales
+CUST-1548,2025-01-14,signup,4750.0,New Mid-Market customer via Outbound Sales
+CUST-1549,2025-01-03,signup,720.0,New SMB customer via Self-Serve Promo
+CUST-1550,2025-01-04,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1551,2025-01-17,signup,360.0,New SMB customer via Outbound Sales
+CUST-1552,2025-01-05,signup,650.0,New SMB customer via Outbound Sales
+CUST-1553,2025-01-18,signup,500.0,New SMB customer via Outbound Sales
+CUST-1554,2025-01-06,signup,8520.0,New Mid-Market customer via Inbound Marketing
+CUST-1555,2025-01-24,signup,250.0,New SMB customer via Event/Conference
+CUST-1556,2025-01-13,signup,6480.0,New Mid-Market customer via Partner Referral
+CUST-1557,2025-01-12,signup,650.0,New SMB customer via Outbound Sales
+CUST-1558,2025-01-18,signup,700.0,New SMB customer via Inbound Marketing
+CUST-1559,2025-01-23,signup,360.0,New SMB customer via Outbound Sales
+CUST-1560,2025-01-03,signup,8160.0,New Mid-Market customer via Inbound Marketing
+CUST-1561,2025-01-22,signup,300.0,New SMB customer via Outbound Sales
+CUST-1562,2025-01-22,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1007,2025-01-15,upgrade,100.0,Seat expansion to 12
+CUST-1026,2025-01-15,upgrade,480.0,Seat expansion to 48
+CUST-1028,2025-01-15,downgrade,-120.0,Seat contraction to 7
+CUST-1036,2025-01-15,churn,-1350.0,Cancellation
+CUST-1082,2025-01-15,upgrade,9960.0,Seat expansion to 479
+CUST-1125,2025-01-15,downgrade,-50.0,Seat contraction to 13
+CUST-1137,2025-01-15,upgrade,720.0,Seat expansion to 34
+CUST-1146,2025-01-15,downgrade,-360.0,Seat contraction to 26
+CUST-1169,2025-01-15,churn,-200.0,Cancellation
+CUST-1215,2025-01-15,downgrade,-50.0,Seat contraction to 10
+CUST-1238,2025-01-15,upgrade,720.0,Seat expansion to 36
+CUST-1309,2025-01-15,downgrade,-50.0,Seat contraction to 6
+CUST-1310,2025-01-15,upgrade,1440.0,Seat expansion to 71
+CUST-1344,2025-01-15,downgrade,-50.0,Seat contraction to 3
+CUST-1362,2025-01-15,upgrade,500.0,Seat expansion to 17
+CUST-1414,2025-01-15,upgrade,2500.0,Seat expansion to 72
+CUST-1432,2025-01-15,upgrade,100.0,Seat expansion to 11
+CUST-1436,2025-01-15,upgrade,250.0,Seat expansion to 8
+CUST-1518,2025-01-15,upgrade,50.0,Seat expansion to 7
+CUST-1528,2025-01-15,downgrade,-120.0,Seat contraction to 10
+CUST-1563,2025-02-13,signup,5500.0,New Mid-Market customer via Event/Conference
+CUST-1564,2025-02-26,signup,200.0,New SMB customer via Outbound Sales
+CUST-1565,2025-02-19,signup,23500.0,New Enterprise customer via Self-Serve Promo
+CUST-1566,2025-02-19,signup,550.0,New SMB customer via Event/Conference
+CUST-1567,2025-02-05,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1568,2025-02-22,signup,300.0,New SMB customer via Outbound Sales
+CUST-1569,2025-02-04,signup,300.0,New SMB customer via Outbound Sales
+CUST-1570,2025-02-19,signup,750.0,New SMB customer via Event/Conference
+CUST-1571,2025-02-21,signup,950.0,New Mid-Market customer via Event/Conference
+CUST-1572,2025-02-08,signup,300.0,New SMB customer via Event/Conference
+CUST-1573,2025-02-05,signup,8250.0,New Mid-Market customer via Self-Serve Promo
+CUST-1574,2025-02-14,signup,500.0,New SMB customer via Outbound Sales
+CUST-1575,2025-02-27,signup,650.0,New SMB customer via Event/Conference
+CUST-1576,2025-02-07,signup,2760.0,New Mid-Market customer via Partner Referral
+CUST-1577,2025-02-19,signup,2750.0,New SMB customer via Partner Referral
+CUST-1578,2025-02-20,signup,1800.0,New SMB customer via Outbound Sales
+CUST-1579,2025-02-14,signup,650.0,New SMB customer via Event/Conference
+CUST-1580,2025-02-04,signup,360.0,New SMB customer via Self-Serve Promo
+CUST-1045,2025-02-15,upgrade,150.0,Seat expansion to 18
+CUST-1052,2025-02-15,upgrade,50.0,Seat expansion to 7
+CUST-1073,2025-02-15,upgrade,360.0,Seat expansion to 37
+CUST-1100,2025-02-15,churn,-200.0,Cancellation
+CUST-1153,2025-02-15,upgrade,840.0,Seat expansion to 78
+CUST-1194,2025-02-15,upgrade,150.0,Seat expansion to 15
+CUST-1199,2025-02-15,upgrade,50.0,Seat expansion to 12
+CUST-1200,2025-02-15,upgrade,240.0,Seat expansion to 12
+CUST-1202,2025-02-15,upgrade,750.0,Seat expansion to 16
+CUST-1214,2025-02-15,churn,-450.0,Cancellation
+CUST-1259,2025-02-15,upgrade,11750.0,Seat expansion to 270
+CUST-1265,2025-02-15,churn,-2520.0,Cancellation
+CUST-1295,2025-02-15,upgrade,50.0,Seat expansion to 6
+CUST-1298,2025-02-15,upgrade,12250.0,Seat expansion to 349
+CUST-1313,2025-02-15,upgrade,50.0,Seat expansion to 19
+CUST-1346,2025-02-15,churn,-350.0,Cancellation
+CUST-1364,2025-02-15,downgrade,-50.0,Seat contraction to 5
+CUST-1381,2025-02-15,upgrade,600.0,Seat expansion to 36
+CUST-1432,2025-02-15,upgrade,100.0,Seat expansion to 13
+CUST-1445,2025-02-15,upgrade,100.0,Seat expansion to 15
+CUST-1456,2025-02-15,upgrade,700.0,Seat expansion to 86
+CUST-1478,2025-02-15,churn,-750.0,Cancellation
+CUST-1494,2025-02-15,churn,-720.0,Cancellation
+CUST-1495,2025-02-15,upgrade,12500.0,Seat expansion to 293
+CUST-1512,2025-02-15,upgrade,100.0,Seat expansion to 19
+CUST-1515,2025-02-15,churn,-480.0,Cancellation
+CUST-1516,2025-02-15,upgrade,480.0,Seat expansion to 47
+CUST-1517,2025-02-15,upgrade,120.0,Seat expansion to 8
+CUST-1555,2025-02-15,churn,-250.0,Cancellation
+CUST-1581,2025-03-19,signup,450.0,New SMB customer via Outbound Sales
+CUST-1582,2025-03-16,signup,400.0,New SMB customer via Outbound Sales
+CUST-1583,2025-03-26,signup,5640.0,New Mid-Market customer via Event/Conference
+CUST-1584,2025-03-17,signup,150.0,New SMB customer via Outbound Sales
+CUST-1585,2025-03-21,signup,3300.0,New Mid-Market customer via Inbound Marketing
+CUST-1586,2025-03-15,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1587,2025-03-19,signup,1800.0,New SMB customer via Outbound Sales
+CUST-1588,2025-03-04,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1589,2025-03-08,signup,720.0,New SMB customer via Outbound Sales
+CUST-1590,2025-03-22,signup,8500.0,New Mid-Market customer via Inbound Marketing
+CUST-1591,2025-03-24,signup,1200.0,New SMB customer via Inbound Marketing
+CUST-1592,2025-03-19,signup,750.0,New SMB customer via Outbound Sales
+CUST-1593,2025-03-02,signup,250.0,New SMB customer via Inbound Marketing
+CUST-1594,2025-03-02,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1595,2025-03-26,signup,3600.0,New Mid-Market customer via Event/Conference
+CUST-1596,2025-03-05,signup,6480.0,New Mid-Market customer via Self-Serve Promo
+CUST-1597,2025-03-01,signup,450.0,New SMB customer via Outbound Sales
+CUST-1598,2025-03-04,signup,200.0,New SMB customer via Partner Referral
+CUST-1599,2025-03-16,signup,1440.0,New SMB customer via Inbound Marketing
+CUST-1600,2025-03-24,signup,58250.0,New Enterprise customer via Self-Serve Promo
+CUST-1014,2025-03-15,upgrade,600.0,Seat expansion to 61
+CUST-1044,2025-03-15,upgrade,500.0,Seat expansion to 69
+CUST-1056,2025-03-15,upgrade,100.0,Seat expansion to 12
+CUST-1068,2025-03-15,downgrade,-960.0,Seat contraction to 35
+CUST-1113,2025-03-15,upgrade,200.0,Seat expansion to 41
+CUST-1167,2025-03-15,upgrade,12500.0,Seat expansion to 379
+CUST-1181,2025-03-15,upgrade,240.0,Seat expansion to 15
+CUST-1196,2025-03-15,downgrade,-600.0,Seat contraction to 42
+CUST-1200,2025-03-15,upgrade,120.0,Seat expansion to 13
+CUST-1203,2025-03-15,downgrade,-120.0,Seat contraction to 5
+CUST-1210,2025-03-15,churn,-700.0,Cancellation
+CUST-1233,2025-03-15,downgrade,0.0,Seat contraction to 2
+CUST-1251,2025-03-15,upgrade,240.0,Seat expansion to 16
+CUST-1259,2025-03-15,upgrade,14750.0,Seat expansion to 329
+CUST-1278,2025-03-15,downgrade,-960.0,Seat contraction to 42
+CUST-1287,2025-03-15,churn,-3240.0,Cancellation
+CUST-1313,2025-03-15,upgrade,250.0,Seat expansion to 24
+CUST-1326,2025-03-15,upgrade,1200.0,Seat expansion to 66
+CUST-1327,2025-03-15,upgrade,50.0,Seat expansion to 16
+CUST-1357,2025-03-15,upgrade,1200.0,Seat expansion to 54
+CUST-1361,2025-03-15,upgrade,2500.0,Seat expansion to 72
+CUST-1392,2025-03-15,churn,-1320.0,Cancellation
+CUST-1420,2025-03-15,upgrade,50.0,Seat expansion to 9
+CUST-1426,2025-03-15,churn,-350.0,Cancellation
+CUST-1433,2025-03-15,upgrade,50.0,Seat expansion to 9
+CUST-1435,2025-03-15,churn,-700.0,Cancellation
+CUST-1439,2025-03-15,upgrade,2250.0,Seat expansion to 54
+CUST-1454,2025-03-15,churn,-960.0,Cancellation
+CUST-1456,2025-03-15,upgrade,800.0,Seat expansion to 102
+CUST-1467,2025-03-15,upgrade,100.0,Seat expansion to 11
+CUST-1501,2025-03-15,downgrade,-120.0,Seat contraction to 3
+CUST-1504,2025-03-15,upgrade,250.0,Seat expansion to 9
+CUST-1526,2025-03-15,upgrade,50.0,Seat expansion to 16
+CUST-1536,2025-03-15,downgrade,-50.0,Seat contraction to 12
+CUST-1561,2025-03-15,upgrade,50.0,Seat expansion to 7
+CUST-1563,2025-03-15,upgrade,1000.0,Seat expansion to 26
+CUST-1571,2025-03-15,upgrade,200.0,Seat expansion to 23
+CUST-1577,2025-03-15,downgrade,-250.0,Seat contraction to 10
+CUST-1601,2025-04-27,signup,8160.0,New Mid-Market customer via Inbound Marketing
+CUST-1602,2025-04-09,signup,150.0,New SMB customer via Outbound Sales
+CUST-1603,2025-04-08,signup,4920.0,New Mid-Market customer via Inbound Marketing
+CUST-1604,2025-04-09,signup,600.0,New SMB customer via Outbound Sales
+CUST-1605,2025-04-23,signup,3240.0,New Mid-Market customer via Event/Conference
+CUST-1606,2025-04-14,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1607,2025-04-15,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1608,2025-04-11,signup,720.0,New SMB customer via Inbound Marketing
+CUST-1609,2025-04-16,signup,480.0,New SMB customer via Partner Referral
+CUST-1610,2025-04-01,signup,400.0,New SMB customer via Outbound Sales
+CUST-1611,2025-04-19,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1612,2025-04-04,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1613,2025-04-12,signup,350.0,New SMB customer via Partner Referral
+CUST-1614,2025-04-20,signup,2040.0,New Mid-Market customer via Outbound Sales
+CUST-1615,2025-04-08,signup,4250.0,New Mid-Market customer via Inbound Marketing
+CUST-1616,2025-04-27,signup,700.0,New SMB customer via Outbound Sales
+CUST-1617,2025-04-19,signup,400.0,New SMB customer via Outbound Sales
+CUST-1618,2025-04-20,signup,800.0,New Mid-Market customer via Event/Conference
+CUST-1619,2025-04-15,signup,960.0,New SMB customer via Outbound Sales
+CUST-1620,2025-04-24,signup,8160.0,New Mid-Market customer via Inbound Marketing
+CUST-1005,2025-04-15,upgrade,20000.0,Seat expansion to 468
+CUST-1017,2025-04-15,churn,-500.0,Cancellation
+CUST-1082,2025-04-15,upgrade,5160.0,Seat expansion to 522
+CUST-1106,2025-04-15,upgrade,1680.0,Seat expansion to 74
+CUST-1114,2025-04-15,upgrade,7750.0,Seat expansion to 364
+CUST-1117,2025-04-15,upgrade,1080.0,Seat expansion to 47
+CUST-1148,2025-04-15,upgrade,3550.0,Seat expansion to 515
+CUST-1154,2025-04-15,upgrade,50.0,Seat expansion to 18
+CUST-1177,2025-04-15,upgrade,100.0,Seat expansion to 20
+CUST-1180,2025-04-15,upgrade,150.0,Seat expansion to 27
+CUST-1207,2025-04-15,upgrade,840.0,Seat expansion to 40
+CUST-1208,2025-04-15,downgrade,0.0,Seat contraction to 3
+CUST-1212,2025-04-15,upgrade,50.0,Seat expansion to 4
+CUST-1232,2025-04-15,downgrade,-50.0,Seat contraction to 14
+CUST-1238,2025-04-15,churn,-4320.0,Cancellation
+CUST-1256,2025-04-15,upgrade,150.0,Seat expansion to 18
+CUST-1261,2025-04-15,upgrade,250.0,Seat expansion to 39
+CUST-1277,2025-04-15,churn,-350.0,Cancellation
+CUST-1283,2025-04-15,upgrade,150.0,Seat expansion to 17
+CUST-1291,2025-04-15,churn,-250.0,Cancellation
+CUST-1367,2025-04-15,upgrade,50.0,Seat expansion to 8
+CUST-1368,2025-04-15,upgrade,100.0,Seat expansion to 12
+CUST-1386,2025-04-15,upgrade,50.0,Seat expansion to 4
+CUST-1391,2025-04-15,upgrade,250.0,Seat expansion to 8
+CUST-1423,2025-04-15,upgrade,100.0,Seat expansion to 9
+CUST-1429,2025-04-15,churn,-150.0,Cancellation
+CUST-1431,2025-04-15,upgrade,50.0,Seat expansion to 4
+CUST-1447,2025-04-15,upgrade,480.0,Seat expansion to 20
+CUST-1457,2025-04-15,upgrade,50.0,Seat expansion to 12
+CUST-1463,2025-04-15,churn,-200.0,Cancellation
+CUST-1483,2025-04-15,churn,-360.0,Cancellation
+CUST-1488,2025-04-15,churn,-1440.0,Cancellation
+CUST-1503,2025-04-15,churn,-1920.0,Cancellation
+CUST-1517,2025-04-15,downgrade,-120.0,Seat contraction to 7
+CUST-1523,2025-04-15,downgrade,-50.0,Seat contraction to 13
+CUST-1528,2025-04-15,upgrade,240.0,Seat expansion to 12
+CUST-1571,2025-04-15,downgrade,-100.0,Seat contraction to 21
+CUST-1582,2025-04-15,churn,-400.0,Cancellation
+CUST-1591,2025-04-15,churn,-1200.0,Cancellation
+CUST-1594,2025-04-15,downgrade,-50.0,Seat contraction to 11
+CUST-1621,2025-05-02,signup,450.0,New SMB customer via Outbound Sales
+CUST-1622,2025-05-02,signup,300.0,New SMB customer via Self-Serve Promo
+CUST-1623,2025-05-05,signup,350.0,New SMB customer via Partner Referral
+CUST-1624,2025-05-20,signup,2400.0,New Mid-Market customer via Event/Conference
+CUST-1625,2025-05-16,signup,14880.0,New Enterprise customer via Outbound Sales
+CUST-1626,2025-05-21,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1627,2025-05-19,signup,150.0,New SMB customer via Event/Conference
+CUST-1628,2025-05-18,signup,4200.0,New Mid-Market customer via Partner Referral
+CUST-1629,2025-05-25,signup,34750.0,New Enterprise customer via Self-Serve Promo
+CUST-1630,2025-05-11,signup,650.0,New SMB customer via Self-Serve Promo
+CUST-1631,2025-05-09,signup,5280.0,New Mid-Market customer via Partner Referral
+CUST-1632,2025-05-11,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1633,2025-05-16,signup,8000.0,New Mid-Market customer via Event/Conference
+CUST-1634,2025-05-06,signup,6960.0,New Mid-Market customer via Inbound Marketing
+CUST-1635,2025-05-16,signup,3840.0,New Mid-Market customer via Outbound Sales
+CUST-1636,2025-05-07,signup,1680.0,New SMB customer via Outbound Sales
+CUST-1637,2025-05-16,signup,750.0,New SMB customer via Event/Conference
+CUST-1638,2025-05-12,signup,6480.0,New Mid-Market customer via Inbound Marketing
+CUST-1639,2025-05-27,signup,480.0,New SMB customer via Event/Conference
+CUST-1640,2025-05-02,signup,3550.0,New Mid-Market customer via Partner Referral
+CUST-1024,2025-05-15,downgrade,-100.0,Seat contraction to 7
+CUST-1044,2025-05-15,upgrade,600.0,Seat expansion to 81
+CUST-1045,2025-05-15,upgrade,100.0,Seat expansion to 20
+CUST-1049,2025-05-15,upgrade,1200.0,Seat expansion to 65
+CUST-1050,2025-05-15,churn,-200.0,Cancellation
+CUST-1108,2025-05-15,churn,-250.0,Cancellation
+CUST-1132,2025-05-15,churn,-1200.0,Cancellation
+CUST-1161,2025-05-15,upgrade,240.0,Seat expansion to 11
+CUST-1172,2025-05-15,upgrade,840.0,Seat expansion to 38
+CUST-1224,2025-05-15,churn,-450.0,Cancellation
+CUST-1226,2025-05-15,downgrade,-120.0,Seat contraction to 7
+CUST-1248,2025-05-15,churn,-550.0,Cancellation
+CUST-1252,2025-05-15,upgrade,500.0,Seat expansion to 10
+CUST-1274,2025-05-15,upgrade,480.0,Seat expansion to 19
+CUST-1295,2025-05-15,churn,-300.0,Cancellation
+CUST-1338,2025-05-15,churn,-7320.0,Cancellation
+CUST-1348,2025-05-15,churn,-4400.0,Cancellation
+CUST-1353,2025-05-15,churn,-250.0,Cancellation
+CUST-1365,2025-05-15,upgrade,2760.0,Seat expansion to 213
+CUST-1411,2025-05-15,upgrade,120.0,Seat expansion to 8
+CUST-1420,2025-05-15,churn,-450.0,Cancellation
+CUST-1433,2025-05-15,churn,-450.0,Cancellation
+CUST-1470,2025-05-15,churn,-750.0,Cancellation
+CUST-1487,2025-05-15,upgrade,50.0,Seat expansion to 5
+CUST-1501,2025-05-15,churn,-360.0,Cancellation
+CUST-1502,2025-05-15,upgrade,1680.0,Seat expansion to 77
+CUST-1521,2025-05-15,upgrade,50.0,Seat expansion to 10
+CUST-1532,2025-05-15,downgrade,-50.0,Seat contraction to 14
+CUST-1549,2025-05-15,churn,-720.0,Cancellation
+CUST-1556,2025-05-15,upgrade,1320.0,Seat expansion to 65
+CUST-1559,2025-05-15,churn,-360.0,Cancellation
+CUST-1579,2025-05-15,upgrade,100.0,Seat expansion to 15
+CUST-1588,2025-05-15,upgrade,100.0,Seat expansion to 13
+CUST-1616,2025-05-15,upgrade,100.0,Seat expansion to 16
+CUST-1641,2025-06-11,signup,500.0,New SMB customer via Event/Conference
+CUST-1642,2025-06-27,signup,960.0,New SMB customer via Outbound Sales
+CUST-1643,2025-06-20,signup,550.0,New SMB customer via Inbound Marketing
+CUST-1644,2025-06-10,signup,250.0,New SMB customer via Outbound Sales
+CUST-1645,2025-06-13,signup,6480.0,New Mid-Market customer via Outbound Sales
+CUST-1646,2025-06-18,signup,1800.0,New SMB customer via Event/Conference
+CUST-1647,2025-06-14,signup,1800.0,New SMB customer via Outbound Sales
+CUST-1648,2025-06-03,signup,550.0,New SMB customer via Self-Serve Promo
+CUST-1649,2025-06-14,signup,20000.0,New Enterprise customer via Event/Conference
+CUST-1650,2025-06-25,signup,3960.0,New Mid-Market customer via Outbound Sales
+CUST-1651,2025-06-21,signup,600.0,New SMB customer via Event/Conference
+CUST-1652,2025-06-11,signup,7320.0,New Mid-Market customer via Inbound Marketing
+CUST-1653,2025-06-08,signup,960.0,New SMB customer via Inbound Marketing
+CUST-1654,2025-06-13,signup,1750.0,New Mid-Market customer via Outbound Sales
+CUST-1655,2025-06-08,signup,6720.0,New Mid-Market customer via Event/Conference
+CUST-1656,2025-06-14,signup,450.0,New SMB customer via Event/Conference
+CUST-1657,2025-06-09,signup,400.0,New SMB customer via Outbound Sales
+CUST-1658,2025-06-10,signup,700.0,New SMB customer via Partner Referral
+CUST-1659,2025-06-13,signup,37440.0,New Enterprise customer via Partner Referral
+CUST-1660,2025-06-25,signup,550.0,New SMB customer via Event/Conference
+CUST-1022,2025-06-15,churn,-8040.0,Cancellation
+CUST-1024,2025-06-15,downgrade,-50.0,Seat contraction to 6
+CUST-1061,2025-06-15,upgrade,1320.0,Seat expansion to 56
+CUST-1106,2025-06-15,upgrade,600.0,Seat expansion to 79
+CUST-1125,2025-06-15,upgrade,50.0,Seat expansion to 14
+CUST-1167,2025-06-15,upgrade,17000.0,Seat expansion to 447
+CUST-1201,2025-06-15,downgrade,0.0,Seat contraction to 4
+CUST-1213,2025-06-15,churn,-2040.0,Cancellation
+CUST-1232,2025-06-15,churn,-700.0,Cancellation
+CUST-1256,2025-06-15,churn,-900.0,Cancellation
+CUST-1283,2025-06-15,downgrade,-150.0,Seat contraction to 14
+CUST-1303,2025-06-15,downgrade,0.0,Seat contraction to 8
+CUST-1307,2025-06-15,churn,-350.0,Cancellation
+CUST-1308,2025-06-15,churn,-1200.0,Cancellation
+CUST-1316,2025-06-15,upgrade,240.0,Seat expansion to 14
+CUST-1325,2025-06-15,upgrade,100.0,Seat expansion to 15
+CUST-1331,2025-06-15,upgrade,100.0,Seat expansion to 12
+CUST-1356,2025-06-15,upgrade,22750.0,Seat expansion to 473
+CUST-1357,2025-06-15,upgrade,840.0,Seat expansion to 61
+CUST-1407,2025-06-15,upgrade,1500.0,Seat expansion to 50
+CUST-1421,2025-06-15,churn,-150.0,Cancellation
+CUST-1428,2025-06-15,downgrade,0.0,Seat contraction to 4
+CUST-1436,2025-06-15,upgrade,250.0,Seat expansion to 9
+CUST-1443,2025-06-15,churn,-8520.0,Cancellation
+CUST-1456,2025-06-15,upgrade,700.0,Seat expansion to 116
+CUST-1490,2025-06-15,upgrade,2500.0,Seat expansion to 56
+CUST-1560,2025-06-15,downgrade,-840.0,Seat contraction to 61
+CUST-1565,2025-06-15,downgrade,-2500.0,Seat contraction to 84
+CUST-1568,2025-06-15,downgrade,0.0,Seat contraction to 6
+CUST-1576,2025-06-15,upgrade,480.0,Seat expansion to 27
+CUST-1605,2025-06-15,churn,-3240.0,Cancellation
+CUST-1635,2025-06-15,churn,-3840.0,Cancellation
+CUST-1661,2025-07-12,signup,650.0,New SMB customer via Event/Conference
+CUST-1662,2025-07-14,signup,2160.0,New Mid-Market customer via Outbound Sales
+CUST-1663,2025-07-02,signup,400.0,New SMB customer via Event/Conference
+CUST-1664,2025-07-21,signup,840.0,New SMB customer via Outbound Sales
+CUST-1665,2025-07-03,signup,700.0,New SMB customer via Outbound Sales
+CUST-1666,2025-07-25,signup,4800.0,New Mid-Market customer via Outbound Sales
+CUST-1667,2025-07-06,signup,350.0,New SMB customer via Outbound Sales
+CUST-1668,2025-07-20,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1669,2025-07-16,signup,8520.0,New Mid-Market customer via Event/Conference
+CUST-1670,2025-07-20,signup,2160.0,New Mid-Market customer via Outbound Sales
+CUST-1671,2025-07-17,signup,1200.0,New SMB customer via Inbound Marketing
+CUST-1672,2025-07-07,signup,150.0,New SMB customer via Outbound Sales
+CUST-1673,2025-07-12,signup,150.0,New SMB customer via Outbound Sales
+CUST-1674,2025-07-03,signup,300.0,New SMB customer via Partner Referral
+CUST-1675,2025-07-24,signup,1440.0,New SMB customer via Inbound Marketing
+CUST-1676,2025-07-11,signup,9000.0,New Mid-Market customer via Event/Conference
+CUST-1677,2025-07-14,signup,5880.0,New Mid-Market customer via Inbound Marketing
+CUST-1678,2025-07-17,signup,10250.0,New Mid-Market customer via Self-Serve Promo
+CUST-1679,2025-07-16,signup,10500.0,New Mid-Market customer via Event/Conference
+CUST-1680,2025-07-26,signup,32250.0,New Enterprise customer via Outbound Sales
+CUST-1027,2025-07-15,upgrade,50.0,Seat expansion to 16
+CUST-1029,2025-07-15,upgrade,50.0,Seat expansion to 6
+CUST-1138,2025-07-15,churn,-500.0,Cancellation
+CUST-1146,2025-07-15,upgrade,480.0,Seat expansion to 30
+CUST-1151,2025-07-15,churn,-700.0,Cancellation
+CUST-1167,2025-07-15,upgrade,9750.0,Seat expansion to 486
+CUST-1209,2025-07-15,upgrade,240.0,Seat expansion to 12
+CUST-1290,2025-07-15,upgrade,120.0,Seat expansion to 6
+CUST-1315,2025-07-15,downgrade,-360.0,Seat contraction to 37
+CUST-1317,2025-07-15,downgrade,-100.0,Seat contraction to 11
+CUST-1336,2025-07-15,upgrade,480.0,Seat expansion to 28
+CUST-1397,2025-07-15,upgrade,1200.0,Seat expansion to 55
+CUST-1399,2025-07-15,upgrade,840.0,Seat expansion to 45
+CUST-1484,2025-07-15,upgrade,100.0,Seat expansion to 10
+CUST-1521,2025-07-15,churn,-500.0,Cancellation
+CUST-1529,2025-07-15,upgrade,240.0,Seat expansion to 12
+CUST-1530,2025-07-15,upgrade,840.0,Seat expansion to 56
+CUST-1615,2025-07-15,downgrade,-750.0,Seat contraction to 14
+CUST-1619,2025-07-15,downgrade,-120.0,Seat contraction to 7
+CUST-1623,2025-07-15,upgrade,50.0,Seat expansion to 8
+CUST-1642,2025-07-15,downgrade,-120.0,Seat contraction to 7
+CUST-1650,2025-07-15,upgrade,360.0,Seat expansion to 36
+CUST-1654,2025-07-15,upgrade,400.0,Seat expansion to 43
+CUST-1681,2025-08-14,signup,1560.0,New SMB customer via Outbound Sales
+CUST-1682,2025-08-16,signup,600.0,New SMB customer via Event/Conference
+CUST-1683,2025-08-13,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1684,2025-08-05,signup,300.0,New SMB customer via Event/Conference
+CUST-1685,2025-08-22,signup,400.0,New SMB customer via Outbound Sales
+CUST-1686,2025-08-10,signup,840.0,New SMB customer via Partner Referral
+CUST-1687,2025-08-20,signup,5400.0,New Mid-Market customer via Self-Serve Promo
+CUST-1688,2025-08-08,signup,80500.0,New Enterprise customer via Outbound Sales
+CUST-1689,2025-08-04,signup,1080.0,New SMB customer via Event/Conference
+CUST-1690,2025-08-23,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1691,2025-08-12,signup,1320.0,New SMB customer via Partner Referral
+CUST-1692,2025-08-08,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1693,2025-08-22,signup,720.0,New SMB customer via Partner Referral
+CUST-1694,2025-08-09,signup,200.0,New SMB customer via Outbound Sales
+CUST-1695,2025-08-21,signup,1320.0,New SMB customer via Partner Referral
+CUST-1696,2025-08-08,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1697,2025-08-17,signup,4800.0,New Mid-Market customer via Partner Referral
+CUST-1698,2025-08-27,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1699,2025-08-18,signup,450.0,New SMB customer via Partner Referral
+CUST-1700,2025-08-14,signup,1800.0,New SMB customer via Self-Serve Promo
+CUST-1040,2025-08-15,upgrade,700.0,Seat expansion to 77
+CUST-1067,2025-08-15,churn,-750.0,Cancellation
+CUST-1082,2025-08-15,upgrade,11880.0,Seat expansion to 621
+CUST-1090,2025-08-15,downgrade,-840.0,Seat contraction to 50
+CUST-1092,2025-08-15,churn,-10080.0,Cancellation
+CUST-1107,2025-08-15,churn,-400.0,Cancellation
+CUST-1152,2025-08-15,upgrade,50.0,Seat expansion to 11
+CUST-1192,2025-08-15,upgrade,50.0,Seat expansion to 12
+CUST-1216,2025-08-15,churn,-480.0,Cancellation
+CUST-1242,2025-08-15,churn,-700.0,Cancellation
+CUST-1283,2025-08-15,upgrade,100.0,Seat expansion to 16
+CUST-1284,2025-08-15,downgrade,-240.0,Seat contraction to 13
+CUST-1293,2025-08-15,upgrade,8000.0,Seat expansion to 472
+CUST-1326,2025-08-15,upgrade,720.0,Seat expansion to 72
+CUST-1341,2025-08-15,upgrade,250.0,Seat expansion to 9
+CUST-1343,2025-08-15,upgrade,240.0,Seat expansion to 15
+CUST-1352,2025-08-15,downgrade,-240.0,Seat contraction to 7
+CUST-1405,2025-08-15,churn,-1440.0,Cancellation
+CUST-1423,2025-08-15,churn,-450.0,Cancellation
+CUST-1445,2025-08-15,upgrade,100.0,Seat expansion to 17
+CUST-1449,2025-08-15,upgrade,240.0,Seat expansion to 9
+CUST-1482,2025-08-15,upgrade,1440.0,Seat expansion to 80
+CUST-1493,2025-08-15,upgrade,150.0,Seat expansion to 52
+CUST-1518,2025-08-15,upgrade,100.0,Seat expansion to 9
+CUST-1519,2025-08-15,churn,-400.0,Cancellation
+CUST-1573,2025-08-15,upgrade,750.0,Seat expansion to 36
+CUST-1593,2025-08-15,upgrade,50.0,Seat expansion to 6
+CUST-1596,2025-08-15,churn,-6480.0,Cancellation
+CUST-1604,2025-08-15,churn,-600.0,Cancellation
+CUST-1617,2025-08-15,churn,-400.0,Cancellation
+CUST-1621,2025-08-15,upgrade,100.0,Seat expansion to 11
+CUST-1674,2025-08-15,downgrade,-50.0,Seat contraction to 5
+CUST-1680,2025-08-15,upgrade,5000.0,Seat expansion to 149
+CUST-1701,2025-09-11,signup,700.0,New SMB customer via Outbound Sales
+CUST-1702,2025-09-12,signup,3360.0,New Mid-Market customer via Inbound Marketing
+CUST-1703,2025-09-26,signup,250.0,New SMB customer via Partner Referral
+CUST-1704,2025-09-04,signup,500.0,New SMB customer via Partner Referral
+CUST-1705,2025-09-12,signup,2750.0,New SMB customer via Outbound Sales
+CUST-1706,2025-09-15,signup,1800.0,New SMB customer via Inbound Marketing
+CUST-1707,2025-09-27,signup,500.0,New SMB customer via Event/Conference
+CUST-1708,2025-09-14,signup,750.0,New SMB customer via Outbound Sales
+CUST-1709,2025-09-11,signup,2040.0,New Mid-Market customer via Partner Referral
+CUST-1710,2025-09-07,signup,600.0,New SMB customer via Event/Conference
+CUST-1711,2025-09-15,signup,1080.0,New SMB customer via Event/Conference
+CUST-1712,2025-09-15,signup,450.0,New SMB customer via Event/Conference
+CUST-1713,2025-09-12,signup,650.0,New SMB customer via Inbound Marketing
+CUST-1714,2025-09-09,signup,700.0,New SMB customer via Event/Conference
+CUST-1715,2025-09-15,signup,13500.0,New Mid-Market customer via Outbound Sales
+CUST-1716,2025-09-13,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1717,2025-09-06,signup,750.0,New SMB customer via Outbound Sales
+CUST-1718,2025-09-21,signup,500.0,New SMB customer via Event/Conference
+CUST-1719,2025-09-26,signup,1320.0,New SMB customer via Inbound Marketing
+CUST-1720,2025-09-19,signup,360.0,New SMB customer via Event/Conference
+CUST-1005,2025-09-15,upgrade,14750.0,Seat expansion to 527
+CUST-1024,2025-09-15,downgrade,-50.0,Seat contraction to 5
+CUST-1027,2025-09-15,churn,-800.0,Cancellation
+CUST-1066,2025-09-15,upgrade,360.0,Seat expansion to 16
+CUST-1097,2025-09-15,upgrade,600.0,Seat expansion to 39
+CUST-1106,2025-09-15,upgrade,1200.0,Seat expansion to 89
+CUST-1119,2025-09-15,upgrade,240.0,Seat expansion to 12
+CUST-1147,2025-09-15,churn,-650.0,Cancellation
+CUST-1148,2025-09-15,downgrade,-3100.0,Seat contraction to 453
+CUST-1179,2025-09-15,upgrade,600.0,Seat expansion to 27
+CUST-1237,2025-09-15,churn,-7440.0,Cancellation
+CUST-1246,2025-09-15,churn,-840.0,Cancellation
+CUST-1261,2025-09-15,downgrade,-300.0,Seat contraction to 33
+CUST-1272,2025-09-15,upgrade,240.0,Seat expansion to 20
+CUST-1278,2025-09-15,churn,-5040.0,Cancellation
+CUST-1301,2025-09-15,upgrade,50.0,Seat expansion to 6
+CUST-1314,2025-09-15,churn,-3360.0,Cancellation
+CUST-1333,2025-09-15,downgrade,-120.0,Seat contraction to 6
+CUST-1344,2025-09-15,downgrade,-50.0,Seat contraction to 2
+CUST-1352,2025-09-15,upgrade,120.0,Seat expansion to 8
+CUST-1356,2025-09-15,upgrade,13750.0,Seat expansion to 528
+CUST-1369,2025-09-15,churn,-480.0,Cancellation
+CUST-1374,2025-09-15,churn,-150.0,Cancellation
+CUST-1436,2025-09-15,churn,-2250.0,Cancellation
+CUST-1439,2025-09-15,upgrade,1500.0,Seat expansion to 60
+CUST-1440,2025-09-15,upgrade,50.0,Seat expansion to 10
+CUST-1449,2025-09-15,upgrade,120.0,Seat expansion to 10
+CUST-1459,2025-09-15,churn,-750.0,Cancellation
+CUST-1477,2025-09-15,upgrade,4500.0,Seat expansion to 99
+CUST-1479,2025-09-15,downgrade,-50.0,Seat contraction to 12
+CUST-1513,2025-09-15,upgrade,50.0,Seat expansion to 5
+CUST-1528,2025-09-15,upgrade,240.0,Seat expansion to 14
+CUST-1532,2025-09-15,upgrade,100.0,Seat expansion to 16
+CUST-1547,2025-09-15,upgrade,960.0,Seat expansion to 63
+CUST-1551,2025-09-15,downgrade,0.0,Seat contraction to 3
+CUST-1574,2025-09-15,churn,-500.0,Cancellation
+CUST-1575,2025-09-15,downgrade,-100.0,Seat contraction to 11
+CUST-1603,2025-09-15,downgrade,-360.0,Seat contraction to 38
+CUST-1628,2025-09-15,upgrade,360.0,Seat expansion to 38
+CUST-1629,2025-09-15,churn,-34750.0,Cancellation
+CUST-1633,2025-09-15,upgrade,1000.0,Seat expansion to 36
+CUST-1642,2025-09-15,upgrade,120.0,Seat expansion to 8
+CUST-1648,2025-09-15,churn,-550.0,Cancellation
+CUST-1659,2025-09-15,upgrade,4680.0,Seat expansion to 351
+CUST-1673,2025-09-15,downgrade,-50.0,Seat contraction to 2
+CUST-1683,2025-09-15,upgrade,240.0,Seat expansion to 13
+CUST-1721,2025-10-08,signup,750.0,New SMB customer via Outbound Sales
+CUST-1722,2025-10-02,signup,200.0,New SMB customer via Outbound Sales
+CUST-1723,2025-10-03,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1724,2025-10-11,signup,150.0,New SMB customer via Inbound Marketing
+CUST-1725,2025-10-02,signup,250.0,New SMB customer via Outbound Sales
+CUST-1726,2025-10-15,signup,56750.0,New Enterprise customer via Event/Conference
+CUST-1727,2025-10-03,signup,550.0,New SMB customer via Outbound Sales
+CUST-1728,2025-10-26,signup,350.0,New SMB customer via Self-Serve Promo
+CUST-1729,2025-10-05,signup,650.0,New SMB customer via Outbound Sales
+CUST-1730,2025-10-15,signup,1200.0,New SMB customer via Outbound Sales
+CUST-1731,2025-10-03,signup,750.0,New SMB customer via Outbound Sales
+CUST-1732,2025-10-20,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1733,2025-10-25,signup,550.0,New SMB customer via Partner Referral
+CUST-1734,2025-10-02,signup,350.0,New SMB customer via Inbound Marketing
+CUST-1735,2025-10-12,signup,8280.0,New Mid-Market customer via Inbound Marketing
+CUST-1736,2025-10-18,signup,2760.0,New Mid-Market customer via Inbound Marketing
+CUST-1737,2025-10-19,signup,600.0,New SMB customer via Self-Serve Promo
+CUST-1738,2025-10-09,signup,5040.0,New Mid-Market customer via Event/Conference
+CUST-1739,2025-10-05,signup,7200.0,New Mid-Market customer via Event/Conference
+CUST-1740,2025-10-23,signup,2640.0,New Mid-Market customer via Outbound Sales
+CUST-1741,2025-10-05,signup,750.0,New SMB customer via Partner Referral
+CUST-1742,2025-10-26,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1743,2025-10-15,signup,450.0,New SMB customer via Self-Serve Promo
+CUST-1019,2025-10-15,upgrade,15500.0,Seat expansion to 434
+CUST-1061,2025-10-15,upgrade,1680.0,Seat expansion to 70
+CUST-1064,2025-10-15,churn,-750.0,Cancellation
+CUST-1065,2025-10-15,upgrade,50.0,Seat expansion to 11
+CUST-1114,2025-10-15,upgrade,20000.0,Seat expansion to 444
+CUST-1172,2025-10-15,upgrade,840.0,Seat expansion to 45
+CUST-1192,2025-10-15,upgrade,100.0,Seat expansion to 14
+CUST-1209,2025-10-15,churn,-1440.0,Cancellation
+CUST-1212,2025-10-15,churn,-200.0,Cancellation
+CUST-1223,2025-10-15,upgrade,50.0,Seat expansion to 14
+CUST-1247,2025-10-15,downgrade,-100.0,Seat contraction to 13
+CUST-1250,2025-10-15,downgrade,-50.0,Seat contraction to 6
+CUST-1262,2025-10-15,upgrade,360.0,Seat expansion to 18
+CUST-1283,2025-10-15,churn,-800.0,Cancellation
+CUST-1310,2025-10-15,downgrade,-1560.0,Seat contraction to 58
+CUST-1311,2025-10-15,upgrade,5500.0,Seat expansion to 324
+CUST-1323,2025-10-15,upgrade,1500.0,Seat expansion to 39
+CUST-1387,2025-10-15,churn,-900.0,Cancellation
+CUST-1391,2025-10-15,upgrade,250.0,Seat expansion to 9
+CUST-1394,2025-10-15,upgrade,120.0,Seat expansion to 7
+CUST-1404,2025-10-15,upgrade,240.0,Seat expansion to 23
+CUST-1467,2025-10-15,churn,-550.0,Cancellation
+CUST-1469,2025-10-15,upgrade,50.0,Seat expansion to 12
+CUST-1474,2025-10-15,downgrade,-100.0,Seat contraction to 9
+CUST-1482,2025-10-15,upgrade,1200.0,Seat expansion to 90
+CUST-1491,2025-10-15,churn,-750.0,Cancellation
+CUST-1516,2025-10-15,upgrade,1440.0,Seat expansion to 59
+CUST-1543,2025-10-15,upgrade,50.0,Seat expansion to 6
+CUST-1546,2025-10-15,upgrade,2500.0,Seat expansion to 153
+CUST-1547,2025-10-15,upgrade,600.0,Seat expansion to 68
+CUST-1607,2025-10-15,upgrade,50.0,Seat expansion to 8
+CUST-1613,2025-10-15,upgrade,50.0,Seat expansion to 8
+CUST-1620,2025-10-15,upgrade,960.0,Seat expansion to 76
+CUST-1661,2025-10-15,churn,-650.0,Cancellation
+CUST-1678,2025-10-15,upgrade,2000.0,Seat expansion to 49
+CUST-1704,2025-10-15,upgrade,100.0,Seat expansion to 12
+CUST-1720,2025-10-15,upgrade,120.0,Seat expansion to 4
+CUST-1744,2025-11-13,signup,500.0,New SMB customer via Outbound Sales
+CUST-1745,2025-11-09,signup,3240.0,New Mid-Market customer via Outbound Sales
+CUST-1746,2025-11-16,signup,550.0,New SMB customer via Event/Conference
+CUST-1747,2025-11-20,signup,750.0,New SMB customer via Event/Conference
+CUST-1748,2025-11-25,signup,1680.0,New SMB customer via Inbound Marketing
+CUST-1749,2025-11-24,signup,4320.0,New Mid-Market customer via Outbound Sales
+CUST-1750,2025-11-11,signup,58000.0,New Enterprise customer via Self-Serve Promo
+CUST-1751,2025-11-22,signup,500.0,New SMB customer via Inbound Marketing
+CUST-1752,2025-11-04,signup,600.0,New SMB customer via Inbound Marketing
+CUST-1753,2025-11-22,signup,600.0,New SMB customer via Event/Conference
+CUST-1754,2025-11-12,signup,450.0,New SMB customer via Inbound Marketing
+CUST-1755,2025-11-07,signup,750.0,New SMB customer via Inbound Marketing
+CUST-1756,2025-11-12,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1757,2025-11-08,signup,550.0,New SMB customer via Outbound Sales
+CUST-1758,2025-11-27,signup,400.0,New SMB customer via Outbound Sales
+CUST-1759,2025-11-27,signup,720.0,New SMB customer via Event/Conference
+CUST-1760,2025-11-26,signup,3250.0,New SMB customer via Partner Referral
+CUST-1761,2025-11-14,signup,4320.0,New Mid-Market customer via Outbound Sales
+CUST-1762,2025-11-26,signup,650.0,New SMB customer via Outbound Sales
+CUST-1763,2025-11-08,signup,8400.0,New Mid-Market customer via Inbound Marketing
+CUST-1764,2025-11-19,signup,1100.0,New Mid-Market customer via Outbound Sales
+CUST-1765,2025-11-21,signup,1680.0,New SMB customer via Partner Referral
+CUST-1766,2025-11-07,signup,150.0,New SMB customer via Outbound Sales
+CUST-1016,2025-11-15,upgrade,100.0,Seat expansion to 14
+CUST-1041,2025-11-15,churn,-350.0,Cancellation
+CUST-1045,2025-11-15,upgrade,150.0,Seat expansion to 23
+CUST-1056,2025-11-15,churn,-600.0,Cancellation
+CUST-1075,2025-11-15,upgrade,750.0,Seat expansion to 19
+CUST-1104,2025-11-15,churn,-450.0,Cancellation
+CUST-1115,2025-11-15,upgrade,120.0,Seat expansion to 7
+CUST-1117,2025-11-15,churn,-5640.0,Cancellation
+CUST-1122,2025-11-15,upgrade,1080.0,Seat expansion to 80
+CUST-1144,2025-11-15,churn,-650.0,Cancellation
+CUST-1155,2025-11-15,upgrade,120.0,Seat expansion to 7
+CUST-1178,2025-11-15,upgrade,50.0,Seat expansion to 17
+CUST-1251,2025-11-15,downgrade,-240.0,Seat contraction to 14
+CUST-1261,2025-11-15,downgrade,-200.0,Seat contraction to 29
+CUST-1266,2025-11-15,upgrade,360.0,Seat expansion to 46
+CUST-1273,2025-11-15,upgrade,480.0,Seat expansion to 45
+CUST-1280,2025-11-15,upgrade,120.0,Seat expansion to 5
+CUST-1313,2025-11-15,downgrade,-200.0,Seat contraction to 20
+CUST-1335,2025-11-15,churn,-1440.0,Cancellation
+CUST-1366,2025-11-15,upgrade,50.0,Seat expansion to 5
+CUST-1372,2025-11-15,upgrade,1750.0,Seat expansion to 39
+CUST-1451,2025-11-15,downgrade,-50.0,Seat contraction to 4
+CUST-1583,2025-11-15,upgrade,960.0,Seat expansion to 55
+CUST-1584,2025-11-15,upgrade,50.0,Seat expansion to 4
+CUST-1627,2025-11-15,churn,-150.0,Cancellation
+CUST-1650,2025-11-15,upgrade,960.0,Seat expansion to 44
+CUST-1652,2025-11-15,churn,-7320.0,Cancellation
+CUST-1675,2025-11-15,upgrade,240.0,Seat expansion to 14
+CUST-1676,2025-11-15,upgrade,1920.0,Seat expansion to 91
+CUST-1682,2025-11-15,upgrade,100.0,Seat expansion to 14
+CUST-1687,2025-11-15,churn,-5400.0,Cancellation
+CUST-1704,2025-11-15,downgrade,-50.0,Seat contraction to 11
+CUST-1734,2025-11-15,upgrade,50.0,Seat expansion to 8
+CUST-1767,2025-12-19,signup,200.0,New SMB customer via Inbound Marketing
+CUST-1768,2025-12-21,signup,750.0,New SMB customer via Outbound Sales
+CUST-1769,2025-12-05,signup,700.0,New SMB customer via Event/Conference
+CUST-1770,2025-12-11,signup,39500.0,New Enterprise customer via Outbound Sales
+CUST-1771,2025-12-15,signup,960.0,New SMB customer via Inbound Marketing
+CUST-1772,2025-12-15,signup,7440.0,New Mid-Market customer via Inbound Marketing
+CUST-1773,2025-12-22,signup,2550.0,New Mid-Market customer via Outbound Sales
+CUST-1774,2025-12-19,signup,480.0,New SMB customer via Inbound Marketing
+CUST-1775,2025-12-26,signup,500.0,New SMB customer via Event/Conference
+CUST-1776,2025-12-09,signup,3840.0,New Mid-Market customer via Partner Referral
+CUST-1777,2025-12-13,signup,10750.0,New Mid-Market customer via Self-Serve Promo
+CUST-1778,2025-12-26,signup,700.0,New SMB customer via Outbound Sales
+CUST-1779,2025-12-17,signup,2640.0,New Mid-Market customer via Outbound Sales
+CUST-1780,2025-12-16,signup,700.0,New SMB customer via Event/Conference
+CUST-1781,2025-12-16,signup,600.0,New SMB customer via Outbound Sales
+CUST-1782,2025-12-09,signup,400.0,New SMB customer via Inbound Marketing
+CUST-1783,2025-12-01,signup,7080.0,New Mid-Market customer via Event/Conference
+CUST-1784,2025-12-01,signup,500.0,New SMB customer via Event/Conference
+CUST-1785,2025-12-17,signup,400.0,New SMB customer via Event/Conference
+CUST-1786,2025-12-25,signup,7560.0,New Mid-Market customer via Inbound Marketing
+CUST-1029,2025-12-15,upgrade,50.0,Seat expansion to 7
+CUST-1039,2025-12-15,upgrade,50.0,Seat expansion to 7
+CUST-1135,2025-12-15,upgrade,50.0,Seat expansion to 7
+CUST-1167,2025-12-15,upgrade,15500.0,Seat expansion to 548
+CUST-1181,2025-12-15,upgrade,120.0,Seat expansion to 16
+CUST-1207,2025-12-15,upgrade,1080.0,Seat expansion to 49
+CUST-1244,2025-12-15,churn,-250.0,Cancellation
+CUST-1275,2025-12-15,upgrade,120.0,Seat expansion to 8
+CUST-1306,2025-12-15,upgrade,720.0,Seat expansion to 52
+CUST-1345,2025-12-15,upgrade,50.0,Seat expansion to 5
+CUST-1356,2025-12-15,downgrade,-17250.0,Seat contraction to 459
+CUST-1365,2025-12-15,upgrade,2160.0,Seat expansion to 231
+CUST-1397,2025-12-15,churn,-6600.0,Cancellation
+CUST-1408,2025-12-15,downgrade,-50.0,Seat contraction to 7
+CUST-1472,2025-12-15,churn,-600.0,Cancellation
+CUST-1479,2025-12-15,downgrade,-50.0,Seat contraction to 11
+CUST-1499,2025-12-15,upgrade,120.0,Seat expansion to 10
+CUST-1557,2025-12-15,upgrade,150.0,Seat expansion to 16
+CUST-1571,2025-12-15,upgrade,50.0,Seat expansion to 22
+CUST-1622,2025-12-15,churn,-300.0,Cancellation
+CUST-1633,2025-12-15,churn,-9000.0,Cancellation
+CUST-1644,2025-12-15,upgrade,50.0,Seat expansion to 6
+CUST-1651,2025-12-15,upgrade,50.0,Seat expansion to 13
+CUST-1682,2025-12-15,downgrade,-50.0,Seat contraction to 13
+CUST-1722,2025-12-15,upgrade,50.0,Seat expansion to 5
+CUST-1766,2025-12-15,churn,-150.0,Cancellation

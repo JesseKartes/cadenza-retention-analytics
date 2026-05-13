@@ -298,3 +298,26 @@ def _q1_churn_amplifier(month: pd.Timestamp) -> float:
 
 def _mid_month(month: pd.Timestamp) -> pd.Timestamp:
     return month + pd.Timedelta(days=14)
+
+
+# --- CLI entry point -------------------------------------------------------
+
+def generate_all(cfg: GeneratorConfig | None = None) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    cfg = cfg or GeneratorConfig()
+    customers = generate_customers(cfg)
+    subs, events = generate_subscriptions_and_events(customers, cfg)
+    return customers, subs, events
+
+
+def write_to_disk(out_dir: Path) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    customers, subs, events = generate_all()
+    customers.drop(columns=[c for c in customers.columns if c.endswith("_dt")], errors="ignore", inplace=True)
+    customers.to_csv(out_dir / "customers.csv", index=False)
+    subs.to_csv(out_dir / "subscriptions.csv", index=False)
+    events.to_csv(out_dir / "events.csv", index=False)
+    print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, {len(events)} events to {out_dir}")
+
+
+if __name__ == "__main__":
+    write_to_disk(Path(__file__).resolve().parents[1] / "data" / "generated")

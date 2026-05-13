@@ -1,0 +1,787 @@
+customer_id,company_name,segment,industry,signup_date,signup_cohort,acquisition_channel,plan_tier_initial,initial_seats,initial_mrr
+CUST-1001,Helix Works,Mid-Market,Retail,2023-01-19,2023-01,Inbound Marketing,Scale,20,5000.0
+CUST-1002,Cobalt Partners,Mid-Market,Healthcare,2023-01-23,2023-01,Self-Serve Promo,Starter,74,3700.0
+CUST-1003,Cobalt Logic,Mid-Market,Technology,2023-01-12,2023-01,Partner Referral,Growth,48,5760.0
+CUST-1004,Halcyon Industries,SMB,Healthcare,2023-01-05,2023-01,Event/Conference,Starter,10,500.0
+CUST-1005,Beacon Holdings,Enterprise,Manufacturing,2023-01-06,2023-01,Event/Conference,Scale,322,80500.0
+CUST-1006,Reverb Dynamics,SMB,Healthcare,2023-01-10,2023-01,Partner Referral,Growth,3,360.0
+CUST-1007,Tessera Holdings,SMB,Healthcare,2023-01-04,2023-01,Inbound Marketing,Starter,9,450.0
+CUST-1008,Tessera Works,SMB,Healthcare,2023-01-18,2023-01,Inbound Marketing,Growth,5,600.0
+CUST-1009,Vector Industries,Mid-Market,Media,2023-01-08,2023-01,Event/Conference,Growth,69,8280.0
+CUST-1010,Marlin Holdings,SMB,Media,2023-01-22,2023-01,Outbound Sales,Growth,4,480.0
+CUST-1011,Vector Works,Mid-Market,Manufacturing,2023-01-04,2023-01,Inbound Marketing,Growth,17,2040.0
+CUST-1012,Marlin Partners,SMB,Retail,2023-01-16,2023-01,Inbound Marketing,Growth,11,1320.0
+CUST-1013,Reverb Logic,SMB,Healthcare,2023-01-12,2023-01,Inbound Marketing,Starter,7,350.0
+CUST-1014,Lattice Cloud,Mid-Market,Healthcare,2023-01-24,2023-01,Outbound Sales,Starter,39,1950.0
+CUST-1015,Stratus Dynamics,SMB,Manufacturing,2023-01-18,2023-01,Inbound Marketing,Growth,15,1800.0
+CUST-1016,Halcyon Industries,SMB,Manufacturing,2023-01-21,2023-01,Outbound Sales,Starter,13,650.0
+CUST-1017,Cobalt Holdings,SMB,Financial Services,2023-01-19,2023-01,Inbound Marketing,Starter,9,450.0
+CUST-1018,Apex Group,SMB,Technology,2023-01-26,2023-01,Partner Referral,Starter,7,350.0
+CUST-1019,Halcyon Digital,Enterprise,Healthcare,2023-02-08,2023-02,Event/Conference,Scale,224,56000.0
+CUST-1020,Apex Holdings,Mid-Market,Professional Services,2023-02-03,2023-02,Inbound Marketing,Growth,62,7440.0
+CUST-1021,Citron Systems,SMB,Manufacturing,2023-02-16,2023-02,Outbound Sales,Starter,13,650.0
+CUST-1022,Marlin Works,Mid-Market,Retail,2023-02-09,2023-02,Self-Serve Promo,Growth,67,8040.0
+CUST-1023,Helix Holdings,SMB,Financial Services,2023-02-02,2023-02,Outbound Sales,Starter,13,650.0
+CUST-1024,Helix Group,SMB,Professional Services,2023-02-22,2023-02,Outbound Sales,Starter,7,350.0
+CUST-1025,Quantum Digital,SMB,Manufacturing,2023-02-01,2023-02,Inbound Marketing,Starter,6,300.0
+CUST-1026,Cobalt Holdings,Mid-Market,Professional Services,2023-02-19,2023-02,Outbound Sales,Growth,44,5280.0
+CUST-1027,Citron Partners,SMB,Education,2023-02-09,2023-02,Inbound Marketing,Starter,15,750.0
+CUST-1028,Quantum Group,SMB,Retail,2023-02-15,2023-02,Event/Conference,Growth,8,960.0
+CUST-1029,Halcyon Solutions,SMB,Professional Services,2023-02-18,2023-02,Partner Referral,Starter,6,300.0
+CUST-1030,North Works,SMB,Retail,2023-02-07,2023-02,Event/Conference,Starter,12,600.0
+CUST-1031,Helix Digital,SMB,Media,2023-02-09,2023-02,Event/Conference,Growth,15,1800.0
+CUST-1032,Quantum Partners,SMB,Technology,2023-02-05,2023-02,Outbound Sales,Growth,6,720.0
+CUST-1033,Glide Cloud,SMB,Financial Services,2023-02-21,2023-02,Event/Conference,Growth,4,480.0
+CUST-1034,Marlin Dynamics,SMB,Healthcare,2023-02-10,2023-02,Inbound Marketing,Growth,14,1680.0
+CUST-1035,Reverb Logic,SMB,Technology,2023-02-26,2023-02,Self-Serve Promo,Starter,3,150.0
+CUST-1036,Plinth Solutions,Mid-Market,Education,2023-02-10,2023-02,Outbound Sales,Starter,22,1100.0
+CUST-1037,Cobalt Partners,SMB,Manufacturing,2023-03-27,2023-03,Inbound Marketing,Growth,7,840.0
+CUST-1038,Tessera Digital,SMB,Technology,2023-03-01,2023-03,Outbound Sales,Starter,4,200.0
+CUST-1039,Glide Network,SMB,Technology,2023-03-06,2023-03,Partner Referral,Starter,8,400.0
+CUST-1040,Anvil Works,Mid-Market,Manufacturing,2023-03-16,2023-03,Outbound Sales,Starter,58,2900.0
+CUST-1041,Citron Group,SMB,Professional Services,2023-03-26,2023-03,Inbound Marketing,Starter,7,350.0
+CUST-1042,Apex Solutions,SMB,Financial Services,2023-03-23,2023-03,Inbound Marketing,Starter,15,750.0
+CUST-1043,Halcyon Network,SMB,Manufacturing,2023-03-26,2023-03,Event/Conference,Starter,5,250.0
+CUST-1044,Mosaic Logic,Mid-Market,Education,2023-03-08,2023-03,Outbound Sales,Starter,43,2150.0
+CUST-1045,Halcyon Co,SMB,Healthcare,2023-03-24,2023-03,Inbound Marketing,Starter,15,750.0
+CUST-1046,Glide Logic,SMB,Manufacturing,2023-03-26,2023-03,Inbound Marketing,Starter,8,400.0
+CUST-1047,Reverb Works,SMB,Professional Services,2023-03-23,2023-03,Outbound Sales,Growth,13,1560.0
+CUST-1048,Lattice Cloud,SMB,Financial Services,2023-03-09,2023-03,Outbound Sales,Growth,3,360.0
+CUST-1049,Cobalt Works,Mid-Market,Retail,2023-03-05,2023-03,Outbound Sales,Growth,50,6000.0
+CUST-1050,Plinth Partners,SMB,Media,2023-03-12,2023-03,Outbound Sales,Starter,3,150.0
+CUST-1051,Mosaic Network,SMB,Retail,2023-03-24,2023-03,Inbound Marketing,Starter,12,600.0
+CUST-1052,Plinth Digital,SMB,Manufacturing,2023-03-18,2023-03,Outbound Sales,Starter,3,150.0
+CUST-1053,Apex Network,SMB,Technology,2023-03-03,2023-03,Inbound Marketing,Starter,14,700.0
+CUST-1054,Anvil Logic,Mid-Market,Professional Services,2023-03-22,2023-03,Outbound Sales,Growth,18,2160.0
+CUST-1055,Halcyon Works,Mid-Market,Education,2023-03-22,2023-03,Self-Serve Promo,Growth,52,6240.0
+CUST-1056,Beacon Industries,SMB,Media,2023-03-22,2023-03,Event/Conference,Starter,9,450.0
+CUST-1057,Plinth Logic,SMB,Healthcare,2023-04-12,2023-04,Outbound Sales,Starter,5,250.0
+CUST-1058,Tessera Logic,SMB,Healthcare,2023-04-05,2023-04,Inbound Marketing,Starter,7,350.0
+CUST-1059,Cobalt Partners,Mid-Market,Professional Services,2023-04-09,2023-04,Event/Conference,Growth,61,7320.0
+CUST-1060,Marlin Works,SMB,Healthcare,2023-04-21,2023-04,Event/Conference,Starter,14,700.0
+CUST-1061,Anvil Works,Mid-Market,Professional Services,2023-04-24,2023-04,Outbound Sales,Growth,45,5400.0
+CUST-1062,Anvil Solutions,SMB,Financial Services,2023-04-15,2023-04,Self-Serve Promo,Starter,10,500.0
+CUST-1063,Reverb Network,Enterprise,Professional Services,2023-04-22,2023-04,Event/Conference,Scale,220,55000.0
+CUST-1064,Marlin Systems,SMB,Financial Services,2023-04-15,2023-04,Inbound Marketing,Starter,15,750.0
+CUST-1065,Halcyon Solutions,SMB,Professional Services,2023-04-15,2023-04,Inbound Marketing,Starter,11,550.0
+CUST-1066,Quantum Network,SMB,Technology,2023-04-23,2023-04,Inbound Marketing,Growth,13,1560.0
+CUST-1067,Helix Industries,SMB,Media,2023-04-21,2023-04,Partner Referral,Starter,14,700.0
+CUST-1068,Beacon Partners,Mid-Market,Healthcare,2023-04-22,2023-04,Self-Serve Promo,Growth,35,4200.0
+CUST-1069,Halcyon Dynamics,SMB,Financial Services,2023-04-12,2023-04,Outbound Sales,Growth,10,1200.0
+CUST-1070,Cobalt Works,SMB,Manufacturing,2023-04-17,2023-04,Event/Conference,Growth,12,1440.0
+CUST-1071,Vector Network,Enterprise,Professional Services,2023-04-04,2023-04,Self-Serve Promo,Scale,213,53250.0
+CUST-1072,North Works,SMB,Manufacturing,2023-04-15,2023-04,Inbound Marketing,Starter,11,550.0
+CUST-1073,North Group,Mid-Market,Retail,2023-04-12,2023-04,Outbound Sales,Growth,34,4080.0
+CUST-1074,Glide Industries,Mid-Market,Healthcare,2023-04-02,2023-04,Outbound Sales,Scale,71,17750.0
+CUST-1075,Quantum Industries,Mid-Market,Retail,2023-04-18,2023-04,Outbound Sales,Scale,16,4000.0
+CUST-1076,Quantum Network,Mid-Market,Education,2023-04-13,2023-04,Outbound Sales,Growth,20,2400.0
+CUST-1077,North Labs,SMB,Financial Services,2023-05-01,2023-05,Event/Conference,Starter,14,700.0
+CUST-1078,Glide Logic,SMB,Technology,2023-05-08,2023-05,Event/Conference,Starter,3,150.0
+CUST-1079,Mosaic Network,Mid-Market,Manufacturing,2023-05-19,2023-05,Event/Conference,Growth,66,7920.0
+CUST-1080,Halcyon Partners,SMB,Media,2023-05-15,2023-05,Outbound Sales,Starter,3,150.0
+CUST-1081,North Logic,Mid-Market,Technology,2023-05-06,2023-05,Outbound Sales,Growth,18,2160.0
+CUST-1082,Marlin Labs,Enterprise,Technology,2023-05-02,2023-05,Partner Referral,Growth,306,36720.0
+CUST-1083,Halcyon Systems,Mid-Market,Manufacturing,2023-05-03,2023-05,Self-Serve Promo,Starter,37,1850.0
+CUST-1084,Plinth Holdings,SMB,Financial Services,2023-05-24,2023-05,Self-Serve Promo,Starter,15,750.0
+CUST-1085,Vector Industries,Mid-Market,Manufacturing,2023-05-19,2023-05,Inbound Marketing,Growth,47,5640.0
+CUST-1086,Cobalt Works,SMB,Technology,2023-05-25,2023-05,Inbound Marketing,Starter,15,750.0
+CUST-1087,Mosaic Co,SMB,Manufacturing,2023-05-12,2023-05,Outbound Sales,Starter,10,500.0
+CUST-1088,Plinth Co,SMB,Healthcare,2023-05-26,2023-05,Inbound Marketing,Starter,11,550.0
+CUST-1089,Apex Co,SMB,Healthcare,2023-05-07,2023-05,Inbound Marketing,Starter,4,200.0
+CUST-1090,Lattice Logic,Mid-Market,Education,2023-05-17,2023-05,Partner Referral,Growth,49,5880.0
+CUST-1091,Reverb Partners,SMB,Education,2023-05-10,2023-05,Inbound Marketing,Starter,9,450.0
+CUST-1092,Citron Logic,Mid-Market,Education,2023-05-20,2023-05,Event/Conference,Growth,59,7080.0
+CUST-1093,Apex Works,SMB,Education,2023-05-04,2023-05,Event/Conference,Starter,3,150.0
+CUST-1094,Helix Solutions,SMB,Healthcare,2023-05-14,2023-05,Outbound Sales,Starter,13,650.0
+CUST-1095,Stratus Dynamics,Mid-Market,Media,2023-05-24,2023-05,Outbound Sales,Growth,58,6960.0
+CUST-1096,Reverb Works,SMB,Professional Services,2023-05-14,2023-05,Outbound Sales,Starter,4,200.0
+CUST-1097,Halcyon Dynamics,Mid-Market,Professional Services,2023-06-20,2023-06,Inbound Marketing,Growth,23,2760.0
+CUST-1098,Quantum Industries,SMB,Financial Services,2023-06-13,2023-06,Outbound Sales,Starter,11,550.0
+CUST-1099,Mosaic Digital,Mid-Market,Media,2023-06-23,2023-06,Event/Conference,Growth,27,3240.0
+CUST-1100,Halcyon Labs,SMB,Manufacturing,2023-06-23,2023-06,Inbound Marketing,Starter,4,200.0
+CUST-1101,Anvil Labs,SMB,Media,2023-06-25,2023-06,Outbound Sales,Starter,6,300.0
+CUST-1102,Cobalt Labs,SMB,Technology,2023-06-20,2023-06,Inbound Marketing,Starter,6,300.0
+CUST-1103,Stratus Industries,SMB,Education,2023-06-18,2023-06,Event/Conference,Starter,10,500.0
+CUST-1104,Beacon Digital,SMB,Education,2023-06-24,2023-06,Inbound Marketing,Starter,12,600.0
+CUST-1105,Stratus Cloud,SMB,Healthcare,2023-06-14,2023-06,Self-Serve Promo,Growth,7,840.0
+CUST-1106,Citron Partners,Mid-Market,Technology,2023-06-23,2023-06,Inbound Marketing,Growth,50,6000.0
+CUST-1107,North Group,SMB,Healthcare,2023-06-05,2023-06,Event/Conference,Starter,8,400.0
+CUST-1108,Lattice Works,SMB,Retail,2023-06-12,2023-06,Event/Conference,Starter,5,250.0
+CUST-1109,Tessera Digital,SMB,Education,2023-06-18,2023-06,Outbound Sales,Growth,9,1080.0
+CUST-1110,Tessera Logic,SMB,Professional Services,2023-06-14,2023-06,Self-Serve Promo,Growth,11,1320.0
+CUST-1111,Mosaic Holdings,Mid-Market,Media,2023-06-20,2023-06,Event/Conference,Starter,45,2250.0
+CUST-1112,Lattice Network,SMB,Media,2023-06-05,2023-06,Event/Conference,Scale,10,2500.0
+CUST-1113,Citron Solutions,Mid-Market,Professional Services,2023-06-02,2023-06,Inbound Marketing,Starter,33,1650.0
+CUST-1114,Stratus Works,Enterprise,Education,2023-06-07,2023-06,Inbound Marketing,Scale,234,58500.0
+CUST-1115,Cobalt Network,SMB,Financial Services,2023-06-25,2023-06,Inbound Marketing,Growth,6,720.0
+CUST-1116,Tessera Solutions,SMB,Media,2023-06-26,2023-06,Outbound Sales,Starter,3,150.0
+CUST-1117,Beacon Labs,Mid-Market,Professional Services,2023-07-22,2023-07,Event/Conference,Growth,38,4560.0
+CUST-1118,Citron Logic,SMB,Media,2023-07-26,2023-07,Event/Conference,Starter,6,300.0
+CUST-1119,Vector Logic,SMB,Manufacturing,2023-07-19,2023-07,Inbound Marketing,Growth,10,1200.0
+CUST-1120,Plinth Holdings,SMB,Manufacturing,2023-07-20,2023-07,Event/Conference,Starter,14,700.0
+CUST-1121,Tessera Group,SMB,Manufacturing,2023-07-03,2023-07,Event/Conference,Starter,11,550.0
+CUST-1122,Stratus Partners,Mid-Market,Financial Services,2023-07-21,2023-07,Event/Conference,Growth,58,6960.0
+CUST-1123,Apex Dynamics,SMB,Manufacturing,2023-07-17,2023-07,Event/Conference,Growth,12,1440.0
+CUST-1124,Apex Group,SMB,Financial Services,2023-07-03,2023-07,Outbound Sales,Starter,14,700.0
+CUST-1125,Cobalt Dynamics,SMB,Professional Services,2023-07-10,2023-07,Inbound Marketing,Starter,14,700.0
+CUST-1126,Anvil Dynamics,Mid-Market,Financial Services,2023-07-10,2023-07,Inbound Marketing,Growth,73,8760.0
+CUST-1127,Helix Co,SMB,Retail,2023-07-21,2023-07,Event/Conference,Starter,15,750.0
+CUST-1128,Quantum Group,SMB,Education,2023-07-05,2023-07,Outbound Sales,Starter,11,550.0
+CUST-1129,Marlin Holdings,SMB,Education,2023-07-22,2023-07,Inbound Marketing,Growth,10,1200.0
+CUST-1130,Anvil Logic,Enterprise,Education,2023-07-19,2023-07,Partner Referral,Scale,230,57500.0
+CUST-1131,Lattice Digital,SMB,Education,2023-07-18,2023-07,Inbound Marketing,Starter,8,400.0
+CUST-1132,Apex Group,SMB,Technology,2023-07-20,2023-07,Outbound Sales,Growth,9,1080.0
+CUST-1133,Mosaic Group,SMB,Technology,2023-07-14,2023-07,Outbound Sales,Starter,6,300.0
+CUST-1134,Tessera Holdings,SMB,Financial Services,2023-07-25,2023-07,Inbound Marketing,Starter,3,150.0
+CUST-1135,Lattice Works,SMB,Manufacturing,2023-07-01,2023-07,Inbound Marketing,Starter,4,200.0
+CUST-1136,Lattice Dynamics,SMB,Manufacturing,2023-07-01,2023-07,Inbound Marketing,Starter,14,700.0
+CUST-1137,Plinth Logic,Mid-Market,Professional Services,2023-08-09,2023-08,Event/Conference,Growth,28,3360.0
+CUST-1138,Anvil Holdings,SMB,Technology,2023-08-07,2023-08,Outbound Sales,Starter,9,450.0
+CUST-1139,Lattice Works,SMB,Technology,2023-08-02,2023-08,Self-Serve Promo,Starter,10,500.0
+CUST-1140,Apex Industries,SMB,Retail,2023-08-05,2023-08,Outbound Sales,Starter,14,700.0
+CUST-1141,Cobalt Labs,SMB,Healthcare,2023-08-23,2023-08,Inbound Marketing,Starter,11,550.0
+CUST-1142,Glide Group,SMB,Healthcare,2023-08-27,2023-08,Outbound Sales,Growth,14,1680.0
+CUST-1143,Apex Dynamics,Mid-Market,Media,2023-08-27,2023-08,Inbound Marketing,Growth,70,8400.0
+CUST-1144,Helix Partners,SMB,Manufacturing,2023-08-09,2023-08,Self-Serve Promo,Starter,13,650.0
+CUST-1145,Beacon Labs,SMB,Media,2023-08-10,2023-08,Outbound Sales,Starter,12,600.0
+CUST-1146,Lattice Works,Mid-Market,Professional Services,2023-08-23,2023-08,Self-Serve Promo,Growth,25,3000.0
+CUST-1147,Apex Systems,SMB,Education,2023-08-19,2023-08,Outbound Sales,Starter,11,550.0
+CUST-1148,Reverb Co,Enterprise,Retail,2023-08-15,2023-08,Outbound Sales,Starter,240,12000.0
+CUST-1149,Quantum Co,SMB,Financial Services,2023-08-15,2023-08,Event/Conference,Growth,8,960.0
+CUST-1150,Marlin Digital,SMB,Education,2023-08-10,2023-08,Inbound Marketing,Starter,6,300.0
+CUST-1151,Glide Logic,SMB,Retail,2023-08-24,2023-08,Inbound Marketing,Starter,14,700.0
+CUST-1152,Halcyon Solutions,SMB,Retail,2023-08-15,2023-08,Inbound Marketing,Starter,10,500.0
+CUST-1153,Anvil Labs,Mid-Market,Technology,2023-08-14,2023-08,Event/Conference,Growth,71,8520.0
+CUST-1154,Anvil Industries,SMB,Manufacturing,2023-08-21,2023-08,Inbound Marketing,Starter,13,650.0
+CUST-1155,Tessera Systems,SMB,Professional Services,2023-08-05,2023-08,Outbound Sales,Growth,6,720.0
+CUST-1156,Halcyon Industries,Mid-Market,Professional Services,2023-08-24,2023-08,Outbound Sales,Growth,67,8040.0
+CUST-1157,Citron Solutions,SMB,Professional Services,2023-09-20,2023-09,Inbound Marketing,Growth,11,1320.0
+CUST-1158,Mosaic Partners,SMB,Technology,2023-09-24,2023-09,Event/Conference,Growth,10,1200.0
+CUST-1159,Reverb Dynamics,SMB,Education,2023-09-27,2023-09,Self-Serve Promo,Starter,5,250.0
+CUST-1160,Plinth Partners,Mid-Market,Retail,2023-09-10,2023-09,Inbound Marketing,Growth,58,6960.0
+CUST-1161,Apex Systems,SMB,Healthcare,2023-09-13,2023-09,Partner Referral,Growth,9,1080.0
+CUST-1162,Tessera Labs,SMB,Healthcare,2023-09-09,2023-09,Outbound Sales,Starter,7,350.0
+CUST-1163,Plinth Cloud,Enterprise,Healthcare,2023-09-21,2023-09,Outbound Sales,Growth,229,27480.0
+CUST-1164,Cobalt Holdings,SMB,Healthcare,2023-09-02,2023-09,Outbound Sales,Starter,6,300.0
+CUST-1165,Tessera Holdings,SMB,Professional Services,2023-09-18,2023-09,Inbound Marketing,Growth,6,720.0
+CUST-1166,Glide Solutions,SMB,Professional Services,2023-09-09,2023-09,Outbound Sales,Growth,4,480.0
+CUST-1167,Stratus Works,Enterprise,Professional Services,2023-09-02,2023-09,Event/Conference,Scale,266,66500.0
+CUST-1168,Marlin Dynamics,SMB,Retail,2023-09-21,2023-09,Outbound Sales,Growth,6,720.0
+CUST-1169,Beacon Co,SMB,Retail,2023-09-24,2023-09,Outbound Sales,Starter,4,200.0
+CUST-1170,Halcyon Labs,SMB,Education,2023-09-03,2023-09,Inbound Marketing,Starter,12,600.0
+CUST-1171,Halcyon Works,SMB,Manufacturing,2023-09-25,2023-09,Event/Conference,Starter,6,300.0
+CUST-1172,Cobalt Systems,Mid-Market,Financial Services,2023-09-02,2023-09,Outbound Sales,Growth,31,3720.0
+CUST-1173,Citron Partners,Mid-Market,Media,2023-09-10,2023-09,Event/Conference,Scale,60,15000.0
+CUST-1174,Glide Labs,SMB,Education,2023-09-03,2023-09,Outbound Sales,Growth,6,720.0
+CUST-1175,Mosaic Holdings,SMB,Healthcare,2023-09-15,2023-09,Inbound Marketing,Starter,8,400.0
+CUST-1176,Reverb Systems,SMB,Financial Services,2023-09-23,2023-09,Event/Conference,Starter,4,200.0
+CUST-1177,Beacon Works,SMB,Financial Services,2023-10-01,2023-10,Outbound Sales,Starter,14,700.0
+CUST-1178,Stratus Partners,SMB,Retail,2023-10-27,2023-10,Partner Referral,Starter,14,700.0
+CUST-1179,Beacon Holdings,SMB,Education,2023-10-21,2023-10,Event/Conference,Growth,13,1560.0
+CUST-1180,Beacon Labs,Mid-Market,Education,2023-10-26,2023-10,Inbound Marketing,Starter,24,1200.0
+CUST-1181,Helix Cloud,SMB,Retail,2023-10-06,2023-10,Self-Serve Promo,Growth,13,1560.0
+CUST-1182,Lattice Cloud,SMB,Technology,2023-10-08,2023-10,Outbound Sales,Scale,8,2000.0
+CUST-1183,Cobalt Dynamics,SMB,Financial Services,2023-10-18,2023-10,Outbound Sales,Starter,13,650.0
+CUST-1184,Marlin Industries,SMB,Retail,2023-10-09,2023-10,Self-Serve Promo,Starter,14,700.0
+CUST-1185,Apex Industries,SMB,Professional Services,2023-10-05,2023-10,Event/Conference,Starter,10,500.0
+CUST-1186,Halcyon Logic,SMB,Professional Services,2023-10-21,2023-10,Inbound Marketing,Growth,13,1560.0
+CUST-1187,Tessera Dynamics,SMB,Media,2023-10-26,2023-10,Partner Referral,Starter,7,350.0
+CUST-1188,Citron Solutions,SMB,Professional Services,2023-10-16,2023-10,Inbound Marketing,Growth,12,1440.0
+CUST-1189,Cobalt Holdings,SMB,Healthcare,2023-10-12,2023-10,Partner Referral,Starter,12,600.0
+CUST-1190,Marlin Group,SMB,Technology,2023-10-20,2023-10,Partner Referral,Starter,4,200.0
+CUST-1191,Halcyon Logic,SMB,Professional Services,2023-10-24,2023-10,Outbound Sales,Growth,15,1800.0
+CUST-1192,Lattice Logic,SMB,Media,2023-10-08,2023-10,Outbound Sales,Starter,11,550.0
+CUST-1193,Halcyon Digital,Mid-Market,Retail,2023-10-19,2023-10,Outbound Sales,Growth,48,5760.0
+CUST-1194,Reverb Partners,SMB,Manufacturing,2023-10-20,2023-10,Partner Referral,Starter,10,500.0
+CUST-1195,Reverb Co,SMB,Healthcare,2023-10-24,2023-10,Outbound Sales,Starter,12,600.0
+CUST-1196,Citron Industries,Mid-Market,Manufacturing,2023-10-24,2023-10,Event/Conference,Growth,42,5040.0
+CUST-1197,Reverb Cloud,SMB,Healthcare,2023-10-25,2023-10,Inbound Marketing,Starter,8,400.0
+CUST-1198,Halcyon Works,Enterprise,Manufacturing,2023-10-07,2023-10,Self-Serve Promo,Scale,349,87250.0
+CUST-1199,Lattice Logic,SMB,Manufacturing,2023-10-08,2023-10,Outbound Sales,Starter,11,550.0
+CUST-1200,Glide Partners,SMB,Financial Services,2023-11-08,2023-11,Outbound Sales,Growth,10,1200.0
+CUST-1201,Vector Works,SMB,Media,2023-11-23,2023-11,Inbound Marketing,Growth,4,480.0
+CUST-1202,Helix Digital,SMB,Financial Services,2023-11-08,2023-11,Inbound Marketing,Scale,13,3250.0
+CUST-1203,Marlin Labs,SMB,Professional Services,2023-11-27,2023-11,Partner Referral,Growth,6,720.0
+CUST-1204,Marlin Holdings,Mid-Market,Technology,2023-11-07,2023-11,Outbound Sales,Scale,23,5750.0
+CUST-1205,Vector Partners,Mid-Market,Healthcare,2023-11-15,2023-11,Outbound Sales,Growth,45,5400.0
+CUST-1206,Citron Works,SMB,Technology,2023-11-01,2023-11,Event/Conference,Scale,11,2750.0
+CUST-1207,Helix Dynamics,Mid-Market,Financial Services,2023-11-13,2023-11,Event/Conference,Growth,33,3960.0
+CUST-1208,Mosaic Cloud,SMB,Education,2023-11-19,2023-11,Inbound Marketing,Growth,3,360.0
+CUST-1209,Helix Holdings,SMB,Financial Services,2023-11-22,2023-11,Inbound Marketing,Growth,12,1440.0
+CUST-1210,Quantum Group,SMB,Retail,2023-11-09,2023-11,Event/Conference,Starter,14,700.0
+CUST-1211,Glide Solutions,SMB,Technology,2023-11-12,2023-11,Outbound Sales,Starter,4,200.0
+CUST-1212,Quantum Labs,SMB,Education,2023-11-01,2023-11,Event/Conference,Starter,3,150.0
+CUST-1213,Stratus Dynamics,Mid-Market,Retail,2023-11-03,2023-11,Inbound Marketing,Growth,17,2040.0
+CUST-1214,Halcyon Solutions,SMB,Manufacturing,2023-11-15,2023-11,Self-Serve Promo,Starter,12,600.0
+CUST-1215,Reverb Works,SMB,Education,2023-11-21,2023-11,Outbound Sales,Starter,11,550.0
+CUST-1216,Stratus Industries,SMB,Professional Services,2023-11-02,2023-11,Outbound Sales,Growth,4,480.0
+CUST-1217,Helix Cloud,SMB,Professional Services,2023-11-11,2023-11,Partner Referral,Starter,14,700.0
+CUST-1218,Marlin Digital,Mid-Market,Healthcare,2023-11-13,2023-11,Outbound Sales,Growth,74,8880.0
+CUST-1219,Beacon Industries,Mid-Market,Manufacturing,2023-11-23,2023-11,Inbound Marketing,Growth,38,4560.0
+CUST-1220,Vector Group,SMB,Manufacturing,2023-11-17,2023-11,Partner Referral,Starter,3,150.0
+CUST-1221,Halcyon Logic,Mid-Market,Financial Services,2023-11-11,2023-11,Event/Conference,Growth,24,2880.0
+CUST-1222,Apex Dynamics,SMB,Technology,2023-11-23,2023-11,Inbound Marketing,Starter,9,450.0
+CUST-1223,Glide Cloud,SMB,Technology,2023-12-05,2023-12,Event/Conference,Starter,13,650.0
+CUST-1224,Helix Holdings,SMB,Retail,2023-12-10,2023-12,Event/Conference,Starter,9,450.0
+CUST-1225,Stratus Systems,SMB,Technology,2023-12-03,2023-12,Partner Referral,Starter,14,700.0
+CUST-1226,Lattice Group,SMB,Healthcare,2023-12-05,2023-12,Outbound Sales,Growth,8,960.0
+CUST-1227,Stratus Systems,SMB,Education,2023-12-17,2023-12,Inbound Marketing,Starter,15,750.0
+CUST-1228,Quantum Holdings,Mid-Market,Retail,2023-12-02,2023-12,Outbound Sales,Starter,69,3450.0
+CUST-1229,Tessera Partners,SMB,Financial Services,2023-12-23,2023-12,Event/Conference,Growth,4,480.0
+CUST-1230,Reverb Works,SMB,Retail,2023-12-13,2023-12,Inbound Marketing,Starter,15,750.0
+CUST-1231,Citron Holdings,Mid-Market,Healthcare,2023-12-14,2023-12,Outbound Sales,Scale,34,8500.0
+CUST-1232,Quantum Industries,SMB,Healthcare,2023-12-13,2023-12,Inbound Marketing,Starter,15,750.0
+CUST-1233,Plinth Dynamics,SMB,Media,2023-12-16,2023-12,Outbound Sales,Growth,3,360.0
+CUST-1234,Anvil Solutions,SMB,Manufacturing,2023-12-22,2023-12,Partner Referral,Growth,8,960.0
+CUST-1235,Lattice Industries,SMB,Healthcare,2023-12-13,2023-12,Inbound Marketing,Starter,7,350.0
+CUST-1236,Apex Group,SMB,Financial Services,2023-12-15,2023-12,Inbound Marketing,Starter,10,500.0
+CUST-1237,Halcyon Solutions,Mid-Market,Retail,2023-12-16,2023-12,Inbound Marketing,Growth,62,7440.0
+CUST-1238,Tessera Digital,Mid-Market,Technology,2023-12-03,2023-12,Event/Conference,Growth,30,3600.0
+CUST-1239,Reverb Labs,Mid-Market,Retail,2023-12-16,2023-12,Inbound Marketing,Scale,71,17750.0
+CUST-1240,Halcyon Systems,SMB,Education,2023-12-10,2023-12,Inbound Marketing,Starter,3,150.0
+CUST-1241,Anvil Group,SMB,Professional Services,2023-12-22,2023-12,Inbound Marketing,Starter,10,500.0
+CUST-1242,Quantum Holdings,SMB,Education,2023-12-19,2023-12,Inbound Marketing,Starter,14,700.0
+CUST-1243,Mosaic Network,SMB,Education,2024-01-27,2024-01,Inbound Marketing,Growth,3,360.0
+CUST-1244,Apex Dynamics,SMB,Education,2024-01-04,2024-01,Event/Conference,Starter,5,250.0
+CUST-1245,Anvil Dynamics,SMB,Professional Services,2024-01-17,2024-01,Inbound Marketing,Scale,12,3000.0
+CUST-1246,Glide Labs,SMB,Healthcare,2024-01-06,2024-01,Outbound Sales,Growth,7,840.0
+CUST-1247,Citron Holdings,SMB,Manufacturing,2024-01-15,2024-01,Event/Conference,Starter,15,750.0
+CUST-1248,Marlin Works,SMB,Technology,2024-01-22,2024-01,Partner Referral,Starter,11,550.0
+CUST-1249,Plinth Systems,SMB,Manufacturing,2024-01-04,2024-01,Inbound Marketing,Starter,8,400.0
+CUST-1250,Mosaic Dynamics,SMB,Professional Services,2024-01-07,2024-01,Event/Conference,Starter,7,350.0
+CUST-1251,Beacon Holdings,SMB,Financial Services,2024-01-18,2024-01,Partner Referral,Growth,14,1680.0
+CUST-1252,Reverb Industries,SMB,Technology,2024-01-13,2024-01,Inbound Marketing,Scale,8,2000.0
+CUST-1253,Lattice Digital,Mid-Market,Education,2024-01-02,2024-01,Inbound Marketing,Scale,38,9500.0
+CUST-1254,Quantum Solutions,SMB,Retail,2024-01-26,2024-01,Outbound Sales,Growth,13,1560.0
+CUST-1255,Reverb Labs,Mid-Market,Financial Services,2024-01-13,2024-01,Inbound Marketing,Growth,63,7560.0
+CUST-1256,Reverb Systems,SMB,Technology,2024-01-06,2024-01,Outbound Sales,Starter,15,750.0
+CUST-1257,Marlin Network,Mid-Market,Healthcare,2024-01-27,2024-01,Self-Serve Promo,Growth,22,2640.0
+CUST-1258,Citron Digital,SMB,Professional Services,2024-01-11,2024-01,Self-Serve Promo,Starter,15,750.0
+CUST-1259,Glide Dynamics,Enterprise,Healthcare,2024-01-13,2024-01,Self-Serve Promo,Scale,223,55750.0
+CUST-1260,Mosaic Solutions,SMB,Manufacturing,2024-01-16,2024-01,Outbound Sales,Starter,7,350.0
+CUST-1261,Glide Systems,Mid-Market,Healthcare,2024-02-05,2024-02,Partner Referral,Starter,34,1700.0
+CUST-1262,Reverb Labs,SMB,Financial Services,2024-02-24,2024-02,Inbound Marketing,Growth,15,1800.0
+CUST-1263,Quantum Partners,SMB,Healthcare,2024-02-06,2024-02,Outbound Sales,Starter,4,200.0
+CUST-1264,Mosaic Cloud,SMB,Retail,2024-02-14,2024-02,Partner Referral,Starter,14,700.0
+CUST-1265,Cobalt Logic,Mid-Market,Manufacturing,2024-02-03,2024-02,Event/Conference,Growth,21,2520.0
+CUST-1266,Citron Dynamics,Mid-Market,Financial Services,2024-02-04,2024-02,Inbound Marketing,Growth,41,4920.0
+CUST-1267,Mosaic Logic,SMB,Education,2024-02-12,2024-02,Partner Referral,Starter,5,250.0
+CUST-1268,Apex Co,SMB,Manufacturing,2024-02-23,2024-02,Event/Conference,Starter,12,600.0
+CUST-1269,Apex Holdings,SMB,Retail,2024-02-27,2024-02,Inbound Marketing,Starter,6,300.0
+CUST-1270,Vector Solutions,SMB,Media,2024-02-07,2024-02,Outbound Sales,Starter,9,450.0
+CUST-1271,Lattice Holdings,SMB,Media,2024-02-25,2024-02,Event/Conference,Starter,9,450.0
+CUST-1272,Stratus Holdings,Mid-Market,Media,2024-02-25,2024-02,Partner Referral,Growth,18,2160.0
+CUST-1273,Mosaic Industries,Mid-Market,Professional Services,2024-02-18,2024-02,Partner Referral,Growth,41,4920.0
+CUST-1274,Citron Labs,SMB,Media,2024-02-10,2024-02,Inbound Marketing,Growth,15,1800.0
+CUST-1275,Beacon Systems,SMB,Healthcare,2024-02-04,2024-02,Outbound Sales,Growth,7,840.0
+CUST-1276,Apex Works,Mid-Market,Professional Services,2024-02-16,2024-02,Event/Conference,Growth,53,6360.0
+CUST-1277,Helix Cloud,SMB,Media,2024-02-15,2024-02,Outbound Sales,Starter,7,350.0
+CUST-1278,Cobalt Network,Mid-Market,Financial Services,2024-02-22,2024-02,Outbound Sales,Growth,61,7320.0
+CUST-1279,Mosaic Industries,SMB,Financial Services,2024-03-15,2024-03,Inbound Marketing,Starter,12,600.0
+CUST-1280,Mosaic Systems,SMB,Manufacturing,2024-03-03,2024-03,Self-Serve Promo,Growth,3,360.0
+CUST-1281,Vector Holdings,Mid-Market,Healthcare,2024-03-05,2024-03,Outbound Sales,Growth,26,3120.0
+CUST-1282,Vector Dynamics,SMB,Financial Services,2024-03-05,2024-03,Self-Serve Promo,Starter,8,400.0
+CUST-1283,Citron Solutions,SMB,Technology,2024-03-07,2024-03,Inbound Marketing,Starter,14,700.0
+CUST-1284,Reverb Holdings,SMB,Retail,2024-03-17,2024-03,Partner Referral,Growth,15,1800.0
+CUST-1285,Halcyon Works,Mid-Market,Media,2024-03-13,2024-03,Event/Conference,Growth,36,4320.0
+CUST-1286,Plinth Solutions,SMB,Retail,2024-03-13,2024-03,Inbound Marketing,Starter,3,150.0
+CUST-1287,Apex Network,Mid-Market,Education,2024-03-22,2024-03,Outbound Sales,Growth,27,3240.0
+CUST-1288,Stratus Solutions,Mid-Market,Healthcare,2024-03-04,2024-03,Event/Conference,Growth,75,9000.0
+CUST-1289,Marlin Group,SMB,Financial Services,2024-03-16,2024-03,Event/Conference,Starter,15,750.0
+CUST-1290,Stratus Labs,SMB,Education,2024-03-21,2024-03,Outbound Sales,Growth,5,600.0
+CUST-1291,Reverb Logic,SMB,Professional Services,2024-03-22,2024-03,Outbound Sales,Starter,5,250.0
+CUST-1292,Vector Digital,SMB,Healthcare,2024-03-12,2024-03,Partner Referral,Growth,14,1680.0
+CUST-1293,Tessera Logic,Enterprise,Education,2024-03-12,2024-03,Outbound Sales,Scale,396,99000.0
+CUST-1294,Helix Industries,Mid-Market,Technology,2024-03-23,2024-03,Inbound Marketing,Growth,62,7440.0
+CUST-1295,Anvil Partners,SMB,Media,2024-03-06,2024-03,Event/Conference,Starter,5,250.0
+CUST-1296,Beacon Logic,SMB,Financial Services,2024-03-05,2024-03,Inbound Marketing,Growth,13,1560.0
+CUST-1297,Citron Co,SMB,Media,2024-03-24,2024-03,Inbound Marketing,Starter,12,600.0
+CUST-1298,Anvil Works,Enterprise,Financial Services,2024-03-07,2024-03,Inbound Marketing,Scale,300,75000.0
+CUST-1299,Quantum Systems,Mid-Market,Financial Services,2024-04-13,2024-04,Self-Serve Promo,Starter,40,2000.0
+CUST-1300,Anvil Partners,SMB,Education,2024-04-06,2024-04,Outbound Sales,Growth,5,600.0
+CUST-1301,North Digital,SMB,Retail,2024-04-04,2024-04,Outbound Sales,Starter,6,300.0
+CUST-1302,North Works,SMB,Financial Services,2024-04-07,2024-04,Event/Conference,Starter,8,400.0
+CUST-1303,Marlin Network,SMB,Financial Services,2024-04-25,2024-04,Self-Serve Promo,Starter,8,400.0
+CUST-1304,Lattice Works,SMB,Retail,2024-04-15,2024-04,Outbound Sales,Growth,14,1680.0
+CUST-1305,Apex Solutions,Mid-Market,Professional Services,2024-04-26,2024-04,Outbound Sales,Growth,24,2880.0
+CUST-1306,Mosaic Systems,Mid-Market,Media,2024-04-02,2024-04,Inbound Marketing,Growth,41,4920.0
+CUST-1307,Tessera Partners,SMB,Retail,2024-04-14,2024-04,Outbound Sales,Starter,7,350.0
+CUST-1308,Vector Solutions,SMB,Media,2024-04-22,2024-04,Self-Serve Promo,Growth,10,1200.0
+CUST-1309,Cobalt Digital,SMB,Technology,2024-04-22,2024-04,Inbound Marketing,Starter,7,350.0
+CUST-1310,Marlin Industries,Mid-Market,Manufacturing,2024-04-10,2024-04,Event/Conference,Growth,59,7080.0
+CUST-1311,Apex Logic,Enterprise,Retail,2024-04-24,2024-04,Outbound Sales,Scale,275,68750.0
+CUST-1312,Lattice Logic,SMB,Education,2024-04-22,2024-04,Event/Conference,Growth,13,1560.0
+CUST-1313,Reverb Labs,SMB,Manufacturing,2024-04-23,2024-04,Partner Referral,Starter,15,750.0
+CUST-1314,North Holdings,Mid-Market,Healthcare,2024-04-13,2024-04,Inbound Marketing,Growth,28,3360.0
+CUST-1315,Glide Labs,Mid-Market,Healthcare,2024-04-26,2024-04,Outbound Sales,Growth,40,4800.0
+CUST-1316,Glide Group,SMB,Financial Services,2024-04-20,2024-04,Event/Conference,Growth,12,1440.0
+CUST-1317,Stratus Labs,SMB,Healthcare,2024-04-07,2024-04,Self-Serve Promo,Starter,13,650.0
+CUST-1318,Citron Works,Mid-Market,Manufacturing,2024-04-26,2024-04,Partner Referral,Growth,73,8760.0
+CUST-1319,Glide Network,SMB,Technology,2024-05-24,2024-05,Partner Referral,Starter,3,150.0
+CUST-1320,Anvil Industries,SMB,Professional Services,2024-05-05,2024-05,Outbound Sales,Growth,7,840.0
+CUST-1321,Helix Works,SMB,Manufacturing,2024-05-03,2024-05,Outbound Sales,Starter,4,200.0
+CUST-1322,Mosaic Solutions,Enterprise,Retail,2024-05-15,2024-05,Outbound Sales,Growth,98,11760.0
+CUST-1323,Stratus Partners,Mid-Market,Professional Services,2024-05-18,2024-05,Partner Referral,Scale,33,8250.0
+CUST-1324,Helix Dynamics,SMB,Education,2024-05-02,2024-05,Inbound Marketing,Starter,12,600.0
+CUST-1325,Tessera Group,SMB,Professional Services,2024-05-23,2024-05,Outbound Sales,Starter,13,650.0
+CUST-1326,Lattice Solutions,Mid-Market,Financial Services,2024-05-06,2024-05,Outbound Sales,Growth,56,6720.0
+CUST-1327,Vector Group,SMB,Healthcare,2024-05-16,2024-05,Event/Conference,Starter,15,750.0
+CUST-1328,Quantum Group,SMB,Media,2024-05-25,2024-05,Partner Referral,Starter,10,500.0
+CUST-1329,North Dynamics,SMB,Manufacturing,2024-05-13,2024-05,Partner Referral,Starter,12,600.0
+CUST-1330,Vector Network,SMB,Education,2024-05-21,2024-05,Inbound Marketing,Growth,4,480.0
+CUST-1331,Apex Co,SMB,Media,2024-05-14,2024-05,Self-Serve Promo,Starter,10,500.0
+CUST-1332,Halcyon Works,SMB,Technology,2024-05-27,2024-05,Inbound Marketing,Starter,15,750.0
+CUST-1333,Plinth Holdings,SMB,Professional Services,2024-05-14,2024-05,Inbound Marketing,Growth,7,840.0
+CUST-1334,Apex Co,SMB,Technology,2024-05-04,2024-05,Outbound Sales,Starter,15,750.0
+CUST-1335,Helix Partners,SMB,Professional Services,2024-05-01,2024-05,Self-Serve Promo,Growth,12,1440.0
+CUST-1336,Lattice Dynamics,Mid-Market,Media,2024-05-06,2024-05,Outbound Sales,Growth,24,2880.0
+CUST-1337,Reverb Partners,SMB,Financial Services,2024-05-25,2024-05,Self-Serve Promo,Starter,6,300.0
+CUST-1338,Lattice Group,Mid-Market,Healthcare,2024-05-20,2024-05,Event/Conference,Growth,61,7320.0
+CUST-1339,Apex Partners,SMB,Healthcare,2024-06-27,2024-06,Inbound Marketing,Scale,3,750.0
+CUST-1340,Citron Industries,Mid-Market,Education,2024-06-11,2024-06,Event/Conference,Growth,53,6360.0
+CUST-1341,Anvil Cloud,SMB,Retail,2024-06-27,2024-06,Inbound Marketing,Scale,8,2000.0
+CUST-1342,Plinth Systems,SMB,Retail,2024-06-03,2024-06,Inbound Marketing,Starter,13,650.0
+CUST-1343,Stratus Group,SMB,Retail,2024-06-10,2024-06,Inbound Marketing,Growth,13,1560.0
+CUST-1344,Vector Works,SMB,Education,2024-06-02,2024-06,Event/Conference,Starter,4,200.0
+CUST-1345,Vector Industries,SMB,Professional Services,2024-06-05,2024-06,Outbound Sales,Starter,4,200.0
+CUST-1346,North Labs,SMB,Education,2024-06-22,2024-06,Outbound Sales,Starter,6,300.0
+CUST-1347,Beacon Works,SMB,Manufacturing,2024-06-12,2024-06,Partner Referral,Starter,11,550.0
+CUST-1348,Anvil Group,Mid-Market,Retail,2024-06-17,2024-06,Outbound Sales,Starter,63,3150.0
+CUST-1349,Helix Co,SMB,Professional Services,2024-06-20,2024-06,Outbound Sales,Starter,4,200.0
+CUST-1350,Beacon Solutions,SMB,Financial Services,2024-06-21,2024-06,Inbound Marketing,Starter,15,750.0
+CUST-1351,Lattice Holdings,SMB,Retail,2024-06-01,2024-06,Inbound Marketing,Growth,7,840.0
+CUST-1352,Tessera Labs,SMB,Technology,2024-06-06,2024-06,Self-Serve Promo,Growth,11,1320.0
+CUST-1353,Glide Logic,SMB,Retail,2024-06-02,2024-06,Partner Referral,Starter,5,250.0
+CUST-1354,Anvil Holdings,SMB,Financial Services,2024-06-16,2024-06,Outbound Sales,Growth,8,960.0
+CUST-1355,Citron Labs,Mid-Market,Education,2024-06-26,2024-06,Outbound Sales,Scale,46,11500.0
+CUST-1356,Citron Network,Enterprise,Technology,2024-06-06,2024-06,Event/Conference,Scale,323,80750.0
+CUST-1357,Marlin Co,Mid-Market,Retail,2024-06-12,2024-06,Partner Referral,Growth,44,5280.0
+CUST-1358,Glide Partners,Mid-Market,Manufacturing,2024-06-05,2024-06,Outbound Sales,Growth,24,2880.0
+CUST-1359,North Dynamics,SMB,Professional Services,2024-07-20,2024-07,Inbound Marketing,Growth,4,480.0
+CUST-1360,Halcyon Works,SMB,Financial Services,2024-07-15,2024-07,Inbound Marketing,Growth,5,600.0
+CUST-1361,Plinth Co,Mid-Market,Manufacturing,2024-07-07,2024-07,Inbound Marketing,Scale,62,15500.0
+CUST-1362,Quantum Holdings,SMB,Technology,2024-07-15,2024-07,Partner Referral,Scale,15,3750.0
+CUST-1363,Halcyon Solutions,SMB,Financial Services,2024-07-13,2024-07,Inbound Marketing,Starter,8,400.0
+CUST-1364,Glide Labs,SMB,Manufacturing,2024-07-09,2024-07,Event/Conference,Starter,6,300.0
+CUST-1365,Tessera Holdings,Enterprise,Healthcare,2024-07-24,2024-07,Partner Referral,Growth,190,22800.0
+CUST-1366,Lattice Holdings,SMB,Financial Services,2024-07-15,2024-07,Partner Referral,Starter,4,200.0
+CUST-1367,Stratus Labs,SMB,Media,2024-07-08,2024-07,Inbound Marketing,Starter,6,300.0
+CUST-1368,North Holdings,SMB,Financial Services,2024-07-12,2024-07,Partner Referral,Starter,10,500.0
+CUST-1369,Glide Partners,SMB,Financial Services,2024-07-11,2024-07,Inbound Marketing,Growth,3,360.0
+CUST-1370,Stratus Solutions,SMB,Technology,2024-07-24,2024-07,Inbound Marketing,Starter,10,500.0
+CUST-1371,Vector Solutions,Mid-Market,Professional Services,2024-07-17,2024-07,Event/Conference,Starter,74,3700.0
+CUST-1372,Reverb Solutions,Mid-Market,Technology,2024-07-27,2024-07,Partner Referral,Scale,32,8000.0
+CUST-1373,Apex Digital,SMB,Financial Services,2024-07-10,2024-07,Inbound Marketing,Starter,13,650.0
+CUST-1374,Cobalt Systems,SMB,Professional Services,2024-07-01,2024-07,Event/Conference,Starter,3,150.0
+CUST-1375,Reverb Logic,SMB,Education,2024-07-26,2024-07,Outbound Sales,Starter,12,600.0
+CUST-1376,Citron Digital,SMB,Professional Services,2024-07-20,2024-07,Inbound Marketing,Growth,9,1080.0
+CUST-1377,Quantum Logic,SMB,Manufacturing,2024-07-13,2024-07,Inbound Marketing,Growth,5,600.0
+CUST-1378,Helix Industries,SMB,Healthcare,2024-07-07,2024-07,Inbound Marketing,Growth,14,1680.0
+CUST-1379,Cobalt Systems,SMB,Retail,2024-07-19,2024-07,Self-Serve Promo,Starter,12,600.0
+CUST-1380,Tessera Holdings,SMB,Manufacturing,2024-07-09,2024-07,Self-Serve Promo,Starter,11,550.0
+CUST-1381,North Cloud,Mid-Market,Manufacturing,2024-07-06,2024-07,Self-Serve Promo,Growth,31,3720.0
+CUST-1382,Vector Industries,SMB,Media,2024-07-26,2024-07,Self-Serve Promo,Starter,7,350.0
+CUST-1383,Quantum Industries,SMB,Manufacturing,2024-07-17,2024-07,Self-Serve Promo,Growth,5,600.0
+CUST-1384,Citron Network,SMB,Retail,2024-07-04,2024-07,Self-Serve Promo,Starter,12,600.0
+CUST-1385,Plinth Logic,SMB,Healthcare,2024-07-26,2024-07,Self-Serve Promo,Starter,3,150.0
+CUST-1386,North Group,SMB,Healthcare,2024-07-23,2024-07,Self-Serve Promo,Starter,3,150.0
+CUST-1387,Beacon Group,SMB,Healthcare,2024-07-10,2024-07,Self-Serve Promo,Starter,15,750.0
+CUST-1388,Reverb Group,SMB,Professional Services,2024-07-17,2024-07,Self-Serve Promo,Growth,4,480.0
+CUST-1389,Apex Solutions,SMB,Media,2024-07-21,2024-07,Self-Serve Promo,Starter,3,150.0
+CUST-1390,Mosaic Solutions,SMB,Healthcare,2024-07-20,2024-07,Self-Serve Promo,Growth,13,1560.0
+CUST-1391,North Works,SMB,Healthcare,2024-07-21,2024-07,Self-Serve Promo,Scale,8,2000.0
+CUST-1392,Plinth Partners,SMB,Education,2024-07-22,2024-07,Self-Serve Promo,Growth,11,1320.0
+CUST-1393,Marlin Holdings,SMB,Manufacturing,2024-07-02,2024-07,Self-Serve Promo,Starter,14,700.0
+CUST-1394,Vector Cloud,SMB,Professional Services,2024-07-05,2024-07,Self-Serve Promo,Growth,6,720.0
+CUST-1395,Cobalt Logic,SMB,Healthcare,2024-07-12,2024-07,Self-Serve Promo,Starter,3,150.0
+CUST-1396,Stratus Holdings,SMB,Education,2024-07-15,2024-07,Self-Serve Promo,Starter,9,450.0
+CUST-1397,Plinth Network,Mid-Market,Financial Services,2024-07-27,2024-07,Self-Serve Promo,Growth,45,5400.0
+CUST-1398,Plinth Group,SMB,Healthcare,2024-07-09,2024-07,Self-Serve Promo,Growth,4,480.0
+CUST-1399,Vector Labs,Mid-Market,Healthcare,2024-08-20,2024-08,Outbound Sales,Growth,38,4560.0
+CUST-1400,Vector Labs,Mid-Market,Media,2024-08-08,2024-08,Outbound Sales,Growth,51,6120.0
+CUST-1401,Vector Group,SMB,Technology,2024-08-06,2024-08,Event/Conference,Growth,6,720.0
+CUST-1402,Apex Solutions,Mid-Market,Professional Services,2024-08-20,2024-08,Inbound Marketing,Starter,50,2500.0
+CUST-1403,Anvil Works,SMB,Professional Services,2024-08-25,2024-08,Event/Conference,Starter,13,650.0
+CUST-1404,Beacon Industries,Mid-Market,Manufacturing,2024-08-09,2024-08,Event/Conference,Growth,21,2520.0
+CUST-1405,Cobalt Industries,SMB,Retail,2024-08-07,2024-08,Outbound Sales,Growth,14,1680.0
+CUST-1406,Marlin Holdings,SMB,Technology,2024-08-16,2024-08,Partner Referral,Starter,3,150.0
+CUST-1407,Glide Group,Mid-Market,Professional Services,2024-08-04,2024-08,Self-Serve Promo,Scale,44,11000.0
+CUST-1408,Beacon Partners,SMB,Healthcare,2024-08-13,2024-08,Outbound Sales,Starter,7,350.0
+CUST-1409,Lattice Dynamics,SMB,Financial Services,2024-08-17,2024-08,Outbound Sales,Starter,6,300.0
+CUST-1410,Plinth Logic,SMB,Professional Services,2024-08-08,2024-08,Self-Serve Promo,Starter,7,350.0
+CUST-1411,Tessera Holdings,SMB,Professional Services,2024-08-02,2024-08,Event/Conference,Growth,7,840.0
+CUST-1412,Plinth Labs,Enterprise,Financial Services,2024-08-12,2024-08,Inbound Marketing,Growth,302,36240.0
+CUST-1413,Plinth Co,Mid-Market,Professional Services,2024-08-24,2024-08,Inbound Marketing,Growth,65,7800.0
+CUST-1414,North Works,Mid-Market,Retail,2024-08-02,2024-08,Event/Conference,Scale,52,13000.0
+CUST-1415,North Systems,SMB,Professional Services,2024-08-12,2024-08,Event/Conference,Starter,9,450.0
+CUST-1416,Glide Industries,Mid-Market,Education,2024-08-14,2024-08,Outbound Sales,Starter,35,1750.0
+CUST-1417,Plinth Co,SMB,Financial Services,2024-08-20,2024-08,Outbound Sales,Growth,5,600.0
+CUST-1418,North Cloud,SMB,Technology,2024-08-17,2024-08,Outbound Sales,Growth,6,720.0
+CUST-1419,Vector Holdings,Mid-Market,Education,2024-08-13,2024-08,Self-Serve Promo,Growth,27,3240.0
+CUST-1420,Plinth Co,SMB,Professional Services,2024-08-08,2024-08,Self-Serve Promo,Starter,8,400.0
+CUST-1421,Halcyon Group,SMB,Financial Services,2024-08-05,2024-08,Self-Serve Promo,Starter,3,150.0
+CUST-1422,Anvil Network,SMB,Technology,2024-08-17,2024-08,Self-Serve Promo,Starter,6,300.0
+CUST-1423,Stratus Digital,SMB,Healthcare,2024-08-08,2024-08,Self-Serve Promo,Starter,6,300.0
+CUST-1424,Plinth Systems,SMB,Manufacturing,2024-08-23,2024-08,Self-Serve Promo,Starter,5,250.0
+CUST-1425,Helix Cloud,SMB,Education,2024-08-19,2024-08,Self-Serve Promo,Starter,4,200.0
+CUST-1426,Apex Partners,SMB,Media,2024-08-19,2024-08,Self-Serve Promo,Starter,7,350.0
+CUST-1427,Tessera Network,SMB,Technology,2024-08-24,2024-08,Self-Serve Promo,Starter,15,750.0
+CUST-1428,Vector Holdings,SMB,Retail,2024-08-20,2024-08,Self-Serve Promo,Growth,4,480.0
+CUST-1429,Anvil Digital,SMB,Manufacturing,2024-08-14,2024-08,Self-Serve Promo,Starter,3,150.0
+CUST-1430,Glide Works,SMB,Media,2024-08-03,2024-08,Self-Serve Promo,Starter,4,200.0
+CUST-1431,Beacon Partners,SMB,Healthcare,2024-08-10,2024-08,Self-Serve Promo,Starter,3,150.0
+CUST-1432,Beacon Labs,SMB,Financial Services,2024-08-24,2024-08,Self-Serve Promo,Starter,9,450.0
+CUST-1433,Reverb Network,SMB,Technology,2024-08-19,2024-08,Self-Serve Promo,Starter,8,400.0
+CUST-1434,Halcyon Systems,SMB,Professional Services,2024-08-08,2024-08,Self-Serve Promo,Starter,6,300.0
+CUST-1435,Beacon Solutions,SMB,Education,2024-08-16,2024-08,Self-Serve Promo,Starter,14,700.0
+CUST-1436,Vector Dynamics,SMB,Financial Services,2024-08-27,2024-08,Self-Serve Promo,Scale,7,1750.0
+CUST-1437,Tessera Solutions,SMB,Manufacturing,2024-08-22,2024-08,Self-Serve Promo,Starter,5,250.0
+CUST-1438,Lattice Cloud,SMB,Healthcare,2024-08-21,2024-08,Self-Serve Promo,Starter,14,700.0
+CUST-1439,Helix Partners,Mid-Market,Professional Services,2024-09-12,2024-09,Partner Referral,Scale,45,11250.0
+CUST-1440,Apex Network,SMB,Professional Services,2024-09-04,2024-09,Outbound Sales,Starter,9,450.0
+CUST-1441,Quantum Cloud,SMB,Professional Services,2024-09-03,2024-09,Outbound Sales,Growth,13,1560.0
+CUST-1442,Halcyon Labs,SMB,Education,2024-09-08,2024-09,Partner Referral,Starter,12,600.0
+CUST-1443,Helix Digital,Mid-Market,Technology,2024-09-19,2024-09,Inbound Marketing,Growth,71,8520.0
+CUST-1444,Reverb Holdings,SMB,Financial Services,2024-09-11,2024-09,Inbound Marketing,Growth,10,1200.0
+CUST-1445,Apex Labs,SMB,Manufacturing,2024-09-16,2024-09,Inbound Marketing,Starter,13,650.0
+CUST-1446,Tessera Systems,SMB,Media,2024-09-17,2024-09,Inbound Marketing,Starter,8,400.0
+CUST-1447,Halcyon Works,Mid-Market,Technology,2024-09-17,2024-09,Partner Referral,Growth,16,1920.0
+CUST-1448,Apex Dynamics,SMB,Retail,2024-09-09,2024-09,Event/Conference,Starter,6,300.0
+CUST-1449,Reverb Co,SMB,Healthcare,2024-09-17,2024-09,Self-Serve Promo,Growth,7,840.0
+CUST-1450,Citron Logic,SMB,Healthcare,2024-09-10,2024-09,Event/Conference,Growth,7,840.0
+CUST-1451,Anvil Digital,SMB,Manufacturing,2024-09-11,2024-09,Outbound Sales,Starter,5,250.0
+CUST-1452,Mosaic Network,SMB,Manufacturing,2024-09-02,2024-09,Outbound Sales,Starter,9,450.0
+CUST-1453,Anvil Digital,Mid-Market,Financial Services,2024-09-17,2024-09,Event/Conference,Starter,71,3550.0
+CUST-1454,Citron Digital,SMB,Retail,2024-09-18,2024-09,Event/Conference,Growth,8,960.0
+CUST-1455,Marlin Industries,SMB,Education,2024-09-01,2024-09,Event/Conference,Starter,5,250.0
+CUST-1456,Anvil Industries,Mid-Market,Professional Services,2024-09-17,2024-09,Outbound Sales,Starter,72,3600.0
+CUST-1457,Glide Works,SMB,Healthcare,2024-09-12,2024-09,Partner Referral,Starter,11,550.0
+CUST-1458,Vector Cloud,SMB,Retail,2024-09-01,2024-09,Event/Conference,Starter,4,200.0
+CUST-1459,Halcyon Co,SMB,Healthcare,2024-09-10,2024-09,Self-Serve Promo,Starter,13,650.0
+CUST-1460,Mosaic Logic,Mid-Market,Media,2024-09-26,2024-09,Self-Serve Promo,Scale,70,17500.0
+CUST-1461,North Digital,SMB,Professional Services,2024-09-01,2024-09,Self-Serve Promo,Starter,9,450.0
+CUST-1462,Citron Group,SMB,Retail,2024-09-22,2024-09,Self-Serve Promo,Starter,10,500.0
+CUST-1463,Glide Dynamics,SMB,Technology,2024-09-15,2024-09,Self-Serve Promo,Starter,4,200.0
+CUST-1464,Citron Logic,SMB,Manufacturing,2024-09-15,2024-09,Self-Serve Promo,Starter,15,750.0
+CUST-1465,Reverb Labs,Mid-Market,Financial Services,2024-09-19,2024-09,Self-Serve Promo,Growth,48,5760.0
+CUST-1466,Tessera Works,SMB,Media,2024-09-17,2024-09,Self-Serve Promo,Starter,6,300.0
+CUST-1467,Halcyon Works,SMB,Manufacturing,2024-09-02,2024-09,Self-Serve Promo,Starter,9,450.0
+CUST-1468,Halcyon Holdings,SMB,Education,2024-09-18,2024-09,Self-Serve Promo,Starter,11,550.0
+CUST-1469,Anvil Works,SMB,Financial Services,2024-09-24,2024-09,Self-Serve Promo,Starter,13,650.0
+CUST-1470,Helix Group,SMB,Technology,2024-09-20,2024-09,Self-Serve Promo,Starter,15,750.0
+CUST-1471,Apex Dynamics,SMB,Education,2024-09-13,2024-09,Self-Serve Promo,Starter,5,250.0
+CUST-1472,Lattice Solutions,SMB,Professional Services,2024-09-23,2024-09,Self-Serve Promo,Starter,12,600.0
+CUST-1473,Stratus Dynamics,SMB,Education,2024-09-26,2024-09,Self-Serve Promo,Growth,10,1200.0
+CUST-1474,Quantum Holdings,SMB,Retail,2024-09-03,2024-09,Self-Serve Promo,Starter,11,550.0
+CUST-1475,Anvil Network,SMB,Retail,2024-09-24,2024-09,Self-Serve Promo,Starter,6,300.0
+CUST-1476,Helix Dynamics,SMB,Education,2024-09-09,2024-09,Self-Serve Promo,Starter,9,450.0
+CUST-1477,Beacon Logic,Mid-Market,Retail,2024-09-26,2024-09,Self-Serve Promo,Scale,70,17500.0
+CUST-1478,Beacon Labs,SMB,Healthcare,2024-09-10,2024-09,Self-Serve Promo,Starter,15,750.0
+CUST-1479,Citron Co,SMB,Media,2024-10-24,2024-10,Outbound Sales,Starter,13,650.0
+CUST-1480,Mosaic Dynamics,SMB,Financial Services,2024-10-07,2024-10,Inbound Marketing,Starter,9,450.0
+CUST-1481,Vector Group,Mid-Market,Education,2024-10-24,2024-10,Self-Serve Promo,Growth,32,3840.0
+CUST-1482,Glide Labs,Mid-Market,Professional Services,2024-10-05,2024-10,Self-Serve Promo,Growth,68,8160.0
+CUST-1483,Anvil Cloud,SMB,Financial Services,2024-10-13,2024-10,Event/Conference,Growth,3,360.0
+CUST-1484,Glide Industries,SMB,Manufacturing,2024-10-09,2024-10,Outbound Sales,Starter,8,400.0
+CUST-1485,Stratus Cloud,SMB,Retail,2024-10-22,2024-10,Outbound Sales,Starter,10,500.0
+CUST-1486,Cobalt Logic,SMB,Manufacturing,2024-10-16,2024-10,Inbound Marketing,Starter,3,150.0
+CUST-1487,Mosaic Network,SMB,Media,2024-10-13,2024-10,Inbound Marketing,Starter,4,200.0
+CUST-1488,Quantum Works,SMB,Retail,2024-10-08,2024-10,Event/Conference,Growth,12,1440.0
+CUST-1489,Helix Logic,SMB,Manufacturing,2024-10-19,2024-10,Self-Serve Promo,Starter,12,600.0
+CUST-1490,Reverb Holdings,Mid-Market,Education,2024-10-07,2024-10,Inbound Marketing,Scale,46,11500.0
+CUST-1491,Anvil Cloud,SMB,Education,2024-10-11,2024-10,Event/Conference,Starter,15,750.0
+CUST-1492,Tessera Labs,SMB,Manufacturing,2024-10-16,2024-10,Inbound Marketing,Growth,11,1320.0
+CUST-1493,Mosaic Digital,Mid-Market,Technology,2024-10-18,2024-10,Outbound Sales,Starter,49,2450.0
+CUST-1494,Vector Group,SMB,Retail,2024-10-26,2024-10,Outbound Sales,Growth,6,720.0
+CUST-1495,Anvil Network,Enterprise,Healthcare,2024-10-14,2024-10,Outbound Sales,Scale,243,60750.0
+CUST-1496,Mosaic Group,SMB,Financial Services,2024-10-23,2024-10,Outbound Sales,Growth,7,840.0
+CUST-1497,Helix Partners,SMB,Technology,2024-10-09,2024-10,Event/Conference,Starter,12,600.0
+CUST-1498,Citron Logic,SMB,Media,2024-10-02,2024-10,Inbound Marketing,Starter,7,350.0
+CUST-1499,Helix Solutions,SMB,Education,2024-10-05,2024-10,Outbound Sales,Growth,9,1080.0
+CUST-1500,Cobalt Digital,Mid-Market,Technology,2024-10-21,2024-10,Outbound Sales,Starter,36,1800.0
+CUST-1501,Plinth Cloud,SMB,Manufacturing,2024-10-03,2024-10,Self-Serve Promo,Growth,4,480.0
+CUST-1502,Citron Holdings,Mid-Market,Media,2024-11-16,2024-11,Partner Referral,Growth,63,7560.0
+CUST-1503,Plinth Digital,Mid-Market,Retail,2024-11-02,2024-11,Outbound Sales,Growth,16,1920.0
+CUST-1504,Quantum Group,SMB,Education,2024-11-08,2024-11,Event/Conference,Scale,8,2000.0
+CUST-1505,Marlin Industries,Mid-Market,Retail,2024-11-10,2024-11,Outbound Sales,Growth,51,6120.0
+CUST-1506,Apex Works,SMB,Media,2024-11-22,2024-11,Outbound Sales,Starter,9,450.0
+CUST-1507,Tessera Partners,SMB,Retail,2024-11-19,2024-11,Outbound Sales,Starter,6,300.0
+CUST-1508,Halcyon Logic,SMB,Professional Services,2024-11-13,2024-11,Event/Conference,Starter,15,750.0
+CUST-1509,Citron Industries,Mid-Market,Education,2024-11-10,2024-11,Inbound Marketing,Growth,66,7920.0
+CUST-1510,Plinth Co,Enterprise,Technology,2024-11-13,2024-11,Inbound Marketing,Growth,326,39120.0
+CUST-1511,Anvil Systems,SMB,Technology,2024-11-05,2024-11,Inbound Marketing,Growth,13,1560.0
+CUST-1512,North Holdings,Mid-Market,Retail,2024-11-12,2024-11,Partner Referral,Starter,17,850.0
+CUST-1513,Halcyon Group,SMB,Media,2024-11-25,2024-11,Inbound Marketing,Starter,4,200.0
+CUST-1514,Halcyon Labs,SMB,Manufacturing,2024-11-26,2024-11,Event/Conference,Scale,11,2750.0
+CUST-1515,Glide Holdings,SMB,Retail,2024-11-06,2024-11,Event/Conference,Growth,4,480.0
+CUST-1516,Marlin Holdings,Mid-Market,Healthcare,2024-11-26,2024-11,Partner Referral,Growth,43,5160.0
+CUST-1517,Citron Holdings,SMB,Education,2024-11-12,2024-11,Outbound Sales,Growth,7,840.0
+CUST-1518,Apex Works,SMB,Education,2024-11-16,2024-11,Inbound Marketing,Starter,6,300.0
+CUST-1519,Stratus Group,SMB,Retail,2024-11-23,2024-11,Inbound Marketing,Starter,7,350.0
+CUST-1520,Halcyon Labs,Mid-Market,Manufacturing,2024-11-06,2024-11,Partner Referral,Growth,61,7320.0
+CUST-1521,Stratus Dynamics,SMB,Education,2024-11-03,2024-11,Inbound Marketing,Starter,9,450.0
+CUST-1522,North Solutions,SMB,Retail,2024-11-07,2024-11,Inbound Marketing,Growth,4,480.0
+CUST-1523,Glide Logic,SMB,Technology,2024-11-04,2024-11,Outbound Sales,Starter,14,700.0
+CUST-1524,Quantum Systems,SMB,Technology,2024-11-04,2024-11,Inbound Marketing,Starter,6,300.0
+CUST-1525,Stratus Labs,SMB,Manufacturing,2024-12-06,2024-12,Inbound Marketing,Starter,7,350.0
+CUST-1526,Reverb Partners,SMB,Retail,2024-12-24,2024-12,Outbound Sales,Starter,15,750.0
+CUST-1527,Stratus Systems,SMB,Education,2024-12-27,2024-12,Event/Conference,Starter,8,400.0
+CUST-1528,Quantum Dynamics,SMB,Professional Services,2024-12-09,2024-12,Inbound Marketing,Growth,11,1320.0
+CUST-1529,Stratus Cloud,SMB,Manufacturing,2024-12-02,2024-12,Partner Referral,Growth,10,1200.0
+CUST-1530,Tessera Works,Mid-Market,Manufacturing,2024-12-05,2024-12,Outbound Sales,Growth,49,5880.0
+CUST-1531,Lattice Industries,SMB,Education,2024-12-01,2024-12,Outbound Sales,Growth,14,1680.0
+CUST-1532,Apex Systems,SMB,Retail,2024-12-17,2024-12,Outbound Sales,Starter,15,750.0
+CUST-1533,Citron Co,SMB,Retail,2024-12-19,2024-12,Inbound Marketing,Starter,7,350.0
+CUST-1534,Cobalt Solutions,SMB,Healthcare,2024-12-22,2024-12,Event/Conference,Starter,5,250.0
+CUST-1535,Glide Logic,SMB,Financial Services,2024-12-27,2024-12,Outbound Sales,Starter,5,250.0
+CUST-1536,Lattice Partners,SMB,Education,2024-12-04,2024-12,Outbound Sales,Starter,13,650.0
+CUST-1537,Helix Systems,Enterprise,Manufacturing,2024-12-21,2024-12,Event/Conference,Growth,105,12600.0
+CUST-1538,North Group,SMB,Financial Services,2024-12-15,2024-12,Inbound Marketing,Starter,14,700.0
+CUST-1539,Halcyon Co,Mid-Market,Technology,2024-12-03,2024-12,Self-Serve Promo,Scale,70,17500.0
+CUST-1540,Plinth Digital,SMB,Financial Services,2024-12-05,2024-12,Inbound Marketing,Starter,6,300.0
+CUST-1541,Anvil Partners,SMB,Manufacturing,2024-12-26,2024-12,Partner Referral,Starter,6,300.0
+CUST-1542,Glide Systems,SMB,Retail,2024-12-17,2024-12,Self-Serve Promo,Growth,13,1560.0
+CUST-1543,Halcyon Logic,SMB,Manufacturing,2024-12-02,2024-12,Outbound Sales,Starter,5,250.0
+CUST-1544,Mosaic Cloud,SMB,Education,2024-12-17,2024-12,Outbound Sales,Starter,3,150.0
+CUST-1545,Mosaic Industries,SMB,Financial Services,2025-01-13,2025-01,Inbound Marketing,Starter,3,150.0
+CUST-1546,Plinth Holdings,Enterprise,Financial Services,2025-01-18,2025-01,Outbound Sales,Scale,143,35750.0
+CUST-1547,Citron Works,Mid-Market,Healthcare,2025-01-16,2025-01,Outbound Sales,Growth,55,6600.0
+CUST-1548,Halcyon Holdings,Mid-Market,Media,2025-01-14,2025-01,Outbound Sales,Scale,19,4750.0
+CUST-1549,Plinth Group,SMB,Manufacturing,2025-01-03,2025-01,Self-Serve Promo,Growth,6,720.0
+CUST-1550,Plinth Systems,SMB,Healthcare,2025-01-04,2025-01,Self-Serve Promo,Starter,6,300.0
+CUST-1551,Marlin Dynamics,SMB,Manufacturing,2025-01-17,2025-01,Outbound Sales,Growth,3,360.0
+CUST-1552,Reverb Works,SMB,Media,2025-01-05,2025-01,Outbound Sales,Starter,13,650.0
+CUST-1553,Anvil Dynamics,SMB,Financial Services,2025-01-18,2025-01,Outbound Sales,Starter,10,500.0
+CUST-1554,Reverb Systems,Mid-Market,Manufacturing,2025-01-06,2025-01,Inbound Marketing,Growth,71,8520.0
+CUST-1555,Cobalt Works,SMB,Education,2025-01-24,2025-01,Event/Conference,Starter,5,250.0
+CUST-1556,Marlin Systems,Mid-Market,Financial Services,2025-01-13,2025-01,Partner Referral,Growth,54,6480.0
+CUST-1557,Quantum Logic,SMB,Financial Services,2025-01-12,2025-01,Outbound Sales,Starter,13,650.0
+CUST-1558,Helix Systems,SMB,Media,2025-01-18,2025-01,Inbound Marketing,Starter,14,700.0
+CUST-1559,Citron Solutions,SMB,Technology,2025-01-23,2025-01,Outbound Sales,Growth,3,360.0
+CUST-1560,Plinth Solutions,Mid-Market,Healthcare,2025-01-03,2025-01,Inbound Marketing,Growth,68,8160.0
+CUST-1561,Mosaic Solutions,SMB,Retail,2025-01-22,2025-01,Outbound Sales,Starter,6,300.0
+CUST-1562,Anvil Dynamics,SMB,Education,2025-01-22,2025-01,Inbound Marketing,Starter,7,350.0
+CUST-1563,Anvil Labs,Mid-Market,Healthcare,2025-02-13,2025-02,Event/Conference,Scale,22,5500.0
+CUST-1564,Reverb Logic,SMB,Financial Services,2025-02-26,2025-02,Outbound Sales,Starter,4,200.0
+CUST-1565,Plinth Group,Enterprise,Media,2025-02-19,2025-02,Self-Serve Promo,Scale,94,23500.0
+CUST-1566,Vector Dynamics,SMB,Media,2025-02-19,2025-02,Event/Conference,Starter,11,550.0
+CUST-1567,Halcyon Industries,SMB,Education,2025-02-05,2025-02,Inbound Marketing,Starter,4,200.0
+CUST-1568,Lattice Network,SMB,Manufacturing,2025-02-22,2025-02,Outbound Sales,Starter,6,300.0
+CUST-1569,Marlin Industries,SMB,Media,2025-02-04,2025-02,Outbound Sales,Starter,6,300.0
+CUST-1570,North Logic,SMB,Media,2025-02-19,2025-02,Event/Conference,Starter,15,750.0
+CUST-1571,North Dynamics,Mid-Market,Technology,2025-02-21,2025-02,Event/Conference,Starter,19,950.0
+CUST-1572,Mosaic Dynamics,SMB,Media,2025-02-08,2025-02,Event/Conference,Starter,6,300.0
+CUST-1573,Beacon Labs,Mid-Market,Financial Services,2025-02-05,2025-02,Self-Serve Promo,Scale,33,8250.0
+CUST-1574,Lattice Labs,SMB,Technology,2025-02-14,2025-02,Outbound Sales,Starter,10,500.0
+CUST-1575,Quantum Digital,SMB,Professional Services,2025-02-27,2025-02,Event/Conference,Starter,13,650.0
+CUST-1576,Apex Labs,Mid-Market,Financial Services,2025-02-07,2025-02,Partner Referral,Growth,23,2760.0
+CUST-1577,Helix Industries,SMB,Retail,2025-02-19,2025-02,Partner Referral,Scale,11,2750.0
+CUST-1578,Beacon Industries,SMB,Technology,2025-02-20,2025-02,Outbound Sales,Growth,15,1800.0
+CUST-1579,Mosaic Systems,SMB,Technology,2025-02-14,2025-02,Event/Conference,Starter,13,650.0
+CUST-1580,Quantum Co,SMB,Healthcare,2025-02-04,2025-02,Self-Serve Promo,Growth,3,360.0
+CUST-1581,Helix Industries,SMB,Education,2025-03-19,2025-03,Outbound Sales,Starter,9,450.0
+CUST-1582,Anvil Partners,SMB,Education,2025-03-16,2025-03,Outbound Sales,Starter,8,400.0
+CUST-1583,Glide Dynamics,Mid-Market,Technology,2025-03-26,2025-03,Event/Conference,Growth,47,5640.0
+CUST-1584,Beacon Systems,SMB,Media,2025-03-17,2025-03,Outbound Sales,Starter,3,150.0
+CUST-1585,Vector Group,Mid-Market,Retail,2025-03-21,2025-03,Inbound Marketing,Starter,66,3300.0
+CUST-1586,Mosaic Labs,SMB,Education,2025-03-15,2025-03,Inbound Marketing,Starter,3,150.0
+CUST-1587,Cobalt Systems,SMB,Healthcare,2025-03-19,2025-03,Outbound Sales,Growth,15,1800.0
+CUST-1588,Citron Dynamics,SMB,Technology,2025-03-04,2025-03,Inbound Marketing,Starter,11,550.0
+CUST-1589,Vector Group,SMB,Media,2025-03-08,2025-03,Outbound Sales,Growth,6,720.0
+CUST-1590,Lattice Works,Mid-Market,Technology,2025-03-22,2025-03,Inbound Marketing,Scale,34,8500.0
+CUST-1591,Lattice Holdings,SMB,Technology,2025-03-24,2025-03,Inbound Marketing,Growth,10,1200.0
+CUST-1592,North Logic,SMB,Education,2025-03-19,2025-03,Outbound Sales,Starter,15,750.0
+CUST-1593,North Works,SMB,Financial Services,2025-03-02,2025-03,Inbound Marketing,Starter,5,250.0
+CUST-1594,Vector Holdings,SMB,Financial Services,2025-03-02,2025-03,Inbound Marketing,Starter,12,600.0
+CUST-1595,Lattice Co,Mid-Market,Financial Services,2025-03-26,2025-03,Event/Conference,Starter,72,3600.0
+CUST-1596,Cobalt Dynamics,Mid-Market,Retail,2025-03-05,2025-03,Self-Serve Promo,Growth,54,6480.0
+CUST-1597,North Logic,SMB,Technology,2025-03-01,2025-03,Outbound Sales,Starter,9,450.0
+CUST-1598,Stratus Labs,SMB,Technology,2025-03-04,2025-03,Partner Referral,Starter,4,200.0
+CUST-1599,Citron Holdings,SMB,Financial Services,2025-03-16,2025-03,Inbound Marketing,Growth,12,1440.0
+CUST-1600,Cobalt Works,Enterprise,Technology,2025-03-24,2025-03,Self-Serve Promo,Scale,233,58250.0
+CUST-1601,Apex Solutions,Mid-Market,Healthcare,2025-04-27,2025-04,Inbound Marketing,Growth,68,8160.0
+CUST-1602,Apex Works,SMB,Professional Services,2025-04-09,2025-04,Outbound Sales,Starter,3,150.0
+CUST-1603,Cobalt Labs,Mid-Market,Financial Services,2025-04-08,2025-04,Inbound Marketing,Growth,41,4920.0
+CUST-1604,North Digital,SMB,Manufacturing,2025-04-09,2025-04,Outbound Sales,Starter,12,600.0
+CUST-1605,Anvil Dynamics,Mid-Market,Technology,2025-04-23,2025-04,Event/Conference,Growth,27,3240.0
+CUST-1606,Vector Industries,SMB,Technology,2025-04-14,2025-04,Outbound Sales,Growth,14,1680.0
+CUST-1607,Plinth Cloud,SMB,Education,2025-04-15,2025-04,Inbound Marketing,Starter,7,350.0
+CUST-1608,Quantum Systems,SMB,Technology,2025-04-11,2025-04,Inbound Marketing,Growth,6,720.0
+CUST-1609,Glide Solutions,SMB,Healthcare,2025-04-16,2025-04,Partner Referral,Growth,4,480.0
+CUST-1610,Lattice Systems,SMB,Manufacturing,2025-04-01,2025-04,Outbound Sales,Starter,8,400.0
+CUST-1611,Helix Industries,SMB,Education,2025-04-19,2025-04,Inbound Marketing,Starter,10,500.0
+CUST-1612,Lattice Industries,SMB,Healthcare,2025-04-04,2025-04,Inbound Marketing,Starter,7,350.0
+CUST-1613,North Cloud,SMB,Retail,2025-04-12,2025-04,Partner Referral,Starter,7,350.0
+CUST-1614,Stratus Co,Mid-Market,Technology,2025-04-20,2025-04,Outbound Sales,Growth,17,2040.0
+CUST-1615,Quantum Cloud,Mid-Market,Manufacturing,2025-04-08,2025-04,Inbound Marketing,Scale,17,4250.0
+CUST-1616,Citron Digital,SMB,Professional Services,2025-04-27,2025-04,Outbound Sales,Starter,14,700.0
+CUST-1617,Vector Digital,SMB,Media,2025-04-19,2025-04,Outbound Sales,Starter,8,400.0
+CUST-1618,Apex Works,Mid-Market,Media,2025-04-20,2025-04,Event/Conference,Starter,16,800.0
+CUST-1619,Cobalt Cloud,SMB,Technology,2025-04-15,2025-04,Outbound Sales,Growth,8,960.0
+CUST-1620,Citron Solutions,Mid-Market,Technology,2025-04-24,2025-04,Inbound Marketing,Growth,68,8160.0
+CUST-1621,Cobalt Group,SMB,Retail,2025-05-02,2025-05,Outbound Sales,Starter,9,450.0
+CUST-1622,Glide Logic,SMB,Education,2025-05-02,2025-05,Self-Serve Promo,Starter,6,300.0
+CUST-1623,Beacon Partners,SMB,Media,2025-05-05,2025-05,Partner Referral,Starter,7,350.0
+CUST-1624,Plinth Systems,Mid-Market,Retail,2025-05-20,2025-05,Event/Conference,Growth,20,2400.0
+CUST-1625,Reverb Group,Enterprise,Manufacturing,2025-05-16,2025-05,Outbound Sales,Growth,124,14880.0
+CUST-1626,Helix Labs,SMB,Technology,2025-05-21,2025-05,Inbound Marketing,Starter,7,350.0
+CUST-1627,Tessera Solutions,SMB,Healthcare,2025-05-19,2025-05,Event/Conference,Starter,3,150.0
+CUST-1628,North Labs,Mid-Market,Technology,2025-05-18,2025-05,Partner Referral,Growth,35,4200.0
+CUST-1629,North Labs,Enterprise,Technology,2025-05-25,2025-05,Self-Serve Promo,Scale,139,34750.0
+CUST-1630,Lattice Solutions,SMB,Education,2025-05-11,2025-05,Self-Serve Promo,Starter,13,650.0
+CUST-1631,Mosaic Digital,Mid-Market,Education,2025-05-09,2025-05,Partner Referral,Growth,44,5280.0
+CUST-1632,Citron Industries,SMB,Manufacturing,2025-05-11,2025-05,Inbound Marketing,Starter,8,400.0
+CUST-1633,Lattice Holdings,Mid-Market,Healthcare,2025-05-16,2025-05,Event/Conference,Scale,32,8000.0
+CUST-1634,Halcyon Logic,Mid-Market,Media,2025-05-06,2025-05,Inbound Marketing,Growth,58,6960.0
+CUST-1635,Reverb Labs,Mid-Market,Professional Services,2025-05-16,2025-05,Outbound Sales,Growth,32,3840.0
+CUST-1636,Tessera Solutions,SMB,Education,2025-05-07,2025-05,Outbound Sales,Growth,14,1680.0
+CUST-1637,Beacon Labs,SMB,Retail,2025-05-16,2025-05,Event/Conference,Starter,15,750.0
+CUST-1638,Mosaic Co,Mid-Market,Media,2025-05-12,2025-05,Inbound Marketing,Growth,54,6480.0
+CUST-1639,Vector Digital,SMB,Manufacturing,2025-05-27,2025-05,Event/Conference,Growth,4,480.0
+CUST-1640,Citron Network,Mid-Market,Education,2025-05-02,2025-05,Partner Referral,Starter,71,3550.0
+CUST-1641,Mosaic Partners,SMB,Professional Services,2025-06-11,2025-06,Event/Conference,Starter,10,500.0
+CUST-1642,Cobalt Holdings,SMB,Technology,2025-06-27,2025-06,Outbound Sales,Growth,8,960.0
+CUST-1643,Lattice Network,SMB,Retail,2025-06-20,2025-06,Inbound Marketing,Starter,11,550.0
+CUST-1644,Glide Solutions,SMB,Retail,2025-06-10,2025-06,Outbound Sales,Starter,5,250.0
+CUST-1645,Stratus Holdings,Mid-Market,Professional Services,2025-06-13,2025-06,Outbound Sales,Growth,54,6480.0
+CUST-1646,Citron Logic,SMB,Healthcare,2025-06-18,2025-06,Event/Conference,Growth,15,1800.0
+CUST-1647,Citron Cloud,SMB,Retail,2025-06-14,2025-06,Outbound Sales,Growth,15,1800.0
+CUST-1648,Anvil Cloud,SMB,Financial Services,2025-06-03,2025-06,Self-Serve Promo,Starter,11,550.0
+CUST-1649,Plinth Network,Enterprise,Financial Services,2025-06-14,2025-06,Event/Conference,Scale,80,20000.0
+CUST-1650,Cobalt Logic,Mid-Market,Healthcare,2025-06-25,2025-06,Outbound Sales,Growth,33,3960.0
+CUST-1651,Quantum Works,SMB,Technology,2025-06-21,2025-06,Event/Conference,Starter,12,600.0
+CUST-1652,Anvil Cloud,Mid-Market,Education,2025-06-11,2025-06,Inbound Marketing,Growth,61,7320.0
+CUST-1653,Cobalt Network,SMB,Technology,2025-06-08,2025-06,Inbound Marketing,Growth,8,960.0
+CUST-1654,Reverb Partners,Mid-Market,Education,2025-06-13,2025-06,Outbound Sales,Starter,35,1750.0
+CUST-1655,Vector Works,Mid-Market,Technology,2025-06-08,2025-06,Event/Conference,Growth,56,6720.0
+CUST-1656,Quantum Logic,SMB,Financial Services,2025-06-14,2025-06,Event/Conference,Starter,9,450.0
+CUST-1657,Citron Co,SMB,Technology,2025-06-09,2025-06,Outbound Sales,Starter,8,400.0
+CUST-1658,Quantum Network,SMB,Healthcare,2025-06-10,2025-06,Partner Referral,Starter,14,700.0
+CUST-1659,Quantum Network,Enterprise,Manufacturing,2025-06-13,2025-06,Partner Referral,Growth,312,37440.0
+CUST-1660,Marlin Systems,SMB,Financial Services,2025-06-25,2025-06,Event/Conference,Starter,11,550.0
+CUST-1661,Cobalt Co,SMB,Healthcare,2025-07-12,2025-07,Event/Conference,Starter,13,650.0
+CUST-1662,Citron Industries,Mid-Market,Healthcare,2025-07-14,2025-07,Outbound Sales,Growth,18,2160.0
+CUST-1663,Tessera Solutions,SMB,Healthcare,2025-07-02,2025-07,Event/Conference,Starter,8,400.0
+CUST-1664,Lattice Digital,SMB,Financial Services,2025-07-21,2025-07,Outbound Sales,Growth,7,840.0
+CUST-1665,Citron Systems,SMB,Professional Services,2025-07-03,2025-07,Outbound Sales,Starter,14,700.0
+CUST-1666,Anvil Holdings,Mid-Market,Professional Services,2025-07-25,2025-07,Outbound Sales,Growth,40,4800.0
+CUST-1667,Beacon Works,SMB,Professional Services,2025-07-06,2025-07,Outbound Sales,Starter,7,350.0
+CUST-1668,Lattice Labs,SMB,Healthcare,2025-07-20,2025-07,Inbound Marketing,Starter,7,350.0
+CUST-1669,Lattice Logic,Mid-Market,Professional Services,2025-07-16,2025-07,Event/Conference,Growth,71,8520.0
+CUST-1670,Cobalt Works,Mid-Market,Financial Services,2025-07-20,2025-07,Outbound Sales,Growth,18,2160.0
+CUST-1671,Beacon Dynamics,SMB,Media,2025-07-17,2025-07,Inbound Marketing,Growth,10,1200.0
+CUST-1672,Halcyon Digital,SMB,Manufacturing,2025-07-07,2025-07,Outbound Sales,Starter,3,150.0
+CUST-1673,Halcyon Cloud,SMB,Technology,2025-07-12,2025-07,Outbound Sales,Starter,3,150.0
+CUST-1674,Quantum Industries,SMB,Healthcare,2025-07-03,2025-07,Partner Referral,Starter,6,300.0
+CUST-1675,Helix Solutions,SMB,Professional Services,2025-07-24,2025-07,Inbound Marketing,Growth,12,1440.0
+CUST-1676,Halcyon Dynamics,Mid-Market,Education,2025-07-11,2025-07,Event/Conference,Growth,75,9000.0
+CUST-1677,Tessera Network,Mid-Market,Financial Services,2025-07-14,2025-07,Inbound Marketing,Growth,49,5880.0
+CUST-1678,Vector Partners,Mid-Market,Media,2025-07-17,2025-07,Self-Serve Promo,Scale,41,10250.0
+CUST-1679,Marlin Co,Mid-Market,Professional Services,2025-07-16,2025-07,Event/Conference,Scale,42,10500.0
+CUST-1680,Mosaic Network,Enterprise,Manufacturing,2025-07-26,2025-07,Outbound Sales,Scale,129,32250.0
+CUST-1681,North Works,SMB,Technology,2025-08-14,2025-08,Outbound Sales,Growth,13,1560.0
+CUST-1682,Helix Cloud,SMB,Technology,2025-08-16,2025-08,Event/Conference,Starter,12,600.0
+CUST-1683,Beacon Group,SMB,Manufacturing,2025-08-13,2025-08,Inbound Marketing,Growth,11,1320.0
+CUST-1684,Reverb Holdings,SMB,Healthcare,2025-08-05,2025-08,Event/Conference,Starter,6,300.0
+CUST-1685,Glide Partners,SMB,Financial Services,2025-08-22,2025-08,Outbound Sales,Starter,8,400.0
+CUST-1686,Reverb Dynamics,SMB,Media,2025-08-10,2025-08,Partner Referral,Growth,7,840.0
+CUST-1687,Marlin Works,Mid-Market,Education,2025-08-20,2025-08,Self-Serve Promo,Growth,45,5400.0
+CUST-1688,Anvil Dynamics,Enterprise,Financial Services,2025-08-08,2025-08,Outbound Sales,Scale,322,80500.0
+CUST-1689,Anvil Group,SMB,Retail,2025-08-04,2025-08,Event/Conference,Growth,9,1080.0
+CUST-1690,Quantum Works,SMB,Retail,2025-08-23,2025-08,Inbound Marketing,Starter,12,600.0
+CUST-1691,North Logic,SMB,Financial Services,2025-08-12,2025-08,Partner Referral,Growth,11,1320.0
+CUST-1692,North Labs,SMB,Financial Services,2025-08-08,2025-08,Inbound Marketing,Starter,3,150.0
+CUST-1693,Anvil Partners,SMB,Education,2025-08-22,2025-08,Partner Referral,Growth,6,720.0
+CUST-1694,Stratus Digital,SMB,Manufacturing,2025-08-09,2025-08,Outbound Sales,Starter,4,200.0
+CUST-1695,Stratus Co,SMB,Technology,2025-08-21,2025-08,Partner Referral,Growth,11,1320.0
+CUST-1696,Vector Works,SMB,Healthcare,2025-08-08,2025-08,Self-Serve Promo,Starter,9,450.0
+CUST-1697,Mosaic Dynamics,Mid-Market,Retail,2025-08-17,2025-08,Partner Referral,Growth,40,4800.0
+CUST-1698,North Solutions,SMB,Education,2025-08-27,2025-08,Inbound Marketing,Starter,9,450.0
+CUST-1699,Apex Co,SMB,Technology,2025-08-18,2025-08,Partner Referral,Starter,9,450.0
+CUST-1700,Vector Works,SMB,Healthcare,2025-08-14,2025-08,Self-Serve Promo,Growth,15,1800.0
+CUST-1701,Stratus Co,SMB,Healthcare,2025-09-11,2025-09,Outbound Sales,Starter,14,700.0
+CUST-1702,Apex Labs,Mid-Market,Manufacturing,2025-09-12,2025-09,Inbound Marketing,Growth,28,3360.0
+CUST-1703,Citron Group,SMB,Healthcare,2025-09-26,2025-09,Partner Referral,Starter,5,250.0
+CUST-1704,Beacon Network,SMB,Financial Services,2025-09-04,2025-09,Partner Referral,Starter,10,500.0
+CUST-1705,Helix Labs,SMB,Financial Services,2025-09-12,2025-09,Outbound Sales,Scale,11,2750.0
+CUST-1706,Anvil Holdings,SMB,Media,2025-09-15,2025-09,Inbound Marketing,Growth,15,1800.0
+CUST-1707,Apex Network,SMB,Education,2025-09-27,2025-09,Event/Conference,Starter,10,500.0
+CUST-1708,Citron Industries,SMB,Retail,2025-09-14,2025-09,Outbound Sales,Starter,15,750.0
+CUST-1709,Glide Works,Mid-Market,Retail,2025-09-11,2025-09,Partner Referral,Growth,17,2040.0
+CUST-1710,Citron Works,SMB,Healthcare,2025-09-07,2025-09,Event/Conference,Growth,5,600.0
+CUST-1711,Tessera Network,SMB,Financial Services,2025-09-15,2025-09,Event/Conference,Growth,9,1080.0
+CUST-1712,Stratus Systems,SMB,Healthcare,2025-09-15,2025-09,Event/Conference,Starter,9,450.0
+CUST-1713,Cobalt Logic,SMB,Education,2025-09-12,2025-09,Inbound Marketing,Starter,13,650.0
+CUST-1714,Plinth Logic,SMB,Retail,2025-09-09,2025-09,Event/Conference,Starter,14,700.0
+CUST-1715,Mosaic Co,Mid-Market,Financial Services,2025-09-15,2025-09,Outbound Sales,Scale,54,13500.0
+CUST-1716,Beacon Group,SMB,Media,2025-09-13,2025-09,Inbound Marketing,Starter,9,450.0
+CUST-1717,Mosaic Systems,SMB,Healthcare,2025-09-06,2025-09,Outbound Sales,Starter,15,750.0
+CUST-1718,Apex Cloud,SMB,Professional Services,2025-09-21,2025-09,Event/Conference,Starter,10,500.0
+CUST-1719,Halcyon Solutions,SMB,Technology,2025-09-26,2025-09,Inbound Marketing,Growth,11,1320.0
+CUST-1720,Apex Labs,SMB,Manufacturing,2025-09-19,2025-09,Event/Conference,Growth,3,360.0
+CUST-1721,Anvil Group,SMB,Healthcare,2025-10-08,2025-10,Outbound Sales,Starter,15,750.0
+CUST-1722,Quantum Co,SMB,Professional Services,2025-10-02,2025-10,Outbound Sales,Starter,4,200.0
+CUST-1723,Marlin Systems,SMB,Professional Services,2025-10-03,2025-10,Inbound Marketing,Starter,10,500.0
+CUST-1724,Apex Co,SMB,Manufacturing,2025-10-11,2025-10,Inbound Marketing,Starter,3,150.0
+CUST-1725,Stratus Logic,SMB,Financial Services,2025-10-02,2025-10,Outbound Sales,Starter,5,250.0
+CUST-1726,Stratus Solutions,Enterprise,Technology,2025-10-15,2025-10,Event/Conference,Scale,227,56750.0
+CUST-1727,Glide Holdings,SMB,Media,2025-10-03,2025-10,Outbound Sales,Starter,11,550.0
+CUST-1728,Glide Dynamics,SMB,Financial Services,2025-10-26,2025-10,Self-Serve Promo,Starter,7,350.0
+CUST-1729,Stratus Systems,SMB,Financial Services,2025-10-05,2025-10,Outbound Sales,Starter,13,650.0
+CUST-1730,North Dynamics,SMB,Retail,2025-10-15,2025-10,Outbound Sales,Growth,10,1200.0
+CUST-1731,Lattice Solutions,SMB,Professional Services,2025-10-03,2025-10,Outbound Sales,Starter,15,750.0
+CUST-1732,Mosaic Logic,SMB,Professional Services,2025-10-20,2025-10,Inbound Marketing,Growth,5,600.0
+CUST-1733,Stratus Partners,SMB,Financial Services,2025-10-25,2025-10,Partner Referral,Starter,11,550.0
+CUST-1734,Stratus Industries,SMB,Healthcare,2025-10-02,2025-10,Inbound Marketing,Starter,7,350.0
+CUST-1735,Citron Solutions,Mid-Market,Media,2025-10-12,2025-10,Inbound Marketing,Growth,69,8280.0
+CUST-1736,Vector Group,Mid-Market,Healthcare,2025-10-18,2025-10,Inbound Marketing,Growth,23,2760.0
+CUST-1737,Helix Partners,SMB,Manufacturing,2025-10-19,2025-10,Self-Serve Promo,Growth,5,600.0
+CUST-1738,Reverb Works,Mid-Market,Manufacturing,2025-10-09,2025-10,Event/Conference,Growth,42,5040.0
+CUST-1739,Cobalt Co,Mid-Market,Financial Services,2025-10-05,2025-10,Event/Conference,Growth,60,7200.0
+CUST-1740,Anvil Cloud,Mid-Market,Financial Services,2025-10-23,2025-10,Outbound Sales,Growth,22,2640.0
+CUST-1741,Apex Labs,SMB,Education,2025-10-05,2025-10,Partner Referral,Starter,15,750.0
+CUST-1742,Cobalt Systems,SMB,Healthcare,2025-10-26,2025-10,Inbound Marketing,Starter,8,400.0
+CUST-1743,Glide Cloud,SMB,Healthcare,2025-10-15,2025-10,Self-Serve Promo,Starter,9,450.0
+CUST-1744,Apex Solutions,SMB,Education,2025-11-13,2025-11,Outbound Sales,Starter,10,500.0
+CUST-1745,Helix Co,Mid-Market,Financial Services,2025-11-09,2025-11,Outbound Sales,Growth,27,3240.0
+CUST-1746,Marlin Holdings,SMB,Retail,2025-11-16,2025-11,Event/Conference,Starter,11,550.0
+CUST-1747,North Solutions,SMB,Retail,2025-11-20,2025-11,Event/Conference,Starter,15,750.0
+CUST-1748,Halcyon Co,SMB,Retail,2025-11-25,2025-11,Inbound Marketing,Growth,14,1680.0
+CUST-1749,Reverb Group,Mid-Market,Retail,2025-11-24,2025-11,Outbound Sales,Growth,36,4320.0
+CUST-1750,Beacon Dynamics,Enterprise,Professional Services,2025-11-11,2025-11,Self-Serve Promo,Scale,232,58000.0
+CUST-1751,Citron Cloud,SMB,Media,2025-11-22,2025-11,Inbound Marketing,Starter,10,500.0
+CUST-1752,Citron Group,SMB,Technology,2025-11-04,2025-11,Inbound Marketing,Starter,12,600.0
+CUST-1753,Marlin Dynamics,SMB,Technology,2025-11-22,2025-11,Event/Conference,Growth,5,600.0
+CUST-1754,Vector Labs,SMB,Technology,2025-11-12,2025-11,Inbound Marketing,Starter,9,450.0
+CUST-1755,Cobalt Partners,SMB,Healthcare,2025-11-07,2025-11,Inbound Marketing,Starter,15,750.0
+CUST-1756,Anvil Labs,SMB,Technology,2025-11-12,2025-11,Inbound Marketing,Starter,8,400.0
+CUST-1757,Citron Cloud,SMB,Healthcare,2025-11-08,2025-11,Outbound Sales,Starter,11,550.0
+CUST-1758,Stratus Dynamics,SMB,Retail,2025-11-27,2025-11,Outbound Sales,Starter,8,400.0
+CUST-1759,Vector Group,SMB,Media,2025-11-27,2025-11,Event/Conference,Growth,6,720.0
+CUST-1760,Marlin Industries,SMB,Professional Services,2025-11-26,2025-11,Partner Referral,Scale,13,3250.0
+CUST-1761,Cobalt Cloud,Mid-Market,Professional Services,2025-11-14,2025-11,Outbound Sales,Growth,36,4320.0
+CUST-1762,Cobalt Logic,SMB,Technology,2025-11-26,2025-11,Outbound Sales,Starter,13,650.0
+CUST-1763,Reverb Partners,Mid-Market,Professional Services,2025-11-08,2025-11,Inbound Marketing,Growth,70,8400.0
+CUST-1764,Helix Labs,Mid-Market,Education,2025-11-19,2025-11,Outbound Sales,Starter,22,1100.0
+CUST-1765,Vector Systems,SMB,Media,2025-11-21,2025-11,Partner Referral,Growth,14,1680.0
+CUST-1766,Beacon Labs,SMB,Manufacturing,2025-11-07,2025-11,Outbound Sales,Starter,3,150.0
+CUST-1767,Beacon Labs,SMB,Financial Services,2025-12-19,2025-12,Inbound Marketing,Starter,4,200.0
+CUST-1768,Beacon Holdings,SMB,Financial Services,2025-12-21,2025-12,Outbound Sales,Starter,15,750.0
+CUST-1769,Reverb Partners,SMB,Manufacturing,2025-12-05,2025-12,Event/Conference,Starter,14,700.0
+CUST-1770,Halcyon Industries,Enterprise,Technology,2025-12-11,2025-12,Outbound Sales,Scale,158,39500.0
+CUST-1771,Marlin Industries,SMB,Media,2025-12-15,2025-12,Inbound Marketing,Growth,8,960.0
+CUST-1772,Tessera Dynamics,Mid-Market,Healthcare,2025-12-15,2025-12,Inbound Marketing,Growth,62,7440.0
+CUST-1773,Vector Group,Mid-Market,Healthcare,2025-12-22,2025-12,Outbound Sales,Starter,51,2550.0
+CUST-1774,Apex Network,SMB,Technology,2025-12-19,2025-12,Inbound Marketing,Growth,4,480.0
+CUST-1775,Halcyon Cloud,SMB,Manufacturing,2025-12-26,2025-12,Event/Conference,Starter,10,500.0
+CUST-1776,Stratus Holdings,Mid-Market,Education,2025-12-09,2025-12,Partner Referral,Growth,32,3840.0
+CUST-1777,Quantum Network,Mid-Market,Media,2025-12-13,2025-12,Self-Serve Promo,Scale,43,10750.0
+CUST-1778,Glide Cloud,SMB,Healthcare,2025-12-26,2025-12,Outbound Sales,Starter,14,700.0
+CUST-1779,Mosaic Works,Mid-Market,Technology,2025-12-17,2025-12,Outbound Sales,Growth,22,2640.0
+CUST-1780,Reverb Cloud,SMB,Retail,2025-12-16,2025-12,Event/Conference,Starter,14,700.0
+CUST-1781,Citron Network,SMB,Manufacturing,2025-12-16,2025-12,Outbound Sales,Starter,12,600.0
+CUST-1782,Tessera Network,SMB,Manufacturing,2025-12-09,2025-12,Inbound Marketing,Starter,8,400.0
+CUST-1783,Helix Works,Mid-Market,Manufacturing,2025-12-01,2025-12,Event/Conference,Growth,59,7080.0
+CUST-1784,Citron Cloud,SMB,Education,2025-12-01,2025-12,Event/Conference,Starter,10,500.0
+CUST-1785,Stratus Digital,SMB,Education,2025-12-17,2025-12,Event/Conference,Starter,8,400.0
+CUST-1786,Citron Labs,Mid-Market,Retail,2025-12-25,2025-12,Inbound Marketing,Growth,63,7560.0
