@@ -39,3 +39,41 @@ def logo_churn(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
         return 0.0
     churned = start_ids - end_ids
     return len(churned) / len(start_ids)
+
+
+def nrr(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
+    """Net Revenue Retention from start_month to end_month.
+
+    Cohort = customers active at start_month.
+    NRR = (cohort's MRR at end_month) / (cohort's MRR at start_month)
+
+    Customers who churned between start and end are absent from end_month
+    in the subscriptions table, so they contribute 0 to the numerator.
+    NRR can exceed 100% because expansion is included.
+    """
+    start_df = _active(subs, start_month).set_index("customer_id")["mrr"]
+    if start_df.sum() == 0:
+        return 1.0
+    end_df = _active(subs, end_month).set_index("customer_id")["mrr"]
+    end_aligned = end_df.reindex(start_df.index, fill_value=0.0)
+    return float(end_aligned.sum() / start_df.sum())
+
+
+def grr(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
+    """Gross Revenue Retention from start_month to end_month.
+
+    Same cohort as NRR, but each customer's end-period MRR is capped at
+    their start-period MRR (expansion stripped). Cannot exceed 100%.
+    """
+    start_df = _active(subs, start_month).set_index("customer_id")["mrr"]
+    if start_df.sum() == 0:
+        return 1.0
+    end_df = _active(subs, end_month).set_index("customer_id")["mrr"]
+    end_aligned = end_df.reindex(start_df.index, fill_value=0.0)
+    capped = pd.concat([end_aligned, start_df], axis=1).min(axis=1)
+    return float(capped.sum() / start_df.sum())
+
+
+def gross_revenue_churn(subs: pd.DataFrame, start_month: str, end_month: str) -> float:
+    """Gross Revenue Churn = 1 - GRR."""
+    return 1.0 - grr(subs, start_month, end_month)
