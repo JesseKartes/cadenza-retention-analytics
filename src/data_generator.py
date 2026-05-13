@@ -63,7 +63,7 @@ BASE_CHURN_PROB_BY_CHANNEL = {
     "Outbound Sales": 0.010,
     "Inbound Marketing": 0.012,
     "Partner Referral": 0.008,
-    "Self-Serve Promo": 0.025,   # the engineered bad cohort
+    "Self-Serve Promo": 0.030,   # the engineered bad cohort
     "Event/Conference": 0.015,
 }
 SEGMENT_CHURN_MULT = {"SMB": 1.3, "Mid-Market": 1.0, "Enterprise": 0.4}
