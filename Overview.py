@@ -70,16 +70,23 @@ def render_overview(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.Data
     cur_grr = metrics.grr(subs, start_month_ttm, end_month)
     cur_logo_churn = metrics.logo_churn(subs, start_month_ttm, end_month)
 
-    prev_arr = metrics.arr(subs, start_month_ttm) if start_month_ttm in subs["month"].values else None
-    prev_nrr = metrics.nrr(subs, prev_month_ttm, start_month_ttm) if prev_month_ttm in subs["month"].values else None
+    has_prior_arr = start_month_ttm in subs["month"].values
+    has_prior_window = prev_month_ttm in subs["month"].values
+    prev_arr = metrics.arr(subs, start_month_ttm) if has_prior_arr else None
+    prev_nrr = metrics.nrr(subs, prev_month_ttm, start_month_ttm) if has_prior_window else None
+    prev_grr = metrics.grr(subs, prev_month_ttm, start_month_ttm) if has_prior_window else None
+    prev_logo_churn = metrics.logo_churn(subs, prev_month_ttm, start_month_ttm) if has_prior_window else None
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("ARR", f"${cur_arr:,.0f}",
               delta=f"${cur_arr - prev_arr:,.0f}" if prev_arr else None)
     c2.metric("NRR (TTM)", f"{cur_nrr:.1%}",
               delta=f"{cur_nrr - prev_nrr:+.1%}" if prev_nrr else None)
-    c3.metric("GRR (TTM)", f"{cur_grr:.1%}")
-    c4.metric("Logo Churn (TTM)", f"{cur_logo_churn:.1%}")
+    c3.metric("GRR (TTM)", f"{cur_grr:.1%}",
+              delta=f"{cur_grr - prev_grr:+.1%}" if prev_grr else None)
+    c4.metric("Logo Churn (TTM)", f"{cur_logo_churn:.1%}",
+              delta=f"{cur_logo_churn - prev_logo_churn:+.1%}" if prev_logo_churn else None,
+              delta_color="inverse")
 
     st.divider()
 
