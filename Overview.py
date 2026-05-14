@@ -88,6 +88,19 @@ def render_overview(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.Data
               delta=f"{cur_logo_churn - prev_logo_churn:+.1%}" if prev_logo_churn else None,
               delta_color="inverse")
 
+    if has_prior_window:
+        st.caption(
+            f"Deltas: year-over-year change vs. the trailing-12-month window "
+            f"ending {start_month_ttm[:7]}."
+        )
+    else:
+        st.caption(
+            "YoY deltas for NRR / GRR / Logo Churn need 24 months of prior data — "
+            "the dataset starts 2023-01, so they appear from reporting month "
+            "**2025-01** onward. ARR's delta uses only 12 months back, so it "
+            "still shows for 2024 reporting months."
+        )
+
     st.divider()
 
     # MRR Waterfall — last 3 months
