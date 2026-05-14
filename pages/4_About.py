@@ -66,8 +66,9 @@ def main():
     st.subheader("Links")
     st.markdown(
         """
-        - **Source code:** https://github.com/_TODO_YOUR_USERNAME/cadenza-retention-analytics
-        - **Author:** [Jesse Kartes](https://www.linkedin.com/in/_TODO_) — RevOps / Sales Operations
+        - **Source code:** https://github.com/JesseKartes/cadenza-retention-analytics
+        - **Live dashboard:** https://cadenza-retention-analytics.streamlit.app
+        - **Author:** [Jesse Kartes](https://www.linkedin.com/in/jessekartes/) — RevOps / Sales Operations
         """
     )
 

@@ -2,9 +2,9 @@
 
 A SaaS retention analytics application I built as a portfolio project while interviewing for Revenue Operations / Sales Operations roles in SaaS.
 
-**Live dashboard:** _TODO link after Streamlit Cloud deploy_
+**Live dashboard:** https://cadenza-retention-analytics.streamlit.app
 
-**Author:** Jesse Kartes · [LinkedIn](https://www.linkedin.com/in/_TODO_)
+**Author:** Jesse Kartes · [LinkedIn](https://www.linkedin.com/in/jessekartes/)
 
 ---
 
@@ -37,7 +37,7 @@ Python data generator  →  3 flat CSVs  →  pandas metric/cohort modules  → 
 ## Running it locally
 
 ```bash
-git clone https://github.com/_TODO_/cadenza-retention-analytics.git
+git clone https://github.com/JesseKartes/cadenza-retention-analytics.git
 cd cadenza-retention-analytics
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
