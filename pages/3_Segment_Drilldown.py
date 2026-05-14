@@ -67,6 +67,11 @@ def main():
                      .highlight_max(subset=["Logo Churn"], color="#FECACA"),
         use_container_width=True,
     )
+    st.caption(
+        "Red marks the worst-performing channel on each metric (lowest GRR/NRR, "
+        "highest Logo Churn). The highlight follows the data — if a different "
+        "channel becomes the laggard, the highlight moves with it."
+    )
 
     st.divider()
     st.subheader("Account Explorer")

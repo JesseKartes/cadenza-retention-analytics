@@ -91,12 +91,12 @@ def m12_retention_bar(matrix: pd.DataFrame, highlight_cohorts: list[str] | None 
     """Bar chart of each cohort's M12 retention, sorted ascending."""
     if 12 not in matrix.columns:
         return go.Figure().update_layout(title="M12 retention (not enough history)")
-    s = matrix[12].dropna()
-    s = s[s > 0].sort_values()  # cohorts that haven't reached month 12 are stored as 0; filter them
+    s = matrix[12].dropna().sort_values()
     colors = [CADENZA_BAD if (highlight_cohorts and c in highlight_cohorts) else CADENZA_PRIMARY for c in s.index]
     fig = go.Figure(go.Bar(x=s.index.astype(str), y=s.values, marker_color=colors))
     fig.add_hline(y=s.mean(), line_dash="dash", line_color=CADENZA_NEUTRAL,
-                  annotation_text=f"Avg {s.mean():.0%}", annotation_position="right")
+                  annotation_text=f"Average across cohorts: {s.mean():.0%}",
+                  annotation_position="right")
     fig.update_layout(
         title="M12 Retention by Signup Cohort",
         yaxis_tickformat=".0%",

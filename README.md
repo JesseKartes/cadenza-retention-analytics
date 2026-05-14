@@ -10,7 +10,7 @@ A SaaS retention analytics application I built as a portfolio project while inte
 
 ## The story
 
-Cadenza is a fictional B2B sales engagement platform. I generated 36 months of synthetic subscription data for 600+ customers across three segments, five acquisition channels, and three plan tiers. I then built a Streamlit application that surfaces the canonical SaaS retention metrics — ARR, NRR, GRR, Logo Churn, Gross Revenue Churn — plus a cohort retention heatmap.
+Cadenza is a fictional B2B sales engagement platform. I generated 36 months of synthetic subscription data for 600+ customers across three segments, five acquisition channels, and three plan tiers. I then built a Streamlit application that surfaces the canonical SaaS retention metrics — ARR, NRR, GRR, Logo Churn — plus a cohort retention heatmap.
 
 The dataset deliberately encodes a pattern that real RevOps teams encounter: customers acquired through a Q3 2024 self-serve promotional channel churn at roughly **2× the rate** of customers from other channels. The dashboard's job is to surface that pattern.
 
@@ -31,7 +31,7 @@ Python data generator  →  3 flat CSVs  →  pandas metric/cohort modules  → 
 - `src/metrics.py` — ARR, Logo Churn, Gross Revenue Churn, GRR, NRR, MRR Waterfall. Pure pandas functions.
 - `src/cohorts.py` — logo and revenue retention cohort matrices.
 - `src/viz.py` — Plotly figure builders. Pure functions, no Streamlit imports.
-- `streamlit_app.py` + `pages/*.py` — four-page dashboard.
+- `Overview.py` + `pages/*.py` — four-page dashboard.
 - `tests/` — pytest suite. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. The data generator has sanity tests that lock in the engineered pattern.
 
 ## Running it locally
@@ -42,7 +42,7 @@ cd cadenza-retention-analytics
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python -m src.data_generator   # regenerates the CSVs (optional; a snapshot is committed)
-streamlit run streamlit_app.py
+streamlit run Overview.py
 ```
 
 ## Running the tests

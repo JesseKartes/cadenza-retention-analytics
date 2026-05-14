@@ -26,8 +26,17 @@ def load_data():
 
 def main():
     st.title("Cohort Analysis")
-    st.caption("Each row is a signup-month cohort. Columns are months since signup. "
-               "Read across a row to see how that cohort retains over time.")
+    st.markdown(
+        """
+        **How to read this heatmap:** each **row** is a group of customers who
+        signed up in the same month (the *cohort*). Each **column** is months
+        since signup. Cells show what share of the cohort is still active at
+        that age. **Read across a row** to see how a cohort decays over time;
+        **read down a column** to compare cohorts at the same age. Blank cells
+        mean the cohort hasn't reached that age yet (its M12 is still in the
+        future, for example).
+        """
+    )
 
     customers, subs = load_data()
 
