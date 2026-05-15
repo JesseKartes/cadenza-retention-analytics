@@ -714,3 +714,59 @@ def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
             anniv_year += 1
 
     return opp_rows, stage_history_rows, next_id
+
+
+def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
+                              rng: np.random.Generator, next_id_start: int
+                              ) -> tuple[list[dict], list[dict], int]:
+    """Generate expansion opportunities — one per Phase 1 upgrade event.
+
+    Returns (opp_rows, stage_history_rows, next_id).
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+
+    upgrades = events[events["event_type"] == "upgrade"]
+    cust_by_id = customers.set_index("customer_id")
+
+    for _, ev in upgrades.iterrows():
+        cust_id = ev["customer_id"]
+        if cust_id not in cust_by_id.index:
+            continue
+        c = cust_by_id.loc[cust_id]
+
+        close_date = pd.Timestamp(ev["event_date"])
+        dwell = _sample_dwell_days(rng, EXPANSION_STAGE_DWELL_DAYS["Expansion Discussion"])
+        lead_time = int(rng.integers(30, 61))
+        created_date = close_date - pd.Timedelta(days=lead_time)
+        stage_entered = created_date
+        # Expansion Discussion is a single stage — entered at created_date, exited at close
+        amount = float(ev["mrr_delta"]) * 12.0
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": cust_id,
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "expansion",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": "Closed Won",
+            "status": "closed_won",
+        })
+        stage_history_rows.append({
+            "opportunity_id": opp_id,
+            "stage": "Expansion Discussion",
+            "entered_date": stage_entered.strftime("%Y-%m-%d"),
+            "exited_date": close_date.strftime("%Y-%m-%d"),
+            "days_in_stage": (close_date - stage_entered).days,
+        })
+
+    return opp_rows, stage_history_rows, next_id
