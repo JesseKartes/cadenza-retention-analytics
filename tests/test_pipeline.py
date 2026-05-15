@@ -115,3 +115,21 @@ def test_stage_conversion_returns_zero_when_no_entries(tiny_stage_history):
     # No POC entries in [2025-01-01, 2025-02-01)
     assert stage_conversion(tiny_stage_history, "Proof of Concept", "Negotiation",
                              "2025-01-01", "2025-02-01") == 0.0
+
+
+from src.pipeline import aging_deals
+
+
+def test_aging_deals_filters_by_current_stage_age(tiny_opportunities, tiny_stage_history):
+    # As of 2024-04-01, threshold = 30:
+    #   OPP-2 in POC since 2024-02-15 -> 46 days -> AGING
+    #   OPP-3 in Negotiation since 2024-03-15 -> 17 days -> not aging
+    #   OPP-8 in Discovery since 2024-02-15 -> 46 days -> AGING
+    result = aging_deals(tiny_opportunities, tiny_stage_history, "2024-04-01", 30)
+    assert set(result["opportunity_id"]) == {"OPP-2", "OPP-8"}
+
+
+def test_aging_deals_empty_when_threshold_too_high(tiny_opportunities, tiny_stage_history):
+    # No deal has been in current stage for >365 days at 2024-04-01
+    result = aging_deals(tiny_opportunities, tiny_stage_history, "2024-04-01", 365)
+    assert len(result) == 0

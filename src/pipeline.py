@@ -159,3 +159,29 @@ def stage_conversion(history: pd.DataFrame, from_stage: str, to_stage: str,
         ]["opportunity_id"]
     )
     return len(reached_to_stage) / len(opp_ids_that_exited_from_stage)
+
+
+def aging_deals(opps: pd.DataFrame, history: pd.DataFrame,
+                as_of_date: str, threshold_days: int = 60) -> pd.DataFrame:
+    """Return open opps whose days-in-current-stage exceeds `threshold_days`.
+
+    Days-in-current-stage = as_of_date − entered_date of the row in `history`
+    where opportunity_id matches and exited_date is null.
+
+    Returns a DataFrame with the opp's row plus a `days_in_current_stage` column,
+    sorted descending by that column. Empty DataFrame if no aging deals.
+    """
+    current_stage_entries = history[history["exited_date"].isna()].copy()
+    current_stage_entries["days_in_current_stage"] = (
+        pd.to_datetime(as_of_date) - pd.to_datetime(current_stage_entries["entered_date"])
+    ).dt.days
+
+    aging = current_stage_entries[current_stage_entries["days_in_current_stage"] > threshold_days]
+
+    open_opps = opps[opps["status"] == "open"]
+    joined = open_opps.merge(
+        aging[["opportunity_id", "days_in_current_stage"]],
+        on="opportunity_id",
+        how="inner",
+    )
+    return joined.sort_values("days_in_current_stage", ascending=False)
