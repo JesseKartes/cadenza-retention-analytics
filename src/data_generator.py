@@ -578,3 +578,139 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
             })
 
     return opp_rows, stage_history_rows
+
+
+def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
+                            events: pd.DataFrame, rng: np.random.Generator,
+                            next_id_start: int) -> tuple[list[dict], list[dict], int]:
+    """Generate renewal opportunities. Returns (opp_rows, stage_history_rows, next_id).
+
+    One renewal opp per (customer × annual signup anniversary) that falls within
+    the data window. Win/loss determined by Phase 1 lifecycle:
+      - Won if customer was active 30+ days after anniversary
+      - Lost if customer churned within ±30 days of anniversary
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+
+    data_end = pd.Timestamp("2025-12-31")
+    customer_churn_dates = (
+        events[events["event_type"] == "churn"]
+        .set_index("customer_id")["event_date"]
+        .to_dict()
+    )
+
+    for _, c in customers.iterrows():
+        signup = pd.Timestamp(c["signup_date"])
+        # Check each annual anniversary that falls in the window
+        anniv_year = 1
+        while True:
+            anniv = signup + pd.DateOffset(years=anniv_year)
+            if anniv > data_end:
+                break
+
+            # Determine win/loss
+            churn_date_str = customer_churn_dates.get(c["customer_id"])
+            won = True
+            close_date = anniv
+            if churn_date_str is not None:
+                churn_date = pd.Timestamp(churn_date_str)
+                if abs((anniv - churn_date).days) <= 30:
+                    won = False
+                    close_date = churn_date
+                elif churn_date < anniv:
+                    # Customer churned before this anniversary — no renewal opp at all
+                    anniv_year += 1
+                    continue
+
+            # Amount = customer's MRR at opp creation time × 12
+            created_date = anniv - pd.Timedelta(days=60)
+            # Look up MRR at created_date's month (use start-of-month month string)
+            cust_subs = subs[(subs["customer_id"] == c["customer_id"])]
+            month_key = created_date.strftime("%Y-%m-01")
+            month_row = cust_subs[cust_subs["month"] == month_key]
+            if len(month_row) == 0:
+                # Customer wasn't active at created_date (e.g. churned before) — skip
+                anniv_year += 1
+                continue
+            mrr_at_renewal = float(month_row.iloc[0]["mrr"])
+            amount = mrr_at_renewal * 12.0
+
+            # Stage history: Renewal Discussion -> Negotiation -> Won/Lost
+            disc_dwell = _sample_dwell_days(rng, RENEWAL_STAGE_DWELL_DAYS["Renewal Discussion"])
+            neg_dwell = _sample_dwell_days(rng, RENEWAL_STAGE_DWELL_DAYS["Negotiation"])
+
+            opp_id = f"OPP-{next_id:05d}"
+            next_id += 1
+
+            if won:
+                disc_entered = created_date
+                disc_exited = disc_entered + pd.Timedelta(days=disc_dwell)
+                neg_entered = disc_exited
+                neg_exited = close_date
+                stage_history_rows.append({
+                    "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                    "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                    "exited_date": disc_exited.strftime("%Y-%m-%d"),
+                    "days_in_stage": disc_dwell,
+                })
+                stage_history_rows.append({
+                    "opportunity_id": opp_id, "stage": "Negotiation",
+                    "entered_date": neg_entered.strftime("%Y-%m-%d"),
+                    "exited_date": neg_exited.strftime("%Y-%m-%d"),
+                    "days_in_stage": (neg_exited - neg_entered).days,
+                })
+                current_stage = "Closed Won"
+                status = "closed_won"
+            else:
+                # Lost: died in Renewal Discussion (most common) or Negotiation
+                if rng.random() < 0.7:
+                    death_stage = "Renewal Discussion"
+                else:
+                    death_stage = "Negotiation"
+                if death_stage == "Renewal Discussion":
+                    disc_entered = close_date - pd.Timedelta(days=disc_dwell)
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                        "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                        "exited_date": close_date.strftime("%Y-%m-%d"),
+                        "days_in_stage": (close_date - disc_entered).days,
+                    })
+                    created_date = disc_entered
+                else:
+                    disc_entered = close_date - pd.Timedelta(days=disc_dwell + neg_dwell)
+                    disc_exited = disc_entered + pd.Timedelta(days=disc_dwell)
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                        "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                        "exited_date": disc_exited.strftime("%Y-%m-%d"),
+                        "days_in_stage": disc_dwell,
+                    })
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Negotiation",
+                        "entered_date": disc_exited.strftime("%Y-%m-%d"),
+                        "exited_date": close_date.strftime("%Y-%m-%d"),
+                        "days_in_stage": (close_date - disc_exited).days,
+                    })
+                    created_date = disc_entered
+                current_stage = "Closed Lost"
+                status = "closed_lost"
+
+            opp_rows.append({
+                "opportunity_id": opp_id,
+                "customer_id": c["customer_id"],
+                "account_name": c["company_name"],
+                "segment": c["segment"],
+                "acquisition_channel": c["acquisition_channel"],
+                "owner_rep_id": str(rng.choice(REP_IDS)),
+                "opportunity_type": "renewal",
+                "created_date": created_date.strftime("%Y-%m-%d"),
+                "close_date": close_date.strftime("%Y-%m-%d"),
+                "amount": amount,
+                "current_stage": current_stage,
+                "status": status,
+            })
+            anniv_year += 1
+
+    return opp_rows, stage_history_rows, next_id
