@@ -181,3 +181,49 @@ def tiny_stage_history() -> pd.DataFrame:
         {"opportunity_id": "OPP-8", "stage": "Discovery",        "entered_date": "2024-02-15", "exited_date": None,         "days_in_stage": None},
     ]
     return pd.DataFrame(rows)
+
+
+@pytest.fixture
+def tiny_snapshots() -> pd.DataFrame:
+    """Quarterly pipeline snapshots for forecast metric tests.
+
+    Two snapshot dates, drawing from the same OPP-N deals defined in
+    tiny_opportunities.
+
+    Hand-calculated answers:
+      forecast_buckets(snapshot_date='2024-03-01') =
+          {'commit': 12_000, 'best_case': 260_000, 'pipeline': 40_000}
+        Commit    = OPP-1 (Negotiation)         = 12_000
+        Best Case = OPP-2 + OPP-3 (POC)         = 60_000 + 200_000
+        Pipeline  = OPP-8 (Discovery)           = 40_000
+
+      forecast_accuracy(snapshot_date='2024-03-01') ≈ 1.755
+        weighted_at_snapshot = 0.65*12_000 + 0.40*60_000 + 0.40*200_000 + 0.10*40_000
+                             = 7_800 + 24_000 + 80_000 + 4_000 = 115_800
+        actual closed_won in [2024-03-01, 2024-06-01):
+          OPP-1 (12_000) + OPP-5 (30_000) + OPP-7 (24_000) = 66_000
+        accuracy = 115_800 / 66_000 ≈ 1.755
+    """
+    rows = [
+        {"snapshot_date": "2024-03-01", "opportunity_id": "OPP-1",
+         "stage_at_snapshot": "Negotiation",      "amount": 12_000.0,
+         "forecast_category": "Commit",    "expected_close_date": "2024-03-31"},
+        {"snapshot_date": "2024-03-01", "opportunity_id": "OPP-2",
+         "stage_at_snapshot": "Proof of Concept", "amount": 60_000.0,
+         "forecast_category": "Best Case", "expected_close_date": "2024-06-01"},
+        {"snapshot_date": "2024-03-01", "opportunity_id": "OPP-3",
+         "stage_at_snapshot": "Proof of Concept", "amount": 200_000.0,
+         "forecast_category": "Best Case", "expected_close_date": "2024-05-15"},
+        {"snapshot_date": "2024-03-01", "opportunity_id": "OPP-8",
+         "stage_at_snapshot": "Discovery",        "amount": 40_000.0,
+         "forecast_category": "Pipeline",  "expected_close_date": "2024-08-15"},
+
+        # Second snapshot for trend-test coverage
+        {"snapshot_date": "2024-06-01", "opportunity_id": "OPP-2",
+         "stage_at_snapshot": "Negotiation",      "amount": 60_000.0,
+         "forecast_category": "Commit",    "expected_close_date": "2024-06-01"},
+        {"snapshot_date": "2024-06-01", "opportunity_id": "OPP-8",
+         "stage_at_snapshot": "Qualification",    "amount": 40_000.0,
+         "forecast_category": "Pipeline",  "expected_close_date": "2024-08-15"},
+    ]
+    return pd.DataFrame(rows)
