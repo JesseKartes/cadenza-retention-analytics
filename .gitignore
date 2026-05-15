@@ -22,3 +22,4 @@ venv/
 .playwright-mcp/
 verify-*.png
 debug-*.png
+qa-*.png

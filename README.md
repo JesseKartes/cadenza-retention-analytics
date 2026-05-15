@@ -16,10 +16,10 @@ The dataset deliberately encodes a pattern that real RevOps teams encounter: cus
 
 ## What the dashboard shows
 
-- **Overview** — headline KPIs (ARR ~$X, NRR ~108%, GRR ~91%), MRR waterfall, and trailing-12-month retention trend. At first glance, the company looks healthy.
+- **Overview** — headline KPIs (ARR ~$40M, NRR ~108%, GRR ~94%), MRR waterfall, and trailing-12-month retention trend. At first glance, the company looks healthy.
 - **Cohort Analysis** — the heatmap. Filter to "Self-Serve Promo" and the Q3 2024 cohort lights up red.
 - **Segment & Channel Deep-Dive** — quantifies the gap. Self-Serve Promo logo churn comes in around 28% — nearly 2× the ~15% average across other channels — while its GRR (~92%) drags the bottom of the table.
-- **Pipeline** — pipeline coverage, weighted pipeline, stage velocity heatmap (surfaces the Mid-Market POC stall), stage conversion, and aging deals.
+- **Pipeline** — new-business pipeline coverage, weighted pipeline, stage velocity heatmap (surfaces the Mid-Market POC stall), stage conversion, and aging deals. Renewal and expansion analytics are deferred — see About.
 - **Forecasting** — commit/best-case/pipeline buckets, forecast accuracy trend across 8 quarterly snapshots, and per-segment forecast bias.
 - **About** — methodology, metric formulas, and what I'd recommend at a real company (CSM intervention plan, channel-quality scoring, tighter promo gating).
 
@@ -36,7 +36,7 @@ Python data generator  →  3 flat CSVs  →  pandas metric/cohort modules  → 
 - `src/forecast.py` — forecast buckets, accuracy trend, per-segment bias. Pure pandas functions.
 - `src/viz.py` — Plotly figure builders. Pure functions, no Streamlit imports.
 - `Overview.py` + `pages/*.py` — six-page dashboard.
-- `tests/` — pytest suite. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. The data generator has sanity tests that lock in the engineered pattern.
+- `tests/` — 44-test pytest suite across both phases. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. Sanity tests lock in both engineered insights (Self-Serve Promo churn, Mid-Market POC stall) so future tuning can't accidentally erase them.
 
 ## Running it locally
 

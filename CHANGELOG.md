@@ -6,11 +6,12 @@ All notable changes to this project will be documented here.
 
 **Date:** 2026-05-15
 
-- Generator extended with opportunities, opportunity_stage_history, pipeline_snapshots tables (~2,031 opportunities, ~5,217 stage history rows, 1,130 snapshots across 8 quarters)
+- Generator extended with opportunities, opportunity_stage_history, pipeline_snapshots tables (~3,451 opportunities, ~8,570 stage history rows, ~1,591 snapshots across 8 quarters)
+- New-business closed-lost population sized so TTM Win Rate lands around 23% — matching the SaaS-industry benchmark of 25-35% (previously, won deals were seeded 1:1 with Phase 1 customers, inflating Win Rate to ~83% with only 80 lost deals as a counterweight)
 - Three opportunity types modeled distinctly: new_business, renewal, expansion — linked to Phase 1 customers via customer_id FK
 - Self-Serve Promo customers have no opportunity (self-serve is no-touch)
 - Two new Streamlit pages:
-  - **Pipeline** — new-business pipeline only (KPIs, stage funnel, stage velocity heatmap, conversion table, aging deals)
+  - **Pipeline** — new-business pipeline only (KPIs, pipeline-by-stage bar, stage velocity heatmap, conversion table, aging deals)
   - **Forecasting** — aggregates all three motions (commit/best-case/pipeline buckets, accuracy trend, per-segment bias)
 - New pure-function modules: `src/pipeline.py`, `src/forecast.py`
 - New figure builders in `src/viz.py`: `pipeline_by_stage_figure`, `stage_velocity_heatmap`, `forecast_buckets_figure`, `forecast_bias_bar`
