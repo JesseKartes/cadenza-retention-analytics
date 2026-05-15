@@ -42,13 +42,12 @@ src/data_generator.py → data/generated/*.csv → src/metrics.py + src/cohorts.
 
 ## Starting Phase 3
 
-Phase 2 is complete. Read `docs/superpowers/phase1-retrospective.md` for handoff conventions, then invoke `superpowers:brainstorming` to design Phase 3 (Quota Attainment & Rep Performance).
+Read `docs/superpowers/phase2-retrospective.md` for handoff conventions, the "what NOT to touch" list, and the Phase 3 entry-point checklist (it points back to `phase1-retrospective.md` for deeper architectural context). Then invoke `superpowers:brainstorming` to design Phase 3 (Quota Attainment & Rep Performance).
 
-Phase 3 lives in the same repo. New modules (`src/quota.py`, etc.), new pages (`pages/8_*.py`, etc.). Same fixtures pattern, same brand palette, same commit conventions.
+Phase 3 lives in the same repo. New module (`src/quota.py`), new page (`pages/7_Quota.py` — and renumber About to `pages/8_About.py`). Same fixtures pattern, same brand palette, same commit conventions.
 
 ## Reference docs
 
-- Design spec: `docs/superpowers/specs/2026-05-13-cadenza-retention-analytics-design.md`
-- Implementation plan: `docs/superpowers/plans/2026-05-13-cadenza-retention-analytics.md`
-- Phase 1 retrospective + Phase 2 entry point: `docs/superpowers/phase1-retrospective.md`
+- Phase 1: spec `docs/superpowers/specs/2026-05-13-cadenza-retention-analytics-design.md`, plan `docs/superpowers/plans/2026-05-13-cadenza-retention-analytics.md`, retrospective `docs/superpowers/phase1-retrospective.md`
+- Phase 2: spec `docs/superpowers/specs/2026-05-15-cadenza-phase2-pipeline-forecasting-design.md`, plan `docs/superpowers/plans/2026-05-15-cadenza-phase2-pipeline-forecasting.md`, retrospective `docs/superpowers/phase2-retrospective.md`
 - Release notes: `CHANGELOG.md`
