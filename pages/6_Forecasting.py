@@ -25,7 +25,10 @@ def load_data():
 
 def main():
     st.title("Forecasting")
-    st.caption("Quarterly forecast buckets, accuracy trend, and segment-level bias.")
+    st.caption("Quarterly forecast buckets, accuracy trend, and segment-level "
+               "bias. Forecast aggregates across new-business, renewal, and "
+               "expansion motions — that's how real forecast calls work. For "
+               "new-business stage analytics, see the Pipeline page.")
 
     opps, snapshots = load_data()
 

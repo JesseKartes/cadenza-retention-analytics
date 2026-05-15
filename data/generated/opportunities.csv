@@ -1906,3 +1906,127 @@ OPP-01904,CUST-1571,North Dynamics,Mid-Market,Event/Conference,REP-02,expansion,
 OPP-01905,CUST-1644,Glide Solutions,SMB,Outbound Sales,REP-08,expansion,2025-11-15,2025-12-15,600.0,Closed Won,closed_won
 OPP-01906,CUST-1651,Quantum Works,SMB,Event/Conference,REP-08,expansion,2025-10-24,2025-12-15,600.0,Closed Won,closed_won
 OPP-01907,CUST-1722,Quantum Co,SMB,Outbound Sales,REP-01,expansion,2025-10-26,2025-12-15,600.0,Closed Won,closed_won
+OPP-01908,CUST-1001,Helix Works,Mid-Market,Inbound Marketing,REP-11,renewal,2025-11-20,2026-01-19,51000.0,Renewal Discussion,open
+OPP-01909,CUST-1003,Cobalt Logic,Mid-Market,Partner Referral,REP-06,renewal,2025-11-13,2026-01-12,73440.0,Renewal Discussion,open
+OPP-01910,CUST-1004,Halcyon Industries,SMB,Event/Conference,REP-02,renewal,2025-11-06,2026-01-05,6600.0,Renewal Discussion,open
+OPP-01911,CUST-1005,Beacon Holdings,Enterprise,Event/Conference,REP-11,renewal,2025-11-07,2026-01-06,1581000.0,Renewal Discussion,open
+OPP-01912,CUST-1007,Tessera Holdings,SMB,Inbound Marketing,REP-07,renewal,2025-11-05,2026-01-04,7200.0,Negotiation,open
+OPP-01913,CUST-1009,Vector Industries,Mid-Market,Event/Conference,REP-04,renewal,2025-11-09,2026-01-08,99360.0,Negotiation,open
+OPP-01914,CUST-1010,Marlin Holdings,SMB,Outbound Sales,REP-06,renewal,2025-11-23,2026-01-22,7200.0,Renewal Discussion,open
+OPP-01915,CUST-1013,Reverb Logic,SMB,Inbound Marketing,REP-03,renewal,2025-11-13,2026-01-12,4800.0,Renewal Discussion,open
+OPP-01916,CUST-1014,Lattice Cloud,Mid-Market,Outbound Sales,REP-01,renewal,2025-11-25,2026-01-24,36600.0,Renewal Discussion,open
+OPP-01917,CUST-1015,Stratus Dynamics,SMB,Inbound Marketing,REP-05,renewal,2025-11-19,2026-01-18,25920.0,Renewal Discussion,open
+OPP-01918,CUST-1016,Halcyon Industries,SMB,Outbound Sales,REP-06,renewal,2025-11-22,2026-01-21,8400.0,Renewal Discussion,open
+OPP-01919,CUST-1018,Apex Group,SMB,Partner Referral,REP-05,renewal,2025-11-27,2026-01-26,4800.0,Renewal Discussion,open
+OPP-01920,CUST-1223,Glide Cloud,SMB,Event/Conference,REP-10,renewal,2025-10-06,2025-12-05,8400.0,Negotiation,open
+OPP-01921,CUST-1226,Lattice Group,SMB,Outbound Sales,REP-12,renewal,2025-10-06,2025-12-05,10080.0,Negotiation,open
+OPP-01922,CUST-1227,Stratus Systems,SMB,Inbound Marketing,REP-06,renewal,2025-10-18,2025-12-17,7800.0,Renewal Discussion,open
+OPP-01923,CUST-1230,Reverb Works,SMB,Inbound Marketing,REP-06,renewal,2025-10-14,2025-12-13,11400.0,Renewal Discussion,open
+OPP-01924,CUST-1231,Citron Holdings,Mid-Market,Outbound Sales,REP-06,renewal,2025-10-15,2025-12-14,102000.0,Negotiation,open
+OPP-01925,CUST-1233,Plinth Dynamics,SMB,Outbound Sales,REP-12,renewal,2025-10-17,2025-12-16,2880.0,Negotiation,open
+OPP-01926,CUST-1234,Anvil Solutions,SMB,Partner Referral,REP-05,renewal,2025-10-23,2025-12-22,11520.0,Renewal Discussion,open
+OPP-01927,CUST-1235,Lattice Industries,SMB,Inbound Marketing,REP-03,renewal,2025-10-14,2025-12-13,3600.0,Negotiation,open
+OPP-01928,CUST-1236,Apex Group,SMB,Inbound Marketing,REP-07,renewal,2025-10-16,2025-12-15,6600.0,Negotiation,open
+OPP-01929,CUST-1239,Reverb Labs,Mid-Market,Inbound Marketing,REP-11,renewal,2025-10-17,2025-12-16,213000.0,Negotiation,open
+OPP-01930,CUST-1240,Halcyon Systems,SMB,Inbound Marketing,REP-02,renewal,2025-10-11,2025-12-10,1800.0,Negotiation,open
+OPP-01931,CUST-1243,Mosaic Network,SMB,Inbound Marketing,REP-08,renewal,2025-11-28,2026-01-27,4320.0,Renewal Discussion,open
+OPP-01932,CUST-1247,Citron Holdings,SMB,Event/Conference,REP-07,renewal,2025-11-16,2026-01-15,7800.0,Renewal Discussion,open
+OPP-01933,CUST-1249,Plinth Systems,SMB,Inbound Marketing,REP-06,renewal,2025-11-05,2026-01-04,4800.0,Renewal Discussion,open
+OPP-01934,CUST-1250,Mosaic Dynamics,SMB,Event/Conference,REP-07,renewal,2025-11-08,2026-01-07,3600.0,Renewal Discussion,open
+OPP-01935,CUST-1251,Beacon Holdings,SMB,Partner Referral,REP-03,renewal,2025-11-19,2026-01-18,20160.0,Negotiation,open
+OPP-01936,CUST-1252,Reverb Industries,SMB,Inbound Marketing,REP-04,renewal,2025-11-14,2026-01-13,30000.0,Renewal Discussion,open
+OPP-01937,CUST-1255,Reverb Labs,Mid-Market,Inbound Marketing,REP-06,renewal,2025-11-14,2026-01-13,77760.0,Renewal Discussion,open
+OPP-01938,CUST-1259,Glide Dynamics,Enterprise,Self-Serve Promo,REP-08,renewal,2025-11-14,2026-01-13,987000.0,Renewal Discussion,open
+OPP-01939,CUST-1260,Mosaic Solutions,SMB,Outbound Sales,REP-02,renewal,2025-11-17,2026-01-16,4200.0,Renewal Discussion,open
+OPP-01940,CUST-1525,Stratus Labs,SMB,Inbound Marketing,REP-08,renewal,2025-10-07,2025-12-06,4200.0,Negotiation,open
+OPP-01941,CUST-1526,Reverb Partners,SMB,Outbound Sales,REP-08,renewal,2025-10-25,2025-12-24,9600.0,Renewal Discussion,open
+OPP-01942,CUST-1527,Stratus Systems,SMB,Event/Conference,REP-04,renewal,2025-10-28,2025-12-27,4800.0,Negotiation,open
+OPP-01943,CUST-1528,Quantum Dynamics,SMB,Inbound Marketing,REP-10,renewal,2025-10-10,2025-12-09,20160.0,Negotiation,open
+OPP-01944,CUST-1529,Stratus Cloud,SMB,Partner Referral,REP-01,renewal,2025-10-03,2025-12-02,17280.0,Negotiation,open
+OPP-01945,CUST-1530,Tessera Works,Mid-Market,Outbound Sales,REP-09,renewal,2025-10-06,2025-12-05,80640.0,Negotiation,open
+OPP-01946,CUST-1532,Apex Systems,SMB,Outbound Sales,REP-06,renewal,2025-10-18,2025-12-17,9600.0,Negotiation,open
+OPP-01947,CUST-1533,Citron Co,SMB,Inbound Marketing,REP-05,renewal,2025-10-20,2025-12-19,4200.0,Negotiation,open
+OPP-01948,CUST-1534,Cobalt Solutions,SMB,Event/Conference,REP-12,renewal,2025-10-23,2025-12-22,3000.0,Renewal Discussion,open
+OPP-01949,CUST-1535,Glide Logic,SMB,Outbound Sales,REP-04,renewal,2025-10-28,2025-12-27,3000.0,Negotiation,open
+OPP-01950,CUST-1536,Lattice Partners,SMB,Outbound Sales,REP-11,renewal,2025-10-05,2025-12-04,7200.0,Negotiation,open
+OPP-01951,CUST-1537,Helix Systems,Enterprise,Event/Conference,REP-03,renewal,2025-10-22,2025-12-21,151200.0,Renewal Discussion,open
+OPP-01952,CUST-1538,North Group,SMB,Inbound Marketing,REP-08,renewal,2025-10-16,2025-12-15,8400.0,Negotiation,open
+OPP-01953,CUST-1539,Halcyon Co,Mid-Market,Self-Serve Promo,REP-07,renewal,2025-10-04,2025-12-03,210000.0,Negotiation,open
+OPP-01954,CUST-1540,Plinth Digital,SMB,Inbound Marketing,REP-06,renewal,2025-10-06,2025-12-05,3600.0,Negotiation,open
+OPP-01955,CUST-1541,Anvil Partners,SMB,Partner Referral,REP-05,renewal,2025-10-27,2025-12-26,3600.0,Renewal Discussion,open
+OPP-01956,CUST-1542,Glide Systems,SMB,Self-Serve Promo,REP-12,renewal,2025-10-18,2025-12-17,18720.0,Negotiation,open
+OPP-01957,CUST-1543,Halcyon Logic,SMB,Outbound Sales,REP-11,renewal,2025-10-03,2025-12-02,3600.0,Negotiation,open
+OPP-01958,CUST-1544,Mosaic Cloud,SMB,Outbound Sales,REP-12,renewal,2025-10-18,2025-12-17,1800.0,Negotiation,open
+OPP-01959,CUST-1545,Mosaic Industries,SMB,Inbound Marketing,REP-03,renewal,2025-11-14,2026-01-13,1800.0,Renewal Discussion,open
+OPP-01960,CUST-1546,Plinth Holdings,Enterprise,Outbound Sales,REP-10,renewal,2025-11-19,2026-01-18,459000.0,Negotiation,open
+OPP-01961,CUST-1547,Citron Works,Mid-Market,Outbound Sales,REP-10,renewal,2025-11-17,2026-01-16,97920.0,Negotiation,open
+OPP-01962,CUST-1548,Halcyon Holdings,Mid-Market,Outbound Sales,REP-03,renewal,2025-11-15,2026-01-14,57000.0,Renewal Discussion,open
+OPP-01963,CUST-1550,Plinth Systems,SMB,Self-Serve Promo,REP-07,renewal,2025-11-05,2026-01-04,3600.0,Negotiation,open
+OPP-01964,CUST-1551,Marlin Dynamics,SMB,Outbound Sales,REP-09,renewal,2025-11-18,2026-01-17,4320.0,Negotiation,open
+OPP-01965,CUST-1552,Reverb Works,SMB,Outbound Sales,REP-11,renewal,2025-11-06,2026-01-05,7800.0,Negotiation,open
+OPP-01966,CUST-1553,Anvil Dynamics,SMB,Outbound Sales,REP-04,renewal,2025-11-19,2026-01-18,6000.0,Renewal Discussion,open
+OPP-01967,CUST-1554,Reverb Systems,Mid-Market,Inbound Marketing,REP-01,renewal,2025-11-07,2026-01-06,102240.0,Negotiation,open
+OPP-01968,CUST-1556,Marlin Systems,Mid-Market,Partner Referral,REP-07,renewal,2025-11-14,2026-01-13,93600.0,Renewal Discussion,open
+OPP-01969,CUST-1557,Quantum Logic,SMB,Outbound Sales,REP-07,renewal,2025-11-13,2026-01-12,9600.0,Renewal Discussion,open
+OPP-01970,CUST-1558,Helix Systems,SMB,Inbound Marketing,REP-01,renewal,2025-11-19,2026-01-18,8400.0,Renewal Discussion,open
+OPP-01971,CUST-1560,Plinth Solutions,Mid-Market,Inbound Marketing,REP-04,renewal,2025-11-04,2026-01-03,87840.0,Negotiation,open
+OPP-01972,CUST-1561,Mosaic Solutions,SMB,Outbound Sales,REP-02,renewal,2025-11-23,2026-01-22,4200.0,Renewal Discussion,open
+OPP-01973,CUST-1562,Anvil Dynamics,SMB,Inbound Marketing,REP-02,renewal,2025-11-23,2026-01-22,4200.0,Renewal Discussion,open
+OPP-01974,CUST-1767,Beacon Labs,SMB,Inbound Marketing,REP-07,renewal,2025-10-20,2025-12-19,2400.0,Negotiation,open
+OPP-01975,CUST-1768,Beacon Holdings,SMB,Outbound Sales,REP-01,renewal,2025-10-22,2025-12-21,9000.0,Negotiation,open
+OPP-01976,CUST-1769,Reverb Partners,SMB,Event/Conference,REP-02,renewal,2025-10-06,2025-12-05,8400.0,Negotiation,open
+OPP-01977,CUST-1770,Halcyon Industries,Enterprise,Outbound Sales,REP-10,renewal,2025-10-12,2025-12-11,474000.0,Negotiation,open
+OPP-01978,CUST-1771,Marlin Industries,SMB,Inbound Marketing,REP-08,renewal,2025-10-16,2025-12-15,11520.0,Negotiation,open
+OPP-01979,CUST-1772,Tessera Dynamics,Mid-Market,Inbound Marketing,REP-12,renewal,2025-10-16,2025-12-15,89280.0,Negotiation,open
+OPP-01980,CUST-1773,Vector Group,Mid-Market,Outbound Sales,REP-10,renewal,2025-10-23,2025-12-22,30600.0,Negotiation,open
+OPP-01981,CUST-1774,Apex Network,SMB,Inbound Marketing,REP-03,renewal,2025-10-20,2025-12-19,5760.0,Negotiation,open
+OPP-01982,CUST-1775,Halcyon Cloud,SMB,Event/Conference,REP-12,renewal,2025-10-27,2025-12-26,6000.0,Renewal Discussion,open
+OPP-01983,CUST-1776,Stratus Holdings,Mid-Market,Partner Referral,REP-08,renewal,2025-10-10,2025-12-09,46080.0,Negotiation,open
+OPP-01984,CUST-1777,Quantum Network,Mid-Market,Self-Serve Promo,REP-06,renewal,2025-10-14,2025-12-13,129000.0,Renewal Discussion,open
+OPP-01985,CUST-1778,Glide Cloud,SMB,Outbound Sales,REP-09,renewal,2025-10-27,2025-12-26,8400.0,Negotiation,open
+OPP-01986,CUST-1779,Mosaic Works,Mid-Market,Outbound Sales,REP-09,renewal,2025-10-18,2025-12-17,31680.0,Negotiation,open
+OPP-01987,CUST-1780,Reverb Cloud,SMB,Event/Conference,REP-06,renewal,2025-10-17,2025-12-16,8400.0,Negotiation,open
+OPP-01988,CUST-1781,Citron Network,SMB,Outbound Sales,REP-10,renewal,2025-10-17,2025-12-16,7200.0,Negotiation,open
+OPP-01989,CUST-1782,Tessera Network,SMB,Inbound Marketing,REP-10,renewal,2025-10-10,2025-12-09,4800.0,Negotiation,open
+OPP-01990,CUST-1785,Stratus Digital,SMB,Event/Conference,REP-06,renewal,2025-10-18,2025-12-17,4800.0,Renewal Discussion,open
+OPP-01991,CUST-1786,Citron Labs,Mid-Market,Inbound Marketing,REP-12,renewal,2025-10-26,2025-12-25,90720.0,Renewal Discussion,open
+OPP-01992,CUST-1562,Anvil Dynamics,SMB,Inbound Marketing,REP-02,expansion,2025-11-07,2026-01-26,678.7217929996245,Expansion Discussion,open
+OPP-01993,CUST-1770,Halcyon Industries,Enterprise,Outbound Sales,REP-06,expansion,2025-11-07,2026-01-02,121396.06121385709,Expansion Discussion,open
+OPP-01994,CUST-1083,Halcyon Systems,Mid-Market,Self-Serve Promo,REP-05,expansion,2025-10-26,2026-01-28,4645.985730526489,Expansion Discussion,open
+OPP-01995,CUST-1476,Helix Dynamics,SMB,Self-Serve Promo,REP-10,expansion,2025-10-19,2026-01-25,705.6631032053346,Expansion Discussion,open
+OPP-01996,CUST-1725,Stratus Logic,SMB,Outbound Sales,REP-04,expansion,2025-11-13,2026-01-22,335.30485168387145,Expansion Discussion,open
+OPP-01997,CUST-1640,Citron Network,Mid-Market,Partner Referral,REP-04,expansion,2025-10-21,2026-01-25,11815.028744307781,Expansion Discussion,open
+OPP-01998,CUST-1268,Apex Co,SMB,Event/Conference,REP-03,expansion,2025-10-30,2026-01-01,1390.6998636969988,Expansion Discussion,open
+OPP-01999,CUST-1301,North Digital,SMB,Outbound Sales,REP-07,expansion,2025-11-15,2026-01-27,1056.6762399076722,Expansion Discussion,open
+OPP-02000,CUST-1178,Stratus Partners,SMB,Partner Referral,REP-07,expansion,2025-10-19,2026-01-07,2051.5627865266883,Expansion Discussion,open
+OPP-02001,CUST-1571,North Dynamics,Mid-Market,Event/Conference,REP-10,expansion,2025-11-04,2026-01-01,3121.2103190773164,Expansion Discussion,open
+OPP-02002,CUST-1377,Quantum Logic,SMB,Inbound Marketing,REP-05,expansion,2025-10-20,2026-01-09,2065.25499523287,Expansion Discussion,open
+OPP-02003,CUST-1776,Stratus Holdings,Mid-Market,Partner Referral,REP-05,expansion,2025-10-18,2026-01-01,12705.284466377332,Expansion Discussion,open
+OPP-02004,CUST-1284,Reverb Holdings,SMB,Partner Referral,REP-09,expansion,2025-10-17,2026-01-30,5132.552767719476,Expansion Discussion,open
+OPP-02005,CUST-1654,Reverb Partners,Mid-Market,Outbound Sales,REP-08,expansion,2025-10-13,2026-01-25,5859.62751470307,Expansion Discussion,open
+OPP-02006,CUST-1160,Plinth Partners,Mid-Market,Inbound Marketing,REP-12,expansion,2025-11-08,2026-01-18,24933.59304020932,Expansion Discussion,open
+OPP-02007,CUST-1543,Halcyon Logic,SMB,Outbound Sales,REP-12,expansion,2025-10-29,2026-01-28,513.4690119419931,Expansion Discussion,open
+OPP-02008,CUST-1240,Halcyon Systems,SMB,Inbound Marketing,REP-06,expansion,2025-10-20,2026-01-23,433.8621854453732,Expansion Discussion,open
+OPP-02009,CUST-1523,Glide Logic,SMB,Outbound Sales,REP-02,expansion,2025-10-27,2026-01-14,975.4508737379205,Expansion Discussion,open
+OPP-02010,CUST-1464,Citron Logic,SMB,Self-Serve Promo,REP-02,expansion,2025-11-06,2026-01-13,1441.677522952073,Expansion Discussion,open
+OPP-02011,CUST-1344,Vector Works,SMB,Event/Conference,REP-06,expansion,2025-11-04,2026-01-28,168.68692668507825,Expansion Discussion,open
+OPP-02012,CUST-1628,North Labs,Mid-Market,Partner Referral,REP-12,expansion,2025-11-15,2026-01-24,16048.668823528764,Expansion Discussion,open
+OPP-02013,CUST-1293,Tessera Logic,Enterprise,Outbound Sales,REP-02,expansion,2025-11-18,2026-01-22,347442.6898169702,Expansion Discussion,open
+OPP-02014,CUST-1343,Stratus Group,SMB,Inbound Marketing,REP-08,expansion,2025-10-16,2026-01-27,4299.199522138213,Expansion Discussion,open
+OPP-02015,CUST-1115,Cobalt Network,SMB,Inbound Marketing,REP-04,expansion,2025-10-29,2026-01-12,1704.8161894022576,Expansion Discussion,open
+OPP-02016,CUST-1356,Citron Network,Enterprise,Event/Conference,REP-03,expansion,2025-11-11,2026-01-28,262124.6472177301,Expansion Discussion,open
+OPP-02017,CUST-1442,Halcyon Labs,SMB,Partner Referral,REP-09,expansion,2025-10-19,2026-01-24,984.7916327049801,Expansion Discussion,open
+OPP-02018,CUST-1715,Mosaic Co,Mid-Market,Outbound Sales,REP-01,expansion,2025-10-22,2026-01-16,36713.62500885239,Expansion Discussion,open
+OPP-02019,CUST-1446,Tessera Systems,SMB,Inbound Marketing,REP-12,expansion,2025-10-15,2026-01-23,864.3879509790629,Expansion Discussion,open
+OPP-02020,CUST-1449,Reverb Co,SMB,Self-Serve Promo,REP-06,expansion,2025-10-30,2026-01-11,2552.3966383864126,Expansion Discussion,open
+OPP-02021,CUST-1750,Beacon Dynamics,Enterprise,Self-Serve Promo,REP-08,expansion,2025-10-30,2026-01-01,197189.0097829292,Expansion Discussion,open
+OPP-02022,CUST-1482,Glide Labs,Mid-Market,Self-Serve Promo,REP-09,expansion,2025-10-15,2026-01-13,33960.54291489021,Expansion Discussion,open
+OPP-02023,CUST-1744,Apex Solutions,SMB,Outbound Sales,REP-05,expansion,2025-11-18,2026-01-09,1759.9476121550133,Expansion Discussion,open
+OPP-02024,CUST-1342,Plinth Systems,SMB,Inbound Marketing,REP-10,expansion,2025-11-18,2026-01-14,1272.206388810965,Expansion Discussion,open
+OPP-02025,CUST-1663,Tessera Solutions,SMB,Event/Conference,REP-09,expansion,2025-10-30,2026-01-06,1224.4406238634513,Expansion Discussion,open
+OPP-02026,CUST-1028,Quantum Group,SMB,Event/Conference,REP-07,expansion,2025-10-23,2026-01-07,1833.3309060263791,Expansion Discussion,open
+OPP-02027,CUST-1194,Reverb Partners,SMB,Partner Referral,REP-11,expansion,2025-10-25,2026-01-16,2000.4960870876473,Expansion Discussion,open
+OPP-02028,CUST-1625,Reverb Group,Enterprise,Outbound Sales,REP-02,expansion,2025-11-09,2026-01-20,47653.36192266649,Expansion Discussion,open
+OPP-02029,CUST-1358,Glide Partners,Mid-Market,Outbound Sales,REP-10,expansion,2025-11-21,2026-01-07,10148.80817181283,Expansion Discussion,open
+OPP-02030,CUST-1345,Vector Industries,SMB,Outbound Sales,REP-06,expansion,2025-10-29,2026-01-01,890.3963679563878,Expansion Discussion,open
+OPP-02031,CUST-1735,Citron Solutions,Mid-Market,Inbound Marketing,REP-04,expansion,2025-10-30,2026-01-01,16035.234750908854,Expansion Discussion,open

@@ -116,10 +116,14 @@ def grouped_metric_bar(df: pd.DataFrame, group_col: str, value_col: str, title: 
     return fig
 
 
-def stage_funnel_figure(opps: pd.DataFrame, as_of_date: str) -> go.Figure:
-    """Funnel of total pipeline $ by stage, new_business deals only.
+def pipeline_by_stage_figure(opps: pd.DataFrame, as_of_date: str) -> go.Figure:
+    """Horizontal bar chart of current pipeline $ by stage, new_business only.
 
-    Stages in NB order; bars colored from cyan (early) to indigo (late).
+    Stages in flow order top-to-bottom (Discovery → Negotiation). Bars colored
+    from cyan (early stages) to deep indigo (late stages). Not a funnel —
+    funnels imply attrition through stages, but this is a point-in-time
+    snapshot where late stages typically hold more $ (bigger deals closer
+    to close). A horizontal bar is the honest representation.
     """
     nb_open = opps[
         (opps["opportunity_type"] == "new_business")
@@ -129,16 +133,22 @@ def stage_funnel_figure(opps: pd.DataFrame, as_of_date: str) -> go.Figure:
     stages = ["Discovery", "Qualification", "Proof of Concept", "Negotiation"]
     by_stage = nb_open.groupby("current_stage")["amount"].sum().reindex(stages, fill_value=0)
 
-    fig = go.Figure(go.Funnel(
-        y=stages,
+    fig = go.Figure(go.Bar(
         x=by_stage.values,
-        textinfo="value+percent initial",
+        y=stages,
+        orientation="h",
         marker={"color": [CADENZA_ACCENT, "#0EA5E9", CADENZA_PRIMARY, "#0F172A"]},
+        text=[f"${v:,.0f}" for v in by_stage.values],
+        textposition="outside",
+        cliponaxis=False,
     ))
     fig.update_layout(
         title="Pipeline by Stage (New Business)",
-        height=420,
+        height=380,
         xaxis_title="Pipeline ($)",
+        yaxis={"autorange": "reversed"},
+        showlegend=False,
+        margin={"r": 120},
     )
     return fig
 
@@ -210,9 +220,16 @@ def forecast_buckets_figure(buckets: dict[str, float], target: float | None = No
     fig.update_layout(
         barmode="stack",
         title="Forecast Buckets",
-        height=200,
+        height=260,
         xaxis_title="$",
         showlegend=True,
+        legend={
+            "orientation": "h",
+            "yanchor": "top",
+            "y": -0.4,
+            "xanchor": "center",
+            "x": 0.5,
+        },
     )
     return fig
 

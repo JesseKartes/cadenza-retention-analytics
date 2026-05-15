@@ -6,21 +6,25 @@ All notable changes to this project will be documented here.
 
 **Date:** 2026-05-15
 
-- Generator extended with opportunities, opportunity_stage_history, pipeline_snapshots tables (~1,907 opportunities, ~5,046 stage history rows, 1,130 snapshots across 8 quarters)
+- Generator extended with opportunities, opportunity_stage_history, pipeline_snapshots tables (~2,031 opportunities, ~5,217 stage history rows, 1,130 snapshots across 8 quarters)
 - Three opportunity types modeled distinctly: new_business, renewal, expansion — linked to Phase 1 customers via customer_id FK
 - Self-Serve Promo customers have no opportunity (self-serve is no-touch)
 - Two new Streamlit pages:
-  - **Pipeline** (KPIs, stage funnel, stage velocity heatmap, conversion table, aging deals)
-  - **Forecasting** (commit/best-case/pipeline buckets, accuracy trend, per-segment bias)
+  - **Pipeline** — new-business pipeline only (KPIs, stage funnel, stage velocity heatmap, conversion table, aging deals)
+  - **Forecasting** — aggregates all three motions (commit/best-case/pipeline buckets, accuracy trend, per-segment bias)
 - New pure-function modules: `src/pipeline.py`, `src/forecast.py`
-- New figure builders in `src/viz.py`: stage_funnel_figure, stage_velocity_heatmap, forecast_buckets_figure, forecast_bias_bar
+- New figure builders in `src/viz.py`: `pipeline_by_stage_figure`, `stage_velocity_heatmap`, `forecast_buckets_figure`, `forecast_bias_bar`
 - Engineered insight: **Mid-Market POC stall** — Mid-Market deals dwell in Proof of Concept ~2.9× longer than SMB, with POC→Negotiation conversion at ~half the rate. Surfaces in the Stage Velocity Heatmap.
 - Phase 1 invariants enforced via test: customers.csv / subscriptions.csv / events.csv remain byte-identical after Phase 2 generator runs
 - Insight-protection test: Mid-Market POC dwell must remain ≥ 2× SMB; fails informatively if future tuning weakens the engineered pattern
 - `pages/4_About.py` renamed to `pages/7_About.py` for sidebar ordering (About now appears last, after Pipeline and Forecasting)
-- About page extended with Phase 2 metric definitions and narrative
+- About page extended with Phase 2 metric definitions, narrative, and a Scope & deferrals section
 - ~24 new pytest tests (15 metric tests + 7 forecast tests + 2 guardrail tests); total suite 44 tests, all green
 - No new dependencies; Python 3.12 unchanged
+
+### Scope and deferrals
+
+The Pipeline page is intentionally scoped to **net-new acquisition only** — the funnel, stage velocity, and conversion analyses assume the new-business five-stage cycle. Renewal and expansion data exist in the model and feed the Forecasting page's commit/best-case/pipeline buckets (a real forecast call blends all three motions), but **dedicated renewal-management and expansion-pipeline analytics — at-risk renewals, gross renewal rate trend, expansion attainment, cross-sell mix — are deferred to a future phase (Phase 2.5+)**. In a real RevOps stack those workflows typically live in a separate tool surface (e.g., Gainsight for renewals) owned by CSM/AM teams; they deserve their own page rather than being grafted onto a new-business funnel.
 
 ---
 

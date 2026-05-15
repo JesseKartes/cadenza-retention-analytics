@@ -51,6 +51,20 @@ def main():
         Surfaces in the Stage Velocity Heatmap on the Pipeline page. The recommendation:
         the POC motion is built for SMB (fast, self-guided) and Enterprise (custom,
         white-glove); Mid-Market falls in the gap and needs its own playbook.
+
+        ### Scope and deferrals
+
+        The Pipeline page is scoped to **net-new acquisition only** — the funnel,
+        stage velocity, and conversion analyses all assume the new-business
+        five-stage cycle. Renewals and expansions exist in the data model and
+        feed the Forecasting page's commit/best-case/pipeline buckets (because
+        a real forecast call blends all three motions), but dedicated
+        renewal-management and expansion-pipeline analytics — at-risk renewals,
+        gross renewal rate trend, expansion attainment, cross-sell mix — are
+        **deferred to a future phase (Phase 2.5+)**. In a real RevOps stack
+        those workflows are typically owned by CSM/AM teams in a separate
+        tool surface (e.g., Gainsight for renewals); they deserve their own
+        page rather than being grafted onto a new-business funnel.
         """
     )
 
@@ -76,7 +90,7 @@ def main():
         | **Total Pipeline** | sum(amount) for open opps with created_date ≤ as_of | Includes all opp types unless filtered. |
         | **Weighted Pipeline** | sum(amount × stage_probability) for open opps | Discovery 10%, Qualification 20%, POC 40%, Negotiation 65%. |
         | **Pipeline Coverage** | total_pipeline ÷ quarter_target | Reported as a multiple; 3.0× is the conventional healthy threshold. |
-        | **Win Rate (TTM)** | closed_won ÷ (closed_won + closed_lost) over close_date window | Pre-filter by opp_type — renewals win ~90%, new business ~25%. |
+        | **Win Rate (TTM)** | closed_won ÷ (closed_won + closed_lost) over close_date window | Pipeline page reports new-business win rate. Real-world: renewals win ~90%, new business ~25–35%. |
         | **Avg Sales Cycle (days)** | mean(close_date − created_date) for closed-won in window | Closed-won only; loss cycles distort. |
         | **Avg Days in Stage** | mean(days_in_stage) over completed (exited) stage occupancies in window | Excludes in-progress stages. |
         | **Stage Conversion** | of deals that exited from_stage, fraction that ever reached to_stage | Excludes deals still in from_stage. |
