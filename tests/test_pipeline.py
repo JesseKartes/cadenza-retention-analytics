@@ -59,3 +59,15 @@ def test_win_rate_won_over_closed(tiny_opportunities):
 def test_win_rate_returns_zero_when_no_closed_deals(tiny_opportunities):
     # No deals close in [2025-01-01, 2025-02-01)
     assert win_rate(tiny_opportunities, "2025-01-01", "2025-02-01") == 0.0
+
+
+from src.pipeline import avg_sales_cycle_days
+
+
+def test_avg_sales_cycle_days_for_won_deals(tiny_opportunities):
+    # Won deals in [2024-01-01, 2024-04-01):
+    #   OPP-1: 2024-03-31 − 2024-01-01 = 90 days
+    #   OPP-5: 2024-03-01 − 2024-01-01 = 60 days
+    #   OPP-7: 2024-03-15 − 2024-01-15 = 60 days
+    # Avg = (90 + 60 + 60) / 3 = 70.0
+    assert avg_sales_cycle_days(tiny_opportunities, "2024-01-01", "2024-04-01") == pytest.approx(70.0)

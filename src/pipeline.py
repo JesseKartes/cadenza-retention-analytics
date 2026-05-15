@@ -96,3 +96,20 @@ def win_rate(opps: pd.DataFrame, start_date: str, end_date: str) -> float:
         return 0.0
     won = (closed["status"] == "closed_won").sum()
     return float(won) / len(closed)
+
+
+def avg_sales_cycle_days(opps: pd.DataFrame, start_date: str, end_date: str) -> float:
+    """Average (close_date − created_date) in days for closed-won deals in window.
+
+    Window is [start_date, end_date) — inclusive of start, exclusive of end.
+    Returns 0.0 when there are no won deals in the window (avoids NaN propagation).
+    """
+    won = opps[
+        (opps["status"] == "closed_won")
+        & (opps["close_date"] >= start_date)
+        & (opps["close_date"] < end_date)
+    ].copy()
+    if len(won) == 0:
+        return 0.0
+    cycle_days = (pd.to_datetime(won["close_date"]) - pd.to_datetime(won["created_date"])).dt.days
+    return float(cycle_days.mean())
