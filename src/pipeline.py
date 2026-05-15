@@ -54,3 +54,17 @@ def total_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
         & (opps["created_date"] <= as_of_date)
     ]
     return float(open_opps["amount"].sum())
+
+
+def weighted_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
+    """Weighted-pipeline sum: each open deal's amount × its stage probability.
+
+    Formula: sum(amount × STAGE_PROBABILITY[current_stage]
+                 where status='open' and created_date <= as_of_date)
+    """
+    open_opps = opps[
+        (opps["status"] == "open")
+        & (opps["created_date"] <= as_of_date)
+    ].copy()
+    open_opps["weight"] = open_opps["current_stage"].map(STAGE_PROBABILITY).fillna(0.0)
+    return float((open_opps["amount"] * open_opps["weight"]).sum())
