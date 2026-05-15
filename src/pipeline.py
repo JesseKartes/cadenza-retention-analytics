@@ -68,3 +68,14 @@ def weighted_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
     ].copy()
     open_opps["weight"] = open_opps["current_stage"].map(STAGE_PROBABILITY).fillna(0.0)
     return float((open_opps["amount"] * open_opps["weight"]).sum())
+
+
+def pipeline_coverage(opps: pd.DataFrame, target: float, as_of_date: str) -> float:
+    """Pipeline coverage = total_pipeline / target.
+
+    Returns 0.0 if target == 0 (no meaningful ratio against a zero target).
+    Conventionally reported as a multiple (e.g., 3.0× is healthy).
+    """
+    if target == 0:
+        return 0.0
+    return total_pipeline(opps, as_of_date) / target

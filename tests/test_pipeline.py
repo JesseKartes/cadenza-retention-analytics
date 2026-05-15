@@ -8,6 +8,7 @@ import pytest
 from src.pipeline import (
     total_pipeline,
     weighted_pipeline,
+    pipeline_coverage,
 )
 
 
@@ -31,3 +32,14 @@ def test_weighted_pipeline_applies_stage_probability(tiny_opportunities):
     #   OPP-8 in Discovery: 0.10 * 40_000 = 4_000
     # Sum = 158_000
     assert weighted_pipeline(tiny_opportunities, "2024-04-01") == pytest.approx(158_000.0)
+
+
+def test_pipeline_coverage_is_pipeline_over_target(tiny_opportunities):
+    # total_pipeline at 2024-04-01 = 300_000. Target 100_000. Coverage = 3.0
+    assert pipeline_coverage(tiny_opportunities, 100_000.0, "2024-04-01") == pytest.approx(3.0)
+
+
+def test_pipeline_coverage_returns_zero_when_target_is_zero(tiny_opportunities):
+    # Guard divide-by-zero. Returning 0 is the conservative choice — there's
+    # no meaningful coverage ratio against a $0 target.
+    assert pipeline_coverage(tiny_opportunities, 0.0, "2024-04-01") == 0.0
