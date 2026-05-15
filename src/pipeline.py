@@ -79,3 +79,20 @@ def pipeline_coverage(opps: pd.DataFrame, target: float, as_of_date: str) -> flo
     if target == 0:
         return 0.0
     return total_pipeline(opps, as_of_date) / target
+
+
+def win_rate(opps: pd.DataFrame, start_date: str, end_date: str) -> float:
+    """Win rate = closed_won / (closed_won + closed_lost) for deals closing in window.
+
+    Window is [start_date, end_date) — inclusive of start, exclusive of end.
+    Caller pre-filters by opp_type / segment / channel as needed.
+    """
+    closed = opps[
+        (opps["status"].isin(["closed_won", "closed_lost"]))
+        & (opps["close_date"] >= start_date)
+        & (opps["close_date"] < end_date)
+    ]
+    if len(closed) == 0:
+        return 0.0
+    won = (closed["status"] == "closed_won").sum()
+    return float(won) / len(closed)

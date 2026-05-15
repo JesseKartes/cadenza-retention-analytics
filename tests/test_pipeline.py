@@ -43,3 +43,19 @@ def test_pipeline_coverage_returns_zero_when_target_is_zero(tiny_opportunities):
     # Guard divide-by-zero. Returning 0 is the conservative choice — there's
     # no meaningful coverage ratio against a $0 target.
     assert pipeline_coverage(tiny_opportunities, 0.0, "2024-04-01") == 0.0
+
+
+from src.pipeline import win_rate
+
+
+def test_win_rate_won_over_closed(tiny_opportunities):
+    # Closed deals (close_date in [2024-01-01, 2024-04-01)):
+    #   won:  OPP-1 (2024-03-31), OPP-5 (2024-03-01), OPP-7 (2024-03-15) = 3
+    #   lost: OPP-4 (2024-02-15), OPP-6 (2024-02-20) = 2
+    # Rate = 3/5 = 0.60
+    assert win_rate(tiny_opportunities, "2024-01-01", "2024-04-01") == pytest.approx(0.60)
+
+
+def test_win_rate_returns_zero_when_no_closed_deals(tiny_opportunities):
+    # No deals close in [2025-01-01, 2025-02-01)
+    assert win_rate(tiny_opportunities, "2025-01-01", "2025-02-01") == 0.0
