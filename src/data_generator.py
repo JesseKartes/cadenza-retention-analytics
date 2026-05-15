@@ -316,11 +316,16 @@ def write_to_disk(out_dir: Path) -> None:
     customers.to_csv(out_dir / "customers.csv", index=False)
     subs.to_csv(out_dir / "subscriptions.csv", index=False)
     events.to_csv(out_dir / "events.csv", index=False)
-    print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, {len(events)} events to {out_dir}")
 
+    # Phase 2 tables
+    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events)
+    opps_df.to_csv(out_dir / "opportunities.csv", index=False)
+    history_df.to_csv(out_dir / "opportunity_stage_history.csv", index=False)
+    snapshots_df.to_csv(out_dir / "pipeline_snapshots.csv", index=False)
 
-if __name__ == "__main__":
-    write_to_disk(Path(__file__).resolve().parents[1] / "data" / "generated")
+    print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, "
+          f"{len(events)} events, {len(opps_df)} opportunities, "
+          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots to {out_dir}")
 
 
 # --- Phase 2: Pipeline & Forecasting --------------------------------------
@@ -770,3 +775,81 @@ def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
         })
 
     return opp_rows, stage_history_rows, next_id
+
+
+def _generate_pipeline_snapshots(opps_df: pd.DataFrame, history_df: pd.DataFrame) -> list[dict]:
+    """Reconstruct opportunity state at each quarterly snapshot date.
+
+    For each (snapshot_date × opportunity), if the deal existed and was open at
+    that date, record the stage it was in at that moment.
+    """
+    snapshot_rows = []
+    # Pre-index history by opp for fast lookup
+    history_df = history_df.copy()
+    history_df["entered_date_ts"] = pd.to_datetime(history_df["entered_date"])
+    history_df["exited_date_ts"] = pd.to_datetime(history_df["exited_date"])
+
+    opps_df = opps_df.copy()
+    opps_df["created_date_ts"] = pd.to_datetime(opps_df["created_date"])
+    opps_df["close_date_ts"] = pd.to_datetime(opps_df["close_date"])
+
+    for snap_date in SNAPSHOT_DATES:
+        # Deals open at snap_date: created on/before, AND
+        #   - status='open', OR
+        #   - status closed but close_date > snap_date
+        open_at_snap = opps_df[
+            (opps_df["created_date_ts"] <= snap_date)
+            & (
+                (opps_df["status"] == "open")
+                | (opps_df["close_date_ts"] > snap_date)
+            )
+        ]
+        for _, opp in open_at_snap.iterrows():
+            opp_history = history_df[history_df["opportunity_id"] == opp["opportunity_id"]]
+            # Find the stage the deal was in at snap_date
+            in_stage = opp_history[
+                (opp_history["entered_date_ts"] <= snap_date)
+                & (
+                    opp_history["exited_date_ts"].isna()
+                    | (opp_history["exited_date_ts"] > snap_date)
+                )
+            ]
+            if len(in_stage) == 0:
+                continue
+            stage = in_stage.iloc[0]["stage"]
+            snapshot_rows.append({
+                "snapshot_date": snap_date.strftime("%Y-%m-%d"),
+                "opportunity_id": opp["opportunity_id"],
+                "stage_at_snapshot": stage,
+                "amount": opp["amount"],
+                "forecast_category": FORECAST_CATEGORY_BY_STAGE.get(stage, "Pipeline"),
+                "expected_close_date": opp["close_date"],
+            })
+    return snapshot_rows
+
+
+def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame
+                     ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Generate Phase 2 tables: opportunities, opportunity_stage_history, pipeline_snapshots.
+
+    Deterministic given Phase 1 outputs and RNG_SEED+2.
+    """
+    rng = np.random.default_rng(RNG_SEED + 2)
+
+    nb_opps, nb_history = _generate_new_business_opps(customers, rng)
+    next_id = len(nb_opps) + 1
+
+    ren_opps, ren_history, next_id = _generate_renewal_opps(customers, subs, events, rng, next_id)
+    exp_opps, exp_history, next_id = _generate_expansion_opps(customers, events, rng, next_id)
+
+    opps_df = pd.DataFrame(nb_opps + ren_opps + exp_opps)
+    history_df = pd.DataFrame(nb_history + ren_history + exp_history)
+
+    snapshots = _generate_pipeline_snapshots(opps_df, history_df)
+    snapshots_df = pd.DataFrame(snapshots)
+
+    return opps_df, history_df, snapshots_df
+
+
+if __name__ == "__main__":
+    write_to_disk(Path(__file__).resolve().parents[1] / "data" / "generated")
