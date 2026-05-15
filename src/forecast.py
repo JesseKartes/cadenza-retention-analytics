@@ -59,3 +59,34 @@ def forecast_accuracy(snapshots: pd.DataFrame, opps: pd.DataFrame,
     if actual_total == 0:
         return None
     return weighted / actual_total
+
+
+def forecast_accuracy_trend(snapshots: pd.DataFrame, opps: pd.DataFrame) -> pd.DataFrame:
+    """Build a row-per-snapshot DataFrame with forecast, actual, and accuracy.
+
+    Columns: snapshot_date, weighted_forecast, actual_closed_won, accuracy
+    `accuracy` is None for snapshots where no closed-won deals fall in the
+    3-month window after the snapshot date.
+    """
+    rows = []
+    for snap_date in sorted(snapshots["snapshot_date"].unique()):
+        snap = snapshots[snapshots["snapshot_date"] == snap_date].copy()
+        snap["weight"] = snap["stage_at_snapshot"].map(STAGE_PROBABILITY).fillna(0.0)
+        weighted = float((snap["amount"] * snap["weight"]).sum())
+
+        window_end = (pd.Timestamp(snap_date) + pd.DateOffset(months=3)).strftime("%Y-%m-%d")
+        actual = opps[
+            (opps["status"] == "closed_won")
+            & (opps["close_date"] >= snap_date)
+            & (opps["close_date"] < window_end)
+        ]
+        actual_total = float(actual["amount"].sum())
+        accuracy = (weighted / actual_total) if actual_total > 0 else None
+
+        rows.append({
+            "snapshot_date": snap_date,
+            "weighted_forecast": weighted,
+            "actual_closed_won": actual_total,
+            "accuracy": accuracy,
+        })
+    return pd.DataFrame(rows)

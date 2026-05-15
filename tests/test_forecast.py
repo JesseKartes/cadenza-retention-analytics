@@ -45,3 +45,21 @@ def test_forecast_accuracy_returns_none_when_no_actuals(tiny_snapshots, tiny_opp
     # "can't compute" rather than dividing by zero.
     result = forecast_accuracy(tiny_snapshots, tiny_opportunities, "2099-01-01")
     assert result is None
+
+
+from src.forecast import forecast_accuracy_trend
+
+
+def test_forecast_accuracy_trend_returns_row_per_snapshot(tiny_snapshots, tiny_opportunities):
+    df = forecast_accuracy_trend(tiny_snapshots, tiny_opportunities)
+    # tiny_snapshots has 2 distinct snapshot_dates
+    assert set(df["snapshot_date"]) == {"2024-03-01", "2024-06-01"}
+    assert set(df.columns) >= {"snapshot_date", "weighted_forecast", "actual_closed_won", "accuracy"}
+
+
+def test_forecast_accuracy_trend_2024_03_01_row(tiny_snapshots, tiny_opportunities):
+    df = forecast_accuracy_trend(tiny_snapshots, tiny_opportunities)
+    row = df[df["snapshot_date"] == "2024-03-01"].iloc[0]
+    assert row["weighted_forecast"] == pytest.approx(115_800.0)
+    assert row["actual_closed_won"] == pytest.approx(66_000.0)
+    assert row["accuracy"] == pytest.approx(115_800.0 / 66_000.0, abs=0.001)
