@@ -1,6 +1,6 @@
 # Cadenza Retention Analytics
 
-SaaS retention analytics portfolio project. **Phase 1** (this code) is shipped and live. **Phase 2** (Pipeline & Forecasting) and **Phase 3** (Quota & Rep Performance) are planned, not started.
+SaaS retention analytics portfolio project. **Phase 1** (retention metrics + cohort analysis) and **Phase 2** (Pipeline & Forecasting) are shipped and live. **Phase 3** (Quota & Rep Performance) is planned, not started.
 
 **Live dashboard:** https://cadenza-retention-analytics.streamlit.app
 
@@ -10,7 +10,7 @@ The dataset deliberately encodes a hidden insight: the Q3 2024 Self-Serve Promo 
 
 ```bash
 source .venv/bin/activate
-pytest -v                          # 20 tests; must stay green
+pytest -v                          # 44 tests; must stay green
 streamlit run Overview.py          # local dashboard at :8501
 python -m src.data_generator       # regenerate CSVs (deterministic, seed=42)
 ```
@@ -18,7 +18,7 @@ python -m src.data_generator       # regenerate CSVs (deterministic, seed=42)
 ## Architecture
 
 ```
-src/data_generator.py → data/generated/*.csv → src/metrics.py + src/cohorts.py → src/viz.py → Overview.py + pages/
+src/data_generator.py → data/generated/*.csv → src/metrics.py + src/cohorts.py + src/pipeline.py + src/forecast.py → src/viz.py → Overview.py + pages/
 ```
 
 - `src/*.py` modules are **pure functions** — no IO, no Streamlit imports, no global state.
@@ -40,11 +40,11 @@ src/data_generator.py → data/generated/*.csv → src/metrics.py + src/cohorts.
 - **Dataset window is Jan 2023 – Dec 2025.** YoY deltas need ≥24 months of prior data, so they only appear for reporting months from Jan 2025 onward. The Overview page surfaces this explicitly when it applies.
 - **Don't reintroduce dropped code.** `streamlit_app.py` (renamed), the Gross Revenue Churn KPI tile (redundant with GRR), and the `s > 0` filter in `m12_retention_bar` (made unnecessary by the NaN fix) were all removed for reasons. Check `CHANGELOG.md` before reviving anything.
 
-## Starting Phase 2
+## Starting Phase 3
 
-Read `docs/superpowers/phase1-retrospective.md` first — it has the full handoff: what shipped vs. spec, conventions to carry forward, suggested Phase 2 scope, and what NOT to touch. Then invoke the `superpowers:brainstorming` skill to design Phase 2.
+Phase 2 is complete. Read `docs/superpowers/phase1-retrospective.md` for handoff conventions, then invoke `superpowers:brainstorming` to design Phase 3 (Quota Attainment & Rep Performance).
 
-Phase 2 lives in the same repo. New modules (`src/pipeline.py`, `src/forecast.py`), new pages (`pages/5_Pipeline.py`, etc.). Same fixtures pattern, same brand palette, same commit conventions.
+Phase 3 lives in the same repo. New modules (`src/quota.py`, etc.), new pages (`pages/8_*.py`, etc.). Same fixtures pattern, same brand palette, same commit conventions.
 
 ## Reference docs
 

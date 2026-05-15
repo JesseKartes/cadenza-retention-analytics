@@ -19,6 +19,8 @@ The dataset deliberately encodes a pattern that real RevOps teams encounter: cus
 - **Overview** — headline KPIs (ARR ~$X, NRR ~108%, GRR ~91%), MRR waterfall, and trailing-12-month retention trend. At first glance, the company looks healthy.
 - **Cohort Analysis** — the heatmap. Filter to "Self-Serve Promo" and the Q3 2024 cohort lights up red.
 - **Segment & Channel Deep-Dive** — quantifies the gap. Self-Serve Promo logo churn comes in around 28% — nearly 2× the ~15% average across other channels — while its GRR (~92%) drags the bottom of the table.
+- **Pipeline** — pipeline coverage, weighted pipeline, stage velocity heatmap (surfaces the Mid-Market POC stall), stage conversion, and aging deals.
+- **Forecasting** — commit/best-case/pipeline buckets, forecast accuracy trend across 8 quarterly snapshots, and per-segment forecast bias.
 - **About** — methodology, metric formulas, and what I'd recommend at a real company (CSM intervention plan, channel-quality scoring, tighter promo gating).
 
 ## How it's built
@@ -30,8 +32,10 @@ Python data generator  →  3 flat CSVs  →  pandas metric/cohort modules  → 
 - `src/data_generator.py` — synthetic data simulator (lifecycle, expansion, contraction, churn, the encoded insight).
 - `src/metrics.py` — ARR, Logo Churn, Gross Revenue Churn, GRR, NRR, MRR Waterfall. Pure pandas functions.
 - `src/cohorts.py` — logo and revenue retention cohort matrices.
+- `src/pipeline.py` — pipeline coverage, weighted pipeline, win rate, stage velocity, aging deals. Pure pandas functions.
+- `src/forecast.py` — forecast buckets, accuracy trend, per-segment bias. Pure pandas functions.
 - `src/viz.py` — Plotly figure builders. Pure functions, no Streamlit imports.
-- `Overview.py` + `pages/*.py` — four-page dashboard.
+- `Overview.py` + `pages/*.py` — six-page dashboard.
 - `tests/` — pytest suite. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. The data generator has sanity tests that lock in the engineered pattern.
 
 ## Running it locally

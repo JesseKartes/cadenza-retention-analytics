@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented here.
 
+## Phase 2 — Pipeline & Forecasting
+
+**Date:** 2026-05-15
+
+- Generator extended with opportunities, opportunity_stage_history, pipeline_snapshots tables (~1,907 opportunities, ~5,046 stage history rows, 1,130 snapshots across 8 quarters)
+- Three opportunity types modeled distinctly: new_business, renewal, expansion — linked to Phase 1 customers via customer_id FK
+- Self-Serve Promo customers have no opportunity (self-serve is no-touch)
+- Two new Streamlit pages:
+  - **Pipeline** (KPIs, stage funnel, stage velocity heatmap, conversion table, aging deals)
+  - **Forecasting** (commit/best-case/pipeline buckets, accuracy trend, per-segment bias)
+- New pure-function modules: `src/pipeline.py`, `src/forecast.py`
+- New figure builders in `src/viz.py`: stage_funnel_figure, stage_velocity_heatmap, forecast_buckets_figure, forecast_bias_bar
+- Engineered insight: **Mid-Market POC stall** — Mid-Market deals dwell in Proof of Concept ~2.9× longer than SMB, with POC→Negotiation conversion at ~half the rate. Surfaces in the Stage Velocity Heatmap.
+- Phase 1 invariants enforced via test: customers.csv / subscriptions.csv / events.csv remain byte-identical after Phase 2 generator runs
+- Insight-protection test: Mid-Market POC dwell must remain ≥ 2× SMB; fails informatively if future tuning weakens the engineered pattern
+- `pages/4_About.py` renamed to `pages/7_About.py` for sidebar ordering (About now appears last, after Pipeline and Forecasting)
+- About page extended with Phase 2 metric definitions and narrative
+- ~24 new pytest tests (15 metric tests + 7 forecast tests + 2 guardrail tests); total suite 44 tests, all green
+- No new dependencies; Python 3.12 unchanged
+
+---
+
 ## v0.1.0-phase1 — 2026-05-15
 
 Phase 1 of the Cadenza Retention Analytics portfolio: SaaS retention metrics + cohort analysis built on a deliberately-engineered synthetic dataset.
