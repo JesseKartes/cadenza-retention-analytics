@@ -114,3 +114,141 @@ def grouped_metric_bar(df: pd.DataFrame, group_col: str, value_col: str, title: 
         fig.update_layout(yaxis_tickformat=".0%")
     fig.update_layout(height=380)
     return fig
+
+
+def pipeline_by_stage_figure(opps: pd.DataFrame, as_of_date: str) -> go.Figure:
+    """Horizontal bar chart of current pipeline $ by stage, new_business only.
+
+    Stages in flow order top-to-bottom (Discovery → Negotiation). Bars colored
+    from cyan (early stages) to deep indigo (late stages). Not a funnel —
+    funnels imply attrition through stages, but this is a point-in-time
+    snapshot where late stages typically hold more $ (bigger deals closer
+    to close). A horizontal bar is the honest representation.
+    """
+    nb_open = opps[
+        (opps["opportunity_type"] == "new_business")
+        & (opps["status"] == "open")
+        & (opps["created_date"] <= as_of_date)
+    ]
+    stages = ["Discovery", "Qualification", "Proof of Concept", "Negotiation"]
+    by_stage = nb_open.groupby("current_stage")["amount"].sum().reindex(stages, fill_value=0)
+
+    fig = go.Figure(go.Bar(
+        x=by_stage.values,
+        y=stages,
+        orientation="h",
+        marker={"color": [CADENZA_ACCENT, "#0EA5E9", CADENZA_PRIMARY, "#0F172A"]},
+        text=[f"${v:,.0f}" for v in by_stage.values],
+        textposition="outside",
+        cliponaxis=False,
+    ))
+    fig.update_layout(
+        title="Pipeline by Stage (New Business)",
+        height=380,
+        xaxis_title="Pipeline ($)",
+        yaxis={"autorange": "reversed"},
+        showlegend=False,
+        margin={"r": 120},
+    )
+    return fig
+
+
+def stage_velocity_heatmap(history: pd.DataFrame, opps: pd.DataFrame,
+                            start_date: str, end_date: str) -> go.Figure:
+    """Heatmap of average days-in-stage, rows=segment, cols=new_business stage.
+
+    Cell color: green (fast) to red (slow) via the Cadenza palette. This is
+    where the Mid-Market POC stall pops visually.
+    """
+    nb_opps = opps[opps["opportunity_type"] == "new_business"]
+    poc = history[history["exited_date"].notna()].copy()
+    poc["entered_date"] = pd.to_datetime(poc["entered_date"])
+    poc = poc[
+        (poc["entered_date"] >= pd.Timestamp(start_date))
+        & (poc["entered_date"] < pd.Timestamp(end_date))
+    ]
+    joined = poc.merge(nb_opps[["opportunity_id", "segment"]], on="opportunity_id", how="inner")
+
+    stages = ["Discovery", "Qualification", "Proof of Concept", "Negotiation"]
+    segments = ["SMB", "Mid-Market", "Enterprise"]
+    matrix = (
+        joined.groupby(["segment", "stage"])["days_in_stage"].mean()
+        .unstack(level="stage")
+        .reindex(index=segments, columns=stages)
+    )
+
+    fig = go.Figure(go.Heatmap(
+        z=matrix.values,
+        x=stages,
+        y=segments,
+        colorscale=[[0.0, CADENZA_GOOD], [0.5, "#FCD34D"], [1.0, CADENZA_BAD]],
+        text=matrix.round(1).values,
+        texttemplate="%{text} days",
+        colorbar={"title": "Avg days"},
+        hovertemplate="%{y} · %{x}<br>Avg %{z:.1f} days<extra></extra>",
+    ))
+    fig.update_layout(
+        title="Stage Velocity — Average Days in Stage, by Segment",
+        height=360,
+        xaxis_title="Stage",
+        yaxis_title="Segment",
+    )
+    return fig
+
+
+def forecast_buckets_figure(buckets: dict[str, float], target: float | None = None) -> go.Figure:
+    """Horizontal stacked bar: Commit / Best Case / Pipeline for a single snapshot."""
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        y=["Forecast"], x=[buckets["commit"]], name="Commit",
+        orientation="h", marker_color=CADENZA_PRIMARY,
+        text=f"${buckets['commit']:,.0f}", textposition="inside",
+    ))
+    fig.add_trace(go.Bar(
+        y=["Forecast"], x=[buckets["best_case"]], name="Best Case",
+        orientation="h", marker_color=CADENZA_ACCENT,
+        text=f"${buckets['best_case']:,.0f}", textposition="inside",
+    ))
+    fig.add_trace(go.Bar(
+        y=["Forecast"], x=[buckets["pipeline"]], name="Pipeline",
+        orientation="h", marker_color=CADENZA_NEUTRAL,
+        text=f"${buckets['pipeline']:,.0f}", textposition="inside",
+    ))
+    if target is not None:
+        fig.add_vline(x=target, line_dash="dash", line_color=CADENZA_BAD,
+                      annotation_text=f"Target: ${target:,.0f}", annotation_position="top")
+    fig.update_layout(
+        barmode="stack",
+        title="Forecast Buckets",
+        height=280,
+        xaxis_title=None,
+        showlegend=True,
+        legend={
+            "orientation": "h",
+            "yanchor": "top",
+            "y": -0.55,
+            "xanchor": "center",
+            "x": 0.5,
+        },
+    )
+    return fig
+
+
+def forecast_bias_bar(bias: pd.DataFrame) -> go.Figure:
+    """Grouped bar: per-segment weighted_forecast vs. actual_closed_won."""
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=bias["segment"], y=bias["weighted_forecast"], name="Weighted Forecast",
+        marker_color=CADENZA_PRIMARY,
+    ))
+    fig.add_trace(go.Bar(
+        x=bias["segment"], y=bias["actual_closed_won"], name="Actual Closed-Won",
+        marker_color=CADENZA_ACCENT,
+    ))
+    fig.update_layout(
+        barmode="group",
+        title="Forecast vs. Actual — by Segment",
+        height=380,
+        yaxis_title="$",
+    )
+    return fig

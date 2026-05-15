@@ -1,0 +1,187 @@
+"""Pipeline metric calculations for opportunity-level analytics.
+
+All functions are pure: they take pandas DataFrames matching the schema of
+`data/generated/opportunities.csv` and `opportunity_stage_history.csv`, and
+return scalars or aggregated DataFrames.
+
+Schema reminder:
+    opportunities: opportunity_id, customer_id, account_name, segment,
+                   acquisition_channel, owner_rep_id, opportunity_type,
+                   created_date, close_date, amount, current_stage, status
+        - status in {open, closed_won, closed_lost}
+        - opportunity_type in {new_business, renewal, expansion}
+
+    opportunity_stage_history: opportunity_id, stage, entered_date,
+                               exited_date (NULL if currently in stage),
+                               days_in_stage
+
+The caller pre-filters opps by opp_type / segment / channel before calling
+these functions — the API is intentionally stateless and minimal.
+"""
+from __future__ import annotations
+
+import pandas as pd
+
+# Stage win probabilities used for weighted pipeline. Mirrors the
+# definitions in the Phase 2 design spec §5.2.
+STAGE_PROBABILITY: dict[str, float] = {
+    # new_business stages
+    "Discovery": 0.10,
+    "Qualification": 0.20,
+    "Proof of Concept": 0.40,
+    "Negotiation": 0.65,
+    # renewal stages
+    "Renewal Discussion": 0.75,
+    # NOTE: renewal "Negotiation" uses 0.90 — but we share the key
+    # "Negotiation" with new_business (0.65). The renewal case is rare in
+    # the generated dataset; the design accepts the simplification of using
+    # 0.65 for all Negotiation-named stages. Weighted pipeline is computed
+    # primarily on new_business deals in practice.
+    "Expansion Discussion": 0.80,
+    # closed stages contribute 0 to weighted pipeline
+    "Closed Won": 0.0,
+    "Closed Lost": 0.0,
+}
+
+
+def total_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
+    """Sum of `amount` for open opps created on or before `as_of_date`.
+
+    Formula: sum(amount where status='open' and created_date <= as_of_date)
+    """
+    open_opps = opps[
+        (opps["status"] == "open")
+        & (opps["created_date"] <= as_of_date)
+    ]
+    return float(open_opps["amount"].sum())
+
+
+def weighted_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
+    """Weighted-pipeline sum: each open deal's amount × its stage probability.
+
+    Formula: sum(amount × STAGE_PROBABILITY[current_stage]
+                 where status='open' and created_date <= as_of_date)
+    """
+    open_opps = opps[
+        (opps["status"] == "open")
+        & (opps["created_date"] <= as_of_date)
+    ].copy()
+    open_opps["weight"] = open_opps["current_stage"].map(STAGE_PROBABILITY).fillna(0.0)
+    return float((open_opps["amount"] * open_opps["weight"]).sum())
+
+
+def pipeline_coverage(opps: pd.DataFrame, target: float, as_of_date: str) -> float:
+    """Pipeline coverage = total_pipeline / target.
+
+    Returns 0.0 if target == 0 (no meaningful ratio against a zero target).
+    Conventionally reported as a multiple (e.g., 3.0× is healthy).
+    """
+    if target == 0:
+        return 0.0
+    return total_pipeline(opps, as_of_date) / target
+
+
+def win_rate(opps: pd.DataFrame, start_date: str, end_date: str) -> float:
+    """Win rate = closed_won / (closed_won + closed_lost) for deals closing in window.
+
+    Window is [start_date, end_date) — inclusive of start, exclusive of end.
+    Caller pre-filters by opp_type / segment / channel as needed.
+    """
+    closed = opps[
+        (opps["status"].isin(["closed_won", "closed_lost"]))
+        & (opps["close_date"] >= start_date)
+        & (opps["close_date"] < end_date)
+    ]
+    if len(closed) == 0:
+        return 0.0
+    won = (closed["status"] == "closed_won").sum()
+    return float(won) / len(closed)
+
+
+def avg_sales_cycle_days(opps: pd.DataFrame, start_date: str, end_date: str) -> float:
+    """Average (close_date − created_date) in days for closed-won deals in window.
+
+    Window is [start_date, end_date) — inclusive of start, exclusive of end.
+    Returns 0.0 when there are no won deals in the window (avoids NaN propagation).
+    """
+    won = opps[
+        (opps["status"] == "closed_won")
+        & (opps["close_date"] >= start_date)
+        & (opps["close_date"] < end_date)
+    ].copy()
+    if len(won) == 0:
+        return 0.0
+    cycle_days = (pd.to_datetime(won["close_date"]) - pd.to_datetime(won["created_date"])).dt.days
+    return float(cycle_days.mean())
+
+
+def avg_days_in_stage(history: pd.DataFrame, stage: str,
+                      start_date: str, end_date: str) -> float:
+    """Average days_in_stage for completed (exited_date not null) stage
+    occupancies where entered_date falls in [start_date, end_date).
+
+    In-progress occupancies are excluded — their final dwell time is
+    unknown. For aging analysis, use `aging_deals` instead.
+    """
+    rows = history[
+        (history["stage"] == stage)
+        & (history["entered_date"] >= start_date)
+        & (history["entered_date"] < end_date)
+        & history["exited_date"].notna()
+    ]
+    if len(rows) == 0:
+        return 0.0
+    return float(rows["days_in_stage"].mean())
+
+
+def stage_conversion(history: pd.DataFrame, from_stage: str, to_stage: str,
+                     start_date: str, end_date: str) -> float:
+    """Of opps that entered `from_stage` in [start, end) AND have since exited
+    `from_stage` (one way or another), what fraction ever reached `to_stage`?
+
+    Deals still sitting in `from_stage` (exited_date is null) are excluded
+    because they haven't had time to advance or lose. Without this filter,
+    fresh deals would artificially depress conversion.
+    """
+    entered = history[
+        (history["stage"] == from_stage)
+        & (history["entered_date"] >= start_date)
+        & (history["entered_date"] < end_date)
+        & history["exited_date"].notna()
+    ]
+    if len(entered) == 0:
+        return 0.0
+    opp_ids_that_exited_from_stage = set(entered["opportunity_id"])
+    reached_to_stage = set(
+        history[
+            (history["stage"] == to_stage)
+            & history["opportunity_id"].isin(opp_ids_that_exited_from_stage)
+        ]["opportunity_id"]
+    )
+    return len(reached_to_stage) / len(opp_ids_that_exited_from_stage)
+
+
+def aging_deals(opps: pd.DataFrame, history: pd.DataFrame,
+                as_of_date: str, threshold_days: int = 60) -> pd.DataFrame:
+    """Return open opps whose days-in-current-stage exceeds `threshold_days`.
+
+    Days-in-current-stage = as_of_date − entered_date of the row in `history`
+    where opportunity_id matches and exited_date is null.
+
+    Returns a DataFrame with the opp's row plus a `days_in_current_stage` column,
+    sorted descending by that column. Empty DataFrame if no aging deals.
+    """
+    current_stage_entries = history[history["exited_date"].isna()].copy()
+    current_stage_entries["days_in_current_stage"] = (
+        pd.to_datetime(as_of_date) - pd.to_datetime(current_stage_entries["entered_date"])
+    ).dt.days
+
+    aging = current_stage_entries[current_stage_entries["days_in_current_stage"] > threshold_days]
+
+    open_opps = opps[opps["status"] == "open"]
+    joined = open_opps.merge(
+        aging[["opportunity_id", "days_in_current_stage"]],
+        on="opportunity_id",
+        how="inner",
+    )
+    return joined.sort_values("days_in_current_stage", ascending=False)

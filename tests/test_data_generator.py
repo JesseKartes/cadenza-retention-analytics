@@ -104,3 +104,75 @@ def test_event_types_cover_full_lifecycle(generated):
     assert {"signup", "churn"} <= types
     # upgrades/downgrades should exist but not strictly required every run
     assert "upgrade" in types
+
+
+import hashlib
+from pathlib import Path
+
+import pandas as pd
+import pytest
+
+
+DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "generated"
+
+
+@pytest.fixture(scope="module")
+def generated_phase2():
+    """Load the committed Phase 2 CSVs."""
+    opps = pd.read_csv(DATA_DIR / "opportunities.csv")
+    history = pd.read_csv(DATA_DIR / "opportunity_stage_history.csv")
+    return opps, history
+
+
+def test_midmarket_poc_stall_is_at_least_2x_smb(generated_phase2):
+    """Engineered insight protection: Mid-Market dwells in POC at least 2x as
+    long as SMB does. If a future tweak weakens this, the test fails loudly.
+    """
+    opps, history = generated_phase2
+
+    nb_opps = opps[opps["opportunity_type"] == "new_business"]
+    poc = history[history["stage"] == "Proof of Concept"]
+    poc_completed = poc[poc["exited_date"].notna()].copy()
+    joined = poc_completed.merge(
+        nb_opps[["opportunity_id", "segment"]], on="opportunity_id", how="inner"
+    )
+
+    by_seg = joined.groupby("segment")["days_in_stage"].mean()
+    assert "Mid-Market" in by_seg.index and "SMB" in by_seg.index
+    ratio = by_seg["Mid-Market"] / by_seg["SMB"]
+    assert ratio >= 2.0, (
+        f"Mid-Market POC stall insight has weakened: Mid-Market avg POC dwell = "
+        f"{by_seg['Mid-Market']:.1f} days, SMB = {by_seg['SMB']:.1f} days, "
+        f"ratio = {ratio:.2f} (must be ≥ 2.0). Re-tune NB_STAGE_DWELL_DAYS."
+    )
+
+
+def _file_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_phase1_csvs_unchanged_after_phase2_generator():
+    """Running the full generator (including Phase 2) must produce the same
+    customers.csv / subscriptions.csv / events.csv as Phase 1 committed.
+
+    Compares hashes of currently-committed Phase 1 CSVs to freshly-regenerated
+    output. If they differ, Phase 2 generator code has accidentally consumed
+    Phase 1's RNG stream or otherwise perturbed determinism.
+    """
+    import tempfile
+    from src.data_generator import write_to_disk
+
+    expected = {
+        "customers.csv": _file_hash(DATA_DIR / "customers.csv"),
+        "subscriptions.csv": _file_hash(DATA_DIR / "subscriptions.csv"),
+        "events.csv": _file_hash(DATA_DIR / "events.csv"),
+    }
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        write_to_disk(Path(tmpdir))
+        for name, expected_hash in expected.items():
+            actual_hash = _file_hash(Path(tmpdir) / name)
+            assert actual_hash == expected_hash, (
+                f"{name} differs after regeneration. Phase 2 generator is "
+                f"perturbing Phase 1 RNG or outputs."
+            )

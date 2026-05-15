@@ -316,7 +316,709 @@ def write_to_disk(out_dir: Path) -> None:
     customers.to_csv(out_dir / "customers.csv", index=False)
     subs.to_csv(out_dir / "subscriptions.csv", index=False)
     events.to_csv(out_dir / "events.csv", index=False)
-    print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, {len(events)} events to {out_dir}")
+
+    # Phase 2 tables
+    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events)
+    opps_df.to_csv(out_dir / "opportunities.csv", index=False)
+    history_df.to_csv(out_dir / "opportunity_stage_history.csv", index=False)
+    snapshots_df.to_csv(out_dir / "pipeline_snapshots.csv", index=False)
+
+    print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, "
+          f"{len(events)} events, {len(opps_df)} opportunities, "
+          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots to {out_dir}")
+
+
+# --- Phase 2: Pipeline & Forecasting --------------------------------------
+
+# Stage taxonomy by opportunity type
+NB_STAGES = ["Discovery", "Qualification", "Proof of Concept", "Negotiation"]
+RENEWAL_STAGES = ["Renewal Discussion", "Negotiation"]
+EXPANSION_STAGES = ["Expansion Discussion"]
+
+# Mean dwell days per stage per segment (gamma-distributed in practice)
+# Engineered insight: Mid-Market POC stall (~3x SMB dwell).
+NB_STAGE_DWELL_DAYS = {
+    "Discovery":         {"SMB": 7,  "Mid-Market": 10, "Enterprise": 14},
+    "Qualification":     {"SMB": 10, "Mid-Market": 14, "Enterprise": 20},
+    "Proof of Concept":  {"SMB": 15, "Mid-Market": 45, "Enterprise": 25},  # the gap
+    "Negotiation":       {"SMB": 10, "Mid-Market": 18, "Enterprise": 25},
+}
+
+# Stage advance probability (rest = closed-lost in that stage)
+# Engineered insight: Mid-Market POC -> Negotiation only ~40%.
+NB_STAGE_ADVANCE_PROB = {
+    "Discovery":        {"SMB": 0.85, "Mid-Market": 0.80, "Enterprise": 0.90},
+    "Qualification":    {"SMB": 0.75, "Mid-Market": 0.70, "Enterprise": 0.85},
+    "Proof of Concept": {"SMB": 0.70, "Mid-Market": 0.40, "Enterprise": 0.75},  # the gap
+    "Negotiation":      {"SMB": 0.80, "Mid-Market": 0.75, "Enterprise": 0.85},
+}
+
+# Renewal / expansion are shorter cycles
+RENEWAL_STAGE_DWELL_DAYS = {"Renewal Discussion": 30, "Negotiation": 15}
+EXPANSION_STAGE_DWELL_DAYS = {"Expansion Discussion": 30}
+
+# Rep pool (captured on opps; not surfaced in Phase 2)
+REP_IDS = [f"REP-{i:02d}" for i in range(1, 13)]
+
+# Pipeline snapshot dates (first of each quarter, Q1 2024 - Q4 2025)
+SNAPSHOT_DATES = [pd.Timestamp(f"{y}-{m:02d}-01") for y in (2024, 2025) for m in (1, 4, 7, 10)]
+
+# Forecast category by stage
+FORECAST_CATEGORY_BY_STAGE = {
+    "Discovery": "Pipeline",
+    "Qualification": "Pipeline",
+    "Proof of Concept": "Best Case",
+    "Renewal Discussion": "Best Case",
+    "Expansion Discussion": "Best Case",
+    "Negotiation": "Commit",
+}
+
+
+def _sample_dwell_days(rng: np.random.Generator, mean_days: float) -> int:
+    """Sample a positive-skew dwell time using a gamma with shape=2.
+
+    Real-world dwell times have a long right tail (some deals drag); gamma(2)
+    captures that without going negative. `mean = shape * scale` so scale = mean/2.
+    """
+    shape = 2.0
+    scale = mean_days / shape
+    return max(1, int(round(rng.gamma(shape, scale))))
+
+
+def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.Timestamp,
+                                        segment: str, end_stage: str | None,
+                                        won: bool) -> list[dict]:
+    """Build stage_history rows by walking backward from close_date.
+
+    `end_stage` is the stage in which the deal closed (None means walked through
+    all NB_STAGES and won). `won=True` means deal reached Negotiation and converted.
+
+    Returns a list of dicts with: stage, entered_date, exited_date, days_in_stage.
+    Dates are pd.Timestamp; serialization to ISO date happens at write time.
+    """
+    if end_stage is None:
+        stages = NB_STAGES  # walked through all 4
+    else:
+        idx = NB_STAGES.index(end_stage)
+        stages = NB_STAGES[:idx + 1]
+
+    # Sample dwell times per stage
+    dwells = [_sample_dwell_days(rng, NB_STAGE_DWELL_DAYS[s][segment]) for s in stages]
+
+    # Build the history forward in time. Total = close_date - sum(dwells_before_close_stage)
+    # For a won deal closing in Negotiation: deal exited Negotiation on close_date.
+    # For a lost deal closing in stage X: deal exited X on close_date.
+    history = []
+    # Last stage exit = close_date
+    end = close_date
+    for stage_name, dwell in reversed(list(zip(stages, dwells))):
+        start = end - pd.Timedelta(days=dwell)
+        history.append({"stage": stage_name, "entered_date": start,
+                        "exited_date": end, "days_in_stage": dwell})
+        end = start
+
+    history.reverse()  # chronological
+    return history
+
+
+def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generator
+                                 ) -> tuple[list[dict], list[dict]]:
+    """Generate new_business opportunities. Returns (opp_rows, stage_history_rows).
+
+    Three sub-populations:
+      1. Closed-won opps for every non-Self-Serve Phase 1 customer, closing on
+         that customer's signup_date.
+      2. Currently-open opps (~150), created in 2024-2025, in various stages,
+         expected to close Q1-Q2 2026.
+      3. Closed-lost opps (~80), walked through stages and dropped out somewhere.
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = 1
+
+    # Sub-population 1: closed-won, one per non-Self-Serve Phase 1 customer
+    nb_customers = customers[customers["acquisition_channel"] != "Self-Serve Promo"]
+    for _, c in nb_customers.iterrows():
+        close_date = pd.Timestamp(c["signup_date"])
+        history = _walk_new_business_stages_backward(
+            rng, close_date, c["segment"], end_stage=None, won=True
+        )
+        created_date = history[0]["entered_date"]
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": c["customer_id"],
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": float(c["initial_mrr"]) * 12.0,
+            "current_stage": "Closed Won",
+            "status": "closed_won",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d"),
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    # Sub-population 2: currently-open opps (~150)
+    # Spread created_date across 2024-09 to 2025-12; sample a current stage based
+    # on stage-advance probabilities; expected close_date = today + remaining stages' dwell.
+    today = pd.Timestamp("2025-12-01")  # "Now" for the dashboard
+    n_open = 150
+    for _ in range(n_open):
+        segment = str(rng.choice(SEGMENTS, p=SEGMENT_WEIGHTS))
+        channel = str(rng.choice([c for c in CHANNELS if c != "Self-Serve Promo"]))
+        created_offset_days = int(rng.integers(0, 365))  # up to a year before "today"
+        created_date = today - pd.Timedelta(days=created_offset_days)
+
+        # Walk stages forward from created_date until either a non-advance roll
+        # (deal would have been lost — restart) or we reach a stage but "now"
+        # has arrived. Tracks current stage at "today".
+        cur = pd.Timestamp(created_date)
+        history = []
+        current_stage = None
+        for stage in NB_STAGES:
+            dwell = _sample_dwell_days(rng, NB_STAGE_DWELL_DAYS[stage][segment])
+            entered = cur
+            exit_date = cur + pd.Timedelta(days=dwell)
+            if exit_date >= today:
+                # Deal is still in this stage as of today
+                current_stage = stage
+                history.append({"stage": stage, "entered_date": entered,
+                                "exited_date": None, "days_in_stage": None})
+                break
+            # Did the deal advance? If yes, continue. If no, this would have
+            # been a lost deal — but we want open deals here, so restart the loop
+            # by treating this deal as having advanced.
+            history.append({"stage": stage, "entered_date": entered,
+                            "exited_date": exit_date, "days_in_stage": dwell})
+            cur = exit_date
+        else:
+            # Deal walked through all 4 stages but didn't close yet — extend
+            # by setting current_stage = Negotiation with no exit
+            current_stage = "Negotiation"
+            # Replace the last history entry to be in-progress
+            history[-1]["exited_date"] = None
+            history[-1]["days_in_stage"] = None
+
+        # Estimate expected close: today + average remaining-dwell across uncompleted stages
+        remaining = NB_STAGES[NB_STAGES.index(current_stage):]
+        expected_close_offset = sum(NB_STAGE_DWELL_DAYS[s][segment] for s in remaining)
+        expected_close = today + pd.Timedelta(days=expected_close_offset)
+        amount = float(rng.integers(5_000, 250_000))
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": None,
+            "account_name": _fake_company_name(rng),
+            "segment": segment,
+            "acquisition_channel": channel,
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": expected_close.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": current_stage,
+            "status": "open",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d") if h["exited_date"] else None,
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    # Sub-population 3: closed-lost (~1,500)
+    # Sized so that closed_won (~665, one per non-Self-Serve Phase 1 customer)
+    # plus closed_lost (~1,500) yields a TTM win rate around 25-30%, matching
+    # the SaaS-industry benchmark documented on the About page.
+    n_lost = 1500
+    for _ in range(n_lost):
+        segment = str(rng.choice(SEGMENTS, p=SEGMENT_WEIGHTS))
+        channel = str(rng.choice([c for c in CHANNELS if c != "Self-Serve Promo"]))
+        # Pick stage where deal died — weighted by advance failures
+        # Higher chance of dying in POC, especially for Mid-Market
+        death_stage = str(rng.choice(NB_STAGES, p=[0.25, 0.25, 0.40, 0.10]))
+        # Pick a close_date in 2024-2025
+        close_date = pd.Timestamp("2024-01-01") + pd.Timedelta(days=int(rng.integers(0, 730)))
+        history = _walk_new_business_stages_backward(
+            rng, close_date, segment, end_stage=death_stage, won=False
+        )
+        created_date = history[0]["entered_date"]
+        amount = float(rng.integers(5_000, 250_000))
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": None,
+            "account_name": _fake_company_name(rng),
+            "segment": segment,
+            "acquisition_channel": channel,
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": "Closed Lost",
+            "status": "closed_lost",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d"),
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    return opp_rows, stage_history_rows
+
+
+def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
+                            events: pd.DataFrame, rng: np.random.Generator,
+                            next_id_start: int) -> tuple[list[dict], list[dict], int]:
+    """Generate renewal opportunities. Returns (opp_rows, stage_history_rows, next_id).
+
+    One renewal opp per (customer × annual signup anniversary) that falls within
+    the data window. Win/loss determined by Phase 1 lifecycle:
+      - Won if customer was active 30+ days after anniversary
+      - Lost if customer churned within ±30 days of anniversary
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+
+    data_end = pd.Timestamp("2025-12-31")
+    customer_churn_dates = (
+        events[events["event_type"] == "churn"]
+        .set_index("customer_id")["event_date"]
+        .to_dict()
+    )
+
+    for _, c in customers.iterrows():
+        signup = pd.Timestamp(c["signup_date"])
+        # Check each annual anniversary that falls in the window
+        anniv_year = 1
+        while True:
+            anniv = signup + pd.DateOffset(years=anniv_year)
+            if anniv > data_end:
+                break
+
+            # Determine win/loss
+            churn_date_str = customer_churn_dates.get(c["customer_id"])
+            won = True
+            close_date = anniv
+            if churn_date_str is not None:
+                churn_date = pd.Timestamp(churn_date_str)
+                if abs((anniv - churn_date).days) <= 30:
+                    won = False
+                    close_date = churn_date
+                elif churn_date < anniv:
+                    # Customer churned before this anniversary — no renewal opp at all
+                    anniv_year += 1
+                    continue
+
+            # Amount = customer's MRR at opp creation time × 12
+            created_date = anniv - pd.Timedelta(days=60)
+            # Look up MRR at created_date's month (use start-of-month month string)
+            cust_subs = subs[(subs["customer_id"] == c["customer_id"])]
+            month_key = created_date.strftime("%Y-%m-01")
+            month_row = cust_subs[cust_subs["month"] == month_key]
+            if len(month_row) == 0:
+                # Customer wasn't active at created_date (e.g. churned before) — skip
+                anniv_year += 1
+                continue
+            mrr_at_renewal = float(month_row.iloc[0]["mrr"])
+            amount = mrr_at_renewal * 12.0
+
+            # Stage history: Renewal Discussion -> Negotiation -> Won/Lost
+            disc_dwell = _sample_dwell_days(rng, RENEWAL_STAGE_DWELL_DAYS["Renewal Discussion"])
+            neg_dwell = _sample_dwell_days(rng, RENEWAL_STAGE_DWELL_DAYS["Negotiation"])
+
+            opp_id = f"OPP-{next_id:05d}"
+            next_id += 1
+
+            if won:
+                disc_entered = created_date
+                disc_exited = disc_entered + pd.Timedelta(days=disc_dwell)
+                neg_entered = disc_exited
+                neg_exited = close_date
+                stage_history_rows.append({
+                    "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                    "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                    "exited_date": disc_exited.strftime("%Y-%m-%d"),
+                    "days_in_stage": disc_dwell,
+                })
+                stage_history_rows.append({
+                    "opportunity_id": opp_id, "stage": "Negotiation",
+                    "entered_date": neg_entered.strftime("%Y-%m-%d"),
+                    "exited_date": neg_exited.strftime("%Y-%m-%d"),
+                    "days_in_stage": (neg_exited - neg_entered).days,
+                })
+                current_stage = "Closed Won"
+                status = "closed_won"
+            else:
+                # Lost: died in Renewal Discussion (most common) or Negotiation
+                if rng.random() < 0.7:
+                    death_stage = "Renewal Discussion"
+                else:
+                    death_stage = "Negotiation"
+                if death_stage == "Renewal Discussion":
+                    disc_entered = close_date - pd.Timedelta(days=disc_dwell)
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                        "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                        "exited_date": close_date.strftime("%Y-%m-%d"),
+                        "days_in_stage": (close_date - disc_entered).days,
+                    })
+                    created_date = disc_entered
+                else:
+                    disc_entered = close_date - pd.Timedelta(days=disc_dwell + neg_dwell)
+                    disc_exited = disc_entered + pd.Timedelta(days=disc_dwell)
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Renewal Discussion",
+                        "entered_date": disc_entered.strftime("%Y-%m-%d"),
+                        "exited_date": disc_exited.strftime("%Y-%m-%d"),
+                        "days_in_stage": disc_dwell,
+                    })
+                    stage_history_rows.append({
+                        "opportunity_id": opp_id, "stage": "Negotiation",
+                        "entered_date": disc_exited.strftime("%Y-%m-%d"),
+                        "exited_date": close_date.strftime("%Y-%m-%d"),
+                        "days_in_stage": (close_date - disc_exited).days,
+                    })
+                    created_date = disc_entered
+                current_stage = "Closed Lost"
+                status = "closed_lost"
+
+            opp_rows.append({
+                "opportunity_id": opp_id,
+                "customer_id": c["customer_id"],
+                "account_name": c["company_name"],
+                "segment": c["segment"],
+                "acquisition_channel": c["acquisition_channel"],
+                "owner_rep_id": str(rng.choice(REP_IDS)),
+                "opportunity_type": "renewal",
+                "created_date": created_date.strftime("%Y-%m-%d"),
+                "close_date": close_date.strftime("%Y-%m-%d"),
+                "amount": amount,
+                "current_stage": current_stage,
+                "status": status,
+            })
+            anniv_year += 1
+
+    return opp_rows, stage_history_rows, next_id
+
+
+def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
+                              rng: np.random.Generator, next_id_start: int
+                              ) -> tuple[list[dict], list[dict], int]:
+    """Generate expansion opportunities — one per Phase 1 upgrade event.
+
+    Returns (opp_rows, stage_history_rows, next_id).
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+
+    upgrades = events[events["event_type"] == "upgrade"]
+    cust_by_id = customers.set_index("customer_id")
+
+    for _, ev in upgrades.iterrows():
+        cust_id = ev["customer_id"]
+        if cust_id not in cust_by_id.index:
+            continue
+        c = cust_by_id.loc[cust_id]
+
+        close_date = pd.Timestamp(ev["event_date"])
+        dwell = _sample_dwell_days(rng, EXPANSION_STAGE_DWELL_DAYS["Expansion Discussion"])
+        lead_time = int(rng.integers(30, 61))
+        created_date = close_date - pd.Timedelta(days=lead_time)
+        stage_entered = created_date
+        # Expansion Discussion is a single stage — entered at created_date, exited at close
+        amount = float(ev["mrr_delta"]) * 12.0
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": cust_id,
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "expansion",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": "Closed Won",
+            "status": "closed_won",
+        })
+        stage_history_rows.append({
+            "opportunity_id": opp_id,
+            "stage": "Expansion Discussion",
+            "entered_date": stage_entered.strftime("%Y-%m-%d"),
+            "exited_date": close_date.strftime("%Y-%m-%d"),
+            "days_in_stage": (close_date - stage_entered).days,
+        })
+
+    return opp_rows, stage_history_rows, next_id
+
+
+def _generate_open_renewals(customers: pd.DataFrame, subs: pd.DataFrame,
+                             rng: np.random.Generator, next_id_start: int,
+                             today: pd.Timestamp = pd.Timestamp("2025-12-01")
+                             ) -> tuple[list[dict], list[dict], int]:
+    """Open renewal opps for upcoming anniversaries (within 90 days of today).
+
+    For each currently-active customer whose next signup anniversary falls in
+    (today, today+90 days], create an open renewal opp currently in either
+    Renewal Discussion or Negotiation (based on how far through the lead time
+    we are). Without this, the dashboard's opp_type=renewal filter shows an
+    empty pipeline — there are plenty of closed renewals, but no in-flight ones.
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+    window_end = today + pd.Timedelta(days=90)
+    today_month = today.strftime("%Y-%m-01")
+
+    active_subs = subs[subs["month"] == today_month].set_index("customer_id")
+    cust_by_id = customers.set_index("customer_id")
+
+    for cust_id in sorted(active_subs.index):
+        if cust_id not in cust_by_id.index:
+            continue
+        c = cust_by_id.loc[cust_id]
+        signup = pd.Timestamp(c["signup_date"])
+
+        # Find next anniversary strictly after today
+        years_offset = max(0, today.year - signup.year)
+        anniv = signup + pd.DateOffset(years=years_offset)
+        while anniv <= today:
+            anniv = anniv + pd.DateOffset(years=1)
+        if anniv > window_end:
+            continue
+
+        mrr = float(active_subs.loc[cust_id, "mrr"])
+        amount = mrr * 12.0
+
+        created_date = anniv - pd.Timedelta(days=60)
+        if created_date > today:
+            continue  # opp shouldn't exist yet
+
+        disc_dwell = _sample_dwell_days(rng, RENEWAL_STAGE_DWELL_DAYS["Renewal Discussion"])
+        time_since_creation = (today - created_date).days
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+
+        if time_since_creation < disc_dwell:
+            current_stage = "Renewal Discussion"
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": "Renewal Discussion",
+                "entered_date": created_date.strftime("%Y-%m-%d"),
+                "exited_date": None,
+                "days_in_stage": None,
+            })
+        else:
+            disc_exit = created_date + pd.Timedelta(days=disc_dwell)
+            current_stage = "Negotiation"
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": "Renewal Discussion",
+                "entered_date": created_date.strftime("%Y-%m-%d"),
+                "exited_date": disc_exit.strftime("%Y-%m-%d"),
+                "days_in_stage": disc_dwell,
+            })
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": "Negotiation",
+                "entered_date": disc_exit.strftime("%Y-%m-%d"),
+                "exited_date": None,
+                "days_in_stage": None,
+            })
+
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": cust_id,
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "renewal",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": anniv.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": current_stage,
+            "status": "open",
+        })
+
+    return opp_rows, stage_history_rows, next_id
+
+
+def _generate_open_expansions(customers: pd.DataFrame, subs: pd.DataFrame,
+                                rng: np.random.Generator, next_id_start: int,
+                                today: pd.Timestamp = pd.Timestamp("2025-12-01"),
+                                n: int = 40
+                                ) -> tuple[list[dict], list[dict], int]:
+    """~n open expansion opps for currently-active customers.
+
+    Each: created 10-50 days before today, currently in Expansion Discussion
+    (in-progress), expected close 30-60 days out, amount = 10-30% of customer's
+    current MRR annualized.
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = next_id_start
+    today_month = today.strftime("%Y-%m-01")
+
+    active_at_today = subs[subs["month"] == today_month]
+    if len(active_at_today) == 0:
+        return opp_rows, stage_history_rows, next_id
+
+    cust_by_id = customers.set_index("customer_id")
+    n_sample = min(n, len(active_at_today))
+    sample_indices = rng.choice(len(active_at_today), size=n_sample, replace=False)
+    sampled = active_at_today.iloc[sample_indices]
+
+    for _, sub_row in sampled.iterrows():
+        cust_id = sub_row["customer_id"]
+        if cust_id not in cust_by_id.index:
+            continue
+        c = cust_by_id.loc[cust_id]
+        mrr = float(sub_row["mrr"])
+        expansion_fraction = float(rng.uniform(0.10, 0.30))
+        amount = mrr * 12.0 * expansion_fraction
+
+        days_in_stage = int(rng.integers(10, 51))
+        entered_date = today - pd.Timedelta(days=days_in_stage)
+        close_offset = int(rng.integers(30, 61))
+        expected_close = today + pd.Timedelta(days=close_offset)
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": cust_id,
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "expansion",
+            "created_date": entered_date.strftime("%Y-%m-%d"),
+            "close_date": expected_close.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": "Expansion Discussion",
+            "status": "open",
+        })
+        stage_history_rows.append({
+            "opportunity_id": opp_id,
+            "stage": "Expansion Discussion",
+            "entered_date": entered_date.strftime("%Y-%m-%d"),
+            "exited_date": None,
+            "days_in_stage": None,
+        })
+
+    return opp_rows, stage_history_rows, next_id
+
+
+def _generate_pipeline_snapshots(opps_df: pd.DataFrame, history_df: pd.DataFrame) -> list[dict]:
+    """Reconstruct opportunity state at each quarterly snapshot date.
+
+    For each (snapshot_date × opportunity), if the deal existed and was open at
+    that date, record the stage it was in at that moment.
+    """
+    snapshot_rows = []
+    # Pre-index history by opp for fast lookup
+    history_df = history_df.copy()
+    history_df["entered_date_ts"] = pd.to_datetime(history_df["entered_date"])
+    history_df["exited_date_ts"] = pd.to_datetime(history_df["exited_date"])
+
+    opps_df = opps_df.copy()
+    opps_df["created_date_ts"] = pd.to_datetime(opps_df["created_date"])
+    opps_df["close_date_ts"] = pd.to_datetime(opps_df["close_date"])
+
+    for snap_date in SNAPSHOT_DATES:
+        # Deals open at snap_date: created on/before, AND
+        #   - status='open', OR
+        #   - status closed but close_date > snap_date
+        open_at_snap = opps_df[
+            (opps_df["created_date_ts"] <= snap_date)
+            & (
+                (opps_df["status"] == "open")
+                | (opps_df["close_date_ts"] > snap_date)
+            )
+        ]
+        for _, opp in open_at_snap.iterrows():
+            opp_history = history_df[history_df["opportunity_id"] == opp["opportunity_id"]]
+            # Find the stage the deal was in at snap_date
+            in_stage = opp_history[
+                (opp_history["entered_date_ts"] <= snap_date)
+                & (
+                    opp_history["exited_date_ts"].isna()
+                    | (opp_history["exited_date_ts"] > snap_date)
+                )
+            ]
+            if len(in_stage) == 0:
+                continue
+            stage = in_stage.iloc[0]["stage"]
+            snapshot_rows.append({
+                "snapshot_date": snap_date.strftime("%Y-%m-%d"),
+                "opportunity_id": opp["opportunity_id"],
+                "stage_at_snapshot": stage,
+                "amount": opp["amount"],
+                "forecast_category": FORECAST_CATEGORY_BY_STAGE.get(stage, "Pipeline"),
+                "expected_close_date": opp["close_date"],
+            })
+    return snapshot_rows
+
+
+def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame
+                     ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Generate Phase 2 tables: opportunities, opportunity_stage_history, pipeline_snapshots.
+
+    Deterministic given Phase 1 outputs and RNG_SEED+2.
+    """
+    rng = np.random.default_rng(RNG_SEED + 2)
+
+    nb_opps, nb_history = _generate_new_business_opps(customers, rng)
+    next_id = len(nb_opps) + 1
+
+    ren_opps, ren_history, next_id = _generate_renewal_opps(customers, subs, events, rng, next_id)
+    exp_opps, exp_history, next_id = _generate_expansion_opps(customers, events, rng, next_id)
+
+    # Open in-flight renewals and expansions — without these, the Pipeline page's
+    # opp_type filter shows empty pipelines for renewal and expansion.
+    open_ren_opps, open_ren_history, next_id = _generate_open_renewals(customers, subs, rng, next_id)
+    open_exp_opps, open_exp_history, next_id = _generate_open_expansions(customers, subs, rng, next_id)
+
+    opps_df = pd.DataFrame(nb_opps + ren_opps + exp_opps + open_ren_opps + open_exp_opps)
+    history_df = pd.DataFrame(
+        nb_history + ren_history + exp_history + open_ren_history + open_exp_history
+    )
+
+    snapshots = _generate_pipeline_snapshots(opps_df, history_df)
+    snapshots_df = pd.DataFrame(snapshots)
+
+    return opps_df, history_df, snapshots_df
 
 
 if __name__ == "__main__":
