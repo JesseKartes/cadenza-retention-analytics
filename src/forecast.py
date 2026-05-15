@@ -31,3 +31,31 @@ def forecast_buckets(snapshots: pd.DataFrame, snapshot_date: str) -> dict[str, f
     result["best_case"] = float(by_cat.get("Best Case", 0.0))
     result["pipeline"] = float(by_cat.get("Pipeline", 0.0))
     return result
+
+
+def forecast_accuracy(snapshots: pd.DataFrame, opps: pd.DataFrame,
+                      snapshot_date: str) -> float | None:
+    """Forecast accuracy = weighted pipeline at snapshot ÷ actual closed-won
+    in the 3 months starting at snapshot_date.
+
+    Returns None if no closed-won deals exist in the window (can't compute
+    a ratio against zero).
+
+    Interpretation: 1.0 = perfect, >1.0 = over-forecasted, <1.0 = under-forecasted.
+    """
+    snap = snapshots[snapshots["snapshot_date"] == snapshot_date].copy()
+    if len(snap) == 0:
+        return None
+    snap["weight"] = snap["stage_at_snapshot"].map(STAGE_PROBABILITY).fillna(0.0)
+    weighted = float((snap["amount"] * snap["weight"]).sum())
+
+    window_end = (pd.Timestamp(snapshot_date) + pd.DateOffset(months=3)).strftime("%Y-%m-%d")
+    actual = opps[
+        (opps["status"] == "closed_won")
+        & (opps["close_date"] >= snapshot_date)
+        & (opps["close_date"] < window_end)
+    ]
+    actual_total = float(actual["amount"].sum())
+    if actual_total == 0:
+        return None
+    return weighted / actual_total
