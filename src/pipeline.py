@@ -132,3 +132,30 @@ def avg_days_in_stage(history: pd.DataFrame, stage: str,
     if len(rows) == 0:
         return 0.0
     return float(rows["days_in_stage"].mean())
+
+
+def stage_conversion(history: pd.DataFrame, from_stage: str, to_stage: str,
+                     start_date: str, end_date: str) -> float:
+    """Of opps that entered `from_stage` in [start, end) AND have since exited
+    `from_stage` (one way or another), what fraction ever reached `to_stage`?
+
+    Deals still sitting in `from_stage` (exited_date is null) are excluded
+    because they haven't had time to advance or lose. Without this filter,
+    fresh deals would artificially depress conversion.
+    """
+    entered = history[
+        (history["stage"] == from_stage)
+        & (history["entered_date"] >= start_date)
+        & (history["entered_date"] < end_date)
+        & history["exited_date"].notna()
+    ]
+    if len(entered) == 0:
+        return 0.0
+    opp_ids_that_exited_from_stage = set(entered["opportunity_id"])
+    reached_to_stage = set(
+        history[
+            (history["stage"] == to_stage)
+            & history["opportunity_id"].isin(opp_ids_that_exited_from_stage)
+        ]["opportunity_id"]
+    )
+    return len(reached_to_stage) / len(opp_ids_that_exited_from_stage)

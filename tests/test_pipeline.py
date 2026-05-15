@@ -95,3 +95,23 @@ def test_avg_days_in_stage_returns_zero_when_no_completed(tiny_stage_history):
     # No POC entries in [2025-01-01, 2025-02-01)
     assert avg_days_in_stage(tiny_stage_history, "Proof of Concept",
                               "2025-01-01", "2025-02-01") == 0.0
+
+
+from src.pipeline import stage_conversion
+
+
+def test_stage_conversion_poc_to_negotiation(tiny_stage_history):
+    # Deals that entered POC in [2024-01-01, 2024-04-01) AND have exited POC:
+    #   OPP-1 (exited 2024-02-01 → advanced)
+    #   OPP-3 (exited 2024-03-15 → advanced)
+    #   OPP-4 (exited 2024-02-15 → lost in POC)
+    # OPP-2 also entered POC in window but hasn't exited — excluded.
+    # Reached Negotiation: OPP-1, OPP-3 = 2 of 3 -> 0.667
+    assert stage_conversion(tiny_stage_history, "Proof of Concept", "Negotiation",
+                             "2024-01-01", "2024-04-01") == pytest.approx(2 / 3, abs=0.001)
+
+
+def test_stage_conversion_returns_zero_when_no_entries(tiny_stage_history):
+    # No POC entries in [2025-01-01, 2025-02-01)
+    assert stage_conversion(tiny_stage_history, "Proof of Concept", "Negotiation",
+                             "2025-01-01", "2025-02-01") == 0.0
