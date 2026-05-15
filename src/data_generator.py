@@ -414,3 +414,167 @@ def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.
 
     history.reverse()  # chronological
     return history
+
+
+def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generator
+                                 ) -> tuple[list[dict], list[dict]]:
+    """Generate new_business opportunities. Returns (opp_rows, stage_history_rows).
+
+    Three sub-populations:
+      1. Closed-won opps for every non-Self-Serve Phase 1 customer, closing on
+         that customer's signup_date.
+      2. Currently-open opps (~150), created in 2024-2025, in various stages,
+         expected to close Q1-Q2 2026.
+      3. Closed-lost opps (~80), walked through stages and dropped out somewhere.
+    """
+    opp_rows = []
+    stage_history_rows = []
+    next_id = 1
+
+    # Sub-population 1: closed-won, one per non-Self-Serve Phase 1 customer
+    nb_customers = customers[customers["acquisition_channel"] != "Self-Serve Promo"]
+    for _, c in nb_customers.iterrows():
+        close_date = pd.Timestamp(c["signup_date"])
+        history = _walk_new_business_stages_backward(
+            rng, close_date, c["segment"], end_stage=None, won=True
+        )
+        created_date = history[0]["entered_date"]
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": c["customer_id"],
+            "account_name": c["company_name"],
+            "segment": c["segment"],
+            "acquisition_channel": c["acquisition_channel"],
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": float(c["initial_mrr"]) * 12.0,
+            "current_stage": "Closed Won",
+            "status": "closed_won",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d"),
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    # Sub-population 2: currently-open opps (~150)
+    # Spread created_date across 2024-09 to 2025-12; sample a current stage based
+    # on stage-advance probabilities; expected close_date = today + remaining stages' dwell.
+    today = pd.Timestamp("2025-12-01")  # "Now" for the dashboard
+    n_open = 150
+    for _ in range(n_open):
+        segment = str(rng.choice(SEGMENTS, p=SEGMENT_WEIGHTS))
+        channel = str(rng.choice([c for c in CHANNELS if c != "Self-Serve Promo"]))
+        created_offset_days = int(rng.integers(0, 365))  # up to a year before "today"
+        created_date = today - pd.Timedelta(days=created_offset_days)
+
+        # Walk stages forward from created_date until either a non-advance roll
+        # (deal would have been lost — restart) or we reach a stage but "now"
+        # has arrived. Tracks current stage at "today".
+        cur = pd.Timestamp(created_date)
+        history = []
+        current_stage = None
+        for stage in NB_STAGES:
+            dwell = _sample_dwell_days(rng, NB_STAGE_DWELL_DAYS[stage][segment])
+            entered = cur
+            exit_date = cur + pd.Timedelta(days=dwell)
+            if exit_date >= today:
+                # Deal is still in this stage as of today
+                current_stage = stage
+                history.append({"stage": stage, "entered_date": entered,
+                                "exited_date": None, "days_in_stage": None})
+                break
+            # Did the deal advance? If yes, continue. If no, this would have
+            # been a lost deal — but we want open deals here, so restart the loop
+            # by treating this deal as having advanced.
+            history.append({"stage": stage, "entered_date": entered,
+                            "exited_date": exit_date, "days_in_stage": dwell})
+            cur = exit_date
+        else:
+            # Deal walked through all 4 stages but didn't close yet — extend
+            # by setting current_stage = Negotiation with no exit
+            current_stage = "Negotiation"
+            # Replace the last history entry to be in-progress
+            history[-1]["exited_date"] = None
+            history[-1]["days_in_stage"] = None
+
+        # Estimate expected close: today + average remaining-dwell across uncompleted stages
+        remaining = NB_STAGES[NB_STAGES.index(current_stage):]
+        expected_close_offset = sum(NB_STAGE_DWELL_DAYS[s][segment] for s in remaining)
+        expected_close = today + pd.Timedelta(days=expected_close_offset)
+        amount = float(rng.integers(5_000, 250_000))
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": None,
+            "account_name": _fake_company_name(rng),
+            "segment": segment,
+            "acquisition_channel": channel,
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": expected_close.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": current_stage,
+            "status": "open",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d") if h["exited_date"] else None,
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    # Sub-population 3: closed-lost (~80)
+    n_lost = 80
+    for _ in range(n_lost):
+        segment = str(rng.choice(SEGMENTS, p=SEGMENT_WEIGHTS))
+        channel = str(rng.choice([c for c in CHANNELS if c != "Self-Serve Promo"]))
+        # Pick stage where deal died — weighted by advance failures
+        # Higher chance of dying in POC, especially for Mid-Market
+        death_stage = str(rng.choice(NB_STAGES, p=[0.25, 0.25, 0.40, 0.10]))
+        # Pick a close_date in 2024-2025
+        close_date = pd.Timestamp("2024-01-01") + pd.Timedelta(days=int(rng.integers(0, 730)))
+        history = _walk_new_business_stages_backward(
+            rng, close_date, segment, end_stage=death_stage, won=False
+        )
+        created_date = history[0]["entered_date"]
+        amount = float(rng.integers(5_000, 250_000))
+
+        opp_id = f"OPP-{next_id:05d}"
+        next_id += 1
+        opp_rows.append({
+            "opportunity_id": opp_id,
+            "customer_id": None,
+            "account_name": _fake_company_name(rng),
+            "segment": segment,
+            "acquisition_channel": channel,
+            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "opportunity_type": "new_business",
+            "created_date": created_date.strftime("%Y-%m-%d"),
+            "close_date": close_date.strftime("%Y-%m-%d"),
+            "amount": amount,
+            "current_stage": "Closed Lost",
+            "status": "closed_lost",
+        })
+        for h in history:
+            stage_history_rows.append({
+                "opportunity_id": opp_id,
+                "stage": h["stage"],
+                "entered_date": h["entered_date"].strftime("%Y-%m-%d"),
+                "exited_date": h["exited_date"].strftime("%Y-%m-%d"),
+                "days_in_stage": h["days_in_stage"],
+            })
+
+    return opp_rows, stage_history_rows
