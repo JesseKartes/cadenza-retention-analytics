@@ -321,3 +321,96 @@ def write_to_disk(out_dir: Path) -> None:
 
 if __name__ == "__main__":
     write_to_disk(Path(__file__).resolve().parents[1] / "data" / "generated")
+
+
+# --- Phase 2: Pipeline & Forecasting --------------------------------------
+
+# Stage taxonomy by opportunity type
+NB_STAGES = ["Discovery", "Qualification", "Proof of Concept", "Negotiation"]
+RENEWAL_STAGES = ["Renewal Discussion", "Negotiation"]
+EXPANSION_STAGES = ["Expansion Discussion"]
+
+# Mean dwell days per stage per segment (gamma-distributed in practice)
+# Engineered insight: Mid-Market POC stall (~3x SMB dwell).
+NB_STAGE_DWELL_DAYS = {
+    "Discovery":         {"SMB": 7,  "Mid-Market": 10, "Enterprise": 14},
+    "Qualification":     {"SMB": 10, "Mid-Market": 14, "Enterprise": 20},
+    "Proof of Concept":  {"SMB": 15, "Mid-Market": 45, "Enterprise": 25},  # the gap
+    "Negotiation":       {"SMB": 10, "Mid-Market": 18, "Enterprise": 25},
+}
+
+# Stage advance probability (rest = closed-lost in that stage)
+# Engineered insight: Mid-Market POC -> Negotiation only ~40%.
+NB_STAGE_ADVANCE_PROB = {
+    "Discovery":        {"SMB": 0.85, "Mid-Market": 0.80, "Enterprise": 0.90},
+    "Qualification":    {"SMB": 0.75, "Mid-Market": 0.70, "Enterprise": 0.85},
+    "Proof of Concept": {"SMB": 0.70, "Mid-Market": 0.40, "Enterprise": 0.75},  # the gap
+    "Negotiation":      {"SMB": 0.80, "Mid-Market": 0.75, "Enterprise": 0.85},
+}
+
+# Renewal / expansion are shorter cycles
+RENEWAL_STAGE_DWELL_DAYS = {"Renewal Discussion": 30, "Negotiation": 15}
+EXPANSION_STAGE_DWELL_DAYS = {"Expansion Discussion": 30}
+
+# Rep pool (captured on opps; not surfaced in Phase 2)
+REP_IDS = [f"REP-{i:02d}" for i in range(1, 13)]
+
+# Pipeline snapshot dates (first of each quarter, Q1 2024 - Q4 2025)
+SNAPSHOT_DATES = [pd.Timestamp(f"{y}-{m:02d}-01") for y in (2024, 2025) for m in (1, 4, 7, 10)]
+
+# Forecast category by stage
+FORECAST_CATEGORY_BY_STAGE = {
+    "Discovery": "Pipeline",
+    "Qualification": "Pipeline",
+    "Proof of Concept": "Best Case",
+    "Renewal Discussion": "Best Case",
+    "Expansion Discussion": "Best Case",
+    "Negotiation": "Commit",
+}
+
+
+def _sample_dwell_days(rng: np.random.Generator, mean_days: float) -> int:
+    """Sample a positive-skew dwell time using a gamma with shape=2.
+
+    Real-world dwell times have a long right tail (some deals drag); gamma(2)
+    captures that without going negative. `mean = shape * scale` so scale = mean/2.
+    """
+    shape = 2.0
+    scale = mean_days / shape
+    return max(1, int(round(rng.gamma(shape, scale))))
+
+
+def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.Timestamp,
+                                        segment: str, end_stage: str | None,
+                                        won: bool) -> list[dict]:
+    """Build stage_history rows by walking backward from close_date.
+
+    `end_stage` is the stage in which the deal closed (None means walked through
+    all NB_STAGES and won). `won=True` means deal reached Negotiation and converted.
+
+    Returns a list of dicts with: stage, entered_date, exited_date, days_in_stage.
+    Dates are pd.Timestamp; serialization to ISO date happens at write time.
+    """
+    if end_stage is None:
+        stages = NB_STAGES  # walked through all 4
+    else:
+        idx = NB_STAGES.index(end_stage)
+        stages = NB_STAGES[:idx + 1]
+
+    # Sample dwell times per stage
+    dwells = [_sample_dwell_days(rng, NB_STAGE_DWELL_DAYS[s][segment]) for s in stages]
+
+    # Build the history forward in time. Total = close_date - sum(dwells_before_close_stage)
+    # For a won deal closing in Negotiation: deal exited Negotiation on close_date.
+    # For a lost deal closing in stage X: deal exited X on close_date.
+    history = []
+    # Last stage exit = close_date
+    end = close_date
+    for stage_name, dwell in reversed(list(zip(stages, dwells))):
+        start = end - pd.Timedelta(days=dwell)
+        history.append({"stage": stage_name, "entered_date": start,
+                        "exited_date": end, "days_in_stage": dwell})
+        end = start
+
+    history.reverse()  # chronological
+    return history
