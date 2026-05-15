@@ -63,3 +63,23 @@ def test_forecast_accuracy_trend_2024_03_01_row(tiny_snapshots, tiny_opportuniti
     assert row["weighted_forecast"] == pytest.approx(115_800.0)
     assert row["actual_closed_won"] == pytest.approx(66_000.0)
     assert row["accuracy"] == pytest.approx(115_800.0 / 66_000.0, abs=0.001)
+
+
+from src.forecast import forecast_bias_by_segment
+
+
+def test_forecast_bias_by_segment_groups_correctly(tiny_snapshots, tiny_opportunities):
+    # Snapshot 2024-03-01, segments derived by joining snapshot -> opps:
+    #   SMB:        OPP-1 weighted = 0.65*12_000 = 7_800.  Actual won SMB = OPP-1 (12_000)
+    #   Mid-Market: OPP-2 + OPP-8 weighted = 0.40*60_000 + 0.10*40_000 = 28_000.
+    #               Actual won Mid-Market = OPP-5 (30_000)
+    #   Enterprise: OPP-3 weighted = 0.40*200_000 = 80_000.
+    #               Actual won Enterprise = OPP-7 (24_000)
+    df = forecast_bias_by_segment(tiny_snapshots, tiny_opportunities, "2024-03-01")
+    by_seg = df.set_index("segment")
+    assert by_seg.loc["SMB", "weighted_forecast"] == pytest.approx(7_800.0)
+    assert by_seg.loc["SMB", "actual_closed_won"] == pytest.approx(12_000.0)
+    assert by_seg.loc["Mid-Market", "weighted_forecast"] == pytest.approx(28_000.0)
+    assert by_seg.loc["Mid-Market", "actual_closed_won"] == pytest.approx(30_000.0)
+    assert by_seg.loc["Enterprise", "weighted_forecast"] == pytest.approx(80_000.0)
+    assert by_seg.loc["Enterprise", "actual_closed_won"] == pytest.approx(24_000.0)

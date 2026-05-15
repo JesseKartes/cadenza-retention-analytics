@@ -61,6 +61,37 @@ def forecast_accuracy(snapshots: pd.DataFrame, opps: pd.DataFrame,
     return weighted / actual_total
 
 
+def forecast_bias_by_segment(snapshots: pd.DataFrame, opps: pd.DataFrame,
+                              snapshot_date: str) -> pd.DataFrame:
+    """Per-segment forecast vs. actual for a single snapshot's quarter.
+
+    Returns columns: segment, weighted_forecast, actual_closed_won, accuracy.
+    The segment comes from joining the snapshot's opportunity_ids back to
+    the opps table.
+    """
+    snap = snapshots[snapshots["snapshot_date"] == snapshot_date].copy()
+    snap = snap.merge(opps[["opportunity_id", "segment"]], on="opportunity_id", how="left")
+    snap["weight"] = snap["stage_at_snapshot"].map(STAGE_PROBABILITY).fillna(0.0)
+    snap["weighted_amount"] = snap["amount"] * snap["weight"]
+
+    forecast_by_seg = snap.groupby("segment")["weighted_amount"].sum().rename("weighted_forecast")
+
+    window_end = (pd.Timestamp(snapshot_date) + pd.DateOffset(months=3)).strftime("%Y-%m-%d")
+    actuals = opps[
+        (opps["status"] == "closed_won")
+        & (opps["close_date"] >= snapshot_date)
+        & (opps["close_date"] < window_end)
+    ]
+    actual_by_seg = actuals.groupby("segment")["amount"].sum().rename("actual_closed_won")
+
+    df = pd.concat([forecast_by_seg, actual_by_seg], axis=1).fillna(0.0).reset_index()
+    df["accuracy"] = df.apply(
+        lambda r: (r["weighted_forecast"] / r["actual_closed_won"]) if r["actual_closed_won"] > 0 else None,
+        axis=1,
+    )
+    return df
+
+
 def forecast_accuracy_trend(snapshots: pd.DataFrame, opps: pd.DataFrame) -> pd.DataFrame:
     """Build a row-per-snapshot DataFrame with forecast, actual, and accuracy.
 
