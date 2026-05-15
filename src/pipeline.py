@@ -42,3 +42,15 @@ STAGE_PROBABILITY: dict[str, float] = {
     "Closed Won": 0.0,
     "Closed Lost": 0.0,
 }
+
+
+def total_pipeline(opps: pd.DataFrame, as_of_date: str) -> float:
+    """Sum of `amount` for open opps created on or before `as_of_date`.
+
+    Formula: sum(amount where status='open' and created_date <= as_of_date)
+    """
+    open_opps = opps[
+        (opps["status"] == "open")
+        & (opps["created_date"] <= as_of_date)
+    ]
+    return float(open_opps["amount"].sum())
