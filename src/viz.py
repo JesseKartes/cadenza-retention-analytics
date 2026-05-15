@@ -220,13 +220,13 @@ def forecast_buckets_figure(buckets: dict[str, float], target: float | None = No
     fig.update_layout(
         barmode="stack",
         title="Forecast Buckets",
-        height=260,
-        xaxis_title="$",
+        height=280,
+        xaxis_title=None,
         showlegend=True,
         legend={
             "orientation": "h",
             "yanchor": "top",
-            "y": -0.4,
+            "y": -0.55,
             "xanchor": "center",
             "x": 0.5,
         },

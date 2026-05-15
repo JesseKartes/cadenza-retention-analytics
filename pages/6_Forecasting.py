@@ -36,7 +36,9 @@ def main():
     snap_date = st.sidebar.selectbox("Snapshot quarter", snap_dates, index=len(snap_dates) - 1)
 
     target = st.sidebar.number_input("Quarter target ($)",
-                                      min_value=0, value=2_000_000, step=100_000)
+                                      min_value=0, value=20_000_000, step=1_000_000,
+                                      help="Total booking target for the quarter "
+                                           "(new business + renewals + expansion).")
 
     buckets = fc.forecast_buckets(snapshots, snap_date)
     last_completed = snap_dates[snap_dates.index(snap_date) - 1] if snap_dates.index(snap_date) > 0 else None
