@@ -113,3 +113,22 @@ def avg_sales_cycle_days(opps: pd.DataFrame, start_date: str, end_date: str) -> 
         return 0.0
     cycle_days = (pd.to_datetime(won["close_date"]) - pd.to_datetime(won["created_date"])).dt.days
     return float(cycle_days.mean())
+
+
+def avg_days_in_stage(history: pd.DataFrame, stage: str,
+                      start_date: str, end_date: str) -> float:
+    """Average days_in_stage for completed (exited_date not null) stage
+    occupancies where entered_date falls in [start_date, end_date).
+
+    In-progress occupancies are excluded — their final dwell time is
+    unknown. For aging analysis, use `aging_deals` instead.
+    """
+    rows = history[
+        (history["stage"] == stage)
+        & (history["entered_date"] >= start_date)
+        & (history["entered_date"] < end_date)
+        & history["exited_date"].notna()
+    ]
+    if len(rows) == 0:
+        return 0.0
+    return float(rows["days_in_stage"].mean())

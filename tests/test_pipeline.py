@@ -71,3 +71,27 @@ def test_avg_sales_cycle_days_for_won_deals(tiny_opportunities):
     #   OPP-7: 2024-03-15 − 2024-01-15 = 60 days
     # Avg = (90 + 60 + 60) / 3 = 70.0
     assert avg_sales_cycle_days(tiny_opportunities, "2024-01-01", "2024-04-01") == pytest.approx(70.0)
+
+
+from src.pipeline import avg_days_in_stage
+
+
+def test_avg_days_in_stage_only_counts_completed_occupancies(tiny_stage_history):
+    # POC entries with entered_date in [2024-01-01, 2024-04-01) AND exited_date not null:
+    #   OPP-1: 14, OPP-3: 25, OPP-4: 21 -> avg = 60/3 = 20.0
+    # OPP-2's POC entry (entered 2024-02-15, still in stage) is excluded.
+    assert avg_days_in_stage(tiny_stage_history, "Proof of Concept",
+                              "2024-01-01", "2024-04-01") == pytest.approx(20.0)
+
+
+def test_avg_days_in_stage_negotiation_single_completed(tiny_stage_history):
+    # Negotiation: only OPP-1 (entered 2024-02-01, exited 2024-03-31, 59 days).
+    # OPP-3 in Negotiation is in-progress (exited_date null) — excluded.
+    assert avg_days_in_stage(tiny_stage_history, "Negotiation",
+                              "2024-01-01", "2024-04-01") == pytest.approx(59.0)
+
+
+def test_avg_days_in_stage_returns_zero_when_no_completed(tiny_stage_history):
+    # No POC entries in [2025-01-01, 2025-02-01)
+    assert avg_days_in_stage(tiny_stage_history, "Proof of Concept",
+                              "2025-01-01", "2025-02-01") == 0.0
