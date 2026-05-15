@@ -14,3 +14,20 @@ from __future__ import annotations
 import pandas as pd
 
 from src.pipeline import STAGE_PROBABILITY
+
+
+def forecast_buckets(snapshots: pd.DataFrame, snapshot_date: str) -> dict[str, float]:
+    """Sum amounts by forecast_category for the given snapshot_date.
+
+    Returns dict with keys 'commit', 'best_case', 'pipeline' (lowercase,
+    snake_case). Zero-defaults if a category has no rows for the date.
+    """
+    rows = snapshots[snapshots["snapshot_date"] == snapshot_date]
+    result = {"commit": 0.0, "best_case": 0.0, "pipeline": 0.0}
+    if len(rows) == 0:
+        return result
+    by_cat = rows.groupby("forecast_category")["amount"].sum().to_dict()
+    result["commit"] = float(by_cat.get("Commit", 0.0))
+    result["best_case"] = float(by_cat.get("Best Case", 0.0))
+    result["pipeline"] = float(by_cat.get("Pipeline", 0.0))
+    return result
