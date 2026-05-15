@@ -32,41 +32,99 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2024-01-01,OPP-00306,Discovery,34560.0,Pipeline,2024-05-06
 2024-01-01,OPP-00844,Proof of Concept,48052.0,Best Case,2024-01-10
 2024-01-01,OPP-00867,Proof of Concept,39371.0,Best Case,2024-01-03
-2024-01-01,OPP-00896,Negotiation,51000.0,Commit,2024-01-19
-2024-01-01,OPP-00898,Negotiation,44400.0,Commit,2024-01-23
-2024-01-01,OPP-00899,Negotiation,69120.0,Commit,2024-01-12
-2024-01-01,OPP-00901,Negotiation,6600.0,Commit,2024-01-05
-2024-01-01,OPP-00903,Negotiation,1164000.0,Commit,2024-01-06
-2024-01-01,OPP-00905,Negotiation,5400.0,Commit,2024-01-04
-2024-01-01,OPP-00907,Renewal Discussion,99360.0,Best Case,2024-01-08
-2024-01-01,OPP-00909,Negotiation,7200.0,Commit,2024-01-22
-2024-01-01,OPP-00911,Negotiation,24480.0,Commit,2024-01-04
-2024-01-01,OPP-00912,Renewal Discussion,15840.0,Best Case,2024-01-16
-2024-01-01,OPP-00913,Negotiation,4800.0,Commit,2024-01-12
-2024-01-01,OPP-00915,Renewal Discussion,29400.0,Best Case,2024-01-24
-2024-01-01,OPP-00917,Negotiation,23040.0,Commit,2024-01-18
-2024-01-01,OPP-00919,Negotiation,7800.0,Commit,2024-01-21
-2024-01-01,OPP-00921,Renewal Discussion,6000.0,Best Case,2024-01-19
-2024-01-01,OPP-00923,Negotiation,4200.0,Commit,2024-01-26
-2024-01-01,OPP-00925,Renewal Discussion,987000.0,Best Case,2024-02-08
-2024-01-01,OPP-00927,Negotiation,89280.0,Commit,2024-02-03
-2024-01-01,OPP-00928,Renewal Discussion,9000.0,Best Case,2024-02-16
-2024-01-01,OPP-00930,Renewal Discussion,96480.0,Best Case,2024-02-09
-2024-01-01,OPP-00932,Renewal Discussion,7800.0,Best Case,2024-01-15
-2024-01-01,OPP-00933,Renewal Discussion,5400.0,Best Case,2024-02-22
-2024-01-01,OPP-00935,Negotiation,3600.0,Commit,2024-02-01
-2024-01-01,OPP-00936,Renewal Discussion,63360.0,Best Case,2024-02-19
-2024-01-01,OPP-00938,Renewal Discussion,9000.0,Best Case,2024-02-09
-2024-01-01,OPP-00940,Renewal Discussion,11520.0,Best Case,2024-02-15
-2024-01-01,OPP-00942,Renewal Discussion,3000.0,Best Case,2024-02-18
-2024-01-01,OPP-00944,Renewal Discussion,7200.0,Best Case,2024-02-07
-2024-01-01,OPP-00946,Negotiation,8640.0,Commit,2024-02-05
-2024-01-01,OPP-00948,Renewal Discussion,5760.0,Best Case,2024-02-21
-2024-01-01,OPP-00950,Negotiation,13200.0,Commit,2024-02-10
-2024-01-01,OPP-01575,Expansion Discussion,1200.0,Best Case,2024-01-15
-2024-01-01,OPP-01576,Expansion Discussion,19800.0,Best Case,2024-01-15
-2024-01-01,OPP-01578,Expansion Discussion,600.0,Best Case,2024-02-15
-2024-01-01,OPP-01579,Expansion Discussion,18720.0,Best Case,2024-02-15
+2024-01-01,OPP-00925,Proof of Concept,16993.0,Best Case,2024-01-04
+2024-01-01,OPP-00967,Proof of Concept,167978.0,Best Case,2024-01-25
+2024-01-01,OPP-00972,Qualification,122891.0,Pipeline,2024-01-04
+2024-01-01,OPP-00977,Discovery,90981.0,Pipeline,2024-01-14
+2024-01-01,OPP-01010,Qualification,129404.0,Pipeline,2024-02-07
+2024-01-01,OPP-01026,Proof of Concept,201765.0,Best Case,2024-01-12
+2024-01-01,OPP-01043,Qualification,85060.0,Pipeline,2024-01-03
+2024-01-01,OPP-01063,Proof of Concept,134881.0,Best Case,2024-02-08
+2024-01-01,OPP-01085,Discovery,157705.0,Pipeline,2024-01-12
+2024-01-01,OPP-01101,Qualification,170864.0,Pipeline,2024-01-09
+2024-01-01,OPP-01105,Proof of Concept,188559.0,Best Case,2024-01-18
+2024-01-01,OPP-01122,Qualification,209951.0,Pipeline,2024-01-13
+2024-01-01,OPP-01129,Discovery,244886.0,Pipeline,2024-03-11
+2024-01-01,OPP-01148,Discovery,203505.0,Pipeline,2024-01-11
+2024-01-01,OPP-01171,Qualification,89156.0,Pipeline,2024-02-20
+2024-01-01,OPP-01175,Qualification,167785.0,Pipeline,2024-02-04
+2024-01-01,OPP-01221,Proof of Concept,5801.0,Best Case,2024-02-18
+2024-01-01,OPP-01234,Qualification,78127.0,Pipeline,2024-01-03
+2024-01-01,OPP-01240,Discovery,232214.0,Pipeline,2024-01-16
+2024-01-01,OPP-01242,Proof of Concept,238753.0,Best Case,2024-01-25
+2024-01-01,OPP-01253,Proof of Concept,106300.0,Best Case,2024-01-31
+2024-01-01,OPP-01261,Negotiation,216523.0,Commit,2024-01-11
+2024-01-01,OPP-01286,Proof of Concept,85549.0,Best Case,2024-01-08
+2024-01-01,OPP-01341,Discovery,199884.0,Pipeline,2024-02-08
+2024-01-01,OPP-01395,Negotiation,118144.0,Commit,2024-01-06
+2024-01-01,OPP-01416,Discovery,70919.0,Pipeline,2024-01-21
+2024-01-01,OPP-01438,Proof of Concept,200305.0,Best Case,2024-01-04
+2024-01-01,OPP-01474,Proof of Concept,231049.0,Best Case,2024-01-10
+2024-01-01,OPP-01486,Proof of Concept,48004.0,Best Case,2024-02-07
+2024-01-01,OPP-01505,Qualification,229969.0,Pipeline,2024-01-03
+2024-01-01,OPP-01511,Proof of Concept,73761.0,Best Case,2024-03-08
+2024-01-01,OPP-01515,Qualification,73498.0,Pipeline,2024-02-01
+2024-01-01,OPP-01551,Proof of Concept,236235.0,Best Case,2024-04-22
+2024-01-01,OPP-01564,Discovery,145148.0,Pipeline,2024-01-26
+2024-01-01,OPP-01588,Qualification,244292.0,Pipeline,2024-02-07
+2024-01-01,OPP-01602,Qualification,231719.0,Pipeline,2024-01-21
+2024-01-01,OPP-01632,Qualification,241715.0,Pipeline,2024-01-11
+2024-01-01,OPP-01637,Proof of Concept,151005.0,Best Case,2024-01-07
+2024-01-01,OPP-01646,Qualification,81320.0,Pipeline,2024-02-14
+2024-01-01,OPP-01653,Qualification,106394.0,Pipeline,2024-02-04
+2024-01-01,OPP-01662,Proof of Concept,206769.0,Best Case,2024-01-13
+2024-01-01,OPP-01667,Negotiation,172988.0,Commit,2024-01-06
+2024-01-01,OPP-01673,Proof of Concept,116734.0,Best Case,2024-02-16
+2024-01-01,OPP-01677,Qualification,116059.0,Pipeline,2024-01-13
+2024-01-01,OPP-01712,Qualification,35547.0,Pipeline,2024-01-10
+2024-01-01,OPP-01757,Qualification,176615.0,Pipeline,2024-01-09
+2024-01-01,OPP-01780,Proof of Concept,175052.0,Best Case,2024-01-03
+2024-01-01,OPP-01817,Proof of Concept,221785.0,Best Case,2024-01-25
+2024-01-01,OPP-01905,Discovery,25847.0,Pipeline,2024-03-05
+2024-01-01,OPP-01918,Qualification,170074.0,Pipeline,2024-01-31
+2024-01-01,OPP-01931,Proof of Concept,239408.0,Best Case,2024-02-02
+2024-01-01,OPP-01933,Proof of Concept,9575.0,Best Case,2024-01-22
+2024-01-01,OPP-02025,Discovery,205241.0,Pipeline,2024-01-26
+2024-01-01,OPP-02067,Qualification,90363.0,Pipeline,2024-01-15
+2024-01-01,OPP-02105,Discovery,144599.0,Pipeline,2024-02-19
+2024-01-01,OPP-02227,Proof of Concept,46498.0,Best Case,2024-01-12
+2024-01-01,OPP-02237,Qualification,187938.0,Pipeline,2024-02-15
+2024-01-01,OPP-02316,Negotiation,51000.0,Commit,2024-01-19
+2024-01-01,OPP-02318,Renewal Discussion,44400.0,Best Case,2024-01-23
+2024-01-01,OPP-02319,Negotiation,69120.0,Commit,2024-01-12
+2024-01-01,OPP-02321,Negotiation,6600.0,Commit,2024-01-05
+2024-01-01,OPP-02323,Negotiation,1164000.0,Commit,2024-01-06
+2024-01-01,OPP-02325,Negotiation,5400.0,Commit,2024-01-04
+2024-01-01,OPP-02327,Negotiation,99360.0,Commit,2024-01-08
+2024-01-01,OPP-02329,Renewal Discussion,7200.0,Best Case,2024-01-22
+2024-01-01,OPP-02331,Negotiation,24480.0,Commit,2024-01-04
+2024-01-01,OPP-02332,Negotiation,15840.0,Commit,2024-01-16
+2024-01-01,OPP-02333,Negotiation,4800.0,Commit,2024-01-12
+2024-01-01,OPP-02335,Negotiation,29400.0,Commit,2024-01-24
+2024-01-01,OPP-02337,Negotiation,23040.0,Commit,2024-01-18
+2024-01-01,OPP-02339,Negotiation,7800.0,Commit,2024-01-21
+2024-01-01,OPP-02341,Negotiation,6000.0,Commit,2024-01-19
+2024-01-01,OPP-02343,Negotiation,4200.0,Commit,2024-01-26
+2024-01-01,OPP-02345,Negotiation,987000.0,Commit,2024-02-08
+2024-01-01,OPP-02347,Renewal Discussion,89280.0,Best Case,2024-02-03
+2024-01-01,OPP-02348,Negotiation,9000.0,Commit,2024-02-16
+2024-01-01,OPP-02350,Renewal Discussion,96480.0,Best Case,2024-02-09
+2024-01-01,OPP-02352,Renewal Discussion,7800.0,Best Case,2024-01-15
+2024-01-01,OPP-02353,Renewal Discussion,5400.0,Best Case,2024-02-22
+2024-01-01,OPP-02355,Renewal Discussion,3600.0,Best Case,2024-02-01
+2024-01-01,OPP-02356,Renewal Discussion,63360.0,Best Case,2024-02-19
+2024-01-01,OPP-02358,Negotiation,9000.0,Commit,2024-02-09
+2024-01-01,OPP-02360,Negotiation,11520.0,Commit,2024-02-15
+2024-01-01,OPP-02362,Negotiation,3000.0,Commit,2024-02-18
+2024-01-01,OPP-02364,Negotiation,7200.0,Commit,2024-02-07
+2024-01-01,OPP-02366,Negotiation,8640.0,Commit,2024-02-05
+2024-01-01,OPP-02368,Renewal Discussion,5760.0,Best Case,2024-02-21
+2024-01-01,OPP-02370,Renewal Discussion,13200.0,Best Case,2024-02-10
+2024-01-01,OPP-02995,Expansion Discussion,1200.0,Best Case,2024-01-15
+2024-01-01,OPP-02996,Expansion Discussion,19800.0,Best Case,2024-01-15
+2024-01-01,OPP-02998,Expansion Discussion,600.0,Best Case,2024-02-15
+2024-01-01,OPP-03000,Expansion Discussion,1800.0,Best Case,2024-02-15
+2024-01-01,OPP-03001,Expansion Discussion,18720.0,Best Case,2024-02-15
 2024-04-01,OPP-00275,Negotiation,7200.0,Commit,2024-04-06
 2024-04-01,OPP-00276,Negotiation,3600.0,Commit,2024-04-04
 2024-04-01,OPP-00277,Negotiation,4800.0,Commit,2024-04-07
@@ -97,53 +155,105 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2024-04-01,OPP-00329,Discovery,186000.0,Pipeline,2024-07-07
 2024-04-01,OPP-00836,Proof of Concept,7829.0,Best Case,2024-04-08
 2024-04-01,OPP-00866,Discovery,168975.0,Pipeline,2024-04-23
-2024-04-01,OPP-00985,Negotiation,3600.0,Commit,2024-04-12
-2024-04-01,OPP-00987,Negotiation,4200.0,Commit,2024-04-05
-2024-04-01,OPP-00988,Negotiation,87840.0,Commit,2024-04-09
-2024-04-01,OPP-00990,Negotiation,8400.0,Commit,2024-04-21
-2024-04-01,OPP-00992,Negotiation,64800.0,Commit,2024-04-24
-2024-04-01,OPP-00994,Negotiation,711000.0,Commit,2024-04-22
-2024-04-01,OPP-00996,Negotiation,9000.0,Commit,2024-04-15
-2024-04-01,OPP-00998,Negotiation,6600.0,Commit,2024-04-15
-2024-04-01,OPP-01000,Renewal Discussion,18720.0,Best Case,2024-04-23
-2024-04-01,OPP-01002,Negotiation,9000.0,Commit,2024-04-21
-2024-04-01,OPP-01004,Negotiation,50400.0,Commit,2024-04-22
-2024-04-01,OPP-01006,Negotiation,14400.0,Commit,2024-04-12
-2024-04-01,OPP-01008,Negotiation,639000.0,Commit,2024-04-04
-2024-04-01,OPP-01010,Negotiation,48960.0,Commit,2024-04-12
-2024-04-01,OPP-01012,Negotiation,252000.0,Commit,2024-04-02
-2024-04-01,OPP-01014,Negotiation,48000.0,Commit,2024-04-18
-2024-04-01,OPP-01016,Negotiation,28800.0,Commit,2024-04-13
-2024-04-01,OPP-01018,Negotiation,8400.0,Commit,2024-05-01
-2024-04-01,OPP-01020,Negotiation,1800.0,Commit,2024-05-08
-2024-04-01,OPP-01022,Renewal Discussion,113760.0,Best Case,2024-05-19
-2024-04-01,OPP-01023,Negotiation,25920.0,Commit,2024-05-06
-2024-04-01,OPP-01024,Renewal Discussion,570240.0,Best Case,2024-05-02
-2024-04-01,OPP-01026,Renewal Discussion,22200.0,Best Case,2024-05-03
-2024-04-01,OPP-01028,Negotiation,10800.0,Commit,2024-05-24
-2024-04-01,OPP-01030,Renewal Discussion,67680.0,Best Case,2024-05-19
-2024-04-01,OPP-01032,Renewal Discussion,9000.0,Best Case,2024-05-25
-2024-04-01,OPP-01034,Renewal Discussion,6000.0,Best Case,2024-05-12
-2024-04-01,OPP-01036,Renewal Discussion,6600.0,Best Case,2024-05-26
-2024-04-01,OPP-01038,Negotiation,76320.0,Commit,2024-05-17
-2024-04-01,OPP-01040,Renewal Discussion,5400.0,Best Case,2024-05-10
-2024-04-01,OPP-01042,Renewal Discussion,103680.0,Best Case,2024-05-20
-2024-04-01,OPP-01044,Renewal Discussion,89280.0,Best Case,2024-05-24
-2024-04-01,OPP-01046,Renewal Discussion,2400.0,Best Case,2024-05-14
-2024-04-01,OPP-01589,Expansion Discussion,1800.0,Best Case,2024-04-15
-2024-04-01,OPP-01590,Expansion Discussion,5760.0,Best Case,2024-04-15
-2024-04-01,OPP-01591,Expansion Discussion,5760.0,Best Case,2024-04-15
-2024-04-01,OPP-01592,Expansion Discussion,168000.0,Best Case,2024-04-15
-2024-04-01,OPP-01593,Expansion Discussion,600.0,Best Case,2024-04-15
-2024-04-01,OPP-01594,Expansion Discussion,600.0,Best Case,2024-04-15
-2024-04-01,OPP-01595,Expansion Discussion,4320.0,Best Case,2024-04-15
-2024-04-01,OPP-01596,Expansion Discussion,1440.0,Best Case,2024-04-15
-2024-04-01,OPP-01597,Expansion Discussion,9000.0,Best Case,2024-04-15
-2024-04-01,OPP-01598,Expansion Discussion,132000.0,Best Case,2024-04-15
-2024-04-01,OPP-01600,Expansion Discussion,600.0,Best Case,2024-05-15
-2024-04-01,OPP-01602,Expansion Discussion,2400.0,Best Case,2024-05-15
-2024-04-01,OPP-01605,Expansion Discussion,600.0,Best Case,2024-05-15
-2024-04-01,OPP-01606,Expansion Discussion,600.0,Best Case,2024-05-15
+2024-04-01,OPP-00900,Qualification,172912.0,Pipeline,2024-08-17
+2024-04-01,OPP-00901,Qualification,105482.0,Pipeline,2024-04-24
+2024-04-01,OPP-00906,Discovery,105500.0,Pipeline,2024-04-07
+2024-04-01,OPP-00921,Proof of Concept,161409.0,Best Case,2024-04-11
+2024-04-01,OPP-00924,Qualification,176959.0,Pipeline,2024-04-15
+2024-04-01,OPP-00968,Proof of Concept,16922.0,Best Case,2024-04-17
+2024-04-01,OPP-00996,Discovery,35472.0,Pipeline,2024-04-18
+2024-04-01,OPP-01011,Qualification,189300.0,Pipeline,2024-04-02
+2024-04-01,OPP-01014,Discovery,168194.0,Pipeline,2024-08-13
+2024-04-01,OPP-01033,Qualification,82655.0,Pipeline,2024-09-16
+2024-04-01,OPP-01089,Proof of Concept,40161.0,Best Case,2024-04-07
+2024-04-01,OPP-01102,Discovery,94352.0,Pipeline,2024-05-07
+2024-04-01,OPP-01113,Discovery,127970.0,Pipeline,2024-07-05
+2024-04-01,OPP-01213,Discovery,231967.0,Pipeline,2024-04-06
+2024-04-01,OPP-01302,Proof of Concept,249320.0,Best Case,2024-04-05
+2024-04-01,OPP-01453,Discovery,143761.0,Pipeline,2024-04-15
+2024-04-01,OPP-01484,Qualification,228287.0,Pipeline,2024-04-14
+2024-04-01,OPP-01493,Discovery,196373.0,Pipeline,2024-05-03
+2024-04-01,OPP-01506,Qualification,142602.0,Pipeline,2024-05-22
+2024-04-01,OPP-01507,Discovery,175010.0,Pipeline,2024-05-25
+2024-04-01,OPP-01548,Negotiation,81964.0,Commit,2024-04-12
+2024-04-01,OPP-01551,Proof of Concept,236235.0,Best Case,2024-04-22
+2024-04-01,OPP-01570,Proof of Concept,47810.0,Best Case,2024-04-28
+2024-04-01,OPP-01634,Qualification,177204.0,Pipeline,2024-04-22
+2024-04-01,OPP-01669,Proof of Concept,168213.0,Best Case,2024-05-03
+2024-04-01,OPP-01691,Proof of Concept,173711.0,Best Case,2024-05-25
+2024-04-01,OPP-01779,Proof of Concept,245913.0,Best Case,2024-04-06
+2024-04-01,OPP-01785,Discovery,203538.0,Pipeline,2024-04-23
+2024-04-01,OPP-01789,Discovery,183636.0,Pipeline,2024-04-21
+2024-04-01,OPP-01791,Qualification,37893.0,Pipeline,2024-04-12
+2024-04-01,OPP-01808,Qualification,150049.0,Pipeline,2024-05-06
+2024-04-01,OPP-01834,Discovery,217959.0,Pipeline,2024-05-27
+2024-04-01,OPP-01870,Proof of Concept,103729.0,Best Case,2024-04-21
+2024-04-01,OPP-01885,Discovery,45629.0,Pipeline,2024-04-24
+2024-04-01,OPP-01912,Qualification,56688.0,Pipeline,2024-04-26
+2024-04-01,OPP-01957,Qualification,120268.0,Pipeline,2024-05-04
+2024-04-01,OPP-01991,Qualification,221199.0,Pipeline,2024-05-07
+2024-04-01,OPP-02034,Proof of Concept,166746.0,Best Case,2024-04-08
+2024-04-01,OPP-02055,Negotiation,6389.0,Commit,2024-04-05
+2024-04-01,OPP-02072,Proof of Concept,187968.0,Best Case,2024-04-04
+2024-04-01,OPP-02075,Proof of Concept,110190.0,Best Case,2024-04-26
+2024-04-01,OPP-02094,Discovery,135502.0,Pipeline,2024-04-26
+2024-04-01,OPP-02097,Qualification,153104.0,Pipeline,2024-05-04
+2024-04-01,OPP-02113,Discovery,206924.0,Pipeline,2024-04-26
+2024-04-01,OPP-02123,Discovery,51564.0,Pipeline,2024-04-03
+2024-04-01,OPP-02134,Proof of Concept,72290.0,Best Case,2024-05-15
+2024-04-01,OPP-02162,Discovery,202284.0,Pipeline,2024-05-12
+2024-04-01,OPP-02166,Proof of Concept,55188.0,Best Case,2024-04-05
+2024-04-01,OPP-02216,Qualification,91407.0,Pipeline,2024-04-25
+2024-04-01,OPP-02219,Negotiation,37009.0,Commit,2024-05-01
+2024-04-01,OPP-02249,Discovery,104042.0,Pipeline,2024-04-24
+2024-04-01,OPP-02258,Qualification,79704.0,Pipeline,2024-04-12
+2024-04-01,OPP-02405,Negotiation,3600.0,Commit,2024-04-12
+2024-04-01,OPP-02407,Negotiation,4200.0,Commit,2024-04-05
+2024-04-01,OPP-02408,Negotiation,87840.0,Commit,2024-04-09
+2024-04-01,OPP-02410,Renewal Discussion,8400.0,Best Case,2024-04-21
+2024-04-01,OPP-02412,Negotiation,64800.0,Commit,2024-04-24
+2024-04-01,OPP-02414,Negotiation,711000.0,Commit,2024-04-22
+2024-04-01,OPP-02416,Negotiation,9000.0,Commit,2024-04-15
+2024-04-01,OPP-02418,Negotiation,6600.0,Commit,2024-04-15
+2024-04-01,OPP-02420,Negotiation,18720.0,Commit,2024-04-23
+2024-04-01,OPP-02422,Negotiation,9000.0,Commit,2024-04-21
+2024-04-01,OPP-02424,Negotiation,50400.0,Commit,2024-04-22
+2024-04-01,OPP-02426,Negotiation,14400.0,Commit,2024-04-12
+2024-04-01,OPP-02428,Negotiation,639000.0,Commit,2024-04-04
+2024-04-01,OPP-02430,Negotiation,48960.0,Commit,2024-04-12
+2024-04-01,OPP-02432,Negotiation,252000.0,Commit,2024-04-02
+2024-04-01,OPP-02434,Negotiation,48000.0,Commit,2024-04-18
+2024-04-01,OPP-02436,Renewal Discussion,28800.0,Best Case,2024-04-13
+2024-04-01,OPP-02438,Renewal Discussion,8400.0,Best Case,2024-05-01
+2024-04-01,OPP-02440,Renewal Discussion,1800.0,Best Case,2024-05-08
+2024-04-01,OPP-02442,Renewal Discussion,113760.0,Best Case,2024-05-19
+2024-04-01,OPP-02443,Negotiation,25920.0,Commit,2024-05-06
+2024-04-01,OPP-02444,Negotiation,570240.0,Commit,2024-05-02
+2024-04-01,OPP-02446,Renewal Discussion,22200.0,Best Case,2024-05-03
+2024-04-01,OPP-02448,Renewal Discussion,10800.0,Best Case,2024-05-24
+2024-04-01,OPP-02450,Renewal Discussion,67680.0,Best Case,2024-05-19
+2024-04-01,OPP-02452,Renewal Discussion,9000.0,Best Case,2024-05-25
+2024-04-01,OPP-02454,Renewal Discussion,6000.0,Best Case,2024-05-12
+2024-04-01,OPP-02456,Renewal Discussion,6600.0,Best Case,2024-05-26
+2024-04-01,OPP-02458,Renewal Discussion,76320.0,Best Case,2024-05-17
+2024-04-01,OPP-02460,Negotiation,5400.0,Commit,2024-05-10
+2024-04-01,OPP-02462,Renewal Discussion,103680.0,Best Case,2024-05-20
+2024-04-01,OPP-02464,Renewal Discussion,89280.0,Best Case,2024-05-24
+2024-04-01,OPP-02466,Renewal Discussion,2400.0,Best Case,2024-05-14
+2024-04-01,OPP-03009,Expansion Discussion,1800.0,Best Case,2024-04-15
+2024-04-01,OPP-03010,Expansion Discussion,5760.0,Best Case,2024-04-15
+2024-04-01,OPP-03011,Expansion Discussion,5760.0,Best Case,2024-04-15
+2024-04-01,OPP-03012,Expansion Discussion,168000.0,Best Case,2024-04-15
+2024-04-01,OPP-03013,Expansion Discussion,600.0,Best Case,2024-04-15
+2024-04-01,OPP-03014,Expansion Discussion,600.0,Best Case,2024-04-15
+2024-04-01,OPP-03015,Expansion Discussion,4320.0,Best Case,2024-04-15
+2024-04-01,OPP-03016,Expansion Discussion,1440.0,Best Case,2024-04-15
+2024-04-01,OPP-03017,Expansion Discussion,9000.0,Best Case,2024-04-15
+2024-04-01,OPP-03018,Expansion Discussion,132000.0,Best Case,2024-04-15
+2024-04-01,OPP-03019,Expansion Discussion,4320.0,Best Case,2024-05-15
+2024-04-01,OPP-03020,Expansion Discussion,600.0,Best Case,2024-05-15
+2024-04-01,OPP-03022,Expansion Discussion,2400.0,Best Case,2024-05-15
+2024-04-01,OPP-03026,Expansion Discussion,600.0,Best Case,2024-05-15
 2024-07-01,OPP-00327,Negotiation,5760.0,Commit,2024-07-20
 2024-07-01,OPP-00328,Proof of Concept,7200.0,Best Case,2024-07-15
 2024-07-01,OPP-00329,Negotiation,186000.0,Commit,2024-07-07
@@ -188,50 +298,114 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2024-07-01,OPP-00381,Proof of Concept,43200.0,Best Case,2024-09-17
 2024-07-01,OPP-00411,Discovery,469440.0,Pipeline,2024-11-13
 2024-07-01,OPP-00848,Proof of Concept,138754.0,Best Case,2024-08-12
-2024-07-01,OPP-01083,Negotiation,54720.0,Commit,2024-07-22
-2024-07-01,OPP-01085,Renewal Discussion,3600.0,Best Case,2024-07-26
-2024-07-01,OPP-01087,Renewal Discussion,14400.0,Best Case,2024-07-19
-2024-07-01,OPP-01089,Negotiation,8400.0,Commit,2024-07-20
-2024-07-01,OPP-01091,Negotiation,83520.0,Commit,2024-07-21
-2024-07-01,OPP-01093,Negotiation,8400.0,Commit,2024-07-03
-2024-07-01,OPP-01095,Renewal Discussion,8400.0,Best Case,2024-07-10
-2024-07-01,OPP-01097,Negotiation,90720.0,Commit,2024-07-10
-2024-07-01,OPP-01099,Negotiation,7200.0,Commit,2024-07-21
-2024-07-01,OPP-01101,Renewal Discussion,14400.0,Best Case,2024-07-22
-2024-07-01,OPP-01103,Negotiation,690000.0,Commit,2024-07-19
-2024-07-01,OPP-01105,Renewal Discussion,14400.0,Best Case,2024-07-20
-2024-07-01,OPP-01106,Negotiation,3600.0,Commit,2024-07-14
-2024-07-01,OPP-01112,Negotiation,40320.0,Commit,2024-08-09
-2024-07-01,OPP-01114,Negotiation,6000.0,Commit,2024-08-07
-2024-07-01,OPP-01116,Renewal Discussion,8400.0,Best Case,2024-08-05
-2024-07-01,OPP-01118,Renewal Discussion,6600.0,Best Case,2024-08-23
-2024-07-01,OPP-01120,Renewal Discussion,20160.0,Best Case,2024-08-27
-2024-07-01,OPP-01122,Negotiation,7800.0,Commit,2024-08-09
-2024-07-01,OPP-01124,Renewal Discussion,8400.0,Best Case,2024-08-10
-2024-07-01,OPP-01126,Renewal Discussion,36000.0,Best Case,2024-08-23
-2024-07-01,OPP-01128,Renewal Discussion,7800.0,Best Case,2024-08-19
-2024-07-01,OPP-01130,Negotiation,220800.0,Commit,2024-08-15
-2024-07-01,OPP-01132,Renewal Discussion,3600.0,Best Case,2024-08-10
-2024-07-01,OPP-01134,Renewal Discussion,8400.0,Best Case,2024-08-24
-2024-07-01,OPP-01135,Negotiation,6000.0,Commit,2024-08-15
-2024-07-01,OPP-01137,Renewal Discussion,102240.0,Best Case,2024-08-14
-2024-07-01,OPP-01139,Renewal Discussion,10200.0,Best Case,2024-08-21
-2024-07-01,OPP-01141,Renewal Discussion,8640.0,Best Case,2024-08-05
-2024-07-01,OPP-01143,Renewal Discussion,96480.0,Best Case,2024-08-24
-2024-07-01,OPP-01620,Expansion Discussion,14400.0,Best Case,2024-07-15
-2024-07-01,OPP-01621,Expansion Discussion,5760.0,Best Case,2024-07-15
-2024-07-01,OPP-01622,Expansion Discussion,600.0,Best Case,2024-07-15
-2024-07-01,OPP-01623,Expansion Discussion,1200.0,Best Case,2024-07-15
-2024-07-01,OPP-01624,Expansion Discussion,6000.0,Best Case,2024-07-15
-2024-07-01,OPP-01625,Expansion Discussion,4320.0,Best Case,2024-07-15
-2024-07-01,OPP-01627,Expansion Discussion,11520.0,Best Case,2024-08-15
-2024-07-01,OPP-01629,Expansion Discussion,600.0,Best Case,2024-08-15
-2024-07-01,OPP-01630,Expansion Discussion,2880.0,Best Case,2024-08-15
-2024-07-01,OPP-01634,Expansion Discussion,2880.0,Best Case,2024-08-15
-2024-07-01,OPP-01635,Expansion Discussion,4320.0,Best Case,2024-08-15
-2024-07-01,OPP-01636,Expansion Discussion,7200.0,Best Case,2024-08-15
-2024-07-01,OPP-01637,Expansion Discussion,7800.0,Best Case,2024-08-15
-2024-07-01,OPP-01638,Expansion Discussion,600.0,Best Case,2024-08-15
+2024-07-01,OPP-00900,Proof of Concept,172912.0,Best Case,2024-08-17
+2024-07-01,OPP-00937,Discovery,118110.0,Pipeline,2024-10-06
+2024-07-01,OPP-00969,Discovery,161747.0,Pipeline,2024-07-13
+2024-07-01,OPP-00990,Proof of Concept,211751.0,Best Case,2024-08-08
+2024-07-01,OPP-01002,Proof of Concept,5583.0,Best Case,2024-08-01
+2024-07-01,OPP-01014,Proof of Concept,168194.0,Best Case,2024-08-13
+2024-07-01,OPP-01033,Proof of Concept,82655.0,Best Case,2024-09-16
+2024-07-01,OPP-01042,Proof of Concept,192138.0,Best Case,2024-07-02
+2024-07-01,OPP-01044,Qualification,211570.0,Pipeline,2024-08-20
+2024-07-01,OPP-01049,Proof of Concept,124418.0,Best Case,2024-07-13
+2024-07-01,OPP-01091,Proof of Concept,8307.0,Best Case,2024-07-09
+2024-07-01,OPP-01104,Proof of Concept,159446.0,Best Case,2024-09-20
+2024-07-01,OPP-01113,Proof of Concept,127970.0,Best Case,2024-07-05
+2024-07-01,OPP-01118,Proof of Concept,132871.0,Best Case,2024-08-26
+2024-07-01,OPP-01127,Qualification,6203.0,Pipeline,2024-08-30
+2024-07-01,OPP-01146,Qualification,58842.0,Pipeline,2024-07-15
+2024-07-01,OPP-01154,Discovery,225099.0,Pipeline,2024-07-27
+2024-07-01,OPP-01300,Proof of Concept,127194.0,Best Case,2024-07-23
+2024-07-01,OPP-01322,Proof of Concept,144766.0,Best Case,2024-07-08
+2024-07-01,OPP-01370,Proof of Concept,103340.0,Best Case,2024-07-20
+2024-07-01,OPP-01371,Proof of Concept,197602.0,Best Case,2024-07-10
+2024-07-01,OPP-01491,Qualification,22445.0,Pipeline,2024-08-01
+2024-07-01,OPP-01509,Discovery,106168.0,Pipeline,2024-07-27
+2024-07-01,OPP-01535,Proof of Concept,227421.0,Best Case,2024-09-09
+2024-07-01,OPP-01541,Qualification,142723.0,Pipeline,2024-08-21
+2024-07-01,OPP-01583,Qualification,50973.0,Pipeline,2024-07-17
+2024-07-01,OPP-01608,Discovery,134912.0,Pipeline,2024-09-25
+2024-07-01,OPP-01713,Discovery,88454.0,Pipeline,2024-07-28
+2024-07-01,OPP-01721,Discovery,70747.0,Pipeline,2024-09-30
+2024-07-01,OPP-01733,Qualification,230362.0,Pipeline,2024-07-20
+2024-07-01,OPP-01735,Proof of Concept,86173.0,Best Case,2024-07-18
+2024-07-01,OPP-01745,Discovery,49024.0,Pipeline,2024-07-05
+2024-07-01,OPP-01767,Qualification,102378.0,Pipeline,2024-07-26
+2024-07-01,OPP-01769,Discovery,165242.0,Pipeline,2024-08-10
+2024-07-01,OPP-01821,Proof of Concept,153116.0,Best Case,2024-09-26
+2024-07-01,OPP-01849,Proof of Concept,197804.0,Best Case,2024-08-22
+2024-07-01,OPP-01850,Proof of Concept,230221.0,Best Case,2024-09-22
+2024-07-01,OPP-01859,Negotiation,162638.0,Commit,2024-07-09
+2024-07-01,OPP-01866,Proof of Concept,80583.0,Best Case,2024-08-11
+2024-07-01,OPP-01867,Discovery,6214.0,Pipeline,2024-07-28
+2024-07-01,OPP-01874,Discovery,17510.0,Pipeline,2024-08-04
+2024-07-01,OPP-01881,Proof of Concept,208448.0,Best Case,2024-08-11
+2024-07-01,OPP-01910,Qualification,45361.0,Pipeline,2024-07-21
+2024-07-01,OPP-01952,Qualification,35644.0,Pipeline,2024-07-02
+2024-07-01,OPP-01954,Proof of Concept,47124.0,Best Case,2024-07-02
+2024-07-01,OPP-01960,Proof of Concept,44480.0,Best Case,2024-07-20
+2024-07-01,OPP-01989,Proof of Concept,159365.0,Best Case,2024-07-18
+2024-07-01,OPP-02001,Negotiation,146825.0,Commit,2024-07-09
+2024-07-01,OPP-02020,Qualification,165959.0,Pipeline,2024-08-18
+2024-07-01,OPP-02037,Proof of Concept,181657.0,Best Case,2024-07-23
+2024-07-01,OPP-02085,Qualification,240833.0,Pipeline,2024-07-27
+2024-07-01,OPP-02122,Proof of Concept,62231.0,Best Case,2024-07-22
+2024-07-01,OPP-02129,Qualification,226774.0,Pipeline,2024-07-27
+2024-07-01,OPP-02148,Discovery,104917.0,Pipeline,2024-07-05
+2024-07-01,OPP-02155,Qualification,59375.0,Pipeline,2024-07-09
+2024-07-01,OPP-02172,Discovery,193345.0,Pipeline,2024-07-12
+2024-07-01,OPP-02175,Discovery,152507.0,Pipeline,2024-07-07
+2024-07-01,OPP-02186,Discovery,198541.0,Pipeline,2024-08-09
+2024-07-01,OPP-02192,Discovery,227611.0,Pipeline,2024-07-21
+2024-07-01,OPP-02212,Proof of Concept,237111.0,Best Case,2024-07-23
+2024-07-01,OPP-02261,Qualification,42629.0,Pipeline,2024-07-02
+2024-07-01,OPP-02273,Discovery,178277.0,Pipeline,2024-07-10
+2024-07-01,OPP-02274,Qualification,131826.0,Pipeline,2024-07-17
+2024-07-01,OPP-02281,Discovery,30944.0,Pipeline,2024-09-14
+2024-07-01,OPP-02282,Qualification,92252.0,Pipeline,2024-07-12
+2024-07-01,OPP-02288,Qualification,154782.0,Pipeline,2024-07-03
+2024-07-01,OPP-02314,Proof of Concept,30824.0,Best Case,2024-07-11
+2024-07-01,OPP-02503,Renewal Discussion,54720.0,Best Case,2024-07-22
+2024-07-01,OPP-02505,Renewal Discussion,3600.0,Best Case,2024-07-26
+2024-07-01,OPP-02507,Negotiation,14400.0,Commit,2024-07-19
+2024-07-01,OPP-02509,Negotiation,8400.0,Commit,2024-07-20
+2024-07-01,OPP-02511,Negotiation,83520.0,Commit,2024-07-21
+2024-07-01,OPP-02513,Negotiation,8400.0,Commit,2024-07-03
+2024-07-01,OPP-02515,Negotiation,8400.0,Commit,2024-07-10
+2024-07-01,OPP-02517,Negotiation,90720.0,Commit,2024-07-10
+2024-07-01,OPP-02519,Negotiation,7200.0,Commit,2024-07-21
+2024-07-01,OPP-02521,Negotiation,14400.0,Commit,2024-07-22
+2024-07-01,OPP-02523,Renewal Discussion,690000.0,Best Case,2024-07-19
+2024-07-01,OPP-02525,Negotiation,14400.0,Commit,2024-07-20
+2024-07-01,OPP-02526,Negotiation,3600.0,Commit,2024-07-14
+2024-07-01,OPP-02532,Renewal Discussion,40320.0,Best Case,2024-08-09
+2024-07-01,OPP-02534,Negotiation,6000.0,Commit,2024-08-07
+2024-07-01,OPP-02536,Negotiation,8400.0,Commit,2024-08-05
+2024-07-01,OPP-02538,Renewal Discussion,6600.0,Best Case,2024-08-23
+2024-07-01,OPP-02540,Renewal Discussion,20160.0,Best Case,2024-08-27
+2024-07-01,OPP-02542,Negotiation,7800.0,Commit,2024-08-09
+2024-07-01,OPP-02544,Negotiation,8400.0,Commit,2024-08-10
+2024-07-01,OPP-02546,Renewal Discussion,36000.0,Best Case,2024-08-23
+2024-07-01,OPP-02548,Renewal Discussion,7800.0,Best Case,2024-08-19
+2024-07-01,OPP-02550,Renewal Discussion,220800.0,Best Case,2024-08-15
+2024-07-01,OPP-02552,Renewal Discussion,3600.0,Best Case,2024-08-10
+2024-07-01,OPP-02554,Renewal Discussion,8400.0,Best Case,2024-08-24
+2024-07-01,OPP-02555,Renewal Discussion,6000.0,Best Case,2024-08-15
+2024-07-01,OPP-02557,Renewal Discussion,102240.0,Best Case,2024-08-14
+2024-07-01,OPP-02559,Renewal Discussion,10200.0,Best Case,2024-08-21
+2024-07-01,OPP-02561,Negotiation,8640.0,Commit,2024-08-05
+2024-07-01,OPP-02563,Renewal Discussion,96480.0,Best Case,2024-08-24
+2024-07-01,OPP-03040,Expansion Discussion,14400.0,Best Case,2024-07-15
+2024-07-01,OPP-03041,Expansion Discussion,5760.0,Best Case,2024-07-15
+2024-07-01,OPP-03042,Expansion Discussion,600.0,Best Case,2024-07-15
+2024-07-01,OPP-03043,Expansion Discussion,1200.0,Best Case,2024-07-15
+2024-07-01,OPP-03044,Expansion Discussion,6000.0,Best Case,2024-07-15
+2024-07-01,OPP-03045,Expansion Discussion,4320.0,Best Case,2024-07-15
+2024-07-01,OPP-03049,Expansion Discussion,600.0,Best Case,2024-08-15
+2024-07-01,OPP-03051,Expansion Discussion,600.0,Best Case,2024-08-15
+2024-07-01,OPP-03053,Expansion Discussion,600.0,Best Case,2024-08-15
+2024-07-01,OPP-03055,Expansion Discussion,4320.0,Best Case,2024-08-15
+2024-07-01,OPP-03056,Expansion Discussion,7200.0,Best Case,2024-08-15
 2024-10-01,OPP-00384,Negotiation,7800.0,Commit,2024-10-24
 2024-10-01,OPP-00385,Negotiation,5400.0,Commit,2024-10-07
 2024-10-01,OPP-00386,Proof of Concept,4320.0,Best Case,2024-10-13
@@ -275,56 +449,111 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2024-10-01,OPP-00882,Qualification,225857.0,Pipeline,2025-01-03
 2024-10-01,OPP-00886,Qualification,113385.0,Pipeline,2024-10-31
 2024-10-01,OPP-00888,Qualification,226575.0,Pipeline,2024-10-02
-2024-10-01,OPP-01178,Renewal Discussion,9600.0,Best Case,2024-10-27
-2024-10-01,OPP-01180,Negotiation,31680.0,Commit,2024-10-21
-2024-10-01,OPP-01182,Negotiation,14400.0,Commit,2024-10-26
-2024-10-01,OPP-01184,Negotiation,18720.0,Commit,2024-10-06
-2024-10-01,OPP-01186,Negotiation,24000.0,Commit,2024-10-08
-2024-10-01,OPP-01189,Negotiation,17280.0,Commit,2024-10-21
-2024-10-01,OPP-01191,Negotiation,5400.0,Commit,2024-10-26
-2024-10-01,OPP-01193,Negotiation,17280.0,Commit,2024-10-16
-2024-10-01,OPP-01195,Negotiation,9000.0,Commit,2024-10-12
-2024-10-01,OPP-01198,Negotiation,6600.0,Commit,2024-10-08
-2024-10-01,OPP-01200,Negotiation,6000.0,Commit,2024-10-20
-2024-10-01,OPP-01202,Negotiation,7200.0,Commit,2024-10-24
-2024-10-01,OPP-01204,Renewal Discussion,67680.0,Best Case,2024-10-24
-2024-10-01,OPP-01206,Negotiation,1047000.0,Commit,2024-10-07
-2024-10-01,OPP-01208,Negotiation,6600.0,Commit,2024-10-08
-2024-10-01,OPP-01210,Renewal Discussion,14400.0,Best Case,2024-11-08
-2024-10-01,OPP-01212,Renewal Discussion,5760.0,Best Case,2024-11-23
-2024-10-01,OPP-01214,Negotiation,39000.0,Commit,2024-11-08
-2024-10-01,OPP-01216,Renewal Discussion,8640.0,Best Case,2024-11-27
-2024-10-01,OPP-01218,Negotiation,76320.0,Commit,2024-11-15
-2024-10-01,OPP-01220,Negotiation,33000.0,Commit,2024-11-01
-2024-10-01,OPP-01222,Renewal Discussion,47520.0,Best Case,2024-11-13
-2024-10-01,OPP-01224,Renewal Discussion,4320.0,Best Case,2024-11-19
-2024-10-01,OPP-01226,Negotiation,14400.0,Commit,2024-11-22
-2024-10-01,OPP-01227,Renewal Discussion,8400.0,Best Case,2024-11-09
-2024-10-01,OPP-01228,Renewal Discussion,3000.0,Best Case,2024-11-12
-2024-10-01,OPP-01230,Negotiation,1800.0,Commit,2024-11-01
-2024-10-01,OPP-01232,Renewal Discussion,24480.0,Best Case,2024-11-03
-2024-10-01,OPP-01233,Renewal Discussion,5400.0,Best Case,2024-11-15
-2024-10-01,OPP-01234,Renewal Discussion,6600.0,Best Case,2024-11-21
-2024-10-01,OPP-01236,Renewal Discussion,5760.0,Best Case,2024-11-02
-2024-10-01,OPP-01237,Renewal Discussion,8400.0,Best Case,2024-11-11
-2024-10-01,OPP-01239,Renewal Discussion,106560.0,Best Case,2024-11-13
-2024-10-01,OPP-01241,Renewal Discussion,54720.0,Best Case,2024-11-23
-2024-10-01,OPP-01243,Renewal Discussion,1800.0,Best Case,2024-11-17
-2024-10-01,OPP-01245,Renewal Discussion,5400.0,Best Case,2024-11-23
-2024-10-01,OPP-01647,Expansion Discussion,129000.0,Best Case,2024-10-15
-2024-10-01,OPP-01648,Expansion Discussion,2880.0,Best Case,2024-10-15
-2024-10-01,OPP-01649,Expansion Discussion,1440.0,Best Case,2024-10-15
-2024-10-01,OPP-01650,Expansion Discussion,2400.0,Best Case,2024-10-15
-2024-10-01,OPP-01651,Expansion Discussion,1440.0,Best Case,2024-10-15
-2024-10-01,OPP-01654,Expansion Discussion,39000.0,Best Case,2024-11-15
-2024-10-01,OPP-01657,Expansion Discussion,600.0,Best Case,2024-11-15
-2024-10-01,OPP-01660,Expansion Discussion,81000.0,Best Case,2024-11-15
-2024-10-01,OPP-01661,Expansion Discussion,33120.0,Best Case,2024-11-15
-2024-10-01,OPP-01662,Expansion Discussion,1200.0,Best Case,2024-11-15
-2024-10-01,OPP-01664,Expansion Discussion,1440.0,Best Case,2024-11-15
-2024-10-01,OPP-01665,Expansion Discussion,1200.0,Best Case,2024-11-15
-2024-10-01,OPP-01666,Expansion Discussion,21000.0,Best Case,2024-11-15
-2024-10-01,OPP-01667,Expansion Discussion,5400.0,Best Case,2024-11-15
+2024-10-01,OPP-00904,Proof of Concept,96729.0,Best Case,2024-10-07
+2024-10-01,OPP-00912,Qualification,122029.0,Pipeline,2024-10-13
+2024-10-01,OPP-00937,Proof of Concept,118110.0,Best Case,2024-10-06
+2024-10-01,OPP-00940,Proof of Concept,31619.0,Best Case,2024-10-06
+2024-10-01,OPP-00944,Proof of Concept,66494.0,Best Case,2024-10-30
+2024-10-01,OPP-00962,Proof of Concept,44134.0,Best Case,2024-10-21
+2024-10-01,OPP-00971,Discovery,101994.0,Pipeline,2024-10-08
+2024-10-01,OPP-01047,Discovery,155053.0,Pipeline,2024-10-16
+2024-10-01,OPP-01170,Proof of Concept,80062.0,Best Case,2024-11-22
+2024-10-01,OPP-01173,Negotiation,229661.0,Commit,2024-10-14
+2024-10-01,OPP-01282,Proof of Concept,191932.0,Best Case,2024-10-17
+2024-10-01,OPP-01287,Discovery,132351.0,Pipeline,2024-10-02
+2024-10-01,OPP-01309,Proof of Concept,211720.0,Best Case,2024-10-25
+2024-10-01,OPP-01325,Proof of Concept,65745.0,Best Case,2024-10-20
+2024-10-01,OPP-01335,Proof of Concept,84961.0,Best Case,2024-10-31
+2024-10-01,OPP-01340,Proof of Concept,222251.0,Best Case,2024-10-16
+2024-10-01,OPP-01420,Proof of Concept,90666.0,Best Case,2024-10-07
+2024-10-01,OPP-01479,Discovery,182001.0,Pipeline,2024-11-15
+2024-10-01,OPP-01501,Discovery,54198.0,Pipeline,2024-11-12
+2024-10-01,OPP-01512,Proof of Concept,92158.0,Best Case,2024-10-30
+2024-10-01,OPP-01516,Discovery,179367.0,Pipeline,2024-10-07
+2024-10-01,OPP-01565,Proof of Concept,41042.0,Best Case,2024-11-08
+2024-10-01,OPP-01599,Qualification,118047.0,Pipeline,2024-10-17
+2024-10-01,OPP-01647,Qualification,32597.0,Pipeline,2024-10-02
+2024-10-01,OPP-01660,Discovery,232474.0,Pipeline,2024-10-15
+2024-10-01,OPP-01692,Discovery,46946.0,Pipeline,2024-11-09
+2024-10-01,OPP-01700,Proof of Concept,240931.0,Best Case,2024-11-08
+2024-10-01,OPP-01723,Proof of Concept,78902.0,Best Case,2024-10-16
+2024-10-01,OPP-01743,Proof of Concept,142761.0,Best Case,2024-10-09
+2024-10-01,OPP-01777,Qualification,176859.0,Pipeline,2024-11-13
+2024-10-01,OPP-01782,Discovery,137588.0,Pipeline,2024-10-14
+2024-10-01,OPP-01806,Discovery,86774.0,Pipeline,2024-10-03
+2024-10-01,OPP-01868,Proof of Concept,47911.0,Best Case,2024-10-24
+2024-10-01,OPP-01869,Proof of Concept,239762.0,Best Case,2024-11-16
+2024-10-01,OPP-01919,Proof of Concept,97391.0,Best Case,2024-10-15
+2024-10-01,OPP-01941,Proof of Concept,111473.0,Best Case,2024-12-25
+2024-10-01,OPP-01973,Proof of Concept,154720.0,Best Case,2024-11-12
+2024-10-01,OPP-01978,Proof of Concept,145797.0,Best Case,2024-10-19
+2024-10-01,OPP-02029,Qualification,215411.0,Pipeline,2024-10-14
+2024-10-01,OPP-02047,Discovery,157217.0,Pipeline,2024-10-10
+2024-10-01,OPP-02061,Proof of Concept,82864.0,Best Case,2024-10-27
+2024-10-01,OPP-02083,Discovery,59233.0,Pipeline,2024-10-25
+2024-10-01,OPP-02092,Qualification,186830.0,Pipeline,2024-10-21
+2024-10-01,OPP-02140,Discovery,129729.0,Pipeline,2024-11-11
+2024-10-01,OPP-02157,Proof of Concept,136971.0,Best Case,2024-10-08
+2024-10-01,OPP-02170,Proof of Concept,101152.0,Best Case,2024-10-16
+2024-10-01,OPP-02196,Qualification,165544.0,Pipeline,2024-10-13
+2024-10-01,OPP-02217,Proof of Concept,71795.0,Best Case,2024-10-21
+2024-10-01,OPP-02250,Proof of Concept,203955.0,Best Case,2024-11-18
+2024-10-01,OPP-02251,Discovery,157161.0,Pipeline,2024-10-14
+2024-10-01,OPP-02269,Proof of Concept,236164.0,Best Case,2024-10-16
+2024-10-01,OPP-02292,Qualification,124118.0,Pipeline,2024-11-08
+2024-10-01,OPP-02304,Discovery,51651.0,Pipeline,2024-11-16
+2024-10-01,OPP-02598,Renewal Discussion,9600.0,Best Case,2024-10-27
+2024-10-01,OPP-02600,Negotiation,31680.0,Commit,2024-10-21
+2024-10-01,OPP-02602,Negotiation,14400.0,Commit,2024-10-26
+2024-10-01,OPP-02604,Negotiation,18720.0,Commit,2024-10-06
+2024-10-01,OPP-02606,Negotiation,24000.0,Commit,2024-10-08
+2024-10-01,OPP-02608,Renewal Discussion,8400.0,Best Case,2024-10-15
+2024-10-01,OPP-02609,Negotiation,17280.0,Commit,2024-10-21
+2024-10-01,OPP-02611,Negotiation,5400.0,Commit,2024-10-26
+2024-10-01,OPP-02613,Negotiation,17280.0,Commit,2024-10-16
+2024-10-01,OPP-02615,Negotiation,9000.0,Commit,2024-10-12
+2024-10-01,OPP-02618,Negotiation,6600.0,Commit,2024-10-08
+2024-10-01,OPP-02620,Negotiation,6000.0,Commit,2024-10-20
+2024-10-01,OPP-02622,Negotiation,7200.0,Commit,2024-10-24
+2024-10-01,OPP-02624,Negotiation,67680.0,Commit,2024-10-24
+2024-10-01,OPP-02626,Negotiation,1047000.0,Commit,2024-10-07
+2024-10-01,OPP-02628,Negotiation,6600.0,Commit,2024-10-08
+2024-10-01,OPP-02630,Renewal Discussion,14400.0,Best Case,2024-11-08
+2024-10-01,OPP-02632,Renewal Discussion,5760.0,Best Case,2024-11-23
+2024-10-01,OPP-02634,Negotiation,39000.0,Commit,2024-11-08
+2024-10-01,OPP-02636,Negotiation,8640.0,Commit,2024-11-27
+2024-10-01,OPP-02638,Renewal Discussion,76320.0,Best Case,2024-11-15
+2024-10-01,OPP-02640,Renewal Discussion,33000.0,Best Case,2024-11-01
+2024-10-01,OPP-02642,Negotiation,47520.0,Commit,2024-11-13
+2024-10-01,OPP-02644,Renewal Discussion,4320.0,Best Case,2024-11-19
+2024-10-01,OPP-02646,Renewal Discussion,14400.0,Best Case,2024-11-22
+2024-10-01,OPP-02647,Renewal Discussion,8400.0,Best Case,2024-11-09
+2024-10-01,OPP-02648,Negotiation,3000.0,Commit,2024-11-12
+2024-10-01,OPP-02650,Negotiation,1800.0,Commit,2024-11-01
+2024-10-01,OPP-02652,Negotiation,24480.0,Commit,2024-11-03
+2024-10-01,OPP-02653,Renewal Discussion,5400.0,Best Case,2024-11-15
+2024-10-01,OPP-02654,Renewal Discussion,6600.0,Best Case,2024-11-21
+2024-10-01,OPP-02656,Renewal Discussion,5760.0,Best Case,2024-11-02
+2024-10-01,OPP-02657,Negotiation,8400.0,Commit,2024-11-11
+2024-10-01,OPP-02659,Renewal Discussion,106560.0,Best Case,2024-11-13
+2024-10-01,OPP-02661,Renewal Discussion,54720.0,Best Case,2024-11-23
+2024-10-01,OPP-02663,Renewal Discussion,1800.0,Best Case,2024-11-17
+2024-10-01,OPP-02665,Renewal Discussion,5400.0,Best Case,2024-11-23
+2024-10-01,OPP-03067,Expansion Discussion,129000.0,Best Case,2024-10-15
+2024-10-01,OPP-03068,Expansion Discussion,2880.0,Best Case,2024-10-15
+2024-10-01,OPP-03069,Expansion Discussion,1440.0,Best Case,2024-10-15
+2024-10-01,OPP-03070,Expansion Discussion,2400.0,Best Case,2024-10-15
+2024-10-01,OPP-03071,Expansion Discussion,1440.0,Best Case,2024-10-15
+2024-10-01,OPP-03072,Expansion Discussion,3000.0,Best Case,2024-11-15
+2024-10-01,OPP-03074,Expansion Discussion,39000.0,Best Case,2024-11-15
+2024-10-01,OPP-03075,Expansion Discussion,1440.0,Best Case,2024-11-15
+2024-10-01,OPP-03076,Expansion Discussion,189000.0,Best Case,2024-11-15
+2024-10-01,OPP-03078,Expansion Discussion,1200.0,Best Case,2024-11-15
+2024-10-01,OPP-03080,Expansion Discussion,81000.0,Best Case,2024-11-15
+2024-10-01,OPP-03081,Expansion Discussion,33120.0,Best Case,2024-11-15
+2024-10-01,OPP-03082,Expansion Discussion,1200.0,Best Case,2024-11-15
+2024-10-01,OPP-03085,Expansion Discussion,1200.0,Best Case,2024-11-15
+2024-10-01,OPP-03086,Expansion Discussion,21000.0,Best Case,2024-11-15
 2025-01-01,OPP-00444,Negotiation,1800.0,Commit,2025-01-13
 2025-01-01,OPP-00445,Negotiation,429000.0,Commit,2025-01-18
 2025-01-01,OPP-00446,Proof of Concept,79200.0,Best Case,2025-01-16
@@ -377,80 +606,140 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2025-01-01,OPP-00862,Proof of Concept,181042.0,Best Case,2025-01-04
 2025-01-01,OPP-00882,Proof of Concept,225857.0,Best Case,2025-01-03
 2025-01-01,OPP-00894,Discovery,88031.0,Pipeline,2025-02-10
-2025-01-01,OPP-00897,Negotiation,51000.0,Commit,2025-01-19
-2025-01-01,OPP-00900,Negotiation,73440.0,Commit,2025-01-12
-2025-01-01,OPP-00902,Negotiation,6600.0,Commit,2025-01-05
-2025-01-01,OPP-00904,Negotiation,1164000.0,Commit,2025-01-06
-2025-01-01,OPP-00906,Negotiation,6000.0,Commit,2025-01-04
-2025-01-01,OPP-00908,Negotiation,99360.0,Commit,2025-01-08
-2025-01-01,OPP-00910,Renewal Discussion,7200.0,Best Case,2025-01-22
-2025-01-01,OPP-00914,Negotiation,4800.0,Commit,2025-01-12
-2025-01-01,OPP-00916,Negotiation,29400.0,Commit,2025-01-24
-2025-01-01,OPP-00918,Negotiation,25920.0,Commit,2025-01-18
-2025-01-01,OPP-00920,Renewal Discussion,7200.0,Best Case,2025-01-21
-2025-01-01,OPP-00922,Renewal Discussion,6000.0,Best Case,2025-01-19
-2025-01-01,OPP-00924,Renewal Discussion,4200.0,Best Case,2025-01-26
-2025-01-01,OPP-00926,Negotiation,1116000.0,Commit,2025-02-08
-2025-01-01,OPP-00929,Renewal Discussion,7800.0,Best Case,2025-02-16
-2025-01-01,OPP-00931,Renewal Discussion,96480.0,Best Case,2025-02-09
-2025-01-01,OPP-00934,Renewal Discussion,5400.0,Best Case,2025-02-22
-2025-01-01,OPP-00937,Renewal Discussion,63360.0,Best Case,2025-02-19
-2025-01-01,OPP-00939,Renewal Discussion,9000.0,Best Case,2025-02-09
-2025-01-01,OPP-00941,Renewal Discussion,11520.0,Best Case,2025-02-15
-2025-01-01,OPP-00943,Renewal Discussion,3000.0,Best Case,2025-02-18
-2025-01-01,OPP-00945,Renewal Discussion,7200.0,Best Case,2025-02-07
-2025-01-01,OPP-00947,Negotiation,10080.0,Commit,2025-02-05
-2025-01-01,OPP-00949,Renewal Discussion,5760.0,Best Case,2025-02-21
-2025-01-01,OPP-00951,Renewal Discussion,16200.0,Best Case,2025-01-15
-2025-01-01,OPP-01274,Negotiation,4320.0,Commit,2025-01-27
-2025-01-01,OPP-01275,Negotiation,3000.0,Commit,2025-01-04
-2025-01-01,OPP-01276,Negotiation,10080.0,Commit,2025-01-06
-2025-01-01,OPP-01277,Negotiation,9000.0,Commit,2025-01-15
-2025-01-01,OPP-01278,Negotiation,6600.0,Commit,2025-01-22
-2025-01-01,OPP-01279,Negotiation,4800.0,Commit,2025-01-04
-2025-01-01,OPP-01280,Negotiation,4200.0,Commit,2025-01-07
-2025-01-01,OPP-01281,Negotiation,20160.0,Commit,2025-01-18
-2025-01-01,OPP-01282,Negotiation,24000.0,Commit,2025-01-13
-2025-01-01,OPP-01283,Renewal Discussion,90720.0,Best Case,2025-01-13
-2025-01-01,OPP-01284,Negotiation,9000.0,Commit,2025-01-06
-2025-01-01,OPP-01285,Negotiation,669000.0,Commit,2025-01-13
-2025-01-01,OPP-01286,Negotiation,4200.0,Commit,2025-01-16
-2025-01-01,OPP-01287,Renewal Discussion,20400.0,Best Case,2025-02-05
-2025-01-01,OPP-01288,Renewal Discussion,21600.0,Best Case,2025-02-24
-2025-01-01,OPP-01289,Renewal Discussion,2400.0,Best Case,2025-02-06
-2025-01-01,OPP-01290,Negotiation,8400.0,Commit,2025-02-14
-2025-01-01,OPP-01292,Negotiation,61920.0,Commit,2025-02-04
-2025-01-01,OPP-01293,Renewal Discussion,3000.0,Best Case,2025-02-12
-2025-01-01,OPP-01294,Renewal Discussion,8400.0,Best Case,2025-02-23
-2025-01-01,OPP-01295,Renewal Discussion,3600.0,Best Case,2025-02-27
-2025-01-01,OPP-01296,Renewal Discussion,5400.0,Best Case,2025-02-07
-2025-01-01,OPP-01297,Renewal Discussion,25920.0,Best Case,2025-02-25
-2025-01-01,OPP-01298,Renewal Discussion,59040.0,Best Case,2025-02-18
-2025-01-01,OPP-01299,Negotiation,21600.0,Commit,2025-02-10
-2025-01-01,OPP-01300,Negotiation,10080.0,Commit,2025-02-04
-2025-01-01,OPP-01301,Negotiation,76320.0,Commit,2025-02-16
-2025-01-01,OPP-01302,Negotiation,4200.0,Commit,2025-02-15
-2025-01-01,OPP-01303,Renewal Discussion,72000.0,Best Case,2025-02-22
-2025-01-01,OPP-01684,Expansion Discussion,1200.0,Best Case,2025-01-15
-2025-01-01,OPP-01685,Expansion Discussion,5760.0,Best Case,2025-01-15
-2025-01-01,OPP-01686,Expansion Discussion,119520.0,Best Case,2025-01-15
-2025-01-01,OPP-01687,Expansion Discussion,8640.0,Best Case,2025-01-15
-2025-01-01,OPP-01688,Expansion Discussion,8640.0,Best Case,2025-01-15
-2025-01-01,OPP-01689,Expansion Discussion,17280.0,Best Case,2025-01-15
-2025-01-01,OPP-01690,Expansion Discussion,6000.0,Best Case,2025-01-15
-2025-01-01,OPP-01691,Expansion Discussion,30000.0,Best Case,2025-01-15
-2025-01-01,OPP-01692,Expansion Discussion,1200.0,Best Case,2025-01-15
-2025-01-01,OPP-01693,Expansion Discussion,3000.0,Best Case,2025-01-15
-2025-01-01,OPP-01694,Expansion Discussion,600.0,Best Case,2025-01-15
-2025-01-01,OPP-01695,Expansion Discussion,1800.0,Best Case,2025-02-15
-2025-01-01,OPP-01698,Expansion Discussion,10080.0,Best Case,2025-02-15
-2025-01-01,OPP-01701,Expansion Discussion,2880.0,Best Case,2025-02-15
-2025-01-01,OPP-01704,Expansion Discussion,600.0,Best Case,2025-02-15
-2025-01-01,OPP-01705,Expansion Discussion,147000.0,Best Case,2025-02-15
-2025-01-01,OPP-01706,Expansion Discussion,600.0,Best Case,2025-02-15
-2025-01-01,OPP-01707,Expansion Discussion,7200.0,Best Case,2025-02-15
-2025-01-01,OPP-01708,Expansion Discussion,1200.0,Best Case,2025-02-15
-2025-01-01,OPP-01712,Expansion Discussion,1200.0,Best Case,2025-02-15
+2025-01-01,OPP-00918,Discovery,74503.0,Pipeline,2025-01-18
+2025-01-01,OPP-00939,Proof of Concept,194698.0,Best Case,2025-01-06
+2025-01-01,OPP-00973,Discovery,80157.0,Pipeline,2025-01-16
+2025-01-01,OPP-00975,Qualification,38919.0,Pipeline,2025-02-09
+2025-01-01,OPP-00978,Discovery,219352.0,Pipeline,2025-02-18
+2025-01-01,OPP-01016,Proof of Concept,172262.0,Best Case,2025-02-16
+2025-01-01,OPP-01018,Negotiation,89991.0,Commit,2025-01-06
+2025-01-01,OPP-01030,Negotiation,207179.0,Commit,2025-01-14
+2025-01-01,OPP-01038,Discovery,75676.0,Pipeline,2025-01-07
+2025-01-01,OPP-01057,Qualification,86653.0,Pipeline,2025-01-08
+2025-01-01,OPP-01070,Negotiation,136561.0,Commit,2025-01-12
+2025-01-01,OPP-01144,Qualification,24412.0,Pipeline,2025-01-08
+2025-01-01,OPP-01165,Qualification,154868.0,Pipeline,2025-01-02
+2025-01-01,OPP-01167,Proof of Concept,54207.0,Best Case,2025-02-05
+2025-01-01,OPP-01228,Discovery,46134.0,Pipeline,2025-01-06
+2025-01-01,OPP-01255,Proof of Concept,141095.0,Best Case,2025-01-09
+2025-01-01,OPP-01270,Proof of Concept,138981.0,Best Case,2025-03-17
+2025-01-01,OPP-01292,Qualification,147556.0,Pipeline,2025-01-14
+2025-01-01,OPP-01293,Discovery,234995.0,Pipeline,2025-01-02
+2025-01-01,OPP-01297,Discovery,228228.0,Pipeline,2025-01-04
+2025-01-01,OPP-01317,Proof of Concept,91697.0,Best Case,2025-01-10
+2025-01-01,OPP-01348,Proof of Concept,14045.0,Best Case,2025-02-15
+2025-01-01,OPP-01460,Discovery,173180.0,Pipeline,2025-02-17
+2025-01-01,OPP-01461,Qualification,183754.0,Pipeline,2025-01-20
+2025-01-01,OPP-01518,Qualification,163039.0,Pipeline,2025-01-12
+2025-01-01,OPP-01533,Proof of Concept,230783.0,Best Case,2025-02-24
+2025-01-01,OPP-01547,Proof of Concept,175875.0,Best Case,2025-01-03
+2025-01-01,OPP-01579,Discovery,246330.0,Pipeline,2025-01-08
+2025-01-01,OPP-01657,Qualification,65140.0,Pipeline,2025-01-06
+2025-01-01,OPP-01670,Proof of Concept,119772.0,Best Case,2025-01-06
+2025-01-01,OPP-01684,Proof of Concept,93947.0,Best Case,2025-01-18
+2025-01-01,OPP-01699,Qualification,108282.0,Pipeline,2025-02-19
+2025-01-01,OPP-01734,Qualification,240038.0,Pipeline,2025-01-03
+2025-01-01,OPP-01752,Discovery,81493.0,Pipeline,2025-02-24
+2025-01-01,OPP-01794,Proof of Concept,39063.0,Best Case,2025-01-09
+2025-01-01,OPP-01831,Proof of Concept,71081.0,Best Case,2025-03-10
+2025-01-01,OPP-01856,Proof of Concept,180237.0,Best Case,2025-02-11
+2025-01-01,OPP-01857,Qualification,29955.0,Pipeline,2025-02-03
+2025-01-01,OPP-01889,Discovery,178848.0,Pipeline,2025-01-06
+2025-01-01,OPP-01921,Qualification,12314.0,Pipeline,2025-01-29
+2025-01-01,OPP-01939,Qualification,86549.0,Pipeline,2025-01-24
+2025-01-01,OPP-01958,Discovery,220056.0,Pipeline,2025-01-13
+2025-01-01,OPP-01971,Proof of Concept,135807.0,Best Case,2025-01-10
+2025-01-01,OPP-01997,Discovery,185496.0,Pipeline,2025-01-29
+2025-01-01,OPP-01998,Qualification,157590.0,Pipeline,2025-01-03
+2025-01-01,OPP-02004,Discovery,175823.0,Pipeline,2025-01-17
+2025-01-01,OPP-02011,Negotiation,149212.0,Commit,2025-01-02
+2025-01-01,OPP-02031,Discovery,74861.0,Pipeline,2025-02-07
+2025-01-01,OPP-02046,Qualification,152157.0,Pipeline,2025-01-09
+2025-01-01,OPP-02096,Proof of Concept,66844.0,Best Case,2025-01-02
+2025-01-01,OPP-02126,Proof of Concept,140565.0,Best Case,2025-01-12
+2025-01-01,OPP-02265,Discovery,94946.0,Pipeline,2025-01-27
+2025-01-01,OPP-02272,Proof of Concept,194027.0,Best Case,2025-01-13
+2025-01-01,OPP-02287,Discovery,187341.0,Pipeline,2025-02-18
+2025-01-01,OPP-02305,Qualification,34537.0,Pipeline,2025-01-02
+2025-01-01,OPP-02317,Negotiation,51000.0,Commit,2025-01-19
+2025-01-01,OPP-02320,Negotiation,73440.0,Commit,2025-01-12
+2025-01-01,OPP-02322,Negotiation,6600.0,Commit,2025-01-05
+2025-01-01,OPP-02324,Negotiation,1164000.0,Commit,2025-01-06
+2025-01-01,OPP-02326,Negotiation,6000.0,Commit,2025-01-04
+2025-01-01,OPP-02328,Negotiation,99360.0,Commit,2025-01-08
+2025-01-01,OPP-02330,Negotiation,7200.0,Commit,2025-01-22
+2025-01-01,OPP-02334,Negotiation,4800.0,Commit,2025-01-12
+2025-01-01,OPP-02336,Renewal Discussion,29400.0,Best Case,2025-01-24
+2025-01-01,OPP-02338,Negotiation,25920.0,Commit,2025-01-18
+2025-01-01,OPP-02340,Negotiation,7200.0,Commit,2025-01-21
+2025-01-01,OPP-02342,Negotiation,6000.0,Commit,2025-01-19
+2025-01-01,OPP-02344,Negotiation,4200.0,Commit,2025-01-26
+2025-01-01,OPP-02346,Renewal Discussion,1116000.0,Best Case,2025-02-08
+2025-01-01,OPP-02349,Renewal Discussion,7800.0,Best Case,2025-02-16
+2025-01-01,OPP-02351,Renewal Discussion,96480.0,Best Case,2025-02-09
+2025-01-01,OPP-02354,Renewal Discussion,5400.0,Best Case,2025-02-22
+2025-01-01,OPP-02357,Renewal Discussion,63360.0,Best Case,2025-02-19
+2025-01-01,OPP-02359,Renewal Discussion,9000.0,Best Case,2025-02-09
+2025-01-01,OPP-02361,Renewal Discussion,11520.0,Best Case,2025-02-15
+2025-01-01,OPP-02363,Renewal Discussion,3000.0,Best Case,2025-02-18
+2025-01-01,OPP-02365,Renewal Discussion,7200.0,Best Case,2025-02-07
+2025-01-01,OPP-02367,Renewal Discussion,10080.0,Best Case,2025-02-05
+2025-01-01,OPP-02369,Negotiation,5760.0,Commit,2025-02-21
+2025-01-01,OPP-02371,Negotiation,16200.0,Commit,2025-01-15
+2025-01-01,OPP-02694,Renewal Discussion,4320.0,Best Case,2025-01-27
+2025-01-01,OPP-02695,Negotiation,3000.0,Commit,2025-01-04
+2025-01-01,OPP-02696,Negotiation,10080.0,Commit,2025-01-06
+2025-01-01,OPP-02697,Negotiation,9000.0,Commit,2025-01-15
+2025-01-01,OPP-02698,Negotiation,6600.0,Commit,2025-01-22
+2025-01-01,OPP-02699,Negotiation,4800.0,Commit,2025-01-04
+2025-01-01,OPP-02700,Negotiation,4200.0,Commit,2025-01-07
+2025-01-01,OPP-02701,Negotiation,20160.0,Commit,2025-01-18
+2025-01-01,OPP-02702,Negotiation,24000.0,Commit,2025-01-13
+2025-01-01,OPP-02703,Negotiation,90720.0,Commit,2025-01-13
+2025-01-01,OPP-02704,Renewal Discussion,9000.0,Best Case,2025-01-06
+2025-01-01,OPP-02705,Negotiation,669000.0,Commit,2025-01-13
+2025-01-01,OPP-02706,Renewal Discussion,4200.0,Best Case,2025-01-16
+2025-01-01,OPP-02707,Negotiation,20400.0,Commit,2025-02-05
+2025-01-01,OPP-02708,Negotiation,21600.0,Commit,2025-02-24
+2025-01-01,OPP-02709,Renewal Discussion,2400.0,Best Case,2025-02-06
+2025-01-01,OPP-02710,Renewal Discussion,8400.0,Best Case,2025-02-14
+2025-01-01,OPP-02711,Renewal Discussion,30240.0,Best Case,2025-02-15
+2025-01-01,OPP-02712,Renewal Discussion,61920.0,Best Case,2025-02-04
+2025-01-01,OPP-02713,Renewal Discussion,3000.0,Best Case,2025-02-12
+2025-01-01,OPP-02714,Renewal Discussion,8400.0,Best Case,2025-02-23
+2025-01-01,OPP-02715,Renewal Discussion,3600.0,Best Case,2025-02-27
+2025-01-01,OPP-02716,Negotiation,5400.0,Commit,2025-02-07
+2025-01-01,OPP-02717,Renewal Discussion,25920.0,Best Case,2025-02-25
+2025-01-01,OPP-02718,Negotiation,59040.0,Commit,2025-02-18
+2025-01-01,OPP-02719,Renewal Discussion,21600.0,Best Case,2025-02-10
+2025-01-01,OPP-02720,Negotiation,10080.0,Commit,2025-02-04
+2025-01-01,OPP-02721,Renewal Discussion,76320.0,Best Case,2025-02-16
+2025-01-01,OPP-02722,Negotiation,4200.0,Commit,2025-02-15
+2025-01-01,OPP-02723,Renewal Discussion,72000.0,Best Case,2025-02-22
+2025-01-01,OPP-03104,Expansion Discussion,1200.0,Best Case,2025-01-15
+2025-01-01,OPP-03105,Expansion Discussion,5760.0,Best Case,2025-01-15
+2025-01-01,OPP-03106,Expansion Discussion,119520.0,Best Case,2025-01-15
+2025-01-01,OPP-03107,Expansion Discussion,8640.0,Best Case,2025-01-15
+2025-01-01,OPP-03108,Expansion Discussion,8640.0,Best Case,2025-01-15
+2025-01-01,OPP-03109,Expansion Discussion,17280.0,Best Case,2025-01-15
+2025-01-01,OPP-03110,Expansion Discussion,6000.0,Best Case,2025-01-15
+2025-01-01,OPP-03111,Expansion Discussion,30000.0,Best Case,2025-01-15
+2025-01-01,OPP-03112,Expansion Discussion,1200.0,Best Case,2025-01-15
+2025-01-01,OPP-03113,Expansion Discussion,3000.0,Best Case,2025-01-15
+2025-01-01,OPP-03114,Expansion Discussion,600.0,Best Case,2025-01-15
+2025-01-01,OPP-03115,Expansion Discussion,1800.0,Best Case,2025-02-15
+2025-01-01,OPP-03118,Expansion Discussion,10080.0,Best Case,2025-02-15
+2025-01-01,OPP-03120,Expansion Discussion,600.0,Best Case,2025-02-15
+2025-01-01,OPP-03123,Expansion Discussion,141000.0,Best Case,2025-02-15
+2025-01-01,OPP-03124,Expansion Discussion,600.0,Best Case,2025-02-15
+2025-01-01,OPP-03125,Expansion Discussion,147000.0,Best Case,2025-02-15
+2025-01-01,OPP-03126,Expansion Discussion,600.0,Best Case,2025-02-15
+2025-01-01,OPP-03127,Expansion Discussion,7200.0,Best Case,2025-02-15
+2025-01-01,OPP-03129,Expansion Discussion,1200.0,Best Case,2025-02-15
+2025-01-01,OPP-03130,Expansion Discussion,8400.0,Best Case,2025-02-15
+2025-01-01,OPP-03132,Expansion Discussion,1200.0,Best Case,2025-02-15
+2025-01-01,OPP-03133,Expansion Discussion,5760.0,Best Case,2025-02-15
+2025-01-01,OPP-03134,Expansion Discussion,1440.0,Best Case,2025-02-15
 2025-04-01,OPP-00493,Proof of Concept,97920.0,Best Case,2025-04-27
 2025-04-01,OPP-00494,Negotiation,1800.0,Commit,2025-04-09
 2025-04-01,OPP-00495,Negotiation,59040.0,Commit,2025-04-08
@@ -539,106 +828,171 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2025-04-01,OPP-00817,Qualification,212905.0,Pipeline,2025-04-13
 2025-04-01,OPP-00819,Qualification,36954.0,Pipeline,2025-04-25
 2025-04-01,OPP-00879,Qualification,152713.0,Pipeline,2025-04-10
-2025-04-01,OPP-00986,Negotiation,3600.0,Commit,2025-04-12
-2025-04-01,OPP-00989,Renewal Discussion,73440.0,Best Case,2025-04-09
-2025-04-01,OPP-00991,Negotiation,8400.0,Commit,2025-04-21
-2025-04-01,OPP-00993,Negotiation,64800.0,Commit,2025-04-24
-2025-04-01,OPP-00995,Negotiation,750000.0,Commit,2025-04-22
-2025-04-01,OPP-00997,Negotiation,9000.0,Commit,2025-04-15
-2025-04-01,OPP-00999,Negotiation,6000.0,Commit,2025-04-15
-2025-04-01,OPP-01001,Negotiation,18720.0,Commit,2025-04-23
-2025-04-01,OPP-01003,Renewal Discussion,9000.0,Best Case,2025-04-21
-2025-04-01,OPP-01005,Negotiation,61920.0,Commit,2025-04-22
-2025-04-01,OPP-01007,Negotiation,14400.0,Commit,2025-04-12
-2025-04-01,OPP-01009,Negotiation,639000.0,Commit,2025-04-04
-2025-04-01,OPP-01011,Negotiation,53280.0,Commit,2025-04-12
-2025-04-01,OPP-01013,Negotiation,252000.0,Commit,2025-04-02
-2025-04-01,OPP-01015,Negotiation,48000.0,Commit,2025-04-18
-2025-04-01,OPP-01017,Negotiation,28800.0,Commit,2025-04-13
-2025-04-01,OPP-01019,Negotiation,8400.0,Commit,2025-05-01
-2025-04-01,OPP-01021,Negotiation,1800.0,Commit,2025-05-08
-2025-04-01,OPP-01025,Negotiation,689760.0,Commit,2025-05-02
-2025-04-01,OPP-01027,Renewal Discussion,22200.0,Best Case,2025-05-03
-2025-04-01,OPP-01029,Renewal Discussion,10800.0,Best Case,2025-05-24
-2025-04-01,OPP-01031,Renewal Discussion,67680.0,Best Case,2025-05-19
-2025-04-01,OPP-01033,Renewal Discussion,9000.0,Best Case,2025-05-25
-2025-04-01,OPP-01035,Renewal Discussion,6000.0,Best Case,2025-05-12
-2025-04-01,OPP-01037,Renewal Discussion,8400.0,Best Case,2025-05-26
-2025-04-01,OPP-01039,Renewal Discussion,82080.0,Best Case,2025-05-17
-2025-04-01,OPP-01041,Renewal Discussion,6000.0,Best Case,2025-05-10
-2025-04-01,OPP-01043,Negotiation,120960.0,Commit,2025-05-20
-2025-04-01,OPP-01045,Renewal Discussion,76320.0,Best Case,2025-05-24
-2025-04-01,OPP-01047,Negotiation,2400.0,Commit,2025-05-14
-2025-04-01,OPP-01321,Negotiation,7200.0,Commit,2025-04-06
-2025-04-01,OPP-01322,Negotiation,3000.0,Commit,2025-04-04
-2025-04-01,OPP-01323,Negotiation,4800.0,Commit,2025-04-07
-2025-04-01,OPP-01324,Negotiation,4800.0,Commit,2025-04-25
-2025-04-01,OPP-01325,Negotiation,34560.0,Commit,2025-04-26
-2025-04-01,OPP-01326,Negotiation,66240.0,Commit,2025-04-02
-2025-04-01,OPP-01327,Negotiation,4200.0,Commit,2025-04-14
-2025-04-01,OPP-01328,Negotiation,14400.0,Commit,2025-04-22
-2025-04-01,OPP-01329,Negotiation,3600.0,Commit,2025-04-22
-2025-04-01,OPP-01330,Renewal Discussion,102240.0,Best Case,2025-04-10
-2025-04-01,OPP-01331,Renewal Discussion,906000.0,Best Case,2025-04-24
-2025-04-01,OPP-01332,Negotiation,18720.0,Commit,2025-04-22
-2025-04-01,OPP-01333,Renewal Discussion,11400.0,Best Case,2025-04-23
-2025-04-01,OPP-01334,Negotiation,40320.0,Commit,2025-04-13
-2025-04-01,OPP-01335,Negotiation,57600.0,Commit,2025-04-26
-2025-04-01,OPP-01336,Negotiation,17280.0,Commit,2025-04-20
-2025-04-01,OPP-01337,Negotiation,7800.0,Commit,2025-04-07
-2025-04-01,OPP-01338,Renewal Discussion,105120.0,Best Case,2025-04-26
-2025-04-01,OPP-01339,Renewal Discussion,1800.0,Best Case,2025-05-24
-2025-04-01,OPP-01340,Renewal Discussion,10080.0,Best Case,2025-05-05
-2025-04-01,OPP-01341,Renewal Discussion,3000.0,Best Case,2025-05-03
-2025-04-01,OPP-01342,Renewal Discussion,195840.0,Best Case,2025-05-15
-2025-04-01,OPP-01343,Renewal Discussion,99000.0,Best Case,2025-05-18
-2025-04-01,OPP-01344,Negotiation,8400.0,Commit,2025-05-02
-2025-04-01,OPP-01345,Renewal Discussion,7800.0,Best Case,2025-05-23
-2025-04-01,OPP-01346,Negotiation,95040.0,Commit,2025-05-06
-2025-04-01,OPP-01347,Negotiation,9600.0,Commit,2025-05-16
-2025-04-01,OPP-01348,Renewal Discussion,6000.0,Best Case,2025-05-25
-2025-04-01,OPP-01349,Negotiation,8400.0,Commit,2025-05-13
-2025-04-01,OPP-01350,Renewal Discussion,5760.0,Best Case,2025-05-21
-2025-04-01,OPP-01351,Renewal Discussion,6000.0,Best Case,2025-05-14
-2025-04-01,OPP-01352,Renewal Discussion,9000.0,Best Case,2025-05-27
-2025-04-01,OPP-01353,Renewal Discussion,10080.0,Best Case,2025-05-14
-2025-04-01,OPP-01354,Negotiation,9000.0,Commit,2025-05-04
-2025-04-01,OPP-01355,Renewal Discussion,17280.0,Best Case,2025-05-01
-2025-04-01,OPP-01356,Renewal Discussion,34560.0,Best Case,2025-05-06
-2025-04-01,OPP-01357,Renewal Discussion,3600.0,Best Case,2025-05-25
-2025-04-01,OPP-01370,Renewal Discussion,3000.0,Best Case,2025-05-15
-2025-04-01,OPP-01739,Expansion Discussion,240000.0,Best Case,2025-04-15
-2025-04-01,OPP-01740,Expansion Discussion,61920.0,Best Case,2025-04-15
-2025-04-01,OPP-01741,Expansion Discussion,20160.0,Best Case,2025-04-15
-2025-04-01,OPP-01742,Expansion Discussion,93000.0,Best Case,2025-04-15
-2025-04-01,OPP-01743,Expansion Discussion,12960.0,Best Case,2025-04-15
-2025-04-01,OPP-01744,Expansion Discussion,42600.0,Best Case,2025-04-15
-2025-04-01,OPP-01745,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01746,Expansion Discussion,1200.0,Best Case,2025-04-15
-2025-04-01,OPP-01747,Expansion Discussion,1800.0,Best Case,2025-04-15
-2025-04-01,OPP-01748,Expansion Discussion,10080.0,Best Case,2025-04-15
-2025-04-01,OPP-01749,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01750,Expansion Discussion,1800.0,Best Case,2025-04-15
-2025-04-01,OPP-01751,Expansion Discussion,3000.0,Best Case,2025-04-15
-2025-04-01,OPP-01752,Expansion Discussion,1800.0,Best Case,2025-04-15
-2025-04-01,OPP-01753,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01754,Expansion Discussion,1200.0,Best Case,2025-04-15
-2025-04-01,OPP-01755,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01756,Expansion Discussion,3000.0,Best Case,2025-04-15
-2025-04-01,OPP-01757,Expansion Discussion,1200.0,Best Case,2025-04-15
-2025-04-01,OPP-01758,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01759,Expansion Discussion,5760.0,Best Case,2025-04-15
-2025-04-01,OPP-01760,Expansion Discussion,600.0,Best Case,2025-04-15
-2025-04-01,OPP-01761,Expansion Discussion,2880.0,Best Case,2025-04-15
-2025-04-01,OPP-01762,Expansion Discussion,7200.0,Best Case,2025-05-15
-2025-04-01,OPP-01764,Expansion Discussion,14400.0,Best Case,2025-05-15
-2025-04-01,OPP-01765,Expansion Discussion,2880.0,Best Case,2025-05-15
-2025-04-01,OPP-01766,Expansion Discussion,10080.0,Best Case,2025-05-15
-2025-04-01,OPP-01768,Expansion Discussion,5760.0,Best Case,2025-05-15
-2025-04-01,OPP-01769,Expansion Discussion,33120.0,Best Case,2025-05-15
-2025-04-01,OPP-01770,Expansion Discussion,1440.0,Best Case,2025-05-15
-2025-04-01,OPP-01776,Expansion Discussion,1200.0,Best Case,2025-05-15
-2025-04-01,OPP-01777,Expansion Discussion,1200.0,Best Case,2025-05-15
+2025-04-01,OPP-00913,Proof of Concept,235945.0,Best Case,2025-04-04
+2025-04-01,OPP-00928,Qualification,134618.0,Pipeline,2025-05-07
+2025-04-01,OPP-00931,Qualification,185544.0,Pipeline,2025-04-05
+2025-04-01,OPP-00933,Qualification,213965.0,Pipeline,2025-06-10
+2025-04-01,OPP-00950,Discovery,39743.0,Pipeline,2025-04-24
+2025-04-01,OPP-00957,Qualification,107334.0,Pipeline,2025-05-17
+2025-04-01,OPP-00958,Qualification,237729.0,Pipeline,2025-07-05
+2025-04-01,OPP-00959,Negotiation,61715.0,Commit,2025-04-29
+2025-04-01,OPP-00989,Qualification,23803.0,Pipeline,2025-04-19
+2025-04-01,OPP-00993,Qualification,236437.0,Pipeline,2025-07-21
+2025-04-01,OPP-01035,Proof of Concept,197483.0,Best Case,2025-05-08
+2025-04-01,OPP-01051,Discovery,203198.0,Pipeline,2025-04-21
+2025-04-01,OPP-01078,Proof of Concept,93867.0,Best Case,2025-04-16
+2025-04-01,OPP-01097,Proof of Concept,81048.0,Best Case,2025-04-24
+2025-04-01,OPP-01116,Qualification,133001.0,Pipeline,2025-04-06
+2025-04-01,OPP-01119,Discovery,245733.0,Pipeline,2025-05-09
+2025-04-01,OPP-01132,Qualification,195375.0,Pipeline,2025-04-25
+2025-04-01,OPP-01152,Discovery,204020.0,Pipeline,2025-07-01
+2025-04-01,OPP-01164,Discovery,208120.0,Pipeline,2025-05-10
+2025-04-01,OPP-01244,Discovery,69385.0,Pipeline,2025-06-12
+2025-04-01,OPP-01249,Discovery,31347.0,Pipeline,2025-04-06
+2025-04-01,OPP-01301,Proof of Concept,229160.0,Best Case,2025-05-08
+2025-04-01,OPP-01303,Proof of Concept,229049.0,Best Case,2025-05-12
+2025-04-01,OPP-01329,Discovery,157569.0,Pipeline,2025-05-19
+2025-04-01,OPP-01365,Qualification,140961.0,Pipeline,2025-05-12
+2025-04-01,OPP-01369,Qualification,163348.0,Pipeline,2025-04-29
+2025-04-01,OPP-01413,Proof of Concept,69092.0,Best Case,2025-04-06
+2025-04-01,OPP-01417,Qualification,41741.0,Pipeline,2025-06-11
+2025-04-01,OPP-01449,Proof of Concept,33428.0,Best Case,2025-04-04
+2025-04-01,OPP-01471,Discovery,192454.0,Pipeline,2025-04-15
+2025-04-01,OPP-01473,Discovery,120167.0,Pipeline,2025-04-14
+2025-04-01,OPP-01513,Qualification,211796.0,Pipeline,2025-05-08
+2025-04-01,OPP-01542,Proof of Concept,192938.0,Best Case,2025-04-08
+2025-04-01,OPP-01593,Discovery,179557.0,Pipeline,2025-06-05
+2025-04-01,OPP-01697,Proof of Concept,195749.0,Best Case,2025-04-08
+2025-04-01,OPP-01707,Proof of Concept,127858.0,Best Case,2025-04-09
+2025-04-01,OPP-01711,Discovery,248182.0,Pipeline,2025-04-19
+2025-04-01,OPP-01775,Proof of Concept,124534.0,Best Case,2025-04-07
+2025-04-01,OPP-01811,Qualification,57867.0,Pipeline,2025-05-08
+2025-04-01,OPP-01815,Proof of Concept,122817.0,Best Case,2025-05-13
+2025-04-01,OPP-01858,Discovery,9665.0,Pipeline,2025-04-04
+2025-04-01,OPP-01878,Negotiation,232046.0,Commit,2025-04-05
+2025-04-01,OPP-01897,Qualification,203543.0,Pipeline,2025-04-11
+2025-04-01,OPP-01906,Proof of Concept,225413.0,Best Case,2025-04-08
+2025-04-01,OPP-01926,Discovery,200732.0,Pipeline,2025-04-03
+2025-04-01,OPP-01943,Proof of Concept,150673.0,Best Case,2025-04-03
+2025-04-01,OPP-02009,Discovery,127813.0,Pipeline,2025-04-11
+2025-04-01,OPP-02040,Qualification,22029.0,Pipeline,2025-04-17
+2025-04-01,OPP-02044,Discovery,22027.0,Pipeline,2025-04-19
+2025-04-01,OPP-02052,Proof of Concept,46086.0,Best Case,2025-04-05
+2025-04-01,OPP-02062,Qualification,67644.0,Pipeline,2025-04-18
+2025-04-01,OPP-02086,Discovery,233182.0,Pipeline,2025-05-08
+2025-04-01,OPP-02127,Negotiation,194147.0,Commit,2025-04-17
+2025-04-01,OPP-02150,Qualification,197414.0,Pipeline,2025-04-15
+2025-04-01,OPP-02160,Discovery,192575.0,Pipeline,2025-04-13
+2025-04-01,OPP-02169,Qualification,79192.0,Pipeline,2025-06-04
+2025-04-01,OPP-02174,Proof of Concept,64378.0,Best Case,2025-05-28
+2025-04-01,OPP-02214,Discovery,28538.0,Pipeline,2025-05-17
+2025-04-01,OPP-02232,Proof of Concept,120143.0,Best Case,2025-04-21
+2025-04-01,OPP-02271,Discovery,101161.0,Pipeline,2025-05-20
+2025-04-01,OPP-02297,Qualification,214802.0,Pipeline,2025-04-08
+2025-04-01,OPP-02406,Negotiation,3600.0,Commit,2025-04-12
+2025-04-01,OPP-02409,Negotiation,73440.0,Commit,2025-04-09
+2025-04-01,OPP-02411,Renewal Discussion,8400.0,Best Case,2025-04-21
+2025-04-01,OPP-02413,Negotiation,64800.0,Commit,2025-04-24
+2025-04-01,OPP-02415,Negotiation,750000.0,Commit,2025-04-22
+2025-04-01,OPP-02417,Negotiation,9000.0,Commit,2025-04-15
+2025-04-01,OPP-02419,Renewal Discussion,6000.0,Best Case,2025-04-15
+2025-04-01,OPP-02421,Renewal Discussion,18720.0,Best Case,2025-04-23
+2025-04-01,OPP-02423,Renewal Discussion,9000.0,Best Case,2025-04-21
+2025-04-01,OPP-02425,Renewal Discussion,61920.0,Best Case,2025-04-22
+2025-04-01,OPP-02427,Negotiation,14400.0,Commit,2025-04-12
+2025-04-01,OPP-02429,Negotiation,639000.0,Commit,2025-04-04
+2025-04-01,OPP-02431,Negotiation,53280.0,Commit,2025-04-12
+2025-04-01,OPP-02433,Negotiation,252000.0,Commit,2025-04-02
+2025-04-01,OPP-02435,Negotiation,48000.0,Commit,2025-04-18
+2025-04-01,OPP-02437,Negotiation,28800.0,Commit,2025-04-13
+2025-04-01,OPP-02439,Negotiation,8400.0,Commit,2025-05-01
+2025-04-01,OPP-02441,Negotiation,1800.0,Commit,2025-05-08
+2025-04-01,OPP-02445,Renewal Discussion,689760.0,Best Case,2025-05-02
+2025-04-01,OPP-02447,Renewal Discussion,22200.0,Best Case,2025-05-03
+2025-04-01,OPP-02449,Renewal Discussion,10800.0,Best Case,2025-05-24
+2025-04-01,OPP-02451,Renewal Discussion,67680.0,Best Case,2025-05-19
+2025-04-01,OPP-02453,Negotiation,9000.0,Commit,2025-05-25
+2025-04-01,OPP-02455,Negotiation,6000.0,Commit,2025-05-12
+2025-04-01,OPP-02457,Renewal Discussion,8400.0,Best Case,2025-05-26
+2025-04-01,OPP-02459,Renewal Discussion,82080.0,Best Case,2025-05-17
+2025-04-01,OPP-02461,Renewal Discussion,6000.0,Best Case,2025-05-10
+2025-04-01,OPP-02463,Negotiation,120960.0,Commit,2025-05-20
+2025-04-01,OPP-02465,Renewal Discussion,76320.0,Best Case,2025-05-24
+2025-04-01,OPP-02467,Renewal Discussion,2400.0,Best Case,2025-05-14
+2025-04-01,OPP-02733,Renewal Discussion,3000.0,Best Case,2025-04-15
+2025-04-01,OPP-02741,Negotiation,7200.0,Commit,2025-04-06
+2025-04-01,OPP-02742,Negotiation,3000.0,Commit,2025-04-04
+2025-04-01,OPP-02743,Renewal Discussion,4800.0,Best Case,2025-04-07
+2025-04-01,OPP-02744,Negotiation,4800.0,Commit,2025-04-25
+2025-04-01,OPP-02745,Negotiation,34560.0,Commit,2025-04-26
+2025-04-01,OPP-02746,Negotiation,66240.0,Commit,2025-04-02
+2025-04-01,OPP-02747,Negotiation,4200.0,Commit,2025-04-14
+2025-04-01,OPP-02748,Negotiation,14400.0,Commit,2025-04-22
+2025-04-01,OPP-02749,Negotiation,3600.0,Commit,2025-04-22
+2025-04-01,OPP-02750,Negotiation,102240.0,Commit,2025-04-10
+2025-04-01,OPP-02751,Negotiation,906000.0,Commit,2025-04-24
+2025-04-01,OPP-02752,Negotiation,18720.0,Commit,2025-04-22
+2025-04-01,OPP-02753,Negotiation,11400.0,Commit,2025-04-23
+2025-04-01,OPP-02754,Negotiation,40320.0,Commit,2025-04-13
+2025-04-01,OPP-02755,Renewal Discussion,57600.0,Best Case,2025-04-26
+2025-04-01,OPP-02756,Negotiation,17280.0,Commit,2025-04-20
+2025-04-01,OPP-02757,Negotiation,7800.0,Commit,2025-04-07
+2025-04-01,OPP-02758,Negotiation,105120.0,Commit,2025-04-26
+2025-04-01,OPP-02759,Renewal Discussion,1800.0,Best Case,2025-05-24
+2025-04-01,OPP-02760,Renewal Discussion,10080.0,Best Case,2025-05-05
+2025-04-01,OPP-02761,Negotiation,3000.0,Commit,2025-05-03
+2025-04-01,OPP-02762,Negotiation,195840.0,Commit,2025-05-15
+2025-04-01,OPP-02763,Renewal Discussion,99000.0,Best Case,2025-05-18
+2025-04-01,OPP-02764,Negotiation,8400.0,Commit,2025-05-02
+2025-04-01,OPP-02765,Renewal Discussion,7800.0,Best Case,2025-05-23
+2025-04-01,OPP-02766,Negotiation,95040.0,Commit,2025-05-06
+2025-04-01,OPP-02767,Renewal Discussion,9600.0,Best Case,2025-05-16
+2025-04-01,OPP-02768,Renewal Discussion,6000.0,Best Case,2025-05-25
+2025-04-01,OPP-02769,Renewal Discussion,8400.0,Best Case,2025-05-13
+2025-04-01,OPP-02770,Renewal Discussion,5760.0,Best Case,2025-05-21
+2025-04-01,OPP-02771,Negotiation,6000.0,Commit,2025-05-14
+2025-04-01,OPP-02772,Renewal Discussion,9000.0,Best Case,2025-05-27
+2025-04-01,OPP-02773,Renewal Discussion,10080.0,Best Case,2025-05-14
+2025-04-01,OPP-02774,Negotiation,9000.0,Commit,2025-05-04
+2025-04-01,OPP-02775,Renewal Discussion,17280.0,Best Case,2025-05-01
+2025-04-01,OPP-02776,Renewal Discussion,34560.0,Best Case,2025-05-06
+2025-04-01,OPP-02777,Renewal Discussion,3600.0,Best Case,2025-05-25
+2025-04-01,OPP-02778,Renewal Discussion,87840.0,Best Case,2025-05-15
+2025-04-01,OPP-02790,Renewal Discussion,3000.0,Best Case,2025-05-15
+2025-04-01,OPP-03159,Expansion Discussion,240000.0,Best Case,2025-04-15
+2025-04-01,OPP-03160,Expansion Discussion,61920.0,Best Case,2025-04-15
+2025-04-01,OPP-03161,Expansion Discussion,20160.0,Best Case,2025-04-15
+2025-04-01,OPP-03162,Expansion Discussion,93000.0,Best Case,2025-04-15
+2025-04-01,OPP-03163,Expansion Discussion,12960.0,Best Case,2025-04-15
+2025-04-01,OPP-03164,Expansion Discussion,42600.0,Best Case,2025-04-15
+2025-04-01,OPP-03165,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03166,Expansion Discussion,1200.0,Best Case,2025-04-15
+2025-04-01,OPP-03167,Expansion Discussion,1800.0,Best Case,2025-04-15
+2025-04-01,OPP-03168,Expansion Discussion,10080.0,Best Case,2025-04-15
+2025-04-01,OPP-03169,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03170,Expansion Discussion,1800.0,Best Case,2025-04-15
+2025-04-01,OPP-03171,Expansion Discussion,3000.0,Best Case,2025-04-15
+2025-04-01,OPP-03172,Expansion Discussion,1800.0,Best Case,2025-04-15
+2025-04-01,OPP-03173,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03174,Expansion Discussion,1200.0,Best Case,2025-04-15
+2025-04-01,OPP-03175,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03176,Expansion Discussion,3000.0,Best Case,2025-04-15
+2025-04-01,OPP-03177,Expansion Discussion,1200.0,Best Case,2025-04-15
+2025-04-01,OPP-03178,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03179,Expansion Discussion,5760.0,Best Case,2025-04-15
+2025-04-01,OPP-03180,Expansion Discussion,600.0,Best Case,2025-04-15
+2025-04-01,OPP-03181,Expansion Discussion,2880.0,Best Case,2025-04-15
+2025-04-01,OPP-03182,Expansion Discussion,7200.0,Best Case,2025-05-15
+2025-04-01,OPP-03183,Expansion Discussion,1200.0,Best Case,2025-05-15
+2025-04-01,OPP-03184,Expansion Discussion,14400.0,Best Case,2025-05-15
+2025-04-01,OPP-03185,Expansion Discussion,2880.0,Best Case,2025-05-15
+2025-04-01,OPP-03188,Expansion Discussion,5760.0,Best Case,2025-05-15
+2025-04-01,OPP-03189,Expansion Discussion,33120.0,Best Case,2025-05-15
+2025-04-01,OPP-03191,Expansion Discussion,600.0,Best Case,2025-05-15
+2025-04-01,OPP-03193,Expansion Discussion,600.0,Best Case,2025-05-15
+2025-04-01,OPP-03194,Expansion Discussion,15840.0,Best Case,2025-05-15
+2025-04-01,OPP-03196,Expansion Discussion,1200.0,Best Case,2025-05-15
+2025-04-01,OPP-03197,Expansion Discussion,1200.0,Best Case,2025-05-15
 2025-07-01,OPP-00549,Proof of Concept,7800.0,Best Case,2025-07-12
 2025-07-01,OPP-00550,Negotiation,25920.0,Commit,2025-07-14
 2025-07-01,OPP-00551,Negotiation,4800.0,Commit,2025-07-02
@@ -749,113 +1103,161 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2025-07-01,OPP-00814,Negotiation,111154.0,Commit,2025-12-11
 2025-07-01,OPP-00833,Proof of Concept,105305.0,Best Case,2025-07-03
 2025-07-01,OPP-00846,Qualification,110956.0,Pipeline,2025-07-19
-2025-07-01,OPP-01084,Negotiation,67680.0,Commit,2025-07-22
-2025-07-01,OPP-01086,Negotiation,3600.0,Commit,2025-07-26
-2025-07-01,OPP-01088,Negotiation,14400.0,Commit,2025-07-19
-2025-07-01,OPP-01090,Negotiation,8400.0,Commit,2025-07-20
-2025-07-01,OPP-01092,Negotiation,102240.0,Commit,2025-07-21
-2025-07-01,OPP-01094,Negotiation,7800.0,Commit,2025-07-03
-2025-07-01,OPP-01096,Negotiation,7800.0,Commit,2025-07-10
-2025-07-01,OPP-01098,Negotiation,105120.0,Commit,2025-07-10
-2025-07-01,OPP-01100,Negotiation,7200.0,Commit,2025-07-21
-2025-07-01,OPP-01102,Negotiation,14400.0,Commit,2025-07-22
-2025-07-01,OPP-01104,Negotiation,993000.0,Commit,2025-07-19
-2025-07-01,OPP-01107,Negotiation,3600.0,Commit,2025-07-14
-2025-07-01,OPP-01113,Renewal Discussion,48960.0,Best Case,2025-08-09
-2025-07-01,OPP-01115,Renewal Discussion,6000.0,Best Case,2025-07-15
-2025-07-01,OPP-01117,Renewal Discussion,7800.0,Best Case,2025-08-05
-2025-07-01,OPP-01119,Renewal Discussion,6600.0,Best Case,2025-08-23
-2025-07-01,OPP-01121,Renewal Discussion,23040.0,Best Case,2025-08-27
-2025-07-01,OPP-01123,Renewal Discussion,7800.0,Best Case,2025-08-09
-2025-07-01,OPP-01125,Renewal Discussion,8400.0,Best Case,2025-08-10
-2025-07-01,OPP-01127,Renewal Discussion,37440.0,Best Case,2025-08-23
-2025-07-01,OPP-01131,Renewal Discussion,309000.0,Best Case,2025-08-15
-2025-07-01,OPP-01133,Renewal Discussion,3600.0,Best Case,2025-08-10
-2025-07-01,OPP-01136,Renewal Discussion,6000.0,Best Case,2025-08-15
-2025-07-01,OPP-01138,Renewal Discussion,112320.0,Best Case,2025-08-14
-2025-07-01,OPP-01140,Negotiation,10800.0,Commit,2025-08-21
-2025-07-01,OPP-01142,Renewal Discussion,8640.0,Best Case,2025-08-05
-2025-07-01,OPP-01144,Renewal Discussion,96480.0,Best Case,2025-08-24
-2025-07-01,OPP-01376,Negotiation,4320.0,Commit,2025-07-20
-2025-07-01,OPP-01377,Negotiation,216000.0,Commit,2025-07-07
-2025-07-01,OPP-01378,Negotiation,51000.0,Commit,2025-07-15
-2025-07-01,OPP-01379,Negotiation,3000.0,Commit,2025-07-09
-2025-07-01,OPP-01380,Negotiation,306720.0,Commit,2025-07-24
-2025-07-01,OPP-01381,Renewal Discussion,2400.0,Best Case,2025-07-15
-2025-07-01,OPP-01382,Negotiation,4800.0,Commit,2025-07-08
-2025-07-01,OPP-01383,Negotiation,7200.0,Commit,2025-07-12
-2025-07-01,OPP-01384,Negotiation,5760.0,Commit,2025-07-11
-2025-07-01,OPP-01385,Negotiation,44400.0,Commit,2025-07-17
-2025-07-01,OPP-01386,Negotiation,96000.0,Commit,2025-07-27
-2025-07-01,OPP-01387,Negotiation,7800.0,Commit,2025-07-10
-2025-07-01,OPP-01389,Renewal Discussion,7200.0,Best Case,2025-07-26
-2025-07-01,OPP-01390,Negotiation,12960.0,Commit,2025-07-20
-2025-07-01,OPP-01391,Negotiation,7200.0,Commit,2025-07-13
-2025-07-01,OPP-01392,Negotiation,7200.0,Commit,2025-07-19
-2025-07-01,OPP-01393,Negotiation,51840.0,Commit,2025-07-06
-2025-07-01,OPP-01394,Negotiation,4200.0,Commit,2025-07-26
-2025-07-01,OPP-01395,Negotiation,7200.0,Commit,2025-07-17
-2025-07-01,OPP-01396,Negotiation,7200.0,Commit,2025-07-04
-2025-07-01,OPP-01397,Negotiation,2400.0,Commit,2025-07-23
-2025-07-01,OPP-01398,Negotiation,10800.0,Commit,2025-07-10
-2025-07-01,OPP-01399,Negotiation,1800.0,Commit,2025-07-21
-2025-07-01,OPP-01400,Negotiation,24000.0,Commit,2025-07-21
-2025-07-01,OPP-01401,Negotiation,7200.0,Commit,2025-07-02
-2025-07-01,OPP-01402,Negotiation,8640.0,Commit,2025-07-05
-2025-07-01,OPP-01403,Negotiation,64800.0,Commit,2025-07-27
-2025-07-01,OPP-01404,Negotiation,5760.0,Commit,2025-07-09
-2025-07-01,OPP-01405,Negotiation,54720.0,Commit,2025-08-20
-2025-07-01,OPP-01406,Negotiation,73440.0,Commit,2025-08-08
-2025-07-01,OPP-01407,Renewal Discussion,12960.0,Best Case,2025-08-06
-2025-07-01,OPP-01408,Renewal Discussion,30000.0,Best Case,2025-08-20
-2025-07-01,OPP-01409,Renewal Discussion,7800.0,Best Case,2025-08-25
-2025-07-01,OPP-01410,Renewal Discussion,30240.0,Best Case,2025-08-09
-2025-07-01,OPP-01412,Renewal Discussion,1800.0,Best Case,2025-08-16
-2025-07-01,OPP-01413,Negotiation,150000.0,Commit,2025-08-04
-2025-07-01,OPP-01414,Negotiation,4800.0,Commit,2025-08-13
-2025-07-01,OPP-01415,Renewal Discussion,3600.0,Best Case,2025-08-17
-2025-07-01,OPP-01416,Negotiation,4200.0,Commit,2025-08-08
-2025-07-01,OPP-01417,Negotiation,11520.0,Commit,2025-08-02
-2025-07-01,OPP-01418,Renewal Discussion,434880.0,Best Case,2025-08-12
-2025-07-01,OPP-01419,Renewal Discussion,93600.0,Best Case,2025-08-24
-2025-07-01,OPP-01420,Negotiation,216000.0,Commit,2025-08-02
-2025-07-01,OPP-01421,Renewal Discussion,5400.0,Best Case,2025-08-12
-2025-07-01,OPP-01422,Renewal Discussion,21000.0,Best Case,2025-08-14
-2025-07-01,OPP-01423,Renewal Discussion,38880.0,Best Case,2025-08-13
-2025-07-01,OPP-01424,Negotiation,3600.0,Commit,2025-08-17
-2025-07-01,OPP-01426,Renewal Discussion,3000.0,Best Case,2025-08-23
-2025-07-01,OPP-01427,Renewal Discussion,2400.0,Best Case,2025-08-19
-2025-07-01,OPP-01428,Renewal Discussion,9000.0,Best Case,2025-08-24
-2025-07-01,OPP-01429,Renewal Discussion,5760.0,Best Case,2025-08-20
-2025-07-01,OPP-01430,Negotiation,2400.0,Commit,2025-08-10
-2025-07-01,OPP-01431,Renewal Discussion,7800.0,Best Case,2025-08-24
-2025-07-01,OPP-01432,Negotiation,3600.0,Commit,2025-08-08
-2025-07-01,OPP-01434,Renewal Discussion,3000.0,Best Case,2025-08-22
-2025-07-01,OPP-01792,Expansion Discussion,600.0,Best Case,2025-07-15
-2025-07-01,OPP-01793,Expansion Discussion,600.0,Best Case,2025-07-15
-2025-07-01,OPP-01794,Expansion Discussion,5760.0,Best Case,2025-07-15
-2025-07-01,OPP-01795,Expansion Discussion,117000.0,Best Case,2025-07-15
-2025-07-01,OPP-01796,Expansion Discussion,2880.0,Best Case,2025-07-15
-2025-07-01,OPP-01797,Expansion Discussion,1440.0,Best Case,2025-07-15
-2025-07-01,OPP-01798,Expansion Discussion,5760.0,Best Case,2025-07-15
-2025-07-01,OPP-01799,Expansion Discussion,14400.0,Best Case,2025-07-15
-2025-07-01,OPP-01800,Expansion Discussion,10080.0,Best Case,2025-07-15
-2025-07-01,OPP-01801,Expansion Discussion,1200.0,Best Case,2025-07-15
-2025-07-01,OPP-01802,Expansion Discussion,2880.0,Best Case,2025-07-15
-2025-07-01,OPP-01803,Expansion Discussion,10080.0,Best Case,2025-07-15
-2025-07-01,OPP-01804,Expansion Discussion,600.0,Best Case,2025-07-15
-2025-07-01,OPP-01805,Expansion Discussion,4320.0,Best Case,2025-07-15
-2025-07-01,OPP-01806,Expansion Discussion,4800.0,Best Case,2025-07-15
-2025-07-01,OPP-01808,Expansion Discussion,142560.0,Best Case,2025-08-15
-2025-07-01,OPP-01809,Expansion Discussion,600.0,Best Case,2025-08-15
-2025-07-01,OPP-01811,Expansion Discussion,1200.0,Best Case,2025-08-15
-2025-07-01,OPP-01812,Expansion Discussion,96000.0,Best Case,2025-08-15
-2025-07-01,OPP-01815,Expansion Discussion,2880.0,Best Case,2025-08-15
-2025-07-01,OPP-01816,Expansion Discussion,1200.0,Best Case,2025-08-15
-2025-07-01,OPP-01818,Expansion Discussion,17280.0,Best Case,2025-08-15
-2025-07-01,OPP-01819,Expansion Discussion,1800.0,Best Case,2025-08-15
-2025-07-01,OPP-01820,Expansion Discussion,1200.0,Best Case,2025-08-15
-2025-07-01,OPP-01821,Expansion Discussion,9000.0,Best Case,2025-08-15
+2025-07-01,OPP-00917,Qualification,133006.0,Pipeline,2025-07-04
+2025-07-01,OPP-00956,Qualification,220524.0,Pipeline,2025-08-26
+2025-07-01,OPP-00958,Negotiation,237729.0,Commit,2025-07-05
+2025-07-01,OPP-00980,Discovery,186251.0,Pipeline,2025-08-18
+2025-07-01,OPP-00993,Proof of Concept,236437.0,Best Case,2025-07-21
+2025-07-01,OPP-01006,Discovery,187271.0,Pipeline,2025-07-09
+2025-07-01,OPP-01056,Negotiation,181413.0,Commit,2025-07-13
+2025-07-01,OPP-01130,Qualification,201622.0,Pipeline,2025-07-03
+2025-07-01,OPP-01156,Discovery,240469.0,Pipeline,2025-07-07
+2025-07-01,OPP-01181,Discovery,85185.0,Pipeline,2025-07-13
+2025-07-01,OPP-01182,Proof of Concept,160837.0,Best Case,2025-07-09
+2025-07-01,OPP-01250,Proof of Concept,223871.0,Best Case,2025-07-27
+2025-07-01,OPP-01283,Discovery,100973.0,Pipeline,2025-09-05
+2025-07-01,OPP-01320,Proof of Concept,223706.0,Best Case,2025-08-06
+2025-07-01,OPP-01334,Proof of Concept,183885.0,Best Case,2025-07-08
+2025-07-01,OPP-01383,Proof of Concept,246404.0,Best Case,2025-07-09
+2025-07-01,OPP-01384,Proof of Concept,179086.0,Best Case,2025-10-07
+2025-07-01,OPP-01447,Qualification,184535.0,Pipeline,2025-10-22
+2025-07-01,OPP-01536,Discovery,202071.0,Pipeline,2025-07-10
+2025-07-01,OPP-01635,Qualification,190835.0,Pipeline,2025-08-13
+2025-07-01,OPP-01638,Proof of Concept,224473.0,Best Case,2025-07-06
+2025-07-01,OPP-01709,Proof of Concept,173272.0,Best Case,2025-07-04
+2025-07-01,OPP-01820,Proof of Concept,89645.0,Best Case,2025-09-12
+2025-07-01,OPP-01830,Discovery,5228.0,Pipeline,2025-07-18
+2025-07-01,OPP-01836,Qualification,126049.0,Pipeline,2025-08-10
+2025-07-01,OPP-01844,Qualification,214840.0,Pipeline,2025-07-02
+2025-07-01,OPP-01876,Discovery,85934.0,Pipeline,2025-07-28
+2025-07-01,OPP-01896,Discovery,194829.0,Pipeline,2025-07-08
+2025-07-01,OPP-01922,Negotiation,79889.0,Commit,2025-07-14
+2025-07-01,OPP-01923,Proof of Concept,191703.0,Best Case,2025-07-07
+2025-07-01,OPP-01945,Proof of Concept,153037.0,Best Case,2025-07-30
+2025-07-01,OPP-01962,Discovery,160092.0,Pipeline,2025-07-14
+2025-07-01,OPP-01968,Discovery,233391.0,Pipeline,2025-08-08
+2025-07-01,OPP-01977,Qualification,186267.0,Pipeline,2025-07-16
+2025-07-01,OPP-01988,Discovery,207923.0,Pipeline,2025-07-22
+2025-07-01,OPP-02026,Discovery,233194.0,Pipeline,2025-08-15
+2025-07-01,OPP-02036,Proof of Concept,116184.0,Best Case,2025-07-20
+2025-07-01,OPP-02084,Discovery,213579.0,Pipeline,2025-08-15
+2025-07-01,OPP-02095,Proof of Concept,183490.0,Best Case,2025-07-18
+2025-07-01,OPP-02104,Qualification,127692.0,Pipeline,2025-08-11
+2025-07-01,OPP-02141,Discovery,242957.0,Pipeline,2025-07-03
+2025-07-01,OPP-02187,Discovery,59589.0,Pipeline,2025-07-14
+2025-07-01,OPP-02198,Proof of Concept,186374.0,Best Case,2025-07-11
+2025-07-01,OPP-02210,Discovery,181301.0,Pipeline,2025-07-26
+2025-07-01,OPP-02241,Qualification,38666.0,Pipeline,2025-07-09
+2025-07-01,OPP-02296,Qualification,129765.0,Pipeline,2025-08-20
+2025-07-01,OPP-02306,Discovery,218481.0,Pipeline,2025-07-05
+2025-07-01,OPP-02313,Qualification,213763.0,Pipeline,2025-07-20
+2025-07-01,OPP-02504,Negotiation,67680.0,Commit,2025-07-22
+2025-07-01,OPP-02506,Negotiation,3600.0,Commit,2025-07-26
+2025-07-01,OPP-02508,Renewal Discussion,14400.0,Best Case,2025-07-19
+2025-07-01,OPP-02510,Negotiation,8400.0,Commit,2025-07-20
+2025-07-01,OPP-02512,Negotiation,102240.0,Commit,2025-07-21
+2025-07-01,OPP-02514,Negotiation,7800.0,Commit,2025-07-03
+2025-07-01,OPP-02516,Negotiation,7800.0,Commit,2025-07-10
+2025-07-01,OPP-02518,Negotiation,105120.0,Commit,2025-07-10
+2025-07-01,OPP-02520,Renewal Discussion,7200.0,Best Case,2025-07-21
+2025-07-01,OPP-02522,Negotiation,14400.0,Commit,2025-07-22
+2025-07-01,OPP-02524,Negotiation,993000.0,Commit,2025-07-19
+2025-07-01,OPP-02527,Negotiation,3600.0,Commit,2025-07-14
+2025-07-01,OPP-02533,Renewal Discussion,48960.0,Best Case,2025-08-09
+2025-07-01,OPP-02535,Renewal Discussion,6000.0,Best Case,2025-07-15
+2025-07-01,OPP-02537,Renewal Discussion,7800.0,Best Case,2025-08-05
+2025-07-01,OPP-02539,Renewal Discussion,6600.0,Best Case,2025-08-23
+2025-07-01,OPP-02541,Renewal Discussion,23040.0,Best Case,2025-08-27
+2025-07-01,OPP-02543,Renewal Discussion,7800.0,Best Case,2025-08-09
+2025-07-01,OPP-02545,Negotiation,8400.0,Commit,2025-08-10
+2025-07-01,OPP-02547,Renewal Discussion,37440.0,Best Case,2025-08-23
+2025-07-01,OPP-02549,Renewal Discussion,7800.0,Best Case,2025-09-15
+2025-07-01,OPP-02551,Negotiation,309000.0,Commit,2025-08-15
+2025-07-01,OPP-02553,Negotiation,3600.0,Commit,2025-08-10
+2025-07-01,OPP-02556,Renewal Discussion,6000.0,Best Case,2025-08-15
+2025-07-01,OPP-02558,Negotiation,112320.0,Commit,2025-08-14
+2025-07-01,OPP-02560,Renewal Discussion,10800.0,Best Case,2025-08-21
+2025-07-01,OPP-02562,Negotiation,8640.0,Commit,2025-08-05
+2025-07-01,OPP-02564,Renewal Discussion,96480.0,Best Case,2025-08-24
+2025-07-01,OPP-02796,Renewal Discussion,4320.0,Best Case,2025-07-20
+2025-07-01,OPP-02797,Negotiation,216000.0,Commit,2025-07-07
+2025-07-01,OPP-02798,Renewal Discussion,51000.0,Best Case,2025-07-15
+2025-07-01,OPP-02799,Negotiation,3000.0,Commit,2025-07-09
+2025-07-01,OPP-02800,Negotiation,306720.0,Commit,2025-07-24
+2025-07-01,OPP-02801,Negotiation,2400.0,Commit,2025-07-15
+2025-07-01,OPP-02802,Negotiation,4800.0,Commit,2025-07-08
+2025-07-01,OPP-02803,Negotiation,7200.0,Commit,2025-07-12
+2025-07-01,OPP-02804,Negotiation,5760.0,Commit,2025-07-11
+2025-07-01,OPP-02805,Renewal Discussion,44400.0,Best Case,2025-07-17
+2025-07-01,OPP-02806,Negotiation,96000.0,Commit,2025-07-27
+2025-07-01,OPP-02807,Renewal Discussion,7800.0,Best Case,2025-07-10
+2025-07-01,OPP-02809,Negotiation,7200.0,Commit,2025-07-26
+2025-07-01,OPP-02810,Negotiation,12960.0,Commit,2025-07-20
+2025-07-01,OPP-02811,Renewal Discussion,7200.0,Best Case,2025-07-13
+2025-07-01,OPP-02812,Negotiation,7200.0,Commit,2025-07-19
+2025-07-01,OPP-02813,Negotiation,51840.0,Commit,2025-07-06
+2025-07-01,OPP-02814,Negotiation,4200.0,Commit,2025-07-26
+2025-07-01,OPP-02815,Negotiation,7200.0,Commit,2025-07-17
+2025-07-01,OPP-02816,Negotiation,7200.0,Commit,2025-07-04
+2025-07-01,OPP-02817,Negotiation,2400.0,Commit,2025-07-23
+2025-07-01,OPP-02818,Negotiation,10800.0,Commit,2025-07-10
+2025-07-01,OPP-02819,Negotiation,1800.0,Commit,2025-07-21
+2025-07-01,OPP-02820,Negotiation,24000.0,Commit,2025-07-21
+2025-07-01,OPP-02821,Negotiation,7200.0,Commit,2025-07-02
+2025-07-01,OPP-02822,Renewal Discussion,8640.0,Best Case,2025-07-05
+2025-07-01,OPP-02823,Negotiation,64800.0,Commit,2025-07-27
+2025-07-01,OPP-02824,Negotiation,5760.0,Commit,2025-07-09
+2025-07-01,OPP-02825,Renewal Discussion,54720.0,Best Case,2025-08-20
+2025-07-01,OPP-02826,Negotiation,73440.0,Commit,2025-08-08
+2025-07-01,OPP-02827,Renewal Discussion,12960.0,Best Case,2025-08-06
+2025-07-01,OPP-02828,Renewal Discussion,30000.0,Best Case,2025-08-20
+2025-07-01,OPP-02829,Renewal Discussion,7800.0,Best Case,2025-08-25
+2025-07-01,OPP-02830,Negotiation,30240.0,Commit,2025-08-09
+2025-07-01,OPP-02832,Renewal Discussion,1800.0,Best Case,2025-08-16
+2025-07-01,OPP-02833,Negotiation,150000.0,Commit,2025-08-04
+2025-07-01,OPP-02834,Negotiation,4800.0,Commit,2025-08-13
+2025-07-01,OPP-02835,Renewal Discussion,3600.0,Best Case,2025-08-17
+2025-07-01,OPP-02836,Negotiation,4200.0,Commit,2025-08-08
+2025-07-01,OPP-02837,Negotiation,11520.0,Commit,2025-08-02
+2025-07-01,OPP-02838,Renewal Discussion,434880.0,Best Case,2025-08-12
+2025-07-01,OPP-02839,Renewal Discussion,93600.0,Best Case,2025-08-24
+2025-07-01,OPP-02840,Renewal Discussion,216000.0,Best Case,2025-08-02
+2025-07-01,OPP-02841,Renewal Discussion,5400.0,Best Case,2025-08-12
+2025-07-01,OPP-02842,Renewal Discussion,21000.0,Best Case,2025-08-14
+2025-07-01,OPP-02843,Renewal Discussion,38880.0,Best Case,2025-08-13
+2025-07-01,OPP-02844,Negotiation,3600.0,Commit,2025-08-17
+2025-07-01,OPP-02846,Renewal Discussion,3000.0,Best Case,2025-08-23
+2025-07-01,OPP-02847,Renewal Discussion,2400.0,Best Case,2025-08-19
+2025-07-01,OPP-02848,Renewal Discussion,9000.0,Best Case,2025-08-24
+2025-07-01,OPP-02849,Renewal Discussion,5760.0,Best Case,2025-08-20
+2025-07-01,OPP-02850,Negotiation,2400.0,Commit,2025-08-10
+2025-07-01,OPP-02851,Renewal Discussion,7800.0,Best Case,2025-08-24
+2025-07-01,OPP-02852,Renewal Discussion,3600.0,Best Case,2025-08-08
+2025-07-01,OPP-02854,Renewal Discussion,3000.0,Best Case,2025-08-22
+2025-07-01,OPP-03212,Expansion Discussion,600.0,Best Case,2025-07-15
+2025-07-01,OPP-03213,Expansion Discussion,600.0,Best Case,2025-07-15
+2025-07-01,OPP-03214,Expansion Discussion,5760.0,Best Case,2025-07-15
+2025-07-01,OPP-03215,Expansion Discussion,117000.0,Best Case,2025-07-15
+2025-07-01,OPP-03216,Expansion Discussion,2880.0,Best Case,2025-07-15
+2025-07-01,OPP-03217,Expansion Discussion,1440.0,Best Case,2025-07-15
+2025-07-01,OPP-03218,Expansion Discussion,5760.0,Best Case,2025-07-15
+2025-07-01,OPP-03219,Expansion Discussion,14400.0,Best Case,2025-07-15
+2025-07-01,OPP-03220,Expansion Discussion,10080.0,Best Case,2025-07-15
+2025-07-01,OPP-03221,Expansion Discussion,1200.0,Best Case,2025-07-15
+2025-07-01,OPP-03222,Expansion Discussion,2880.0,Best Case,2025-07-15
+2025-07-01,OPP-03223,Expansion Discussion,10080.0,Best Case,2025-07-15
+2025-07-01,OPP-03224,Expansion Discussion,600.0,Best Case,2025-07-15
+2025-07-01,OPP-03225,Expansion Discussion,4320.0,Best Case,2025-07-15
+2025-07-01,OPP-03226,Expansion Discussion,4800.0,Best Case,2025-07-15
+2025-07-01,OPP-03229,Expansion Discussion,600.0,Best Case,2025-08-15
+2025-07-01,OPP-03230,Expansion Discussion,600.0,Best Case,2025-08-15
+2025-07-01,OPP-03231,Expansion Discussion,1200.0,Best Case,2025-08-15
+2025-07-01,OPP-03232,Expansion Discussion,96000.0,Best Case,2025-08-15
+2025-07-01,OPP-03234,Expansion Discussion,3000.0,Best Case,2025-08-15
+2025-07-01,OPP-03240,Expansion Discussion,1200.0,Best Case,2025-08-15
+2025-07-01,OPP-03241,Expansion Discussion,9000.0,Best Case,2025-08-15
+2025-07-01,OPP-03242,Expansion Discussion,600.0,Best Case,2025-08-15
+2025-07-01,OPP-03244,Expansion Discussion,60000.0,Best Case,2025-08-15
 2025-10-01,OPP-00605,Negotiation,9000.0,Commit,2025-10-08
 2025-10-01,OPP-00606,Negotiation,2400.0,Commit,2025-10-02
 2025-10-01,OPP-00607,Negotiation,6000.0,Commit,2025-10-03
@@ -1024,108 +1426,167 @@ snapshot_date,opportunity_id,stage_at_snapshot,amount,forecast_category,expected
 2025-10-01,OPP-00889,Proof of Concept,189012.0,Best Case,2025-11-26
 2025-10-01,OPP-00892,Proof of Concept,241495.0,Best Case,2025-10-06
 2025-10-01,OPP-00893,Discovery,211147.0,Pipeline,2025-10-28
-2025-10-01,OPP-01179,Negotiation,9600.0,Commit,2025-10-27
-2025-10-01,OPP-01181,Renewal Discussion,31680.0,Best Case,2025-10-21
-2025-10-01,OPP-01183,Negotiation,16200.0,Commit,2025-10-26
-2025-10-01,OPP-01185,Negotiation,21600.0,Commit,2025-10-06
-2025-10-01,OPP-01187,Negotiation,24000.0,Commit,2025-10-08
-2025-10-01,OPP-01190,Negotiation,18720.0,Commit,2025-10-21
-2025-10-01,OPP-01192,Renewal Discussion,5400.0,Best Case,2025-10-26
-2025-10-01,OPP-01194,Negotiation,15840.0,Commit,2025-10-16
-2025-10-01,OPP-01196,Negotiation,9000.0,Commit,2025-10-12
-2025-10-01,OPP-01199,Renewal Discussion,7200.0,Best Case,2025-10-08
-2025-10-01,OPP-01201,Negotiation,9000.0,Commit,2025-10-20
-2025-10-01,OPP-01203,Negotiation,7200.0,Commit,2025-10-24
-2025-10-01,OPP-01205,Negotiation,60480.0,Commit,2025-10-24
-2025-10-01,OPP-01207,Negotiation,1047000.0,Commit,2025-10-07
-2025-10-01,OPP-01209,Negotiation,7200.0,Commit,2025-10-08
-2025-10-01,OPP-01211,Renewal Discussion,18720.0,Best Case,2025-11-08
-2025-10-01,OPP-01213,Renewal Discussion,5760.0,Best Case,2025-11-23
-2025-10-01,OPP-01215,Renewal Discussion,48000.0,Best Case,2025-11-08
-2025-10-01,OPP-01217,Renewal Discussion,7200.0,Best Case,2025-11-27
-2025-10-01,OPP-01219,Renewal Discussion,76320.0,Best Case,2025-11-15
-2025-10-01,OPP-01221,Negotiation,33000.0,Commit,2025-11-01
-2025-10-01,OPP-01223,Renewal Discussion,57600.0,Best Case,2025-11-13
-2025-10-01,OPP-01225,Renewal Discussion,4320.0,Best Case,2025-11-19
-2025-10-01,OPP-01229,Renewal Discussion,3600.0,Best Case,2025-11-12
-2025-10-01,OPP-01231,Renewal Discussion,2400.0,Best Case,2025-10-15
-2025-10-01,OPP-01235,Renewal Discussion,6000.0,Best Case,2025-11-21
-2025-10-01,OPP-01238,Renewal Discussion,9600.0,Best Case,2025-11-11
-2025-10-01,OPP-01240,Negotiation,106560.0,Commit,2025-11-13
-2025-10-01,OPP-01242,Negotiation,54720.0,Commit,2025-11-23
-2025-10-01,OPP-01244,Negotiation,1800.0,Commit,2025-11-17
-2025-10-01,OPP-01246,Renewal Discussion,5400.0,Best Case,2025-11-23
-2025-10-01,OPP-01469,Negotiation,7800.0,Commit,2025-10-24
-2025-10-01,OPP-01470,Negotiation,5400.0,Commit,2025-10-07
-2025-10-01,OPP-01471,Negotiation,46080.0,Commit,2025-10-24
-2025-10-01,OPP-01472,Negotiation,115200.0,Commit,2025-10-05
-2025-10-01,OPP-01473,Negotiation,6000.0,Commit,2025-10-09
-2025-10-01,OPP-01474,Renewal Discussion,6000.0,Best Case,2025-10-22
-2025-10-01,OPP-01475,Negotiation,1800.0,Commit,2025-10-16
-2025-10-01,OPP-01476,Negotiation,3000.0,Commit,2025-10-13
-2025-10-01,OPP-01477,Negotiation,7200.0,Commit,2025-10-19
-2025-10-01,OPP-01478,Renewal Discussion,168000.0,Best Case,2025-10-07
-2025-10-01,OPP-01479,Renewal Discussion,9000.0,Best Case,2025-10-15
-2025-10-01,OPP-01480,Negotiation,15840.0,Commit,2025-10-16
-2025-10-01,OPP-01481,Negotiation,31200.0,Commit,2025-10-18
-2025-10-01,OPP-01482,Negotiation,879000.0,Commit,2025-10-14
-2025-10-01,OPP-01483,Negotiation,10080.0,Commit,2025-10-23
-2025-10-01,OPP-01484,Negotiation,7200.0,Commit,2025-10-09
-2025-10-01,OPP-01485,Negotiation,4200.0,Commit,2025-10-02
-2025-10-01,OPP-01486,Renewal Discussion,12960.0,Best Case,2025-10-05
-2025-10-01,OPP-01487,Renewal Discussion,27000.0,Best Case,2025-10-21
-2025-10-01,OPP-01488,Renewal Discussion,110880.0,Best Case,2025-11-16
-2025-10-01,OPP-01489,Renewal Discussion,27000.0,Best Case,2025-11-08
-2025-10-01,OPP-01490,Renewal Discussion,5400.0,Best Case,2025-11-22
-2025-10-01,OPP-01491,Negotiation,3600.0,Commit,2025-11-19
-2025-10-01,OPP-01492,Negotiation,9000.0,Commit,2025-11-13
-2025-10-01,OPP-01493,Negotiation,95040.0,Commit,2025-11-10
-2025-10-01,OPP-01494,Negotiation,469440.0,Commit,2025-11-13
-2025-10-01,OPP-01495,Negotiation,18720.0,Commit,2025-11-05
-2025-10-01,OPP-01496,Negotiation,11400.0,Commit,2025-11-12
-2025-10-01,OPP-01497,Renewal Discussion,3000.0,Best Case,2025-11-25
-2025-10-01,OPP-01498,Renewal Discussion,33000.0,Best Case,2025-11-26
-2025-10-01,OPP-01499,Renewal Discussion,67680.0,Best Case,2025-11-26
-2025-10-01,OPP-01500,Renewal Discussion,10080.0,Best Case,2025-11-12
-2025-10-01,OPP-01501,Negotiation,5400.0,Commit,2025-11-16
-2025-10-01,OPP-01502,Negotiation,95040.0,Commit,2025-11-06
-2025-10-01,OPP-01503,Negotiation,5760.0,Commit,2025-11-07
-2025-10-01,OPP-01504,Renewal Discussion,7800.0,Best Case,2025-11-04
-2025-10-01,OPP-01505,Renewal Discussion,3600.0,Best Case,2025-11-04
-2025-10-01,OPP-01848,Expansion Discussion,186000.0,Best Case,2025-10-15
-2025-10-01,OPP-01849,Expansion Discussion,20160.0,Best Case,2025-10-15
-2025-10-01,OPP-01850,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01851,Expansion Discussion,240000.0,Best Case,2025-10-15
-2025-10-01,OPP-01852,Expansion Discussion,10080.0,Best Case,2025-10-15
-2025-10-01,OPP-01853,Expansion Discussion,1200.0,Best Case,2025-10-15
-2025-10-01,OPP-01854,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01855,Expansion Discussion,4320.0,Best Case,2025-10-15
-2025-10-01,OPP-01856,Expansion Discussion,66000.0,Best Case,2025-10-15
-2025-10-01,OPP-01857,Expansion Discussion,18000.0,Best Case,2025-10-15
-2025-10-01,OPP-01858,Expansion Discussion,3000.0,Best Case,2025-10-15
-2025-10-01,OPP-01859,Expansion Discussion,1440.0,Best Case,2025-10-15
-2025-10-01,OPP-01860,Expansion Discussion,2880.0,Best Case,2025-10-15
-2025-10-01,OPP-01861,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01862,Expansion Discussion,14400.0,Best Case,2025-10-15
-2025-10-01,OPP-01863,Expansion Discussion,17280.0,Best Case,2025-10-15
-2025-10-01,OPP-01864,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01865,Expansion Discussion,30000.0,Best Case,2025-10-15
-2025-10-01,OPP-01866,Expansion Discussion,7200.0,Best Case,2025-10-15
-2025-10-01,OPP-01867,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01868,Expansion Discussion,600.0,Best Case,2025-10-15
-2025-10-01,OPP-01869,Expansion Discussion,11520.0,Best Case,2025-10-15
-2025-10-01,OPP-01870,Expansion Discussion,24000.0,Best Case,2025-10-15
-2025-10-01,OPP-01871,Expansion Discussion,1200.0,Best Case,2025-10-15
-2025-10-01,OPP-01872,Expansion Discussion,1440.0,Best Case,2025-10-15
-2025-10-01,OPP-01873,Expansion Discussion,1200.0,Best Case,2025-11-15
-2025-10-01,OPP-01876,Expansion Discussion,1440.0,Best Case,2025-11-15
-2025-10-01,OPP-01877,Expansion Discussion,12960.0,Best Case,2025-11-15
-2025-10-01,OPP-01878,Expansion Discussion,1440.0,Best Case,2025-11-15
-2025-10-01,OPP-01880,Expansion Discussion,4320.0,Best Case,2025-11-15
-2025-10-01,OPP-01881,Expansion Discussion,5760.0,Best Case,2025-11-15
-2025-10-01,OPP-01883,Expansion Discussion,600.0,Best Case,2025-11-15
-2025-10-01,OPP-01885,Expansion Discussion,11520.0,Best Case,2025-11-15
-2025-10-01,OPP-01886,Expansion Discussion,600.0,Best Case,2025-11-15
-2025-10-01,OPP-01887,Expansion Discussion,11520.0,Best Case,2025-11-15
-2025-10-01,OPP-01889,Expansion Discussion,23040.0,Best Case,2025-11-15
-2025-10-01,OPP-01890,Expansion Discussion,1200.0,Best Case,2025-11-15
+2025-10-01,OPP-00929,Qualification,88104.0,Pipeline,2025-10-30
+2025-10-01,OPP-00943,Proof of Concept,124619.0,Best Case,2025-10-07
+2025-10-01,OPP-00994,Proof of Concept,194262.0,Best Case,2025-10-08
+2025-10-01,OPP-01032,Discovery,53285.0,Pipeline,2025-11-04
+2025-10-01,OPP-01086,Discovery,43667.0,Pipeline,2025-11-04
+2025-10-01,OPP-01090,Proof of Concept,214525.0,Best Case,2025-10-05
+2025-10-01,OPP-01112,Proof of Concept,245260.0,Best Case,2025-11-17
+2025-10-01,OPP-01151,Discovery,167733.0,Pipeline,2025-12-14
+2025-10-01,OPP-01166,Qualification,151074.0,Pipeline,2025-10-10
+2025-10-01,OPP-01168,Proof of Concept,237258.0,Best Case,2025-10-13
+2025-10-01,OPP-01192,Proof of Concept,33844.0,Best Case,2025-11-11
+2025-10-01,OPP-01198,Discovery,235669.0,Pipeline,2025-10-17
+2025-10-01,OPP-01209,Discovery,112319.0,Pipeline,2025-10-15
+2025-10-01,OPP-01222,Qualification,174693.0,Pipeline,2025-10-10
+2025-10-01,OPP-01225,Proof of Concept,97229.0,Best Case,2025-10-04
+2025-10-01,OPP-01226,Discovery,73046.0,Pipeline,2025-10-10
+2025-10-01,OPP-01239,Discovery,246818.0,Pipeline,2025-12-06
+2025-10-01,OPP-01251,Discovery,151117.0,Pipeline,2025-11-01
+2025-10-01,OPP-01260,Proof of Concept,151848.0,Best Case,2025-10-16
+2025-10-01,OPP-01274,Qualification,115940.0,Pipeline,2025-10-08
+2025-10-01,OPP-01278,Qualification,92020.0,Pipeline,2025-10-19
+2025-10-01,OPP-01281,Proof of Concept,245702.0,Best Case,2025-10-25
+2025-10-01,OPP-01333,Qualification,137394.0,Pipeline,2025-10-26
+2025-10-01,OPP-01344,Discovery,222281.0,Pipeline,2025-10-14
+2025-10-01,OPP-01368,Proof of Concept,213332.0,Best Case,2025-10-30
+2025-10-01,OPP-01376,Discovery,194793.0,Pipeline,2025-11-21
+2025-10-01,OPP-01384,Negotiation,179086.0,Commit,2025-10-07
+2025-10-01,OPP-01388,Proof of Concept,143635.0,Best Case,2025-10-24
+2025-10-01,OPP-01399,Discovery,143627.0,Pipeline,2025-11-04
+2025-10-01,OPP-01410,Proof of Concept,85002.0,Best Case,2025-10-30
+2025-10-01,OPP-01447,Negotiation,184535.0,Commit,2025-10-22
+2025-10-01,OPP-01540,Proof of Concept,155932.0,Best Case,2025-11-01
+2025-10-01,OPP-01544,Qualification,9184.0,Pipeline,2025-10-10
+2025-10-01,OPP-01545,Qualification,179144.0,Pipeline,2025-10-04
+2025-10-01,OPP-01568,Proof of Concept,137682.0,Best Case,2025-10-02
+2025-10-01,OPP-01606,Proof of Concept,147818.0,Best Case,2025-12-14
+2025-10-01,OPP-01607,Qualification,140573.0,Pipeline,2025-11-24
+2025-10-01,OPP-01724,Discovery,207184.0,Pipeline,2025-10-22
+2025-10-01,OPP-01726,Qualification,232254.0,Pipeline,2025-10-17
+2025-10-01,OPP-01778,Proof of Concept,34517.0,Best Case,2025-10-12
+2025-10-01,OPP-01790,Proof of Concept,207848.0,Best Case,2025-10-08
+2025-10-01,OPP-01819,Discovery,8978.0,Pipeline,2025-12-10
+2025-10-01,OPP-01860,Qualification,64090.0,Pipeline,2025-10-13
+2025-10-01,OPP-01900,Discovery,219339.0,Pipeline,2025-10-21
+2025-10-01,OPP-01911,Discovery,61596.0,Pipeline,2025-11-07
+2025-10-01,OPP-01914,Qualification,69403.0,Pipeline,2025-10-18
+2025-10-01,OPP-01935,Qualification,207215.0,Pipeline,2025-11-08
+2025-10-01,OPP-01953,Qualification,181834.0,Pipeline,2025-11-05
+2025-10-01,OPP-02024,Proof of Concept,30645.0,Best Case,2025-10-11
+2025-10-01,OPP-02035,Qualification,209697.0,Pipeline,2025-10-16
+2025-10-01,OPP-02060,Proof of Concept,20816.0,Best Case,2025-10-20
+2025-10-01,OPP-02070,Qualification,146495.0,Pipeline,2025-11-27
+2025-10-01,OPP-02088,Qualification,169274.0,Pipeline,2025-10-26
+2025-10-01,OPP-02102,Qualification,79123.0,Pipeline,2025-12-01
+2025-10-01,OPP-02124,Qualification,160445.0,Pipeline,2025-11-23
+2025-10-01,OPP-02131,Qualification,61985.0,Pipeline,2025-10-10
+2025-10-01,OPP-02143,Proof of Concept,172025.0,Best Case,2025-10-14
+2025-10-01,OPP-02151,Proof of Concept,34220.0,Best Case,2025-10-07
+2025-10-01,OPP-02200,Proof of Concept,35046.0,Best Case,2025-10-14
+2025-10-01,OPP-02203,Discovery,55959.0,Pipeline,2025-10-29
+2025-10-01,OPP-02235,Qualification,39744.0,Pipeline,2025-10-19
+2025-10-01,OPP-02599,Negotiation,9600.0,Commit,2025-10-27
+2025-10-01,OPP-02601,Negotiation,31680.0,Commit,2025-10-21
+2025-10-01,OPP-02603,Negotiation,16200.0,Commit,2025-10-26
+2025-10-01,OPP-02605,Negotiation,21600.0,Commit,2025-10-06
+2025-10-01,OPP-02607,Negotiation,24000.0,Commit,2025-10-08
+2025-10-01,OPP-02610,Negotiation,18720.0,Commit,2025-10-21
+2025-10-01,OPP-02612,Negotiation,5400.0,Commit,2025-10-26
+2025-10-01,OPP-02614,Negotiation,15840.0,Commit,2025-10-16
+2025-10-01,OPP-02616,Negotiation,9000.0,Commit,2025-10-12
+2025-10-01,OPP-02619,Negotiation,7200.0,Commit,2025-10-08
+2025-10-01,OPP-02621,Negotiation,9000.0,Commit,2025-10-20
+2025-10-01,OPP-02623,Negotiation,7200.0,Commit,2025-10-24
+2025-10-01,OPP-02625,Negotiation,60480.0,Commit,2025-10-24
+2025-10-01,OPP-02627,Negotiation,1047000.0,Commit,2025-10-07
+2025-10-01,OPP-02629,Negotiation,7200.0,Commit,2025-10-08
+2025-10-01,OPP-02631,Negotiation,18720.0,Commit,2025-11-08
+2025-10-01,OPP-02633,Renewal Discussion,5760.0,Best Case,2025-11-23
+2025-10-01,OPP-02635,Renewal Discussion,48000.0,Best Case,2025-11-08
+2025-10-01,OPP-02637,Renewal Discussion,7200.0,Best Case,2025-11-27
+2025-10-01,OPP-02639,Renewal Discussion,76320.0,Best Case,2025-11-15
+2025-10-01,OPP-02641,Negotiation,33000.0,Commit,2025-11-01
+2025-10-01,OPP-02643,Renewal Discussion,57600.0,Best Case,2025-11-13
+2025-10-01,OPP-02645,Renewal Discussion,4320.0,Best Case,2025-11-19
+2025-10-01,OPP-02649,Negotiation,3600.0,Commit,2025-11-12
+2025-10-01,OPP-02655,Renewal Discussion,6000.0,Best Case,2025-11-21
+2025-10-01,OPP-02658,Negotiation,9600.0,Commit,2025-11-11
+2025-10-01,OPP-02660,Renewal Discussion,106560.0,Best Case,2025-11-13
+2025-10-01,OPP-02662,Renewal Discussion,54720.0,Best Case,2025-11-23
+2025-10-01,OPP-02664,Renewal Discussion,1800.0,Best Case,2025-11-17
+2025-10-01,OPP-02666,Negotiation,5400.0,Commit,2025-11-23
+2025-10-01,OPP-02889,Negotiation,7800.0,Commit,2025-10-24
+2025-10-01,OPP-02890,Negotiation,5400.0,Commit,2025-10-07
+2025-10-01,OPP-02891,Negotiation,46080.0,Commit,2025-10-24
+2025-10-01,OPP-02892,Negotiation,115200.0,Commit,2025-10-05
+2025-10-01,OPP-02893,Negotiation,6000.0,Commit,2025-10-09
+2025-10-01,OPP-02894,Negotiation,6000.0,Commit,2025-10-22
+2025-10-01,OPP-02895,Renewal Discussion,1800.0,Best Case,2025-10-16
+2025-10-01,OPP-02896,Negotiation,3000.0,Commit,2025-10-13
+2025-10-01,OPP-02897,Negotiation,7200.0,Commit,2025-10-19
+2025-10-01,OPP-02898,Negotiation,168000.0,Commit,2025-10-07
+2025-10-01,OPP-02899,Negotiation,9000.0,Commit,2025-10-15
+2025-10-01,OPP-02900,Renewal Discussion,15840.0,Best Case,2025-10-16
+2025-10-01,OPP-02901,Renewal Discussion,31200.0,Best Case,2025-10-18
+2025-10-01,OPP-02902,Negotiation,879000.0,Commit,2025-10-14
+2025-10-01,OPP-02903,Negotiation,10080.0,Commit,2025-10-23
+2025-10-01,OPP-02904,Negotiation,7200.0,Commit,2025-10-09
+2025-10-01,OPP-02905,Negotiation,4200.0,Commit,2025-10-02
+2025-10-01,OPP-02906,Negotiation,12960.0,Commit,2025-10-05
+2025-10-01,OPP-02907,Negotiation,27000.0,Commit,2025-10-21
+2025-10-01,OPP-02908,Renewal Discussion,110880.0,Best Case,2025-11-16
+2025-10-01,OPP-02909,Negotiation,27000.0,Commit,2025-11-08
+2025-10-01,OPP-02910,Negotiation,5400.0,Commit,2025-11-22
+2025-10-01,OPP-02911,Renewal Discussion,3600.0,Best Case,2025-11-19
+2025-10-01,OPP-02912,Renewal Discussion,9000.0,Best Case,2025-11-13
+2025-10-01,OPP-02913,Negotiation,95040.0,Commit,2025-11-10
+2025-10-01,OPP-02914,Renewal Discussion,469440.0,Best Case,2025-11-13
+2025-10-01,OPP-02915,Negotiation,18720.0,Commit,2025-11-05
+2025-10-01,OPP-02916,Renewal Discussion,11400.0,Best Case,2025-11-12
+2025-10-01,OPP-02917,Renewal Discussion,3000.0,Best Case,2025-11-25
+2025-10-01,OPP-02918,Renewal Discussion,33000.0,Best Case,2025-11-26
+2025-10-01,OPP-02919,Renewal Discussion,67680.0,Best Case,2025-11-26
+2025-10-01,OPP-02920,Renewal Discussion,10080.0,Best Case,2025-11-12
+2025-10-01,OPP-02921,Negotiation,5400.0,Commit,2025-11-16
+2025-10-01,OPP-02922,Negotiation,95040.0,Commit,2025-11-06
+2025-10-01,OPP-02923,Negotiation,5760.0,Commit,2025-11-07
+2025-10-01,OPP-02924,Renewal Discussion,7800.0,Best Case,2025-11-04
+2025-10-01,OPP-02925,Negotiation,3600.0,Commit,2025-11-04
+2025-10-01,OPP-03268,Expansion Discussion,186000.0,Best Case,2025-10-15
+2025-10-01,OPP-03269,Expansion Discussion,20160.0,Best Case,2025-10-15
+2025-10-01,OPP-03270,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03271,Expansion Discussion,240000.0,Best Case,2025-10-15
+2025-10-01,OPP-03272,Expansion Discussion,10080.0,Best Case,2025-10-15
+2025-10-01,OPP-03273,Expansion Discussion,1200.0,Best Case,2025-10-15
+2025-10-01,OPP-03274,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03275,Expansion Discussion,4320.0,Best Case,2025-10-15
+2025-10-01,OPP-03276,Expansion Discussion,66000.0,Best Case,2025-10-15
+2025-10-01,OPP-03277,Expansion Discussion,18000.0,Best Case,2025-10-15
+2025-10-01,OPP-03278,Expansion Discussion,3000.0,Best Case,2025-10-15
+2025-10-01,OPP-03279,Expansion Discussion,1440.0,Best Case,2025-10-15
+2025-10-01,OPP-03280,Expansion Discussion,2880.0,Best Case,2025-10-15
+2025-10-01,OPP-03281,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03282,Expansion Discussion,14400.0,Best Case,2025-10-15
+2025-10-01,OPP-03283,Expansion Discussion,17280.0,Best Case,2025-10-15
+2025-10-01,OPP-03284,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03285,Expansion Discussion,30000.0,Best Case,2025-10-15
+2025-10-01,OPP-03286,Expansion Discussion,7200.0,Best Case,2025-10-15
+2025-10-01,OPP-03287,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03288,Expansion Discussion,600.0,Best Case,2025-10-15
+2025-10-01,OPP-03289,Expansion Discussion,11520.0,Best Case,2025-10-15
+2025-10-01,OPP-03290,Expansion Discussion,24000.0,Best Case,2025-10-15
+2025-10-01,OPP-03291,Expansion Discussion,1200.0,Best Case,2025-10-15
+2025-10-01,OPP-03292,Expansion Discussion,1440.0,Best Case,2025-10-15
+2025-10-01,OPP-03293,Expansion Discussion,1200.0,Best Case,2025-11-15
+2025-10-01,OPP-03294,Expansion Discussion,1800.0,Best Case,2025-11-15
+2025-10-01,OPP-03295,Expansion Discussion,9000.0,Best Case,2025-11-15
+2025-10-01,OPP-03297,Expansion Discussion,12960.0,Best Case,2025-11-15
+2025-10-01,OPP-03298,Expansion Discussion,1440.0,Best Case,2025-11-15
+2025-10-01,OPP-03299,Expansion Discussion,600.0,Best Case,2025-11-15
+2025-10-01,OPP-03302,Expansion Discussion,1440.0,Best Case,2025-11-15
+2025-10-01,OPP-03304,Expansion Discussion,21000.0,Best Case,2025-11-15
+2025-10-01,OPP-03306,Expansion Discussion,600.0,Best Case,2025-11-15
+2025-10-01,OPP-03309,Expansion Discussion,23040.0,Best Case,2025-11-15
+2025-10-01,OPP-03310,Expansion Discussion,1200.0,Best Case,2025-11-15

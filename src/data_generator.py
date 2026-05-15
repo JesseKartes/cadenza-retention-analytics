@@ -541,8 +541,11 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
                 "days_in_stage": h["days_in_stage"],
             })
 
-    # Sub-population 3: closed-lost (~80)
-    n_lost = 80
+    # Sub-population 3: closed-lost (~1,500)
+    # Sized so that closed_won (~665, one per non-Self-Serve Phase 1 customer)
+    # plus closed_lost (~1,500) yields a TTM win rate around 25-30%, matching
+    # the SaaS-industry benchmark documented on the About page.
+    n_lost = 1500
     for _ in range(n_lost):
         segment = str(rng.choice(SEGMENTS, p=SEGMENT_WEIGHTS))
         channel = str(rng.choice([c for c in CHANNELS if c != "Self-Serve Promo"]))
