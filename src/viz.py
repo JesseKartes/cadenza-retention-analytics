@@ -339,3 +339,108 @@ def ramp_curve_figure(curve: pd.DataFrame) -> go.Figure:
         height=420,
     )
     return fig
+
+
+def ramp_bucket_attainment_figure(buckets: pd.DataFrame) -> go.Figure:
+    """Horizontal bar of median attainment per tenure bucket.
+
+    Input from `src.quota.ramp_bucket_attainment`:
+      tenure_bucket, n_observations, median_attainment.
+    """
+    df = buckets.copy()
+    # Display empty buckets as 0 with a note, but keep them in the chart
+    df["display_pct"] = df["median_attainment"].fillna(0.0)
+    fig = go.Figure(
+        go.Bar(
+            x=df["display_pct"],
+            y=df["tenure_bucket"],
+            orientation="h",
+            marker={"color": CADENZA_PRIMARY},
+            hovertemplate="%{y}<br>Median attainment: %{x:.0%}<extra></extra>",
+        )
+    )
+    fig.add_vline(x=1.0, line_dash="dash", line_color=CADENZA_NEUTRAL,
+                   annotation_text="100%", annotation_position="top")
+    fig.update_layout(
+        title="Median attainment by tenure bucket",
+        xaxis_tickformat=".0%",
+        yaxis={"categoryorder": "array", "categoryarray": df["tenure_bucket"].tolist()[::-1]},
+        height=320,
+    )
+    return fig
+
+
+def territory_balance_figure(balance: pd.DataFrame, quarter_label: str) -> go.Figure:
+    """Stacked horizontal bar: closed-won $ by territory, stacked by segment.
+
+    Input from `src.quota.territory_balance`:
+      territory, segment, closed_amount.
+    """
+    segment_colors = {
+        "Enterprise":  CADENZA_PRIMARY,
+        "Mid-Market":  CADENZA_ACCENT,
+        "SMB":         CADENZA_NEUTRAL,
+    }
+    fig = go.Figure()
+    for segment in ["Enterprise", "Mid-Market", "SMB"]:
+        sub = balance[balance["segment"] == segment]
+        if len(sub) == 0:
+            continue
+        fig.add_trace(go.Bar(
+            x=sub["closed_amount"],
+            y=sub["territory"],
+            orientation="h",
+            name=segment,
+            marker={"color": segment_colors[segment]},
+            hovertemplate=(f"{segment}<br>%{{y}}<br>"
+                           "Closed won: $%{x:,.0f}<extra></extra>"),
+        ))
+    fig.update_layout(
+        title=f"Closed-won by territory and segment — {quarter_label}",
+        barmode="stack",
+        xaxis_title="Closed Won ($)",
+        xaxis={"tickformat": "$,.0f"},
+        height=360,
+        legend={"orientation": "h", "y": -0.2},
+    )
+    return fig
+
+
+def rep_scorecard_styler(scorecard: pd.DataFrame):
+    """Style the rep scorecard DataFrame for st.dataframe.
+
+    Input from `src.quota.rep_scorecard`. Highlights:
+      - max Att % and max Win Rate in CADENZA_GOOD-tinted background
+      - min Avg Cycle (days) in CADENZA_GOOD-tinted background
+      - 'At Risk' status rows get a red Att % text color
+    """
+    display = scorecard.rename(columns={
+        "name":               "Name",
+        "segment_specialty":  "Specialty",
+        "territory":          "Territory",
+        "tenure_months":      "Tenure (mo)",
+        "quarterly_quota":    "Quota",
+        "closed_amount":      "Closed Won",
+        "attainment_pct":     "Att %",
+        "win_rate":           "Win Rate",
+        "avg_deal_size":      "Avg Deal",
+        "avg_cycle_days":     "Cycle (days)",
+    })[
+        ["Name", "Specialty", "Territory", "Tenure (mo)", "Quota",
+         "Closed Won", "Att %", "Win Rate", "Avg Deal", "Cycle (days)"]
+    ]
+
+    return (
+        display.style
+        .format({
+            "Tenure (mo)":  "{:.1f}",
+            "Quota":        "${:,.0f}",
+            "Closed Won":   "${:,.0f}",
+            "Att %":        "{:.0%}",
+            "Win Rate":     "{:.0%}",
+            "Avg Deal":     "${:,.0f}",
+            "Cycle (days)": "{:.0f}",
+        })
+        .highlight_max(subset=["Att %", "Win Rate"], color="#D1FAE5")  # CADENZA_GOOD tint
+        .highlight_min(subset=["Cycle (days)"], color="#D1FAE5")
+    )
