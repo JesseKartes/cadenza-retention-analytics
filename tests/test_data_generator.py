@@ -265,3 +265,140 @@ def test_backfit_quota_tiers_by_specialty():
         "Mid-Market": 500_000.0,
         "Enterprise": 1_500_000.0,
     }
+
+
+# ---------------------------------------------------------------------------
+# Phase 3 generator guardrail tests
+# ---------------------------------------------------------------------------
+
+def test_phase1_csvs_unchanged_after_phase3(tmp_path):
+    """Phase 1 CSVs (customers / subscriptions / events) must be byte-identical
+    after the Phase 3 generator runs. Phase 1 invariant lock.
+    """
+    import hashlib
+    from src.data_generator import write_to_disk
+
+    write_to_disk(tmp_path)
+
+    repo_dir = Path(__file__).resolve().parents[1] / "data" / "generated"
+    for fname in ["customers.csv", "subscriptions.csv", "events.csv"]:
+        committed = (repo_dir / fname).read_bytes()
+        regenerated = (tmp_path / fname).read_bytes()
+        assert hashlib.sha256(committed).hexdigest() == hashlib.sha256(regenerated).hexdigest(), (
+            f"{fname} differs after Phase 3 regenerate — Phase 1 invariant broken"
+        )
+
+
+def test_team_win_rate_stays_in_band(tmp_path):
+    """TTM new-business win rate must remain in [0.21, 0.25] — Phase 2 calibration.
+
+    With tenure-weighted owner assignment, total wins/losses are preserved exactly,
+    so this is a regression guard rather than a fresh calibration.
+    """
+    from src.data_generator import write_to_disk
+
+    write_to_disk(tmp_path)
+    opps = pd.read_csv(tmp_path / "opportunities.csv")
+    nb = opps[opps["opportunity_type"] == "new_business"].copy()
+    nb["close_date"] = pd.to_datetime(nb["close_date"])
+    # TTM relative to 2025-12-01 (the dashboard's "now")
+    end = pd.Timestamp("2025-12-01")
+    start = end - pd.DateOffset(months=12)
+    ttm = nb[(nb["close_date"] >= start) & (nb["close_date"] <= end)
+             & (nb["status"].isin(["closed_won", "closed_lost"]))]
+    won = (ttm["status"] == "closed_won").sum()
+    lost = (ttm["status"] == "closed_lost").sum()
+    wr = won / (won + lost)
+    assert 0.21 <= wr <= 0.25, f"team TTM win rate {wr:.3f} outside band [0.21, 0.25]"
+
+
+def test_midmarket_poc_stall_still_2x(tmp_path):
+    """Phase 2 insight: Mid-Market POC dwell ≥ 2× SMB POC dwell. Regression guard."""
+    from src.data_generator import write_to_disk
+
+    write_to_disk(tmp_path)
+    history = pd.read_csv(tmp_path / "opportunity_stage_history.csv")
+    opps = pd.read_csv(tmp_path / "opportunities.csv")
+    merged = history.merge(opps[["opportunity_id", "segment", "opportunity_type"]],
+                            on="opportunity_id")
+    poc = merged[(merged["stage"] == "Proof of Concept")
+                  & (merged["opportunity_type"] == "new_business")
+                  & merged["days_in_stage"].notna()]
+    smb_mean = poc[poc["segment"] == "SMB"]["days_in_stage"].mean()
+    mm_mean = poc[poc["segment"] == "Mid-Market"]["days_in_stage"].mean()
+    ratio = mm_mean / smb_mean
+    assert ratio >= 2.0, f"POC stall ratio {ratio:.2f} < 2.0× (was 2.75× in Phase 2)"
+
+
+def test_ramp_curve_visible_in_data(tmp_path):
+    """Phase 3 insight: reps with <6 months tenure have median attainment ≥ 20pp
+    lower than reps with 12+ months tenure. This protects the engineered
+    ramp insight against future generator tweaks.
+    """
+    from src.data_generator import write_to_disk
+    from src.quota import ramp_curve
+
+    write_to_disk(tmp_path)
+    reps = pd.read_csv(tmp_path / "reps.csv")
+    opps = pd.read_csv(tmp_path / "opportunities.csv")
+    opps = opps[(opps["opportunity_type"] == "new_business")
+                 & (opps["status"] == "closed_won")]
+
+    curve = ramp_curve(opps, reps)
+    early = curve.loc[curve["tenure_months"] < 6.0, "attainment_pct"].median()
+    tenured = curve.loc[curve["tenure_months"] >= 12.0, "attainment_pct"].median()
+    gap_pp = (tenured - early) * 100
+    assert gap_pp >= 20.0, (
+        f"ramp gap is only {gap_pp:.1f}pp — engineered insight #3 is too weak; "
+        f"early-tenure median={early:.3f}, tenured median={tenured:.3f}"
+    )
+
+
+def test_reps_csv_specialty_matches_historical_mix(tmp_path):
+    """Each rep's segment_specialty equals their modal closed-won segment.
+    Validates the two-pass backfit."""
+    from src.data_generator import write_to_disk
+
+    write_to_disk(tmp_path)
+    reps = pd.read_csv(tmp_path / "reps.csv")
+    opps = pd.read_csv(tmp_path / "opportunities.csv")
+    nb_won = opps[(opps["opportunity_type"] == "new_business")
+                   & (opps["status"] == "closed_won")]
+
+    for _, rep in reps.iterrows():
+        rep_won = nb_won[nb_won["owner_rep_id"] == rep["rep_id"]]
+        if len(rep_won) == 0:
+            assert rep["segment_specialty"] == "SMB", \
+                f"rep with no wins should default to SMB; got {rep['segment_specialty']}"
+            continue
+        modal = (
+            rep_won.groupby("segment").size()
+            .sort_values(ascending=False).index[0]
+        )
+        # Handle alphabetical tie-break
+        counts = rep_won.groupby("segment").size().sort_values(ascending=False)
+        top_count = counts.iloc[0]
+        tied_segments = sorted(counts[counts == top_count].index.tolist())
+        expected = tied_segments[0]
+        assert rep["segment_specialty"] == expected, (
+            f"{rep['rep_id']} specialty={rep['segment_specialty']} but modal segment={expected}"
+        )
+
+
+def test_reps_csv_shape(tmp_path):
+    """reps.csv has 12 rows, 3 per territory, 4 per hire cohort, all 6 columns."""
+    from src.data_generator import write_to_disk
+
+    write_to_disk(tmp_path)
+    reps = pd.read_csv(tmp_path / "reps.csv")
+
+    assert len(reps) == 12
+    assert list(reps.columns) == [
+        "rep_id", "name", "hire_date", "segment_specialty",
+        "territory", "quarterly_quota",
+    ]
+    assert (reps.groupby("territory").size() == 3).all()
+    hire = pd.to_datetime(reps["hire_date"])
+    assert ((hire >= "2021-01-01") & (hire <= "2022-12-31")).sum() == 4
+    assert ((hire >= "2023-01-01") & (hire <= "2024-06-30")).sum() == 4
+    assert ((hire >= "2024-07-01") & (hire <= "2025-06-30")).sum() == 4
