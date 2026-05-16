@@ -218,3 +218,32 @@ def rep_scorecard(opps: pd.DataFrame, reps: pd.DataFrame,
     )
     out = out.fillna({"win_rate": 0.0, "avg_deal_size": 0.0, "avg_cycle_days": 0.0})
     return out.sort_values("attainment_pct", ascending=False).reset_index(drop=True)
+
+
+def territory_balance(opps: pd.DataFrame, reps: pd.DataFrame,
+                       quarter: pd.Period) -> pd.DataFrame:
+    """Closed-won new-business $ by territory × segment for the quarter.
+
+    Powers the stacked horizontal bar in §3 of the Quota page. Each row's
+    territory comes from the rep table (joined on owner_rep_id); segment
+    comes from the opp.
+
+    Returns DataFrame with: territory, segment, closed_amount.
+    """
+    closed_won = opps[
+        (opps["status"] == "closed_won")
+        & (opps["opportunity_type"] == "new_business")
+    ].copy()
+    closed_won["close_date"] = pd.to_datetime(closed_won["close_date"])
+    in_q = closed_won[closed_won["close_date"].dt.to_period("Q") == quarter]
+
+    merged = in_q.merge(
+        reps[["rep_id", "territory"]],
+        left_on="owner_rep_id", right_on="rep_id", how="left",
+    )
+    grouped = (
+        merged.groupby(["territory", "segment"], as_index=False)["amount"]
+        .sum()
+        .rename(columns={"amount": "closed_amount"})
+    )
+    return grouped

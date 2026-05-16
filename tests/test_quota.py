@@ -199,3 +199,31 @@ def test_rep_scorecard_avg_deal_size(sample_reps, sample_opps_for_quota):
 
     assert result.loc["REP-A", "avg_deal_size"] == pytest.approx(900_000.0)
     assert result.loc["REP-B", "avg_deal_size"] == pytest.approx(50_000.0)
+
+
+def test_territory_balance_sum_equals_total(sample_reps, sample_opps_for_quota):
+    """Sum of stacked-bar values equals total closed-won $ for the quarter."""
+    from src.quota import territory_balance
+
+    result = territory_balance(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    )
+
+    # Required columns
+    assert {"territory", "segment", "closed_amount"}.issubset(result.columns)
+
+    total = result["closed_amount"].sum()
+    # From fixture hand-calc: $1.89M + $2.00M + $0.30M + $0.03M = $4.22M
+    assert total == pytest.approx(4_220_000.0)
+
+
+def test_territory_balance_north_includes_two_reps(sample_reps, sample_opps_for_quota):
+    """REP-A (North, Enterprise) + REP-E (North, SMB) both report under North."""
+    from src.quota import territory_balance
+
+    result = territory_balance(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    )
+    north = result[result["territory"] == "North"].set_index("segment")
+    assert north.loc["Enterprise", "closed_amount"] == pytest.approx(1_800_000.0)
+    assert north.loc["SMB", "closed_amount"] == pytest.approx(90_000.0)
