@@ -21,6 +21,7 @@ The dataset deliberately encodes a pattern that real RevOps teams encounter: cus
 - **Segment & Channel Deep-Dive** — quantifies the gap. Self-Serve Promo logo churn comes in around 28% — nearly 2× the ~15% average across other channels — while its GRR (~92%) drags the bottom of the table.
 - **Pipeline** — new-business pipeline coverage, weighted pipeline, stage velocity heatmap (surfaces the Mid-Market POC stall), stage conversion, and aging deals. Renewal and expansion analytics are deferred — see About.
 - **Forecasting** — commit/best-case/pipeline buckets, forecast accuracy trend across 8 quarterly snapshots, and per-segment forecast bias.
+- **Quota** — quarterly attainment, attainment distribution, ramp curve, territory balance, rep scorecard.
 - **About** — methodology, metric formulas, and what I'd recommend at a real company (CSM intervention plan, channel-quality scoring, tighter promo gating).
 
 ## How it's built
@@ -34,9 +35,10 @@ Python data generator  →  3 flat CSVs  →  pandas metric/cohort modules  → 
 - `src/cohorts.py` — logo and revenue retention cohort matrices.
 - `src/pipeline.py` — pipeline coverage, weighted pipeline, win rate, stage velocity, aging deals. Pure pandas functions.
 - `src/forecast.py` — forecast buckets, accuracy trend, per-segment bias. Pure pandas functions.
+- `src/quota.py` — quarterly attainment, attainment distribution, ramp curve, territory balance, rep scorecard. Pure pandas functions.
 - `src/viz.py` — Plotly figure builders. Pure functions, no Streamlit imports.
-- `Overview.py` + `pages/*.py` — six-page dashboard.
-- `tests/` — 44-test pytest suite across both phases. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. Sanity tests lock in both engineered insights (Self-Serve Promo churn, Mid-Market POC stall) so future tuning can't accidentally erase them.
+- `Overview.py` + `pages/*.py` — seven-page dashboard.
+- `tests/` — 69-test pytest suite across all three phases. Hand-built fixtures with hand-calculated expected metric values prove the formulas are correct. Sanity tests lock in all three engineered insights (Self-Serve Promo churn, Mid-Market POC stall, rep ramp curve) so future tuning can't accidentally erase them.
 
 ## Running it locally
 
