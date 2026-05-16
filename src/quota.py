@@ -247,3 +247,36 @@ def territory_balance(opps: pd.DataFrame, reps: pd.DataFrame,
         .rename(columns={"amount": "closed_amount"})
     )
     return grouped
+
+
+def team_kpis(opps: pd.DataFrame, reps: pd.DataFrame, quarter: pd.Period) -> dict:
+    """Returns the 4 KPI tile values for the Quota page header.
+
+    - team_attainment_pct = sum(closed_won $) / sum(quarterly_quota) across all reps
+    - reps_at_or_above    = count of reps with attainment >= 1.0
+    - median_attainment   = median attainment_pct across all reps
+    - at_risk_count       = count of reps with attainment < 0.7
+    """
+    att = quarterly_attainment(opps, reps, quarter)
+    return {
+        "team_attainment_pct": float(att["closed_amount"].sum() / att["quarterly_quota"].sum()),
+        "reps_at_or_above": int((att["attainment_pct"] >= 1.0).sum()),
+        "median_attainment": float(att["attainment_pct"].median()),
+        "at_risk_count": int((att["attainment_pct"] < 0.7).sum()),
+    }
+
+
+def load_quota_data(reps_path: Path, opps_path: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """IO boundary for the Streamlit page. The only impure function in this module.
+
+    Returns:
+      (reps_df, opps_df) where opps_df is pre-filtered to new-business
+      closed-won and closed-lost only (open opps don't count toward attainment).
+    """
+    reps_df = pd.read_csv(reps_path)
+    opps_df = pd.read_csv(opps_path)
+    opps_df = opps_df[
+        (opps_df["opportunity_type"] == "new_business")
+        & (opps_df["status"].isin(["closed_won", "closed_lost"]))
+    ].reset_index(drop=True)
+    return reps_df, opps_df

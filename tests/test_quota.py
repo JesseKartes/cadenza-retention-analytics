@@ -227,3 +227,73 @@ def test_territory_balance_north_includes_two_reps(sample_reps, sample_opps_for_
     north = result[result["territory"] == "North"].set_index("segment")
     assert north.loc["Enterprise", "closed_amount"] == pytest.approx(1_800_000.0)
     assert north.loc["SMB", "closed_amount"] == pytest.approx(90_000.0)
+
+
+def test_team_kpis_keys_and_values(sample_reps, sample_opps_for_quota):
+    from src.quota import team_kpis
+
+    result = team_kpis(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    )
+
+    assert set(result.keys()) == {
+        "team_attainment_pct",
+        "reps_at_or_above",
+        "median_attainment",
+        "at_risk_count",
+    }
+
+    # Total quota = 1.5M + 0.5M + 0.5M + 0.15M + 0.15M + 1.5M = 4.3M
+    # Total closed-won Q4 = 4.22M
+    # Team attainment = 4.22 / 4.3 ≈ 0.9814
+    assert result["team_attainment_pct"] == pytest.approx(4_220_000 / 4_300_000)
+
+    # Reps at/above quota: REP-A (120%), REP-F (107%) → 2
+    assert result["reps_at_or_above"] == 2
+    # At-risk count (<70%): REP-C (60%), REP-D (20%), REP-E (60%) → 3
+    assert result["at_risk_count"] == 3
+
+
+def test_load_quota_data_filters_to_new_business_closed(tmp_path):
+    """load_quota_data reads reps + opps CSV and filters opps to new-business
+    closed-won/lost only."""
+    from src.quota import load_quota_data
+
+    # Build tiny CSVs on disk
+    reps = pd.DataFrame([
+        {"rep_id": "REP-X", "name": "Test Rep", "hire_date": "2024-01-01",
+         "segment_specialty": "SMB", "territory": "North", "quarterly_quota": 100_000},
+    ])
+    opps = pd.DataFrame([
+        # Kept
+        {"opportunity_id": "OPP-1", "owner_rep_id": "REP-X",
+         "opportunity_type": "new_business", "status": "closed_won",
+         "close_date": "2024-03-01", "created_date": "2024-01-01",
+         "amount": 50_000, "segment": "SMB",
+         "customer_id": None, "account_name": "X", "acquisition_channel": "Outbound Sales",
+         "current_stage": "Closed Won"},
+        # Filtered out: renewal
+        {"opportunity_id": "OPP-2", "owner_rep_id": "REP-X",
+         "opportunity_type": "renewal", "status": "closed_won",
+         "close_date": "2024-03-01", "created_date": "2024-01-01",
+         "amount": 50_000, "segment": "SMB",
+         "customer_id": None, "account_name": "X", "acquisition_channel": "Outbound Sales",
+         "current_stage": "Closed Won"},
+        # Filtered out: open
+        {"opportunity_id": "OPP-3", "owner_rep_id": "REP-X",
+         "opportunity_type": "new_business", "status": "open",
+         "close_date": "2024-03-01", "created_date": "2024-01-01",
+         "amount": 50_000, "segment": "SMB",
+         "customer_id": None, "account_name": "X", "acquisition_channel": "Outbound Sales",
+         "current_stage": "Negotiation"},
+    ])
+    reps_path = tmp_path / "reps.csv"
+    opps_path = tmp_path / "opportunities.csv"
+    reps.to_csv(reps_path, index=False)
+    opps.to_csv(opps_path, index=False)
+
+    loaded_reps, loaded_opps = load_quota_data(reps_path, opps_path)
+
+    assert len(loaded_reps) == 1
+    assert len(loaded_opps) == 1  # only OPP-1 survives the filter
+    assert loaded_opps.iloc[0]["opportunity_id"] == "OPP-1"
