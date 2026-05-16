@@ -252,3 +252,90 @@ def forecast_bias_bar(bias: pd.DataFrame) -> go.Figure:
         yaxis_title="$",
     )
     return fig
+
+
+def attainment_distribution_figure(distribution: pd.DataFrame, quarter_label: str) -> go.Figure:
+    """Horizontal bar of per-rep attainment %, color-banded by status.
+
+    Input is the DataFrame returned by `src.quota.attainment_distribution`:
+      rep_id, name, attainment_pct, status, ...
+
+    Bars are sorted descending. Bar color:
+      At/Above → CADENZA_GOOD
+      On Track → CADENZA_NEUTRAL
+      At Risk  → CADENZA_BAD
+    A dashed reference line marks 100%.
+    """
+    color_map = {
+        "At/Above": CADENZA_GOOD,
+        "On Track": CADENZA_NEUTRAL,
+        "At Risk":  CADENZA_BAD,
+    }
+    colors = [color_map[s] for s in distribution["status"]]
+
+    fig = go.Figure(
+        go.Bar(
+            x=distribution["attainment_pct"],
+            y=distribution["name"],
+            orientation="h",
+            marker={"color": colors},
+            hovertemplate="%{y}<br>Attainment: %{x:.0%}<extra></extra>",
+        )
+    )
+    fig.add_vline(x=1.0, line_dash="dash", line_color=CADENZA_PRIMARY,
+                   annotation_text="100% quota", annotation_position="top")
+    fig.update_layout(
+        title=f"Quarterly attainment by rep — {quarter_label}",
+        xaxis_tickformat=".0%",
+        yaxis={"categoryorder": "total ascending"},
+        height=460,
+        margin={"l": 140},
+    )
+    return fig
+
+
+def ramp_curve_figure(curve: pd.DataFrame) -> go.Figure:
+    """Longitudinal ramp curve: mean rolling-3mo attainment % vs. tenure months.
+
+    Aggregates across all reps. Two annotated vertical reference lines:
+      - month 6:  "Industry-assumed ramp"  (CADENZA_NEUTRAL)
+      - month 9:  "Actual full productivity" (CADENZA_ACCENT)
+    Horizontal reference at 100%.
+    """
+    # Bin tenure into 1-month bins and take the mean across reps
+    binned = curve.copy()
+    binned["tenure_bin"] = binned["tenure_months"].round().astype(int)
+    agg = (
+        binned.groupby("tenure_bin", as_index=False)["attainment_pct"]
+        .mean()
+        .sort_values("tenure_bin")
+    )
+    # Clip x to 0-30 months for readability
+    agg = agg[(agg["tenure_bin"] >= 0) & (agg["tenure_bin"] <= 30)]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=agg["tenure_bin"],
+        y=agg["attainment_pct"],
+        mode="lines+markers",
+        line={"color": CADENZA_PRIMARY, "width": 3},
+        marker={"color": CADENZA_PRIMARY, "size": 7},
+        name="Rolling-3mo attainment %",
+        hovertemplate="Month %{x} since hire<br>%{y:.0%}<extra></extra>",
+    ))
+    fig.add_hline(y=1.0, line_dash="dot", line_color=CADENZA_NEUTRAL,
+                   annotation_text="100% quota", annotation_position="right")
+    fig.add_vline(x=6, line_dash="dash", line_color=CADENZA_NEUTRAL,
+                   annotation_text="Industry-assumed ramp",
+                   annotation_position="top")
+    fig.add_vline(x=9, line_dash="dash", line_color=CADENZA_ACCENT,
+                   annotation_text="Actual full productivity",
+                   annotation_position="top")
+    fig.update_layout(
+        title="Ramp curve — team-wide attainment by months since hire",
+        xaxis_title="Months since hire",
+        yaxis_title="Attainment % (rolling 3mo)",
+        yaxis_tickformat=".0%",
+        height=420,
+    )
+    return fig
