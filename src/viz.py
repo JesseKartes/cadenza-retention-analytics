@@ -252,3 +252,215 @@ def forecast_bias_bar(bias: pd.DataFrame) -> go.Figure:
         yaxis_title="$",
     )
     return fig
+
+
+def attainment_distribution_figure(distribution: pd.DataFrame, quarter_label: str) -> go.Figure:
+    """Horizontal bar of per-rep attainment %, color-banded by status.
+
+    Input is the DataFrame returned by `src.quota.attainment_distribution`:
+      rep_id, name, attainment_pct, status, ...
+
+    Bars are sorted descending. Bar color:
+      At/Above → CADENZA_GOOD
+      On Track → CADENZA_NEUTRAL
+      At Risk  → CADENZA_BAD
+    A dashed reference line marks 100%.
+    """
+    color_map = {
+        "At/Above": CADENZA_GOOD,
+        "On Track": CADENZA_NEUTRAL,
+        "At Risk":  CADENZA_BAD,
+    }
+    colors = [color_map[s] for s in distribution["status"]]
+
+    fig = go.Figure(
+        go.Bar(
+            x=distribution["attainment_pct"],
+            y=distribution["name"],
+            orientation="h",
+            marker={"color": colors},
+            text=[f"{p:.0%}" for p in distribution["attainment_pct"]],
+            textposition="outside",
+            cliponaxis=False,
+            hovertemplate="%{y}<br>Attainment: %{x:.0%}<extra></extra>",
+        )
+    )
+    fig.add_vline(x=1.0, line_dash="dash", line_color=CADENZA_PRIMARY,
+                   annotation_text="100% quota", annotation_position="top")
+    fig.update_layout(
+        title=f"Quarterly attainment by rep — {quarter_label}",
+        xaxis_tickformat=".0%",
+        yaxis={"categoryorder": "total ascending"},
+        height=460,
+        margin={"l": 140},
+    )
+    return fig
+
+
+def ramp_curve_figure(curve: pd.DataFrame) -> go.Figure:
+    """Longitudinal ramp curve: median rolling-3mo attainment % vs. tenure months.
+
+    Uses median (robust to Enterprise lumpiness — a few high-$ Enterprise deals
+    per quarter would dominate a mean). Caps the x-axis at 18 months where the
+    ramp signal is cleanest; beyond month 18 the population thins and Enterprise
+    variance dominates the visual.
+
+    Two annotated vertical reference lines:
+      - month 6:  "Assumed ramp (6mo)"        (CADENZA_NEUTRAL, top-left position)
+      - month 9:  "Actual ramp (~9mo)"        (CADENZA_ACCENT,  top-right position)
+    Annotation positions stagger left/right of each line so the labels do not
+    overlap each other.
+    Horizontal reference at 100% on the right.
+    """
+    binned = curve.copy()
+    binned["tenure_bin"] = binned["tenure_months"].round().astype(int)
+    agg = (
+        binned.groupby("tenure_bin", as_index=False)["attainment_pct"]
+        .median()
+        .sort_values("tenure_bin")
+    )
+    # Cap x to 0-18 months where the ramp signal is cleanest
+    agg = agg[(agg["tenure_bin"] >= 0) & (agg["tenure_bin"] <= 18)]
+    # Smooth with a 3-month centered moving average on top of the median
+    agg["smoothed"] = (
+        agg["attainment_pct"].rolling(window=3, min_periods=1, center=True).mean()
+    )
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=agg["tenure_bin"],
+        y=agg["smoothed"],
+        mode="lines+markers",
+        line={"color": CADENZA_PRIMARY, "width": 3, "shape": "spline"},
+        marker={"color": CADENZA_PRIMARY, "size": 7},
+        name="Median attainment (smoothed)",
+        hovertemplate="Month %{x} since hire<br>%{y:.0%}<extra></extra>",
+    ))
+    fig.add_hline(
+        y=1.0, line_dash="dot", line_color=CADENZA_NEUTRAL,
+        annotation_text="100% quota", annotation_position="right",
+    )
+    fig.add_vline(
+        x=6, line_dash="dash", line_color=CADENZA_NEUTRAL,
+        annotation_text="Assumed ramp (6mo)",
+        annotation_position="top left",
+    )
+    fig.add_vline(
+        x=9, line_dash="dash", line_color=CADENZA_ACCENT,
+        annotation_text="Actual ramp (~9mo)",
+        annotation_position="top right",
+    )
+    fig.update_layout(
+        title="Ramp curve — team-wide median attainment by months since hire",
+        xaxis_title="Months since hire",
+        yaxis_title="Attainment % (rolling 3mo, median)",
+        yaxis_tickformat=".0%",
+        xaxis={"range": [-0.5, 18.5]},
+        height=420,
+    )
+    return fig
+
+
+def ramp_bucket_attainment_figure(buckets: pd.DataFrame) -> go.Figure:
+    """Horizontal bar of median attainment per tenure bucket.
+
+    Input from `src.quota.ramp_bucket_attainment`:
+      tenure_bucket, n_observations, median_attainment.
+    """
+    df = buckets.copy()
+    # Display empty buckets as 0 with a note, but keep them in the chart
+    df["display_pct"] = df["median_attainment"].fillna(0.0)
+    fig = go.Figure(
+        go.Bar(
+            x=df["display_pct"],
+            y=df["tenure_bucket"],
+            orientation="h",
+            marker={"color": CADENZA_PRIMARY},
+            hovertemplate="%{y}<br>Median attainment: %{x:.0%}<extra></extra>",
+        )
+    )
+    fig.add_vline(x=1.0, line_dash="dash", line_color=CADENZA_NEUTRAL,
+                   annotation_text="100%", annotation_position="top")
+    fig.update_layout(
+        title="Median attainment by tenure bucket",
+        xaxis_tickformat=".0%",
+        yaxis={"categoryorder": "array", "categoryarray": df["tenure_bucket"].tolist()[::-1]},
+        height=320,
+    )
+    return fig
+
+
+def territory_balance_figure(balance: pd.DataFrame, quarter_label: str) -> go.Figure:
+    """Stacked horizontal bar: closed-won $ by territory, stacked by segment.
+
+    Input from `src.quota.territory_balance`:
+      territory, segment, closed_amount.
+    """
+    segment_colors = {
+        "Enterprise":  CADENZA_PRIMARY,
+        "Mid-Market":  CADENZA_ACCENT,
+        "SMB":         CADENZA_NEUTRAL,
+    }
+    fig = go.Figure()
+    for segment in ["Enterprise", "Mid-Market", "SMB"]:
+        sub = balance[balance["segment"] == segment]
+        if len(sub) == 0:
+            continue
+        fig.add_trace(go.Bar(
+            x=sub["closed_amount"],
+            y=sub["territory"],
+            orientation="h",
+            name=segment,
+            marker={"color": segment_colors[segment]},
+            hovertemplate=(f"{segment}<br>%{{y}}<br>"
+                           "Closed won: $%{x:,.0f}<extra></extra>"),
+        ))
+    fig.update_layout(
+        title=f"Closed-won by territory and segment — {quarter_label}",
+        barmode="stack",
+        xaxis_title="Closed Won ($)",
+        xaxis={"tickformat": "$,.0f"},
+        height=360,
+        legend={"orientation": "h", "y": -0.2},
+    )
+    return fig
+
+
+def rep_scorecard_styler(scorecard: pd.DataFrame):
+    """Style the rep scorecard DataFrame for st.dataframe.
+
+    Input from `src.quota.rep_scorecard`. Highlights:
+      - max Att % and max Win Rate in CADENZA_GOOD-tinted background
+      - min Avg Cycle (days) in CADENZA_GOOD-tinted background
+      - 'At Risk' status rows get a red Att % text color
+    """
+    display = scorecard.rename(columns={
+        "name":               "Name",
+        "segment_specialty":  "Specialty",
+        "territory":          "Territory",
+        "tenure_months":      "Tenure (mo)",
+        "quarterly_quota":    "Quota",
+        "closed_amount":      "Closed Won",
+        "attainment_pct":     "Att %",
+        "win_rate":           "Win Rate",
+        "avg_deal_size":      "Avg Deal",
+        "avg_cycle_days":     "Cycle (days)",
+    })[
+        ["Name", "Specialty", "Territory", "Tenure (mo)", "Quota",
+         "Closed Won", "Att %", "Win Rate", "Avg Deal", "Cycle (days)"]
+    ]
+
+    return (
+        display.style
+        .format({
+            "Tenure (mo)":  "{:.1f}",
+            "Quota":        "${:,.0f}",
+            "Closed Won":   "${:,.0f}",
+            "Att %":        "{:.0%}",
+            "Win Rate":     "{:.0%}",
+            "Avg Deal":     "${:,.0f}",
+            "Cycle (days)": "{:.0f}",
+        })
+        .highlight_max(subset=["Att %", "Win Rate"], color="#D1FAE5")  # CADENZA_GOOD tint
+        .highlight_min(subset=["Cycle (days)"], color="#D1FAE5")
+    )

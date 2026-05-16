@@ -312,20 +312,31 @@ def generate_all(cfg: GeneratorConfig | None = None) -> tuple[pd.DataFrame, pd.D
 def write_to_disk(out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     customers, subs, events = generate_all()
-    customers.drop(columns=[c for c in customers.columns if c.endswith("_dt")], errors="ignore", inplace=True)
+    customers.drop(columns=[c for c in customers.columns if c.endswith("_dt")],
+                   errors="ignore", inplace=True)
     customers.to_csv(out_dir / "customers.csv", index=False)
     subs.to_csv(out_dir / "subscriptions.csv", index=False)
     events.to_csv(out_dir / "events.csv", index=False)
 
-    # Phase 2 tables
-    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events)
+    # Phase 3: build the rep table skeleton first; specialty + quota are
+    # filled in by backfit after opps are generated.
+    reps_rng = np.random.default_rng(RNG_SEED + 3)
+    reps_skel = generate_reps_skeleton(reps_rng)
+
+    # Phase 2 tables (opps now use reps for tenure-weighted owner assignment)
+    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events, reps_skel)
     opps_df.to_csv(out_dir / "opportunities.csv", index=False)
     history_df.to_csv(out_dir / "opportunity_stage_history.csv", index=False)
     snapshots_df.to_csv(out_dir / "pipeline_snapshots.csv", index=False)
 
+    # Phase 3: backfit specialty + quota now that opps exist (Task 12 will add this function).
+    reps_final = backfit_reps_specialty_and_quota(reps_skel, opps_df)
+    reps_final.to_csv(out_dir / "reps.csv", index=False)
+
     print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, "
           f"{len(events)} events, {len(opps_df)} opportunities, "
-          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots to {out_dir}")
+          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots, "
+          f"{len(reps_final)} reps to {out_dir}")
 
 
 # --- Phase 2: Pipeline & Forecasting --------------------------------------
@@ -360,6 +371,22 @@ EXPANSION_STAGE_DWELL_DAYS = {"Expansion Discussion": 30}
 # Rep pool (captured on opps; not surfaced in Phase 2)
 REP_IDS = [f"REP-{i:02d}" for i in range(1, 13)]
 
+# --- Phase 3: Rep performance ---------------------------------------------
+
+REP_FIRST_NAMES = [
+    "Alex", "Priya", "Diego", "Jamie", "Riley", "Sam",
+    "Morgan", "Avery", "Casey", "Jordan", "Taylor", "Quinn",
+    "Robin", "Kai", "Logan", "Drew", "Emery", "Reese",
+    "Skylar", "Sage", "Rowan", "Phoenix", "Blake", "Hayden",
+]
+REP_LAST_NAMES = [
+    "Morgan", "Shah", "Lopez", "Chen", "Park", "Okafor",
+    "Anderson", "Patel", "Nguyen", "Garcia", "Murphy", "Singh",
+    "Schmidt", "Kim", "Rodriguez", "Wilson", "Tanaka", "Brown",
+    "Williams", "Martinez", "Davies", "Cohen", "Bhatt", "Reyes",
+]
+REP_TERRITORIES = ["North", "South", "East", "West"]
+
 # Pipeline snapshot dates (first of each quarter, Q1 2024 - Q4 2025)
 SNAPSHOT_DATES = [pd.Timestamp(f"{y}-{m:02d}-01") for y in (2024, 2025) for m in (1, 4, 7, 10)]
 
@@ -383,6 +410,100 @@ def _sample_dwell_days(rng: np.random.Generator, mean_days: float) -> int:
     shape = 2.0
     scale = mean_days / shape
     return max(1, int(round(rng.gamma(shape, scale))))
+
+
+def _ramp_multiplier(tenure_months: float) -> float:
+    """Linear ramp from 0.55 at month 0 to 1.0 at month 9; flat at 1.0 beyond.
+
+    Used to weight a rep's likelihood of owning closed-won opps. New reps
+    (low tenure) get lower weight; tenured reps get full weight. Symmetric
+    `_loss_multiplier = 2 - _ramp_multiplier` weights the closed-lost loop.
+    """
+    if tenure_months < 0:
+        return 0.55
+    if tenure_months < 9.0:
+        return 0.55 + (1.0 - 0.55) * (tenure_months / 9.0)
+    return 1.0
+
+
+def _choose_owner_by_tenure(rng: np.random.Generator, reps_df: pd.DataFrame,
+                              close_date: pd.Timestamp, mode: str,
+                              segment: str = "") -> str:
+    """Pick an owner_rep_id weighted by rep tenure, with pure specialty routing.
+
+    `mode='won'`  → tenure weights ∝ _ramp_multiplier(tenure_months). Tenured reps
+                    are over-represented in closed-won deals.
+    `mode='lost'` → tenure weights ∝ (2 - _ramp_multiplier(tenure_months)). New reps
+                    are over-represented in closed-lost deals.
+
+    When `segment` is provided, the selection pool is restricted to reps whose
+    segment_specialty matches the opp segment (pure routing). This eliminates
+    cross-specialty spillover entirely — e.g., a large Enterprise deal can never
+    land on an SMB rep and produce 1000%+ attainment outliers on the distribution
+    chart. If no matching-specialty rep has been hired yet (e.g., early-2023 deals
+    before any SMB specialist exists), the full eligible pool is used as a fallback,
+    preserving data realism for early-dataset periods.
+
+    Pre-hire reps are excluded from the selection pool entirely — a rep can't
+    own a deal that closed before they were hired. If no reps were hired by
+    close_date (shouldn't happen given dataset windows), the oldest rep is
+    used as a fallback.
+
+    Total opp counts (665 won, 1500 lost) are preserved exactly. Per-rep
+    distribution shifts; team-level win rate is unchanged.
+    """
+    hire_dates = pd.to_datetime(reps_df["hire_date"])
+    eligible_mask = hire_dates <= close_date
+    if not eligible_mask.any():
+        # Fallback: use the oldest rep (earliest hire_date) — should never
+        # happen because the earliest hire is 2021-01 and the earliest
+        # close_date in the dataset is 2023-01.
+        oldest_idx = hire_dates.idxmin()
+        return str(reps_df.loc[oldest_idx, "rep_id"])
+
+    eligible = reps_df[eligible_mask]
+    eligible_hires = hire_dates[eligible_mask]
+    tenures = (close_date - eligible_hires).dt.days / 30.44
+
+    if segment and "segment_specialty" in eligible.columns:
+        match_mask = (eligible["segment_specialty"] == segment).to_numpy()
+        if match_mask.any():
+            # Specialty match exists — route only to matching reps. Cross-specialty
+            # spillover is eliminated entirely. Cleaner than weighted routing because
+            # rare large Enterprise deals can't land on SMB reps and produce 1000%+
+            # attainment outliers on the dashboard's distribution chart.
+            eligible = eligible[match_mask]
+            eligible_hires = pd.to_datetime(eligible["hire_date"])
+            tenures = (close_date - eligible_hires).dt.days / 30.44
+        # else: no matching-specialty rep hired yet — fall through using the full
+        # eligible pool. Tenure weights are already computed above.
+
+    if mode == "won":
+        tenure_weights = tenures.apply(_ramp_multiplier).to_numpy()
+    elif mode == "lost":
+        tenure_weights = (2.0 - tenures.apply(_ramp_multiplier)).to_numpy()
+    else:
+        raise ValueError(f"mode must be 'won' or 'lost', got {mode!r}")
+
+    p = tenure_weights / tenure_weights.sum()
+    return str(rng.choice(eligible["rep_id"].to_numpy(), p=p))
+
+
+def _choose_eligible_rep(rng: np.random.Generator, reps_df: pd.DataFrame,
+                          close_date: pd.Timestamp) -> str:
+    """Uniform random rep pick, restricted to reps hired on or before close_date.
+
+    Used for renewal and expansion opps where ramp weighting isn't needed — we
+    just need to avoid assigning a deal to a rep who hadn't joined yet.
+    Falls back to the earliest-hired rep if nobody qualifies (shouldn't occur
+    because the earliest hire is 2021-01 and the earliest close_date is 2023-01).
+    """
+    hire_dates = pd.to_datetime(reps_df["hire_date"])
+    eligible_mask = hire_dates <= close_date
+    if not eligible_mask.any():
+        oldest_idx = hire_dates.idxmin()
+        return str(reps_df.loc[oldest_idx, "rep_id"])
+    return str(rng.choice(reps_df.loc[eligible_mask, "rep_id"].to_numpy()))
 
 
 def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.Timestamp,
@@ -421,7 +542,8 @@ def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.
     return history
 
 
-def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generator
+def _generate_new_business_opps(customers: pd.DataFrame, reps_df: pd.DataFrame,
+                                 rng: np.random.Generator
                                  ) -> tuple[list[dict], list[dict]]:
     """Generate new_business opportunities. Returns (opp_rows, stage_history_rows).
 
@@ -452,7 +574,8 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
             "account_name": c["company_name"],
             "segment": c["segment"],
             "acquisition_channel": c["acquisition_channel"],
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": _choose_owner_by_tenure(rng, reps_df, close_date, mode="won",
+                                                    segment=c["segment"]),
             "opportunity_type": "new_business",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": close_date.strftime("%Y-%m-%d"),
@@ -568,7 +691,8 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
             "account_name": _fake_company_name(rng),
             "segment": segment,
             "acquisition_channel": channel,
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": _choose_owner_by_tenure(rng, reps_df, close_date, mode="lost",
+                                                    segment=segment),
             "opportunity_type": "new_business",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": close_date.strftime("%Y-%m-%d"),
@@ -590,7 +714,8 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
 
 def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
                             events: pd.DataFrame, rng: np.random.Generator,
-                            next_id_start: int) -> tuple[list[dict], list[dict], int]:
+                            next_id_start: int,
+                            reps_df: pd.DataFrame | None = None) -> tuple[list[dict], list[dict], int]:
     """Generate renewal opportunities. Returns (opp_rows, stage_history_rows, next_id).
 
     One renewal opp per (customer × annual signup anniversary) that falls within
@@ -711,7 +836,11 @@ def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
                 "account_name": c["company_name"],
                 "segment": c["segment"],
                 "acquisition_channel": c["acquisition_channel"],
-                "owner_rep_id": str(rng.choice(REP_IDS)),
+                "owner_rep_id": (
+                    _choose_eligible_rep(rng, reps_df, close_date)
+                    if reps_df is not None
+                    else str(rng.choice(REP_IDS))
+                ),
                 "opportunity_type": "renewal",
                 "created_date": created_date.strftime("%Y-%m-%d"),
                 "close_date": close_date.strftime("%Y-%m-%d"),
@@ -725,7 +854,8 @@ def _generate_renewal_opps(customers: pd.DataFrame, subs: pd.DataFrame,
 
 
 def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
-                              rng: np.random.Generator, next_id_start: int
+                              rng: np.random.Generator, next_id_start: int,
+                              reps_df: pd.DataFrame | None = None
                               ) -> tuple[list[dict], list[dict], int]:
     """Generate expansion opportunities — one per Phase 1 upgrade event.
 
@@ -761,7 +891,11 @@ def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
             "account_name": c["company_name"],
             "segment": c["segment"],
             "acquisition_channel": c["acquisition_channel"],
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": (
+                _choose_eligible_rep(rng, reps_df, close_date)
+                if reps_df is not None
+                else str(rng.choice(REP_IDS))
+            ),
             "opportunity_type": "expansion",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": close_date.strftime("%Y-%m-%d"),
@@ -782,7 +916,8 @@ def _generate_expansion_opps(customers: pd.DataFrame, events: pd.DataFrame,
 
 def _generate_open_renewals(customers: pd.DataFrame, subs: pd.DataFrame,
                              rng: np.random.Generator, next_id_start: int,
-                             today: pd.Timestamp = pd.Timestamp("2025-12-01")
+                             today: pd.Timestamp = pd.Timestamp("2025-12-01"),
+                             reps_df: pd.DataFrame | None = None
                              ) -> tuple[list[dict], list[dict], int]:
     """Open renewal opps for upcoming anniversaries (within 90 days of today).
 
@@ -861,7 +996,11 @@ def _generate_open_renewals(customers: pd.DataFrame, subs: pd.DataFrame,
             "account_name": c["company_name"],
             "segment": c["segment"],
             "acquisition_channel": c["acquisition_channel"],
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": (
+                _choose_eligible_rep(rng, reps_df, today)
+                if reps_df is not None
+                else str(rng.choice(REP_IDS))
+            ),
             "opportunity_type": "renewal",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": anniv.strftime("%Y-%m-%d"),
@@ -876,7 +1015,8 @@ def _generate_open_renewals(customers: pd.DataFrame, subs: pd.DataFrame,
 def _generate_open_expansions(customers: pd.DataFrame, subs: pd.DataFrame,
                                 rng: np.random.Generator, next_id_start: int,
                                 today: pd.Timestamp = pd.Timestamp("2025-12-01"),
-                                n: int = 40
+                                n: int = 40,
+                                reps_df: pd.DataFrame | None = None
                                 ) -> tuple[list[dict], list[dict], int]:
     """~n open expansion opps for currently-active customers.
 
@@ -921,7 +1061,11 @@ def _generate_open_expansions(customers: pd.DataFrame, subs: pd.DataFrame,
             "account_name": c["company_name"],
             "segment": c["segment"],
             "acquisition_channel": c["acquisition_channel"],
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": (
+                _choose_eligible_rep(rng, reps_df, today)
+                if reps_df is not None
+                else str(rng.choice(REP_IDS))
+            ),
             "opportunity_type": "expansion",
             "created_date": entered_date.strftime("%Y-%m-%d"),
             "close_date": expected_close.strftime("%Y-%m-%d"),
@@ -991,24 +1135,32 @@ def _generate_pipeline_snapshots(opps_df: pd.DataFrame, history_df: pd.DataFrame
     return snapshot_rows
 
 
-def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame
+def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame,
+                     reps_df: pd.DataFrame
                      ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Generate Phase 2 tables: opportunities, opportunity_stage_history, pipeline_snapshots.
 
-    Deterministic given Phase 1 outputs and RNG_SEED+2.
+    Deterministic given Phase 1 outputs, the reps table, and RNG_SEED+2.
+    `reps_df` is used to weight new-business owner assignments by rep tenure
+    (Phase 3 ramp insight) and to restrict renewal/expansion owner selection to
+    reps who had already been hired by each deal's close_date.
     """
     rng = np.random.default_rng(RNG_SEED + 2)
 
-    nb_opps, nb_history = _generate_new_business_opps(customers, rng)
+    nb_opps, nb_history = _generate_new_business_opps(customers, reps_df, rng)
     next_id = len(nb_opps) + 1
 
-    ren_opps, ren_history, next_id = _generate_renewal_opps(customers, subs, events, rng, next_id)
-    exp_opps, exp_history, next_id = _generate_expansion_opps(customers, events, rng, next_id)
+    ren_opps, ren_history, next_id = _generate_renewal_opps(
+        customers, subs, events, rng, next_id, reps_df=reps_df)
+    exp_opps, exp_history, next_id = _generate_expansion_opps(
+        customers, events, rng, next_id, reps_df=reps_df)
 
     # Open in-flight renewals and expansions — without these, the Pipeline page's
     # opp_type filter shows empty pipelines for renewal and expansion.
-    open_ren_opps, open_ren_history, next_id = _generate_open_renewals(customers, subs, rng, next_id)
-    open_exp_opps, open_exp_history, next_id = _generate_open_expansions(customers, subs, rng, next_id)
+    open_ren_opps, open_ren_history, next_id = _generate_open_renewals(
+        customers, subs, rng, next_id, reps_df=reps_df)
+    open_exp_opps, open_exp_history, next_id = _generate_open_expansions(
+        customers, subs, rng, next_id, reps_df=reps_df)
 
     opps_df = pd.DataFrame(nb_opps + ren_opps + exp_opps + open_ren_opps + open_exp_opps)
     history_df = pd.DataFrame(
@@ -1019,6 +1171,100 @@ def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.Data
     snapshots_df = pd.DataFrame(snapshots)
 
     return opps_df, history_df, snapshots_df
+
+
+QUOTA_BY_SPECIALTY = {
+    "SMB":         80_000.0,
+    "Mid-Market": 150_000.0,
+    "Enterprise": 500_000.0,
+}
+
+
+def generate_reps_skeleton(rng: np.random.Generator) -> pd.DataFrame:
+    """Phase 3: build the partial reps table.
+
+    Columns produced: rep_id, name, hire_date, segment_specialty, territory.
+    quarterly_quota is filled in later by `backfit_reps_specialty_and_quota`
+    (now `add_quotas_to_reps`) once opportunities exist.
+
+    Hire date distribution:
+      - REP-01..REP-04 (veterans, 2021-2022) → segment_specialty = "Enterprise"
+      - REP-05..REP-08 (mid-tenure, 2023-mid 2024) → segment_specialty = "Mid-Market"
+      - REP-09..REP-12 (new hires, mid 2024-mid 2025) → segment_specialty = "SMB"
+
+    This cohort-aligned mapping tells a "career progression" story: reps start
+    in SMB, earn their way to Enterprise as they build tenure and quota. It also
+    keeps the ramp signal concentrated in the SMB cohort where deal volume is
+    highest, and avoids the modal-backfit collapse (all-SMB) that plagued the
+    earlier design.
+
+    Names: drawn without replacement from REP_FIRST_NAMES x REP_LAST_NAMES.
+    Territories: round-robin so each of N/S/E/W has exactly 3 reps.
+    """
+    # Hire dates: 4 in each cohort
+    veteran_starts = pd.Timestamp("2021-01-01")
+    veteran_end    = pd.Timestamp("2022-12-31")
+    mid_start      = pd.Timestamp("2023-01-01")
+    mid_end        = pd.Timestamp("2024-06-30")
+    new_start      = pd.Timestamp("2024-07-01")
+    new_end        = pd.Timestamp("2025-06-30")
+
+    def random_dates_in(rng_: np.random.Generator, start: pd.Timestamp,
+                         end: pd.Timestamp, n: int) -> list[str]:
+        span_days = (end - start).days
+        offsets = rng_.integers(0, span_days + 1, size=n)
+        return [(start + pd.Timedelta(days=int(o))).strftime("%Y-%m-%d")
+                for o in sorted(offsets)]
+
+    hire_dates = (
+        random_dates_in(rng, veteran_starts, veteran_end, 4)
+        + random_dates_in(rng, mid_start, mid_end, 4)
+        + random_dates_in(rng, new_start, new_end, 4)
+    )
+
+    # Names: pick 12 unique first+last combos
+    first_idx = rng.permutation(len(REP_FIRST_NAMES))[:12]
+    last_idx  = rng.permutation(len(REP_LAST_NAMES))[:12]
+    names = [f"{REP_FIRST_NAMES[fi]} {REP_LAST_NAMES[li]}"
+             for fi, li in zip(first_idx, last_idx)]
+
+    # Territories round-robin
+    territories = [REP_TERRITORIES[i % 4] for i in range(12)]
+
+    # Cohort-aligned specialty: veterans=Enterprise, mid=Mid-Market, new=SMB
+    specialties = (
+        ["Enterprise"] * 4   # REP-01..04
+        + ["Mid-Market"] * 4  # REP-05..08
+        + ["SMB"] * 4         # REP-09..12
+    )
+
+    return pd.DataFrame({
+        "rep_id":            [f"REP-{i:02d}" for i in range(1, 13)],
+        "name":              names,
+        "hire_date":         hire_dates,
+        "segment_specialty": specialties,
+        "territory":         territories,
+    })
+
+
+def backfit_reps_specialty_and_quota(reps_skel: pd.DataFrame,
+                                       opps_df: pd.DataFrame) -> pd.DataFrame:
+    """Phase 3: add quarterly_quota to the reps table based on segment_specialty.
+
+    Specialty is now pre-assigned in generate_reps_skeleton (option (c) — pre-assign
+    + route). This function used to do a two-pass modal-segment backfit, but with
+    deal routing biased by specialty, the specialty is determined upstream and
+    backfitting from modal would collapse all reps to SMB. We keep the function
+    name + signature for call-site stability but it now simply looks up the
+    quarterly_quota from QUOTA_BY_SPECIALTY.
+
+    opps_df parameter is unused and kept for backward compatibility.
+    """
+    out = reps_skel.copy()
+    out["quarterly_quota"] = out["segment_specialty"].map(QUOTA_BY_SPECIALTY)
+    return out[
+        ["rep_id", "name", "hire_date", "segment_specialty", "territory", "quarterly_quota"]
+    ]
 
 
 if __name__ == "__main__":

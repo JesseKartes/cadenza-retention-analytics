@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented here.
 
+## Phase 3 — Quota Attainment & Rep Performance (2026-05-16)
+
+### Added
+- `reps.csv` table (12 AEs with hire_date, segment_specialty, territory, quarterly_quota).
+- `src/quota.py` — pure-function metrics: `quarterly_attainment`, `attainment_distribution`, `ramp_curve`, `ramp_bucket_attainment`, `rep_scorecard`, `territory_balance`, `team_kpis`, `load_quota_data`.
+- `pages/7_Quota.py` — Quota Attainment & Rep Performance page (KPI tiles, attainment distribution, ramp curve, territory balance, rep scorecard).
+- 5 new figure builders in `src/viz.py` — `attainment_distribution_figure`, `ramp_curve_figure`, `ramp_bucket_attainment_figure`, `territory_balance_figure`, plus `rep_scorecard_styler`.
+- 25 new tests (13 in `tests/test_quota.py`, 12 generator guardrails in `tests/test_data_generator.py`); total suite 69 tests, all green.
+- Engineered insight #3: team's actual ramp curve hits full productivity at ~9 months, not the industry-assumed 6.
+
+### Changed
+- `_generate_new_business_opps` — owner-assignment is now tenure-weighted in the closed-won and closed-lost loops (uniform random was Phase 2). Team-level new-business win rate is preserved exactly; only per-rep distribution shifts.
+- `pages/7_About.py` renamed to `pages/8_About.py` for sidebar ordering.
+- `pages/8_About.py` content extended with Phase 3 narrative, metric table rows, and Scope & Deferrals additions.
+- `data/generated/opportunities.csv`, `opportunity_stage_history.csv`, `pipeline_snapshots.csv` regenerated (per-rep owner shifts).
+
+### Preserved
+- Phase 1 CSVs (`customers.csv`, `subscriptions.csv`, `events.csv`) — byte-identical (enforced by `test_phase1_csvs_unchanged_after_phase3`).
+- Phase 2 Mid-Market POC stall ratio ≥ 2.0× (enforced by `test_midmarket_poc_stall_still_2x`).
+- Phase 2 team TTM new-business win rate in 21-25% band (enforced by `test_team_win_rate_stays_in_band`).
+
+### Calibrated (post-merge polish)
+- Quota tiers lowered from \$150K/\$500K/\$1.5M to \$80K/\$150K/\$500K. Original tiers were aspirational; calibrated tiers match the dataset's per-rep deal volume so attainment lands in a realistic 30-150% range. Specialty assignment and routing logic unchanged.
+- Specialty assignment moved from modal-backfit to cohort-aligned pre-assignment with segment-aware deal routing (5:1 specialty match weight). Veterans → Enterprise, mid-tenure → Mid-Market, new hires → SMB. Resolves the §1-vs-§2 dashboard narrative conflict where new reps could appear as top performers.
+- Pre-hire reps excluded from owner selection pool (was a generator bug; pre-hire owner assignments were causing the ramp line chart to show 174% at month 0).
+- Specialty routing tightened from 5:1 to 19:1 (~90% specialty concentration). At 5:1 (~70%), occasional Enterprise deals leaked to SMB reps, producing 1000%+ attainment outliers on the distribution chart. 19:1 caps spillover at ~5% per non-specialty rep while keeping enough variety that the chart doesn't look programmatically perfect.
+
+---
+
 ## Phase 2 — Pipeline & Forecasting
 
 **Date:** 2026-05-15
