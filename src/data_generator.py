@@ -312,20 +312,31 @@ def generate_all(cfg: GeneratorConfig | None = None) -> tuple[pd.DataFrame, pd.D
 def write_to_disk(out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     customers, subs, events = generate_all()
-    customers.drop(columns=[c for c in customers.columns if c.endswith("_dt")], errors="ignore", inplace=True)
+    customers.drop(columns=[c for c in customers.columns if c.endswith("_dt")],
+                   errors="ignore", inplace=True)
     customers.to_csv(out_dir / "customers.csv", index=False)
     subs.to_csv(out_dir / "subscriptions.csv", index=False)
     events.to_csv(out_dir / "events.csv", index=False)
 
-    # Phase 2 tables
-    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events)
+    # Phase 3: build the rep table skeleton first; specialty + quota are
+    # filled in by backfit after opps are generated.
+    reps_rng = np.random.default_rng(RNG_SEED + 3)
+    reps_skel = generate_reps_skeleton(reps_rng)
+
+    # Phase 2 tables (opps now use reps for tenure-weighted owner assignment)
+    opps_df, history_df, snapshots_df = generate_phase2(customers, subs, events, reps_skel)
     opps_df.to_csv(out_dir / "opportunities.csv", index=False)
     history_df.to_csv(out_dir / "opportunity_stage_history.csv", index=False)
     snapshots_df.to_csv(out_dir / "pipeline_snapshots.csv", index=False)
 
+    # Phase 3: backfit specialty + quota now that opps exist (Task 12 will add this function).
+    reps_final = backfit_reps_specialty_and_quota(reps_skel, opps_df)
+    reps_final.to_csv(out_dir / "reps.csv", index=False)
+
     print(f"Wrote {len(customers)} customers, {len(subs)} subscription rows, "
           f"{len(events)} events, {len(opps_df)} opportunities, "
-          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots to {out_dir}")
+          f"{len(history_df)} stage history rows, {len(snapshots_df)} snapshots, "
+          f"{len(reps_final)} reps to {out_dir}")
 
 
 # --- Phase 2: Pipeline & Forecasting --------------------------------------
@@ -401,6 +412,44 @@ def _sample_dwell_days(rng: np.random.Generator, mean_days: float) -> int:
     return max(1, int(round(rng.gamma(shape, scale))))
 
 
+def _ramp_multiplier(tenure_months: float) -> float:
+    """Linear ramp from 0.55 at month 0 to 1.0 at month 9; flat at 1.0 beyond.
+
+    Used to weight a rep's likelihood of owning closed-won opps. New reps
+    (low tenure) get lower weight; tenured reps get full weight. Symmetric
+    `_loss_multiplier = 2 - _ramp_multiplier` weights the closed-lost loop.
+    """
+    if tenure_months < 0:
+        return 0.55
+    if tenure_months < 9.0:
+        return 0.55 + (1.0 - 0.55) * (tenure_months / 9.0)
+    return 1.0
+
+
+def _choose_owner_by_tenure(rng: np.random.Generator, reps_df: pd.DataFrame,
+                              close_date: pd.Timestamp, mode: str) -> str:
+    """Pick an owner_rep_id weighted by rep tenure at close_date.
+
+    `mode='won'`  → weights ∝ _ramp_multiplier(tenure_months). Tenured reps
+                    are over-represented in closed-won deals.
+    `mode='lost'` → weights ∝ (2 - _ramp_multiplier(tenure_months)). New reps
+                    are over-represented in closed-lost deals.
+
+    Note: total opp counts (665 won, 1500 lost) are preserved exactly. Only
+    the per-rep distribution shifts. Team-level win rate is unchanged.
+    """
+    hire_dates = pd.to_datetime(reps_df["hire_date"])
+    tenures = ((close_date - hire_dates).dt.days / 30.44).clip(lower=-0.001)
+    if mode == "won":
+        weights = tenures.apply(_ramp_multiplier).to_numpy()
+    elif mode == "lost":
+        weights = (2.0 - tenures.apply(_ramp_multiplier)).to_numpy()
+    else:
+        raise ValueError(f"mode must be 'won' or 'lost', got {mode!r}")
+    p = weights / weights.sum()
+    return str(rng.choice(reps_df["rep_id"].to_numpy(), p=p))
+
+
 def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.Timestamp,
                                         segment: str, end_stage: str | None,
                                         won: bool) -> list[dict]:
@@ -437,7 +486,8 @@ def _walk_new_business_stages_backward(rng: np.random.Generator, close_date: pd.
     return history
 
 
-def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generator
+def _generate_new_business_opps(customers: pd.DataFrame, reps_df: pd.DataFrame,
+                                 rng: np.random.Generator
                                  ) -> tuple[list[dict], list[dict]]:
     """Generate new_business opportunities. Returns (opp_rows, stage_history_rows).
 
@@ -468,7 +518,7 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
             "account_name": c["company_name"],
             "segment": c["segment"],
             "acquisition_channel": c["acquisition_channel"],
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": _choose_owner_by_tenure(rng, reps_df, close_date, mode="won"),
             "opportunity_type": "new_business",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": close_date.strftime("%Y-%m-%d"),
@@ -584,7 +634,7 @@ def _generate_new_business_opps(customers: pd.DataFrame, rng: np.random.Generato
             "account_name": _fake_company_name(rng),
             "segment": segment,
             "acquisition_channel": channel,
-            "owner_rep_id": str(rng.choice(REP_IDS)),
+            "owner_rep_id": _choose_owner_by_tenure(rng, reps_df, close_date, mode="lost"),
             "opportunity_type": "new_business",
             "created_date": created_date.strftime("%Y-%m-%d"),
             "close_date": close_date.strftime("%Y-%m-%d"),
@@ -1007,15 +1057,18 @@ def _generate_pipeline_snapshots(opps_df: pd.DataFrame, history_df: pd.DataFrame
     return snapshot_rows
 
 
-def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame
+def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.DataFrame,
+                     reps_df: pd.DataFrame
                      ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Generate Phase 2 tables: opportunities, opportunity_stage_history, pipeline_snapshots.
 
-    Deterministic given Phase 1 outputs and RNG_SEED+2.
+    Deterministic given Phase 1 outputs, the reps table, and RNG_SEED+2.
+    `reps_df` is used to weight new-business owner assignments by rep tenure
+    (Phase 3 ramp insight).
     """
     rng = np.random.default_rng(RNG_SEED + 2)
 
-    nb_opps, nb_history = _generate_new_business_opps(customers, rng)
+    nb_opps, nb_history = _generate_new_business_opps(customers, reps_df, rng)
     next_id = len(nb_opps) + 1
 
     ren_opps, ren_history, next_id = _generate_renewal_opps(customers, subs, events, rng, next_id)
