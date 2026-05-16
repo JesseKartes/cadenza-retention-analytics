@@ -65,7 +65,35 @@ def main():
         those workflows are typically owned by CSM/AM teams in a separate
         tool surface (e.g., Gainsight for renewals); they deserve their own
         page rather than being grafted onto a new-business funnel.
+
+        - **Quota is new-business only.** Renewal and expansion bookings do not count
+          toward AE attainment. Matches how most SaaS organizations separate AE comp
+          from CSM/AM comp. Renewal and expansion analytics live on the Pipeline and
+          Forecasting pages.
         """
+    )
+
+    st.markdown("---")
+    st.markdown("### Phase 3: Quota Attainment & Rep Performance")
+    st.markdown(
+        """
+The Quota page surfaces rep-level performance: quarterly attainment,
+attainment distribution across the team, a longitudinal ramp curve, and
+territory × segment balance. Twelve reps carry tiered quotas
+(SMB \\$150K, Mid-Market \\$500K, Enterprise \\$1.5M per quarter) and are
+staggered across hire cohorts — four veterans (hired pre-2023), four
+mid-tenure, four still ramping at dataset end.
+
+**Hidden insight #3 — ramp longer than assumed.** The team's actual ramp curve
+hits full productivity around month 9, not the industry-standard month 6.
+New hires below 70% attainment aren't underperforming — they're tracking
+the team's normal ramp. Adjust hiring lead times and ramped-quota schedules
+accordingly.
+
+**Quota scope:** new-business only. Renewal and expansion ACV do not count
+toward attainment. Matches typical SaaS comp structures where AEs are paid
+on new-logo bookings.
+"""
     )
 
     st.divider()
@@ -96,6 +124,19 @@ def main():
         | **Stage Conversion** | of deals that exited from_stage, fraction that ever reached to_stage | Excludes deals still in from_stage. |
         | **Forecast Buckets** | sum by category: Negotiation = Commit, POC/Renewal/Expansion Disc = Best Case, Discovery/Qual = Pipeline | Standard RevOps categorization. |
         | **Forecast Accuracy** | weighted_pipeline at snapshot ÷ actual closed-won in [snapshot, snapshot + 3mo) | 1.0 = perfect; >1.0 = over-forecast; <1.0 = under-forecast. |
+
+        **Phase 3 — Quota Attainment & Rep Performance**
+
+        | Metric | Formula | Notes |
+        | --- | --- | --- |
+        | **Quarterly Attainment %** | sum(closed_won amount for rep in quarter) ÷ quarterly_quota | New-business only. |
+        | **Team Attainment %** | sum(all closed_won amount in quarter) ÷ sum(all reps' quarterly_quota) | Blended across all active reps. |
+        | **Rep Win Rate** | closed_won_count ÷ (closed_won_count + closed_lost_count) | New-business deals closing in the quarter, per rep. |
+        | **Avg Deal Size (per rep)** | mean(amount) across rep's closed-won deals in quarter | New-business only. |
+        | **Avg Cycle Time (per rep)** | mean(close_date − created_date) in days across rep's closed-won deals in quarter | Closed-won only. |
+        | **Tenure Months** | (reference_date − hire_date).days ÷ 30.44 | Continuous tenure in months. |
+        | **Rolling-3mo Attainment** | closed_won_3mo ÷ quarterly_quota | Used in the ramp curve to smooth month-to-month volatility. |
+        | **Ramp Tenure Bucket** | One of: 0–3, 3–6, 6–12, 12+ months | Groups reps by tenure band for ramp analysis. |
 
         TTM = trailing 12 months. All numerators and denominators use a cohort
         defined as "customers active at the start of the period."
