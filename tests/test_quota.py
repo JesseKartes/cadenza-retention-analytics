@@ -142,3 +142,60 @@ def test_ramp_bucket_attainment_orders_correctly(sample_reps, sample_opps_for_qu
     early = result.loc[result["tenure_bucket"] == "0-3 mo", "median_attainment"].iloc[0]
     if pd.notna(early):  # only meaningful if the bucket has any rows
         assert tenured > early
+
+
+def test_rep_scorecard_columns_present(sample_reps, sample_opps_for_quota):
+    from src.quota import rep_scorecard
+
+    result = rep_scorecard(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    )
+
+    expected_cols = {
+        "rep_id", "name", "segment_specialty", "territory", "tenure_months",
+        "quarterly_quota", "closed_amount", "attainment_pct", "win_rate",
+        "avg_deal_size", "avg_cycle_days",
+    }
+    assert expected_cols.issubset(result.columns)
+    assert len(result) == len(sample_reps)
+
+
+def test_rep_scorecard_win_rate(sample_reps, sample_opps_for_quota):
+    """Per-rep win rate = closed_won / (closed_won + closed_lost) in window."""
+    from src.quota import rep_scorecard
+
+    result = rep_scorecard(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    ).set_index("rep_id")
+
+    # Hand-calc from fixture (Q4 2025 only)
+    assert result.loc["REP-A", "win_rate"] == pytest.approx(2 / (2 + 2))  # 0.50
+    assert result.loc["REP-B", "win_rate"] == pytest.approx(8 / (8 + 2))  # 0.80
+    assert result.loc["REP-D", "win_rate"] == pytest.approx(2 / (2 + 8))  # 0.20
+
+
+def test_rep_scorecard_cycle_time(sample_reps, sample_opps_for_quota):
+    """avg_cycle_days = mean of (close_date - created_date).days across rep's
+    Q4 2025 closed-won deals."""
+    from src.quota import rep_scorecard
+
+    result = rep_scorecard(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    ).set_index("rep_id")
+
+    # REP-A: 90d and 60d → avg 75
+    assert result.loc["REP-A", "avg_cycle_days"] == pytest.approx(75.0)
+    # REP-F: 100d and 80d → avg 90
+    assert result.loc["REP-F", "avg_cycle_days"] == pytest.approx(90.0)
+
+
+def test_rep_scorecard_avg_deal_size(sample_reps, sample_opps_for_quota):
+    """avg_deal_size = mean amount across Q4 closed-won deals."""
+    from src.quota import rep_scorecard
+
+    result = rep_scorecard(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    ).set_index("rep_id")
+
+    assert result.loc["REP-A", "avg_deal_size"] == pytest.approx(900_000.0)
+    assert result.loc["REP-B", "avg_deal_size"] == pytest.approx(50_000.0)

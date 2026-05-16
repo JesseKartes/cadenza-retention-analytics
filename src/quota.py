@@ -154,3 +154,67 @@ def ramp_bucket_attainment(opps: pd.DataFrame, reps: pd.DataFrame) -> pd.DataFra
             "median_attainment": float(in_bucket.median()) if len(in_bucket) else float("nan"),
         })
     return pd.DataFrame(out)
+
+
+def rep_scorecard(opps: pd.DataFrame, reps: pd.DataFrame,
+                    quarter: pd.Period) -> pd.DataFrame:
+    """One row per rep with attainment, win rate, deal size, cycle time for the quarter.
+
+    Reuses `quarterly_attainment` for closed_amount / attainment_pct / status.
+    Additional columns:
+      win_rate     = closed_won_count / (closed_won_count + closed_lost_count) for
+                     new-business deals with close_date in quarter, per rep
+      avg_deal_size = mean amount of rep's closed-won deals in quarter
+      avg_cycle_days = mean (close_date - created_date).days across rep's
+                       closed-won deals in quarter
+      tenure_months = (quarter_end - hire_date).days / 30.44
+
+    Returns DataFrame ordered by attainment_pct desc.
+    """
+    attainment = quarterly_attainment(opps, reps, quarter)
+
+    quarter_end = pd.Period(quarter).to_timestamp(how="end").normalize()
+    reps = reps.copy()
+    reps["hire_date"] = pd.to_datetime(reps["hire_date"])
+    reps["tenure_months"] = (quarter_end - reps["hire_date"]).dt.days / 30.44
+
+    nb = opps[opps["opportunity_type"] == "new_business"].copy()
+    nb["close_date"] = pd.to_datetime(nb["close_date"])
+    nb["created_date"] = pd.to_datetime(nb["created_date"])
+    in_q = nb[nb["close_date"].dt.to_period("Q") == quarter]
+
+    closed_won_q = in_q[in_q["status"] == "closed_won"]
+    closed_lost_q = in_q[in_q["status"] == "closed_lost"]
+
+    won_per_rep = closed_won_q.groupby("owner_rep_id").size()
+    lost_per_rep = closed_lost_q.groupby("owner_rep_id").size()
+    avg_size_per_rep = closed_won_q.groupby("owner_rep_id")["amount"].mean()
+
+    closed_won_q = closed_won_q.assign(
+        cycle_days=(closed_won_q["close_date"] - closed_won_q["created_date"]).dt.days
+    )
+    avg_cycle_per_rep = closed_won_q.groupby("owner_rep_id")["cycle_days"].mean()
+
+    extras = pd.DataFrame({
+        "won_count": won_per_rep,
+        "lost_count": lost_per_rep,
+        "avg_deal_size": avg_size_per_rep,
+        "avg_cycle_days": avg_cycle_per_rep,
+    }).fillna(0.0)
+    extras["win_rate"] = extras["won_count"] / (extras["won_count"] + extras["lost_count"])
+    extras = extras.reset_index().rename(columns={"owner_rep_id": "rep_id"})
+
+    out = (
+        reps[["rep_id", "name", "segment_specialty", "territory", "tenure_months",
+              "quarterly_quota"]]
+        .merge(
+            attainment[["rep_id", "closed_amount", "attainment_pct", "status"]],
+            on="rep_id", how="left",
+        )
+        .merge(
+            extras[["rep_id", "win_rate", "avg_deal_size", "avg_cycle_days"]],
+            on="rep_id", how="left",
+        )
+    )
+    out = out.fillna({"win_rate": 0.0, "avg_deal_size": 0.0, "avg_cycle_days": 0.0})
+    return out.sort_values("attainment_pct", ascending=False).reset_index(drop=True)
