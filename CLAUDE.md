@@ -42,13 +42,13 @@ src/data_generator.py → data/generated/*.csv (customers, subscriptions, events
 
 ## Starting Phase 4
 
-Phase 3 (Quota & Rep Performance) is complete. Read `docs/superpowers/phase2-retrospective.md` (and `phase1-retrospective.md` for deeper architectural context) before planning Phase 4. Then invoke `superpowers:brainstorming` to design the next phase.
+Phase 3 (Quota & Rep Performance) is complete. Read `docs/superpowers/phase3-retrospective.md` first (it's the most recent and lists what NOT to touch, plus suggested Phase 4 directions). Phase 2's retrospective adds deeper architectural context if needed. Then invoke `superpowers:brainstorming` to design the next phase.
 
-Phase 4 will live in the same repo. Same fixtures pattern, same brand palette, same commit conventions. About page lives at `pages/8_About.py`; any new page should be inserted before it and About renumbered accordingly.
+Phase 4 will live in the same repo. Same fixtures pattern, same brand palette, same commit conventions. About page lives at `pages/8_About.py`; any new page should be inserted before it and About renumbered accordingly. **Mandatory new step:** after any viz changes, do a Playwright visual review — unit tests don't catch annotation overlap, missing text labels on empty bars, or color collisions, all of which Phase 3 hit.
 
 ## Reference docs
 
 - Phase 1: spec `docs/superpowers/specs/2026-05-13-cadenza-retention-analytics-design.md`, plan `docs/superpowers/plans/2026-05-13-cadenza-retention-analytics.md`, retrospective `docs/superpowers/phase1-retrospective.md`
 - Phase 2: spec `docs/superpowers/specs/2026-05-15-cadenza-phase2-pipeline-forecasting-design.md`, plan `docs/superpowers/plans/2026-05-15-cadenza-phase2-pipeline-forecasting.md`, retrospective `docs/superpowers/phase2-retrospective.md`
-- Phase 3: spec `docs/superpowers/specs/2026-05-16-cadenza-phase3-quota-rep-performance-design.md`, plan `docs/superpowers/plans/2026-05-16-cadenza-phase3-quota-rep-performance.md`
+- Phase 3: spec `docs/superpowers/specs/2026-05-16-cadenza-phase3-quota-rep-performance-design.md`, plan `docs/superpowers/plans/2026-05-16-cadenza-phase3-quota-rep-performance.md`, retrospective `docs/superpowers/phase3-retrospective.md`
 - Release notes: `CHANGELOG.md`
