@@ -75,3 +75,50 @@ def test_attainment_distribution_sorted(sample_reps, sample_opps_for_quota):
     # Top row is REP-A at 120%; bottom row is REP-D at 20%
     assert result.iloc[0]["rep_id"] == "REP-A"
     assert result.iloc[-1]["rep_id"] == "REP-D"
+
+
+def test_ramp_curve_long_form(sample_reps, sample_opps_for_quota):
+    """ramp_curve returns one row per (rep, month), with tenure_months and
+    rolling-3mo attainment_pct computed correctly."""
+    from src.quota import ramp_curve
+
+    result = ramp_curve(sample_opps_for_quota, sample_reps)
+
+    # Required columns
+    assert {"rep_id", "month", "tenure_months", "attainment_pct"}.issubset(result.columns)
+
+    # For REP-A (hired 2020-01-15), tenure at 2025-11-01 should be ~70 months.
+    # The fixture closes 1 deal per month Jan-Sep 2025 at $900K plus 2 Q4 deals.
+    # At month 2025-11-01: rolling-3mo window is Sep+Oct+Nov.
+    # Sep close = $900K. Oct = 0. Nov = $900K + $900K (the two Q4 deals are Nov 13 and 29).
+    # Total $ in 3mo = $2,700,000; quarterly_quota = $1,500,000; ratio = 1.80.
+    rep_a_nov = result[
+        (result["rep_id"] == "REP-A")
+        & (result["month"] == pd.Timestamp("2025-11-01"))
+    ]
+    assert len(rep_a_nov) == 1
+    assert rep_a_nov.iloc[0]["attainment_pct"] == pytest.approx(1.80)
+    assert rep_a_nov.iloc[0]["tenure_months"] == pytest.approx(
+        (pd.Timestamp("2025-11-01") - pd.Timestamp("2020-01-15")).days / 30.44,
+        rel=0.001,
+    )
+
+
+def test_ramp_curve_zero_close_month_is_zero_not_nan(sample_reps, sample_opps_for_quota):
+    """A rep with no closes in a 3-month window should have attainment_pct=0,
+    not NaN. Otherwise plotly skips the point and the curve has gaps."""
+    from src.quota import ramp_curve
+
+    result = ramp_curve(sample_opps_for_quota, sample_reps)
+    # REP-D hired 2025-06; pre-2025 months have no closes for them.
+    # Pick a month well before hire — but a rep can't have negative tenure,
+    # so the function should only emit rows where tenure >= 0.
+    rep_d_pre_hire = result[
+        (result["rep_id"] == "REP-D")
+        & (result["month"] < pd.Timestamp("2025-06-01"))
+    ]
+    assert len(rep_d_pre_hire) == 0, \
+        "ramp_curve should not emit rows for months before a rep's hire_date"
+    # And the months REP-D *was* hired but had no closes should be 0.0, not NaN.
+    rep_d_post_hire = result[result["rep_id"] == "REP-D"]
+    assert rep_d_post_hire["attainment_pct"].notna().all()

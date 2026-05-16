@@ -68,3 +68,59 @@ def attainment_distribution(opps: pd.DataFrame, reps: pd.DataFrame,
     return quarterly_attainment(opps, reps, quarter).sort_values(
         "attainment_pct", ascending=False
     ).reset_index(drop=True)
+
+
+def ramp_curve(opps: pd.DataFrame, reps: pd.DataFrame) -> pd.DataFrame:
+    """Per-rep rolling-3-month attainment indexed by tenure-months-since-hire.
+
+    For each rep and each calendar month from their `hire_date` through the latest
+    close_date in the data, computes:
+      - `tenure_months` = (month - hire_date).days / 30.44
+      - `closed_amount_3mo` = sum of closed-won new-business amounts for that rep
+        in the trailing 3-month window ending in this month
+      - `attainment_pct` = closed_amount_3mo / quarterly_quota
+
+    Months before a rep's hire_date are not emitted. Months after hire with zero
+    closes get attainment_pct = 0.0 (not NaN) so the longitudinal chart has no gaps.
+
+    Returns long-form DataFrame: rep_id, month, tenure_months, attainment_pct.
+    """
+    closed_won = opps[
+        (opps["status"] == "closed_won")
+        & (opps["opportunity_type"] == "new_business")
+    ].copy()
+    closed_won["close_date"] = pd.to_datetime(closed_won["close_date"])
+    closed_won["close_month"] = closed_won["close_date"].values.astype("datetime64[M]")
+
+    reps = reps.copy()
+    reps["hire_date"] = pd.to_datetime(reps["hire_date"])
+
+    if len(closed_won) == 0:
+        return pd.DataFrame(columns=["rep_id", "month", "tenure_months", "attainment_pct"])
+
+    data_max_month = pd.Timestamp(closed_won["close_month"].max())
+
+    rows = []
+    for _, rep in reps.iterrows():
+        start = pd.Timestamp(rep["hire_date"]).to_period("M").to_timestamp()
+        # Walk one month at a time
+        months = pd.date_range(start=start, end=data_max_month, freq="MS")
+        rep_closes = closed_won[closed_won["owner_rep_id"] == rep["rep_id"]]
+        # Monthly closed-won totals
+        monthly = (
+            rep_closes.groupby("close_month")["amount"]
+            .sum()
+            .reindex(months, fill_value=0.0)
+        )
+        rolling_3mo = monthly.rolling(window=3, min_periods=1).sum()
+        for m, amt_3mo in rolling_3mo.items():
+            tenure = (m - rep["hire_date"]).days / 30.44
+            if tenure < 0:
+                continue
+            rows.append({
+                "rep_id": rep["rep_id"],
+                "month": m,
+                "tenure_months": tenure,
+                "attainment_pct": float(amt_3mo) / float(rep["quarterly_quota"]),
+            })
+    return pd.DataFrame(rows)
