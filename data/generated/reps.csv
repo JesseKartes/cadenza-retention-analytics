@@ -1,13 +1,13 @@
 rep_id,name,hire_date,segment_specialty,territory,quarterly_quota
-REP-01,Diego Park,2022-01-21,SMB,North,150000.0
-REP-02,Hayden Chen,2022-02-23,SMB,South,150000.0
-REP-03,Kai Anderson,2022-06-19,SMB,East,150000.0
-REP-04,Morgan Shah,2022-11-06,SMB,West,150000.0
-REP-05,Alex Wilson,2023-10-18,SMB,North,150000.0
-REP-06,Logan Cohen,2024-01-22,SMB,South,150000.0
-REP-07,Quinn Kim,2024-02-22,SMB,East,150000.0
-REP-08,Phoenix Martinez,2024-03-19,SMB,West,150000.0
-REP-09,Taylor Bhatt,2024-12-02,SMB,North,150000.0
-REP-10,Avery Garcia,2025-01-03,SMB,South,150000.0
-REP-11,Rowan Okafor,2025-01-22,SMB,East,150000.0
-REP-12,Blake Reyes,2025-04-11,SMB,West,150000.0
+REP-01,Diego Park,2022-01-21,Enterprise,North,500000.0
+REP-02,Hayden Chen,2022-02-23,Enterprise,South,500000.0
+REP-03,Kai Anderson,2022-06-19,Enterprise,East,500000.0
+REP-04,Morgan Shah,2022-11-06,Enterprise,West,500000.0
+REP-05,Alex Wilson,2023-10-18,Mid-Market,North,150000.0
+REP-06,Logan Cohen,2024-01-22,Mid-Market,South,150000.0
+REP-07,Quinn Kim,2024-02-22,Mid-Market,East,150000.0
+REP-08,Phoenix Martinez,2024-03-19,Mid-Market,West,150000.0
+REP-09,Taylor Bhatt,2024-12-02,SMB,North,80000.0
+REP-10,Avery Garcia,2025-01-03,SMB,South,80000.0
+REP-11,Rowan Okafor,2025-01-22,SMB,East,80000.0
+REP-12,Blake Reyes,2025-04-11,SMB,West,80000.0

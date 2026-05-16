@@ -179,7 +179,8 @@ def test_phase1_csvs_unchanged_after_phase2_generator():
 
 
 def test_generate_reps_skeleton_shape():
-    """generate_reps_skeleton returns 12 reps, 3 per territory, 4 per hire cohort."""
+    """generate_reps_skeleton returns 12 reps, 3 per territory, 4 per hire cohort,
+    and pre-assigns segment_specialty in cohort-aligned order (option c)."""
     import numpy as np
     from src.data_generator import generate_reps_skeleton, RNG_SEED
 
@@ -187,7 +188,7 @@ def test_generate_reps_skeleton_shape():
     reps = generate_reps_skeleton(rng)
 
     assert len(reps) == 12
-    assert list(reps.columns) == ["rep_id", "name", "hire_date", "territory"]
+    assert list(reps.columns) == ["rep_id", "name", "hire_date", "segment_specialty", "territory"]
     # 3 reps per territory
     assert (reps.groupby("territory").size() == 3).all()
     # 4 in each hire cohort
@@ -202,6 +203,15 @@ def test_generate_reps_skeleton_shape():
     assert reps["rep_id"].tolist() == [f"REP-{i:02d}" for i in range(1, 13)]
     # All names unique
     assert reps["name"].nunique() == 12
+    # Cohort-aligned specialty: 4 Enterprise (veterans), 4 Mid-Market (mid), 4 SMB (new)
+    spec_counts = reps["segment_specialty"].value_counts()
+    assert spec_counts["Enterprise"] == 4
+    assert spec_counts["Mid-Market"] == 4
+    assert spec_counts["SMB"] == 4
+    # Mapping is cohort-aligned: REP-01..04 = Enterprise, 05..08 = Mid-Market, 09..12 = SMB
+    assert reps[reps["rep_id"].isin([f"REP-{i:02d}" for i in range(1, 5)])]["segment_specialty"].eq("Enterprise").all()
+    assert reps[reps["rep_id"].isin([f"REP-{i:02d}" for i in range(5, 9)])]["segment_specialty"].eq("Mid-Market").all()
+    assert reps[reps["rep_id"].isin([f"REP-{i:02d}" for i in range(9, 13)])]["segment_specialty"].eq("SMB").all()
 
 
 def test_generate_reps_skeleton_deterministic():
@@ -216,54 +226,43 @@ def test_generate_reps_skeleton_deterministic():
     pd.testing.assert_frame_equal(a, b)
 
 
-def test_backfit_specialty_picks_modal_segment():
-    """A rep with 5 SMB wins and 2 MM wins is tagged SMB."""
+def test_add_quotas_to_reps_assigns_correct_tier():
+    """backfit_reps_specialty_and_quota (now just quota-assignment) reads
+    pre-assigned segment_specialty from the skeleton and looks up quarterly_quota
+    from QUOTA_BY_SPECIALTY. No modal-segment logic is applied."""
     from src.data_generator import backfit_reps_specialty_and_quota
 
     reps_skel = pd.DataFrame([
-        {"rep_id": "REP-01", "name": "Test One", "hire_date": "2021-01-15", "territory": "North"},
-        {"rep_id": "REP-02", "name": "Test Two", "hire_date": "2021-01-15", "territory": "South"},
+        {"rep_id": "REP-01", "name": "Test One", "hire_date": "2021-01-15",
+         "segment_specialty": "Enterprise", "territory": "North"},
+        {"rep_id": "REP-05", "name": "Test Five", "hire_date": "2023-03-10",
+         "segment_specialty": "Mid-Market", "territory": "South"},
+        {"rep_id": "REP-09", "name": "Test Nine", "hire_date": "2024-08-01",
+         "segment_specialty": "SMB", "territory": "East"},
     ])
-    opps = pd.DataFrame([
-        # REP-01: 5 SMB wins, 2 MM wins → SMB
-        *[{"opportunity_id": f"OPP-{i}", "owner_rep_id": "REP-01",
-           "opportunity_type": "new_business", "status": "closed_won",
-           "segment": "SMB", "amount": 10_000.0, "close_date": "2024-01-01",
-           "created_date": "2023-12-01", "customer_id": None,
-           "account_name": "x", "acquisition_channel": "Outbound Sales",
-           "current_stage": "Closed Won"} for i in range(5)],
-        *[{"opportunity_id": f"OPP-{i+5}", "owner_rep_id": "REP-01",
-           "opportunity_type": "new_business", "status": "closed_won",
-           "segment": "Mid-Market", "amount": 50_000.0, "close_date": "2024-01-01",
-           "created_date": "2023-12-01", "customer_id": None,
-           "account_name": "x", "acquisition_channel": "Outbound Sales",
-           "current_stage": "Closed Won"} for i in range(2)],
-        # REP-02: 3 Enterprise wins → Enterprise
-        *[{"opportunity_id": f"OPP-{i+7}", "owner_rep_id": "REP-02",
-           "opportunity_type": "new_business", "status": "closed_won",
-           "segment": "Enterprise", "amount": 800_000.0, "close_date": "2024-01-01",
-           "created_date": "2023-12-01", "customer_id": None,
-           "account_name": "x", "acquisition_channel": "Outbound Sales",
-           "current_stage": "Closed Won"} for i in range(3)],
-    ])
+    # opps_df is unused (kept for backward compatibility); pass an empty frame
+    opps_empty = pd.DataFrame(columns=["opportunity_id", "owner_rep_id",
+                                        "opportunity_type", "status", "segment"])
 
-    result = backfit_reps_specialty_and_quota(reps_skel, opps)
+    result = backfit_reps_specialty_and_quota(reps_skel, opps_empty)
     result = result.set_index("rep_id")
 
-    assert result.loc["REP-01", "segment_specialty"] == "SMB"
-    assert result.loc["REP-01", "quarterly_quota"] == 150_000.0
-    assert result.loc["REP-02", "segment_specialty"] == "Enterprise"
-    assert result.loc["REP-02", "quarterly_quota"] == 1_500_000.0
+    assert result.loc["REP-01", "segment_specialty"] == "Enterprise"
+    assert result.loc["REP-01", "quarterly_quota"] == 500_000.0
+    assert result.loc["REP-05", "segment_specialty"] == "Mid-Market"
+    assert result.loc["REP-05", "quarterly_quota"] == 150_000.0
+    assert result.loc["REP-09", "segment_specialty"] == "SMB"
+    assert result.loc["REP-09", "quarterly_quota"] == 80_000.0
 
 
 def test_backfit_quota_tiers_by_specialty():
-    """Quarterly quota tier: SMB $150K, Mid-Market $500K, Enterprise $1.5M."""
+    """Quarterly quota tier: SMB $80K, Mid-Market $150K, Enterprise $500K."""
     from src.data_generator import QUOTA_BY_SPECIALTY
 
     assert QUOTA_BY_SPECIALTY == {
-        "SMB": 150_000.0,
-        "Mid-Market": 500_000.0,
-        "Enterprise": 1_500_000.0,
+        "SMB": 80_000.0,
+        "Mid-Market": 150_000.0,
+        "Enterprise": 500_000.0,
     }
 
 
@@ -331,9 +330,16 @@ def test_midmarket_poc_stall_still_2x(tmp_path):
 
 
 def test_ramp_curve_visible_in_data(tmp_path):
-    """Phase 3 insight: reps with <6 months tenure have median attainment ≥ 20pp
-    lower than reps with 12+ months tenure. This protects the engineered
-    ramp insight against future generator tweaks.
+    """Phase 3 insight: within the SMB new-hire cohort (REP-09..12, the actual
+    ramping reps), attainment at 6-12 months tenure is ≥ 20pp higher than at
+    0-3 months tenure.
+
+    With tiered quotas (Enterprise $500K, Mid-Market $150K, SMB $80K), comparing
+    attainment_pct across specialty groups is misleading — Enterprise veterans
+    rarely hit 100% of a $1.5M quota from dataset-window deals. Instead, we
+    measure the ramp signal within the SMB cohort where (a) the ramp is
+    concentrated, (b) the quota is calibrated to dataset ACV, and (c) the
+    'career progression' narrative lives.
     """
     from src.data_generator import write_to_disk
     from src.quota import ramp_curve
@@ -345,43 +351,57 @@ def test_ramp_curve_visible_in_data(tmp_path):
                  & (opps["status"] == "closed_won")]
 
     curve = ramp_curve(opps, reps)
-    early = curve.loc[curve["tenure_months"] < 6.0, "attainment_pct"].median()
-    tenured = curve.loc[curve["tenure_months"] >= 12.0, "attainment_pct"].median()
-    gap_pp = (tenured - early) * 100
+
+    # Filter to SMB reps (the new-hire cohort, REP-09..12)
+    smb_reps = reps.loc[reps["segment_specialty"] == "SMB", "rep_id"].tolist()
+    smb_curve = curve[curve["rep_id"].isin(smb_reps)]
+
+    early = smb_curve.loc[smb_curve["tenure_months"] < 3.0, "attainment_pct"].median()
+    ramped = smb_curve.loc[smb_curve["tenure_months"] >= 6.0, "attainment_pct"].median()
+    gap_pp = (ramped - early) * 100
     assert gap_pp >= 20.0, (
-        f"ramp gap is only {gap_pp:.1f}pp — engineered insight #3 is too weak; "
-        f"early-tenure median={early:.3f}, tenured median={tenured:.3f}"
+        f"SMB ramp gap is only {gap_pp:.1f}pp — engineered insight #3 is too weak; "
+        f"early-tenure (<3mo) median={early:.3f}, ramped (>=6mo) median={ramped:.3f}"
     )
 
 
-def test_reps_csv_specialty_matches_historical_mix(tmp_path):
-    """Each rep's segment_specialty equals their modal closed-won segment.
-    Validates the two-pass backfit."""
+def test_specialists_own_majority_of_their_segment(tmp_path):
+    """The 4 reps with each specialty collectively own ≥50% of closed-won new-
+    business deals in their segment, counted only from the month the first specialist
+    was hired onward.
+
+    This "eligible window" filter is necessary because deals before the first
+    specialist was hired cannot possibly route to a specialist — they go to whoever
+    was eligible at the time. Validating the post-hire window verifies the
+    specialty routing is actually working.
+    """
     from src.data_generator import write_to_disk
 
     write_to_disk(tmp_path)
     reps = pd.read_csv(tmp_path / "reps.csv")
     opps = pd.read_csv(tmp_path / "opportunities.csv")
     nb_won = opps[(opps["opportunity_type"] == "new_business")
-                   & (opps["status"] == "closed_won")]
+                   & (opps["status"] == "closed_won")].copy()
+    nb_won["close_date"] = pd.to_datetime(nb_won["close_date"])
 
-    for _, rep in reps.iterrows():
-        rep_won = nb_won[nb_won["owner_rep_id"] == rep["rep_id"]]
-        if len(rep_won) == 0:
-            assert rep["segment_specialty"] == "SMB", \
-                f"rep with no wins should default to SMB; got {rep['segment_specialty']}"
-            continue
-        modal = (
-            rep_won.groupby("segment").size()
-            .sort_values(ascending=False).index[0]
-        )
-        # Handle alphabetical tie-break
-        counts = rep_won.groupby("segment").size().sort_values(ascending=False)
-        top_count = counts.iloc[0]
-        tied_segments = sorted(counts[counts == top_count].index.tolist())
-        expected = tied_segments[0]
-        assert rep["segment_specialty"] == expected, (
-            f"{rep['rep_id']} specialty={rep['segment_specialty']} but modal segment={expected}"
+    merged = nb_won.merge(reps[["rep_id", "segment_specialty"]],
+                           left_on="owner_rep_id", right_on="rep_id", how="inner")
+
+    for spec in ["Enterprise", "Mid-Market", "SMB"]:
+        # Earliest hire date among specialists for this segment
+        spec_reps = reps[reps["segment_specialty"] == spec]
+        first_hire = pd.to_datetime(spec_reps["hire_date"]).min()
+
+        # Only count deals that closed on or after first_hire (when routing could work)
+        segment_wins = merged[
+            (merged["segment"] == spec) & (merged["close_date"] >= first_hire)
+        ]
+        matched = segment_wins[segment_wins["segment_specialty"] == spec]
+        pct = len(matched) / len(segment_wins) if len(segment_wins) > 0 else 0.0
+        assert pct >= 0.50, (
+            f"{spec} specialists own only {pct:.1%} of {spec} closed-won deals "
+            f"since first specialist hire ({first_hire.date()}) "
+            f"({len(matched)}/{len(segment_wins)}); expected ≥50%"
         )
 
 

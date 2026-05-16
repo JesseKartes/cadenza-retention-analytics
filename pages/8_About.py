@@ -80,9 +80,10 @@ def main():
 The Quota page surfaces rep-level performance: quarterly attainment,
 attainment distribution across the team, a longitudinal ramp curve, and
 territory × segment balance. Twelve reps carry tiered quotas
-(SMB \\$150K, Mid-Market \\$500K, Enterprise \\$1.5M per quarter) and are
+(SMB \\$80K, Mid-Market \\$150K, Enterprise \\$500K per quarter) and are
 staggered across hire cohorts — four veterans (hired pre-2023), four
 mid-tenure, four still ramping at dataset end.
+Tiers calibrated against the dataset's actual per-rep deal volume so attainment percentages land in a realistic 30-150% range across the team.
 
 **Hidden insight #3 — ramp longer than assumed.** The team's actual ramp curve
 hits full productivity around month 9, not the industry-standard month 6.
