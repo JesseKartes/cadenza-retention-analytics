@@ -59,3 +59,19 @@ def test_attainment_status_buckets(sample_reps, sample_opps_for_quota):
     assert result.loc["REP-C", "status"] == "At Risk"
     # REP-A is 120% → At/Above
     assert result.loc["REP-A", "status"] == "At/Above"
+
+
+def test_attainment_distribution_sorted(sample_reps, sample_opps_for_quota):
+    """attainment_distribution returns rows sorted descending by attainment_pct."""
+    from src.quota import attainment_distribution
+
+    result = attainment_distribution(
+        sample_opps_for_quota, sample_reps, pd.Period("2025Q4")
+    )
+    pcts = result["attainment_pct"].tolist()
+    assert pcts == sorted(pcts, reverse=True), \
+        f"Expected descending, got {pcts}"
+
+    # Top row is REP-A at 120%; bottom row is REP-D at 20%
+    assert result.iloc[0]["rep_id"] == "REP-A"
+    assert result.iloc[-1]["rep_id"] == "REP-D"

@@ -57,3 +57,14 @@ def _attainment_status(pct: float) -> str:
     if pct >= 0.7:
         return "On Track"
     return "At Risk"
+
+
+def attainment_distribution(opps: pd.DataFrame, reps: pd.DataFrame,
+                              quarter: pd.Period) -> pd.DataFrame:
+    """Per-rep attainment for the quarter, sorted descending. Powers §1 of the page.
+
+    Returns the same columns as `quarterly_attainment`, sorted by attainment_pct desc.
+    """
+    return quarterly_attainment(opps, reps, quarter).sort_values(
+        "attainment_pct", ascending=False
+    ).reset_index(drop=True)
