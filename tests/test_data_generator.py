@@ -214,3 +214,54 @@ def test_generate_reps_skeleton_deterministic():
     a = generate_reps_skeleton(rng1)
     b = generate_reps_skeleton(rng2)
     pd.testing.assert_frame_equal(a, b)
+
+
+def test_backfit_specialty_picks_modal_segment():
+    """A rep with 5 SMB wins and 2 MM wins is tagged SMB."""
+    from src.data_generator import backfit_reps_specialty_and_quota
+
+    reps_skel = pd.DataFrame([
+        {"rep_id": "REP-01", "name": "Test One", "hire_date": "2021-01-15", "territory": "North"},
+        {"rep_id": "REP-02", "name": "Test Two", "hire_date": "2021-01-15", "territory": "South"},
+    ])
+    opps = pd.DataFrame([
+        # REP-01: 5 SMB wins, 2 MM wins → SMB
+        *[{"opportunity_id": f"OPP-{i}", "owner_rep_id": "REP-01",
+           "opportunity_type": "new_business", "status": "closed_won",
+           "segment": "SMB", "amount": 10_000.0, "close_date": "2024-01-01",
+           "created_date": "2023-12-01", "customer_id": None,
+           "account_name": "x", "acquisition_channel": "Outbound Sales",
+           "current_stage": "Closed Won"} for i in range(5)],
+        *[{"opportunity_id": f"OPP-{i+5}", "owner_rep_id": "REP-01",
+           "opportunity_type": "new_business", "status": "closed_won",
+           "segment": "Mid-Market", "amount": 50_000.0, "close_date": "2024-01-01",
+           "created_date": "2023-12-01", "customer_id": None,
+           "account_name": "x", "acquisition_channel": "Outbound Sales",
+           "current_stage": "Closed Won"} for i in range(2)],
+        # REP-02: 3 Enterprise wins → Enterprise
+        *[{"opportunity_id": f"OPP-{i+7}", "owner_rep_id": "REP-02",
+           "opportunity_type": "new_business", "status": "closed_won",
+           "segment": "Enterprise", "amount": 800_000.0, "close_date": "2024-01-01",
+           "created_date": "2023-12-01", "customer_id": None,
+           "account_name": "x", "acquisition_channel": "Outbound Sales",
+           "current_stage": "Closed Won"} for i in range(3)],
+    ])
+
+    result = backfit_reps_specialty_and_quota(reps_skel, opps)
+    result = result.set_index("rep_id")
+
+    assert result.loc["REP-01", "segment_specialty"] == "SMB"
+    assert result.loc["REP-01", "quarterly_quota"] == 150_000.0
+    assert result.loc["REP-02", "segment_specialty"] == "Enterprise"
+    assert result.loc["REP-02", "quarterly_quota"] == 1_500_000.0
+
+
+def test_backfit_quota_tiers_by_specialty():
+    """Quarterly quota tier: SMB $150K, Mid-Market $500K, Enterprise $1.5M."""
+    from src.data_generator import QUOTA_BY_SPECIALTY
+
+    assert QUOTA_BY_SPECIALTY == {
+        "SMB": 150_000.0,
+        "Mid-Market": 500_000.0,
+        "Enterprise": 1_500_000.0,
+    }

@@ -1090,6 +1090,13 @@ def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.Data
     return opps_df, history_df, snapshots_df
 
 
+QUOTA_BY_SPECIALTY = {
+    "SMB":        150_000.0,
+    "Mid-Market": 500_000.0,
+    "Enterprise": 1_500_000.0,
+}
+
+
 def generate_reps_skeleton(rng: np.random.Generator) -> pd.DataFrame:
     """Phase 3: build the partial reps table.
 
@@ -1140,6 +1147,45 @@ def generate_reps_skeleton(rng: np.random.Generator) -> pd.DataFrame:
         "hire_date":  hire_dates,
         "territory":  territories,
     })
+
+
+def backfit_reps_specialty_and_quota(reps_skel: pd.DataFrame,
+                                       opps_df: pd.DataFrame) -> pd.DataFrame:
+    """Phase 3 step 2: fill in segment_specialty and quarterly_quota.
+
+    For each rep, segment_specialty = the segment they closed the most
+    new-business deals in (modal segment of their closed-won deals).
+    quarterly_quota is then looked up from QUOTA_BY_SPECIALTY.
+
+    Tie-breaking: if a rep is tied across segments, the segment alphabetically
+    first wins (deterministic). This is rare in the full dataset.
+
+    A rep with zero closed-won deals defaults to SMB (lowest quota); this
+    only happens for very-recently-hired reps with no wins yet.
+    """
+    nb_won = opps_df[
+        (opps_df["opportunity_type"] == "new_business")
+        & (opps_df["status"] == "closed_won")
+    ]
+
+    modal_segment = (
+        nb_won.groupby(["owner_rep_id", "segment"])
+        .size()
+        .reset_index(name="n")
+        .sort_values(["owner_rep_id", "n", "segment"], ascending=[True, False, True])
+        .drop_duplicates(subset="owner_rep_id", keep="first")
+        .set_index("owner_rep_id")["segment"]
+    )
+
+    out = reps_skel.copy()
+    out["segment_specialty"] = (
+        out["rep_id"].map(modal_segment).fillna("SMB")
+    )
+    out["quarterly_quota"] = out["segment_specialty"].map(QUOTA_BY_SPECIALTY)
+
+    return out[
+        ["rep_id", "name", "hire_date", "segment_specialty", "territory", "quarterly_quota"]
+    ]
 
 
 if __name__ == "__main__":
