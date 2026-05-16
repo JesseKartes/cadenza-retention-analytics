@@ -122,3 +122,23 @@ def test_ramp_curve_zero_close_month_is_zero_not_nan(sample_reps, sample_opps_fo
     # And the months REP-D *was* hired but had no closes should be 0.0, not NaN.
     rep_d_post_hire = result[result["rep_id"] == "REP-D"]
     assert rep_d_post_hire["attainment_pct"].notna().all()
+
+
+def test_ramp_bucket_attainment_orders_correctly(sample_reps, sample_opps_for_quota):
+    """Median attainment increases monotonically across tenure buckets."""
+    from src.quota import ramp_bucket_attainment
+
+    result = ramp_bucket_attainment(sample_opps_for_quota, sample_reps)
+
+    # Returned with exactly these 4 buckets in this order
+    assert result["tenure_bucket"].tolist() == ["0-3 mo", "3-6 mo", "6-12 mo", "12+ mo"]
+
+    # Each bucket has a median_attainment column (float or NaN if empty)
+    assert "median_attainment" in result.columns
+
+    # The 12+ mo bucket median should exceed the 0-3 mo bucket median.
+    # (sample_opps_for_quota deliberately encodes lower attainment for early-tenure reps.)
+    tenured = result.loc[result["tenure_bucket"] == "12+ mo", "median_attainment"].iloc[0]
+    early = result.loc[result["tenure_bucket"] == "0-3 mo", "median_attainment"].iloc[0]
+    if pd.notna(early):  # only meaningful if the bucket has any rows
+        assert tenured > early

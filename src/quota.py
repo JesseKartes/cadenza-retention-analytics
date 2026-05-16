@@ -124,3 +124,33 @@ def ramp_curve(opps: pd.DataFrame, reps: pd.DataFrame) -> pd.DataFrame:
                 "attainment_pct": float(amt_3mo) / float(rep["quarterly_quota"]),
             })
     return pd.DataFrame(rows)
+
+
+RAMP_BUCKETS = [
+    ("0-3 mo",  0.0,  3.0),
+    ("3-6 mo",  3.0,  6.0),
+    ("6-12 mo", 6.0, 12.0),
+    ("12+ mo", 12.0, float("inf")),
+]
+
+
+def ramp_bucket_attainment(opps: pd.DataFrame, reps: pd.DataFrame) -> pd.DataFrame:
+    """Median attainment_pct across all (rep × month) observations, bucketed by tenure.
+
+    Buckets: 0-3, 3-6, 6-12, 12+ months. Median is across all rep-months that fall
+    into each bucket — so a rep contributes multiple data points as their tenure grows.
+
+    Returns DataFrame with: tenure_bucket, n_observations, median_attainment.
+    median_attainment is NaN if a bucket has no observations.
+    """
+    curve = ramp_curve(opps, reps)
+    out = []
+    for label, lo, hi in RAMP_BUCKETS:
+        mask = (curve["tenure_months"] >= lo) & (curve["tenure_months"] < hi)
+        in_bucket = curve.loc[mask, "attainment_pct"]
+        out.append({
+            "tenure_bucket": label,
+            "n_observations": int(in_bucket.shape[0]),
+            "median_attainment": float(in_bucket.median()) if len(in_bucket) else float("nan"),
+        })
+    return pd.DataFrame(out)

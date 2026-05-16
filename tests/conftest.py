@@ -372,4 +372,43 @@ def sample_opps_for_quota() -> pd.DataFrame:
         for month in ("01", "02", "03", "04", "05", "06", "07", "08", "09"):
             add(rep, True, amt, seg, f"2025-{month}-01", f"2025-{month}-25")
 
+    # --- 2024 closes for veteran reps — populates 12+ mo bucket with non-zero rows ---
+    # Without these, REP-A/REP-B/REP-F have only zeros in the 12+ mo bucket for
+    # 2021-2023 (years with no data), making the 12+ median collapse to 0.0.
+    # This block adds Jan-Sep 2024 at the same per-month rate as 2025 so the
+    # rolling-3mo attainment in 12+ mo territory is substantial (0.6-1.8× for REP-A).
+    for rep, amt, seg in [
+        ("REP-A", 900_000, "Enterprise"),
+        ("REP-B", 50_000,  "Mid-Market"),
+        ("REP-F", 800_000, "Enterprise"),
+    ]:
+        for month in ("01", "02", "03", "04", "05", "06", "07", "08", "09"):
+            add(rep, True, amt, seg, f"2024-{month}-01", f"2024-{month}-25")
+
+    # --- Early-career closes (months 1-3) — populates 0-3 mo bucket with non-zero rows ---
+    # Without these, veteran reps contribute zeros to the 0-3 mo bucket (no data
+    # exists for their 2020/2022/2023 first months), making the 0-3 mo median also
+    # collapse to 0.0, defeating the ramp_bucket_attainment monotonicity test.
+    # Amounts are ~5% of quarterly_quota so early-tenure attainment is clearly lower
+    # than the 12+ mo median (which is 0.6-1.8 for REP-A in 2024-2025).
+    early_career = [
+        ("REP-A", 75_000, "Enterprise", "2020-02-01", "2020-02-25"),
+        ("REP-A", 75_000, "Enterprise", "2020-03-01", "2020-03-25"),
+        ("REP-A", 75_000, "Enterprise", "2020-04-01", "2020-04-25"),
+        ("REP-B", 25_000, "Mid-Market", "2022-07-01", "2022-07-25"),
+        ("REP-B", 25_000, "Mid-Market", "2022-08-01", "2022-08-25"),
+        ("REP-B", 25_000, "Mid-Market", "2022-09-01", "2022-09-25"),
+        ("REP-C", 25_000, "Mid-Market", "2024-02-01", "2024-02-25"),
+        ("REP-C", 25_000, "Mid-Market", "2024-03-01", "2024-03-25"),
+        ("REP-C", 25_000, "Mid-Market", "2024-04-01", "2024-04-25"),
+        ("REP-E",  7_500, "SMB",        "2024-10-01", "2024-10-25"),
+        ("REP-E",  7_500, "SMB",        "2024-11-01", "2024-11-25"),
+        ("REP-E",  7_500, "SMB",        "2024-12-01", "2024-12-25"),
+        ("REP-F", 75_000, "Enterprise", "2023-04-01", "2023-04-25"),
+        ("REP-F", 75_000, "Enterprise", "2023-05-01", "2023-05-25"),
+        ("REP-F", 75_000, "Enterprise", "2023-06-01", "2023-06-25"),
+    ]
+    for rep, amt, seg, created, close in early_career:
+        add(rep, True, amt, seg, created, close)
+
     return pd.DataFrame(rows)
