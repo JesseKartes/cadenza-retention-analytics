@@ -279,6 +279,9 @@ def attainment_distribution_figure(distribution: pd.DataFrame, quarter_label: st
             y=distribution["name"],
             orientation="h",
             marker={"color": colors},
+            text=[f"{p:.0%}" for p in distribution["attainment_pct"]],
+            textposition="outside",
+            cliponaxis=False,
             hovertemplate="%{y}<br>Attainment: %{x:.0%}<extra></extra>",
         )
     )
@@ -295,47 +298,64 @@ def attainment_distribution_figure(distribution: pd.DataFrame, quarter_label: st
 
 
 def ramp_curve_figure(curve: pd.DataFrame) -> go.Figure:
-    """Longitudinal ramp curve: mean rolling-3mo attainment % vs. tenure months.
+    """Longitudinal ramp curve: median rolling-3mo attainment % vs. tenure months.
 
-    Aggregates across all reps. Two annotated vertical reference lines:
-      - month 6:  "Industry-assumed ramp"  (CADENZA_NEUTRAL)
-      - month 9:  "Actual full productivity" (CADENZA_ACCENT)
-    Horizontal reference at 100%.
+    Uses median (robust to Enterprise lumpiness — a few high-$ Enterprise deals
+    per quarter would dominate a mean). Caps the x-axis at 18 months where the
+    ramp signal is cleanest; beyond month 18 the population thins and Enterprise
+    variance dominates the visual.
+
+    Two annotated vertical reference lines:
+      - month 6:  "Assumed ramp (6mo)"        (CADENZA_NEUTRAL, top-left position)
+      - month 9:  "Actual ramp (~9mo)"        (CADENZA_ACCENT,  top-right position)
+    Annotation positions stagger left/right of each line so the labels do not
+    overlap each other.
+    Horizontal reference at 100% on the right.
     """
-    # Bin tenure into 1-month bins and take the mean across reps
     binned = curve.copy()
     binned["tenure_bin"] = binned["tenure_months"].round().astype(int)
     agg = (
         binned.groupby("tenure_bin", as_index=False)["attainment_pct"]
-        .mean()
+        .median()
         .sort_values("tenure_bin")
     )
-    # Clip x to 0-30 months for readability
-    agg = agg[(agg["tenure_bin"] >= 0) & (agg["tenure_bin"] <= 30)]
+    # Cap x to 0-18 months where the ramp signal is cleanest
+    agg = agg[(agg["tenure_bin"] >= 0) & (agg["tenure_bin"] <= 18)]
+    # Smooth with a 3-month centered moving average on top of the median
+    agg["smoothed"] = (
+        agg["attainment_pct"].rolling(window=3, min_periods=1, center=True).mean()
+    )
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=agg["tenure_bin"],
-        y=agg["attainment_pct"],
+        y=agg["smoothed"],
         mode="lines+markers",
-        line={"color": CADENZA_PRIMARY, "width": 3},
+        line={"color": CADENZA_PRIMARY, "width": 3, "shape": "spline"},
         marker={"color": CADENZA_PRIMARY, "size": 7},
-        name="Rolling-3mo attainment %",
+        name="Median attainment (smoothed)",
         hovertemplate="Month %{x} since hire<br>%{y:.0%}<extra></extra>",
     ))
-    fig.add_hline(y=1.0, line_dash="dot", line_color=CADENZA_NEUTRAL,
-                   annotation_text="100% quota", annotation_position="right")
-    fig.add_vline(x=6, line_dash="dash", line_color=CADENZA_NEUTRAL,
-                   annotation_text="Industry-assumed ramp",
-                   annotation_position="top")
-    fig.add_vline(x=9, line_dash="dash", line_color=CADENZA_ACCENT,
-                   annotation_text="Actual full productivity",
-                   annotation_position="top")
+    fig.add_hline(
+        y=1.0, line_dash="dot", line_color=CADENZA_NEUTRAL,
+        annotation_text="100% quota", annotation_position="right",
+    )
+    fig.add_vline(
+        x=6, line_dash="dash", line_color=CADENZA_NEUTRAL,
+        annotation_text="Assumed ramp (6mo)",
+        annotation_position="top left",
+    )
+    fig.add_vline(
+        x=9, line_dash="dash", line_color=CADENZA_ACCENT,
+        annotation_text="Actual ramp (~9mo)",
+        annotation_position="top right",
+    )
     fig.update_layout(
-        title="Ramp curve — team-wide attainment by months since hire",
+        title="Ramp curve — team-wide median attainment by months since hire",
         xaxis_title="Months since hire",
-        yaxis_title="Attainment % (rolling 3mo)",
+        yaxis_title="Attainment % (rolling 3mo, median)",
         yaxis_tickformat=".0%",
+        xaxis={"range": [-0.5, 18.5]},
         height=420,
     )
     return fig
