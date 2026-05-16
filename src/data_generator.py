@@ -360,6 +360,22 @@ EXPANSION_STAGE_DWELL_DAYS = {"Expansion Discussion": 30}
 # Rep pool (captured on opps; not surfaced in Phase 2)
 REP_IDS = [f"REP-{i:02d}" for i in range(1, 13)]
 
+# --- Phase 3: Rep performance ---------------------------------------------
+
+REP_FIRST_NAMES = [
+    "Alex", "Priya", "Diego", "Jamie", "Riley", "Sam",
+    "Morgan", "Avery", "Casey", "Jordan", "Taylor", "Quinn",
+    "Robin", "Kai", "Logan", "Drew", "Emery", "Reese",
+    "Skylar", "Sage", "Rowan", "Phoenix", "Blake", "Hayden",
+]
+REP_LAST_NAMES = [
+    "Morgan", "Shah", "Lopez", "Chen", "Park", "Okafor",
+    "Anderson", "Patel", "Nguyen", "Garcia", "Murphy", "Singh",
+    "Schmidt", "Kim", "Rodriguez", "Wilson", "Tanaka", "Brown",
+    "Williams", "Martinez", "Davies", "Cohen", "Bhatt", "Reyes",
+]
+REP_TERRITORIES = ["North", "South", "East", "West"]
+
 # Pipeline snapshot dates (first of each quarter, Q1 2024 - Q4 2025)
 SNAPSHOT_DATES = [pd.Timestamp(f"{y}-{m:02d}-01") for y in (2024, 2025) for m in (1, 4, 7, 10)]
 
@@ -1019,6 +1035,58 @@ def generate_phase2(customers: pd.DataFrame, subs: pd.DataFrame, events: pd.Data
     snapshots_df = pd.DataFrame(snapshots)
 
     return opps_df, history_df, snapshots_df
+
+
+def generate_reps_skeleton(rng: np.random.Generator) -> pd.DataFrame:
+    """Phase 3: build the partial reps table.
+
+    Columns produced: rep_id, name, hire_date, territory.
+    Specialty and quarterly_quota are filled in later by
+    `backfit_reps_specialty_and_quota` once opportunities exist.
+
+    Hire date distribution:
+      - 4 reps in 2021-01-01 to 2022-12-31 (veteran, always tenured during dataset)
+      - 4 reps in 2023-01-01 to 2024-06-30 (mid-tenure, transition mid-dataset)
+      - 4 reps in 2024-07-01 to 2025-06-30 (new hires, still ramping at dataset end)
+    Names: drawn without replacement from REP_FIRST_NAMES x REP_LAST_NAMES.
+    Territories: round-robin so each of N/S/E/W has exactly 3 reps.
+    """
+    # Hire dates: 4 in each cohort
+    veteran_starts = pd.Timestamp("2021-01-01")
+    veteran_end    = pd.Timestamp("2022-12-31")
+    mid_start      = pd.Timestamp("2023-01-01")
+    mid_end        = pd.Timestamp("2024-06-30")
+    new_start      = pd.Timestamp("2024-07-01")
+    new_end        = pd.Timestamp("2025-06-30")
+
+    def random_dates_in(rng_: np.random.Generator, start: pd.Timestamp,
+                         end: pd.Timestamp, n: int) -> list[str]:
+        span_days = (end - start).days
+        offsets = rng_.integers(0, span_days + 1, size=n)
+        return [(start + pd.Timedelta(days=int(o))).strftime("%Y-%m-%d")
+                for o in sorted(offsets)]
+
+    hire_dates = (
+        random_dates_in(rng, veteran_starts, veteran_end, 4)
+        + random_dates_in(rng, mid_start, mid_end, 4)
+        + random_dates_in(rng, new_start, new_end, 4)
+    )
+
+    # Names: pick 12 unique first+last combos
+    first_idx = rng.permutation(len(REP_FIRST_NAMES))[:12]
+    last_idx  = rng.permutation(len(REP_LAST_NAMES))[:12]
+    names = [f"{REP_FIRST_NAMES[fi]} {REP_LAST_NAMES[li]}"
+             for fi, li in zip(first_idx, last_idx)]
+
+    # Territories round-robin
+    territories = [REP_TERRITORIES[i % 4] for i in range(12)]
+
+    return pd.DataFrame({
+        "rep_id":     [f"REP-{i:02d}" for i in range(1, 13)],
+        "name":       names,
+        "hire_date":  hire_dates,
+        "territory":  territories,
+    })
 
 
 if __name__ == "__main__":

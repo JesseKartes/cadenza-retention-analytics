@@ -176,3 +176,41 @@ def test_phase1_csvs_unchanged_after_phase2_generator():
                 f"{name} differs after regeneration. Phase 2 generator is "
                 f"perturbing Phase 1 RNG or outputs."
             )
+
+
+def test_generate_reps_skeleton_shape():
+    """generate_reps_skeleton returns 12 reps, 3 per territory, 4 per hire cohort."""
+    import numpy as np
+    from src.data_generator import generate_reps_skeleton, RNG_SEED
+
+    rng = np.random.default_rng(RNG_SEED + 3)
+    reps = generate_reps_skeleton(rng)
+
+    assert len(reps) == 12
+    assert list(reps.columns) == ["rep_id", "name", "hire_date", "territory"]
+    # 3 reps per territory
+    assert (reps.groupby("territory").size() == 3).all()
+    # 4 in each hire cohort
+    hire = pd.to_datetime(reps["hire_date"])
+    veteran = ((hire >= "2021-01-01") & (hire <= "2022-12-31")).sum()
+    mid     = ((hire >= "2023-01-01") & (hire <= "2024-06-30")).sum()
+    new     = ((hire >= "2024-07-01") & (hire <= "2025-06-30")).sum()
+    assert veteran == 4
+    assert mid == 4
+    assert new == 4
+    # rep_id format
+    assert reps["rep_id"].tolist() == [f"REP-{i:02d}" for i in range(1, 13)]
+    # All names unique
+    assert reps["name"].nunique() == 12
+
+
+def test_generate_reps_skeleton_deterministic():
+    """Same seed → same DataFrame, byte for byte."""
+    import numpy as np
+    from src.data_generator import generate_reps_skeleton, RNG_SEED
+
+    rng1 = np.random.default_rng(RNG_SEED + 3)
+    rng2 = np.random.default_rng(RNG_SEED + 3)
+    a = generate_reps_skeleton(rng1)
+    b = generate_reps_skeleton(rng2)
+    pd.testing.assert_frame_equal(a, b)
