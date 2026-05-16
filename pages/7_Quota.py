@@ -111,6 +111,47 @@ def render_kpis(opps: pd.DataFrame, reps: pd.DataFrame, quarter: pd.Period):
         st.caption("Prior-quarter Δ hidden — selected quarter sits at the dataset edge.")
 
 
+def render_section_attainment_distribution(opps: pd.DataFrame, reps: pd.DataFrame,
+                                              quarter: pd.Period):
+    st.subheader("Attainment Distribution")
+    dist = quota.attainment_distribution(opps, reps, quarter)
+    fig = viz.attainment_distribution_figure(dist, f"{quarter.year}-Q{quarter.quarter}")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_section_ramp_curve(opps_unfiltered: pd.DataFrame,
+                                reps_unfiltered: pd.DataFrame):
+    st.subheader("Ramp Curve")
+    st.caption("Computed across all reps and all months in the dataset — NOT "
+               "filtered by the quarter selector. The team reaches full "
+               "productivity around month 9, three months later than the "
+               "industry-standard 6-month ramp assumption.")
+    curve = quota.ramp_curve(opps_unfiltered, reps_unfiltered)
+    buckets = quota.ramp_bucket_attainment(opps_unfiltered, reps_unfiltered)
+    col_left, col_right = st.columns([3, 2])
+    with col_left:
+        st.plotly_chart(viz.ramp_curve_figure(curve), use_container_width=True)
+    with col_right:
+        st.plotly_chart(viz.ramp_bucket_attainment_figure(buckets),
+                          use_container_width=True)
+
+
+def render_section_territory_balance(opps: pd.DataFrame, reps: pd.DataFrame,
+                                       quarter: pd.Period):
+    st.subheader("Territory & Segment Balance")
+    balance = quota.territory_balance(opps, reps, quarter)
+    fig = viz.territory_balance_figure(balance, f"{quarter.year}-Q{quarter.quarter}")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_section_scorecard(opps: pd.DataFrame, reps: pd.DataFrame,
+                               quarter: pd.Period):
+    st.subheader("Rep Scorecard")
+    scorecard = quota.rep_scorecard(opps, reps, quarter)
+    styled = viz.rep_scorecard_styler(scorecard)
+    st.dataframe(styled, use_container_width=True, hide_index=True)
+
+
 def main():
     st.title("Quota Attainment & Rep Performance")
     st.caption("Per-rep new-business attainment, attainment distribution, ramp "
@@ -125,6 +166,19 @@ def main():
 
     st.divider()
     render_kpis(filtered_opps, filtered_reps, f["quarter"])
+
+    st.divider()
+    render_section_attainment_distribution(filtered_opps, filtered_reps, f["quarter"])
+
+    st.divider()
+    # Ramp curve is longitudinal — uses UNfiltered data
+    render_section_ramp_curve(opps, reps)
+
+    st.divider()
+    render_section_territory_balance(filtered_opps, filtered_reps, f["quarter"])
+
+    st.divider()
+    render_section_scorecard(filtered_opps, filtered_reps, f["quarter"])
 
 
 main()
