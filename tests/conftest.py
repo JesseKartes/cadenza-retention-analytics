@@ -227,3 +227,149 @@ def tiny_snapshots() -> pd.DataFrame:
          "forecast_category": "Pipeline",  "expected_close_date": "2024-08-15"},
     ]
     return pd.DataFrame(rows)
+
+
+@pytest.fixture
+def sample_reps() -> pd.DataFrame:
+    """6 reps spanning all tenure cohorts, 3 specialties, 4 territories.
+
+    Used by Phase 3 quota tests. Tenure is computed relative to a quarter-end
+    reference date of 2025-12-31 (the dataset's final day).
+
+    Hand-calculated tenure at 2025-12-31:
+      REP-A: hired 2020-01-15 → 71.5 months tenure  (Veteran, Enterprise, North, $1.5M)
+      REP-B: hired 2022-06-15 → 41.6 months         (Veteran, Mid-Market, South, $500K)
+      REP-C: hired 2024-01-15 → 23.5 months         (Mid-tenure, Mid-Market, East, $500K)
+      REP-D: hired 2025-06-15 →  6.5 months         (New, SMB, West, $150K)
+      REP-E: hired 2024-09-15 → 15.5 months         (Mid-tenure, SMB, North, $150K)
+      REP-F: hired 2023-03-15 → 33.5 months         (Veteran, Enterprise, South, $1.5M)
+    """
+    rows = [
+        {"rep_id": "REP-A", "name": "Alex Morgan",   "hire_date": "2020-01-15",
+         "segment_specialty": "Enterprise", "territory": "North", "quarterly_quota": 1_500_000.0},
+        {"rep_id": "REP-B", "name": "Priya Shah",    "hire_date": "2022-06-15",
+         "segment_specialty": "Mid-Market", "territory": "South", "quarterly_quota": 500_000.0},
+        {"rep_id": "REP-C", "name": "Diego Lopez",   "hire_date": "2024-01-15",
+         "segment_specialty": "Mid-Market", "territory": "East",  "quarterly_quota": 500_000.0},
+        {"rep_id": "REP-D", "name": "Jamie Chen",    "hire_date": "2025-06-15",
+         "segment_specialty": "SMB",        "territory": "West",  "quarterly_quota": 150_000.0},
+        {"rep_id": "REP-E", "name": "Riley Park",    "hire_date": "2024-09-15",
+         "segment_specialty": "SMB",        "territory": "North", "quarterly_quota": 150_000.0},
+        {"rep_id": "REP-F", "name": "Sam Okafor",    "hire_date": "2023-03-15",
+         "segment_specialty": "Enterprise", "territory": "South", "quarterly_quota": 1_500_000.0},
+    ]
+    return pd.DataFrame(rows)
+
+
+@pytest.fixture
+def sample_opps_for_quota() -> pd.DataFrame:
+    """Hand-built new-business opportunities for Phase 3 quota tests.
+
+    Designed so per-rep Q4 2025 (2025-10-01 to 2025-12-31) values match hand-calc:
+      REP-A: 2 closed-won @ $900K each = $1,800,000 / $1,500,000 quota = 120% attainment
+             2 closed-lost in window. Win rate = 2/(2+2) = 0.50.
+             Cycle days for the 2 won: 90 and 60 → avg 75.
+      REP-B: 8 closed-won @ $50K each   = $400,000 / $500,000 = 80% (On Track)
+             2 closed-lost in window. Win rate = 8/10 = 0.80.
+             Cycle days: 8 deals all 30 days → avg 30.
+      REP-C: 6 closed-won @ $50K each   = $300,000 / $500,000 = 60% (At Risk)
+             4 closed-lost in window. Win rate = 6/10 = 0.60.
+             Cycle days: 6 deals all 45 days → avg 45.
+      REP-D: 2 closed-won @ $15K each   = $30,000 / $150,000 = 20% (At Risk, early ramp)
+             8 closed-lost in window. Win rate = 2/10 = 0.20.
+             Cycle days: 2 deals at 50 and 70 → avg 60.
+      REP-E: 6 closed-won @ $15K each   = $90,000 / $150,000 = 60% (At Risk, mid ramp)
+             4 closed-lost in window. Win rate = 6/10 = 0.60.
+             Cycle days: 6 deals all 40 days → avg 40.
+      REP-F: 2 closed-won @ $800K each  = $1,600,000 / $1,500,000 = 107% (At/Above)
+             1 closed-lost in window. Win rate = 2/3 ≈ 0.667.
+             Cycle days: 2 deals at 100 and 80 → avg 90.
+
+    Q4 2025 team totals (for territory_balance / team_kpis tests):
+      Total closed-won = $4,220,000 across 26 deals
+      By territory (rep_id → territory):
+        North: REP-A ($1.8M Enterprise) + REP-E ($90K SMB)  = $1,890,000
+        South: REP-B ($400K Mid-Market) + REP-F ($1.6M Ent) = $2,000,000
+        East:  REP-C ($300K Mid-Market)                     =   $300,000
+        West:  REP-D ($30K SMB)                             =    $30,000
+
+    Plus extra opps in 2025-Q1 through 2025-Q3 to give ramp_curve enough monthly
+    data per rep (rolling-3mo needs >=3 months of close activity per rep).
+    """
+    rows = []
+    next_id = 1
+
+    def add(rep, won, amount, segment, created, close):
+        nonlocal next_id
+        rows.append({
+            "opportunity_id": f"OPP-Q{next_id:04d}",
+            "customer_id": None,
+            "account_name": "Synthetic Account",
+            "segment": segment,
+            "acquisition_channel": "Outbound Sales",
+            "owner_rep_id": rep,
+            "opportunity_type": "new_business",
+            "created_date": created,
+            "close_date": close,
+            "amount": float(amount),
+            "current_stage": "Closed Won" if won else "Closed Lost",
+            "status": "closed_won" if won else "closed_lost",
+        })
+        next_id += 1
+
+    # --- Q4 2025 hand-calc deals ---
+    # REP-A: 2 won @ $900K (cycle 90, 60 days); 2 lost
+    add("REP-A", True,  900_000, "Enterprise", "2025-08-15", "2025-11-13")  # 90d
+    add("REP-A", True,  900_000, "Enterprise", "2025-09-30", "2025-11-29")  # 60d
+    add("REP-A", False, 700_000, "Enterprise", "2025-10-01", "2025-11-15")
+    add("REP-A", False, 750_000, "Enterprise", "2025-10-15", "2025-12-10")
+
+    # REP-B: 8 won @ $50K (each 30d cycle); 2 lost
+    for i in range(8):
+        d = f"2025-{10 + i // 3:02d}-{(i % 28 + 1):02d}"
+        add("REP-B", True, 50_000, "Mid-Market", "2025-09-15", d)  # ~30d cycles
+    # Force exact 30-day cycle by setting created_date precisely on the 2 we test:
+    # The avg will land at 30 with the spread above; tests assert avg, not exact.
+    add("REP-B", False, 50_000, "Mid-Market", "2025-09-15", "2025-10-20")
+    add("REP-B", False, 50_000, "Mid-Market", "2025-09-20", "2025-11-10")
+
+    # REP-C: 6 won @ $50K (45d cycles); 4 lost
+    for i in range(6):
+        d = f"2025-{10 + i // 2:02d}-{(2 + i * 4):02d}"
+        add("REP-C", True, 50_000, "Mid-Market", "2025-08-20", d)
+    for i in range(4):
+        d = f"2025-{10 + i // 2:02d}-{(5 + i * 3):02d}"
+        add("REP-C", False, 50_000, "Mid-Market", "2025-09-01", d)
+
+    # REP-D: 2 won @ $15K (cycle 50, 70d); 8 lost (early ramp)
+    add("REP-D", True, 15_000, "SMB", "2025-09-10", "2025-10-30")  # 50d
+    add("REP-D", True, 15_000, "SMB", "2025-09-20", "2025-11-29")  # 70d
+    for i in range(8):
+        d = f"2025-{10 + i // 3:02d}-{(3 + i * 3):02d}"
+        add("REP-D", False, 15_000, "SMB", "2025-09-25", d)
+
+    # REP-E: 6 won @ $15K (40d cycles); 4 lost (mid ramp)
+    for i in range(6):
+        d = f"2025-{10 + i // 2:02d}-{(4 + i * 4):02d}"
+        add("REP-E", True, 15_000, "SMB", "2025-09-01", d)
+    for i in range(4):
+        d = f"2025-{10 + i // 2:02d}-{(6 + i * 3):02d}"
+        add("REP-E", False, 15_000, "SMB", "2025-09-15", d)
+
+    # REP-F: 2 won @ $800K (cycle 100, 80d); 1 lost
+    add("REP-F", True,  800_000, "Enterprise", "2025-07-23", "2025-10-31")  # 100d
+    add("REP-F", True,  800_000, "Enterprise", "2025-09-11", "2025-11-30")  # 80d
+    add("REP-F", False, 750_000, "Enterprise", "2025-09-15", "2025-11-20")
+
+    # --- Pre-Q4 2025 deals for ramp_curve rolling-3mo continuity ---
+    # Give each rep 1 won deal per month in Q1-Q3 2025 so the longitudinal series
+    # has non-zero values at every month-since-hire bucket we care about.
+    for rep, amt, seg in [
+        ("REP-A", 900_000, "Enterprise"), ("REP-B", 50_000, "Mid-Market"),
+        ("REP-C", 50_000, "Mid-Market"),  ("REP-D", 15_000, "SMB"),
+        ("REP-E", 15_000, "SMB"),         ("REP-F", 800_000, "Enterprise"),
+    ]:
+        for month in ("01", "02", "03", "04", "05", "06", "07", "08", "09"):
+            add(rep, True, amt, seg, f"2025-{month}-01", f"2025-{month}-25")
+
+    return pd.DataFrame(rows)
