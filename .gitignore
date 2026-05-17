@@ -23,3 +23,6 @@ venv/
 verify-*.png
 debug-*.png
 qa-*.png
+
+# Generated HTML guide (regenerate via scripts/build_plan_html.sh)
+tableau/build-guide.html
