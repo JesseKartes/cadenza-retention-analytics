@@ -70,6 +70,38 @@ Phase 4 (if any) should follow the same patterns established in Phases 1-3.
 
 ---
 
+## Loose ends and smaller next moves
+
+These are items captured on 2026-05-17 during the About-page polish session — smaller than a Phase 4 build, but worth doing before, alongside, or instead of starting Phase 4. Listed in rough order of likely value.
+
+### Tableau version of the dashboard
+
+Build a simplified Tableau workbook covering the same three motions (retention, pipeline & forecasting, quota & rep performance) — fewer pages, the headline metrics, and the three engineered insights. Estimated time: a few hours.
+
+**Why:** Most RevOps and Sales Operations roles use Tableau, Looker, or Power BI rather than Streamlit. A Tableau version demonstrates tooling versatility and de-risks the "they only know how to code dashboards" objection. It also makes the portfolio shareable through Tableau Public, where the audience overlaps with the role's hiring market.
+
+**How to start:** Open a new chat and develop a build plan — what to keep, what to drop, where the dataset CSVs live (`data/generated/*.csv`), and the layout strategy. The Cadenza brand palette, the metric definitions table, and the three engineered insights are all reusable; the Streamlit interactivity patterns are not.
+
+### Practice the recommendations learning guide
+
+`docs/recommendations-guide.md` and `docs/recommendations-guide.pdf` are the interview-prep companion: jargon decoded, RevOps rationale per recommendation, and a one-sentence pitch per finding. Read it once, then close it and re-explain each insight out loud — that's the practice loop that builds fluency.
+
+**Why:** The portfolio is already strong; the bottleneck for converting it into offers is *talking* about it confidently. Hiring managers don't read GitHub repos in interviews — they listen to how you frame the work.
+
+### External promotion of the portfolio
+
+LinkedIn headline update, resume / portfolio links, and one short post about the project. No code.
+
+**Why:** A portfolio is only useful if the hiring market sees it. The dashboard is live at `cadenza-retention-analytics.streamlit.app`; what's missing is the distribution. Adding "Cadenza portfolio" to a LinkedIn headline or featured section, dropping the URL into resume bullets, and a one-paragraph post explaining the project + the three engineered insights covers the basics.
+
+### Naming inconsistency on the Segment & Channel page
+
+`pages/3_Segment_Drilldown.py` renders as **"Segment Drilldown"** in the Streamlit sidebar (driven by filename) but the page header (`st.title`) and browser tab (`page_title`) both say **"Segment & Channel Deep-Dive"** / **"Cadenza — Segment & Channel"**. Pick one name and propagate — either rename the file to `3_Segment_and_Channel.py` (and update references in About page + this retrospective) or change the in-page title to match "Segment Drilldown." Roughly 10 minutes.
+
+**Why:** Minor cosmetic, but hiring managers screen-sharing the dashboard will notice when the sidebar label and the page header don't agree.
+
+---
+
 ## Phase 4 entry point (not yet scoped)
 
 Possible Phase 4 directions, ranked by hiring-manager value:
