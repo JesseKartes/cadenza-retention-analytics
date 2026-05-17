@@ -170,7 +170,8 @@ def main():
     st.markdown(
         """
         - **Source code:** https://github.com/JesseKartes/cadenza-retention-analytics
-        - **Live dashboard:** https://cadenza-retention-analytics.streamlit.app
+        - **Live Streamlit dashboard:** https://cadenza-retention-analytics.streamlit.app
+        - **Tableau Public companion:** [Cadenza on Tableau Public](https://public.tableau.com/app/profile/jesse.kartes/viz/Cadenza/CadenzaRetention) — same dataset, three dashboards (Retention, Sales Performance, Pipeline), for hiring teams that use Tableau, Looker, or Power BI rather than Streamlit.
         - **Author:** [Jesse Kartes](https://www.linkedin.com/in/jessekartes/) — RevOps / Sales Operations
         """
     )

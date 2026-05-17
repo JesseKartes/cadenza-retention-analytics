@@ -2,7 +2,8 @@
 
 A SaaS analytics application I built as a portfolio project while interviewing for Revenue Operations / Sales Operations roles. The dashboard covers retention, pipeline & forecasting, and rep performance & quota attainment.
 
-**Live dashboard:** https://cadenza-retention-analytics.streamlit.app
+**Live dashboard (Streamlit):** https://cadenza-retention-analytics.streamlit.app
+**Tableau Public companion:** https://public.tableau.com/app/profile/jesse.kartes/viz/Cadenza/CadenzaRetention
 
 **Author:** Jesse Kartes · [LinkedIn](https://www.linkedin.com/in/jessekartes/)
 
