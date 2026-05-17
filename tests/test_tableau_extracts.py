@@ -88,3 +88,23 @@ def test_rep_attainment_q4_2025_team_total_positive(rep_attainment: pd.DataFrame
     q4 = rep_attainment[rep_attainment["quarter"] == "2025Q4"]
     assert q4["closed_amount"].sum() > 0
     assert "specialty" in rep_attainment.columns
+
+
+@pytest.fixture(scope="module")
+def ramp() -> pd.DataFrame:
+    return pd.read_csv(TABLEAU / "tableau_ramp_curve.csv")
+
+
+def test_ramp_curve_covers_through_actual_ramp_mark(ramp: pd.DataFrame) -> None:
+    # SMB reps were hired late in the dataset (earliest Dec 2024), so max tenure
+    # observable is ~11 months at data end. Curve must cover through M9 so the
+    # "Actual ramp (~9mo)" reference line on the Tableau viz has data behind it.
+    assert ramp["tenure_month_bucket"].min() == 0
+    assert ramp["tenure_month_bucket"].max() >= 9
+
+
+def test_ramp_curve_shows_gradient(ramp: pd.DataFrame) -> None:
+    """Insight: M0 attainment is meaningfully lower than M9+."""
+    early = ramp[ramp["tenure_month_bucket"] <= 2]["median_attainment_pct"].mean()
+    late = ramp[ramp["tenure_month_bucket"] >= 9]["median_attainment_pct"].mean()
+    assert late - early >= 0.15

@@ -154,6 +154,40 @@ def build_rep_attainment(
     return pd.DataFrame(rows)
 
 
+def build_ramp_curve(
+    opps: pd.DataFrame, reps: pd.DataFrame
+) -> pd.DataFrame:
+    """Team-wide ramp curve: median attainment by integer tenure month, smoothed.
+
+    Mirrors the Streamlit ramp chart's methodology (src/viz.py:ramp_curve_figure):
+    median across all reps within each integer-month bucket, then a 3-month
+    centered rolling smooth on top to damp Enterprise lumpiness.
+
+    The SMB-only insight test lives in src/quota.py; this chart is team-wide
+    because that's where the "Assumed 6mo vs Actual ~9mo" story is told.
+    """
+    curve = quota.ramp_curve(opps, reps)
+    if curve.empty:
+        return pd.DataFrame(columns=[
+            "tenure_month_bucket", "median_attainment_pct", "n_data_points"
+        ])
+    curve["bucket"] = curve["tenure_months"].astype(int)
+    out = (
+        curve.groupby("bucket")
+        .agg(
+            median_attainment_pct=("attainment_pct", "median"),
+            n_data_points=("attainment_pct", "size"),
+        )
+        .reset_index()
+        .rename(columns={"bucket": "tenure_month_bucket"})
+    )
+    out = out[out["tenure_month_bucket"] <= 18].sort_values("tenure_month_bucket")
+    out["median_attainment_pct"] = (
+        out["median_attainment_pct"].rolling(window=3, center=True, min_periods=1).mean()
+    )
+    return out.reset_index(drop=True)
+
+
 def main() -> None:
     TABLEAU.mkdir(parents=True, exist_ok=True)
     data = load_inputs()
@@ -166,6 +200,9 @@ def main() -> None:
 
     rep_attainment = build_rep_attainment(data["opportunities"], data["reps"])
     rep_attainment.to_csv(TABLEAU / "tableau_rep_attainment.csv", index=False)
+
+    ramp = build_ramp_curve(data["opportunities"], data["reps"])
+    ramp.to_csv(TABLEAU / "tableau_ramp_curve.csv", index=False)
 
     copy_raw_files()
     print(f"Wrote outputs to {TABLEAU.resolve()}")
