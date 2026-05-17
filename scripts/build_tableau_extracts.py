@@ -39,11 +39,60 @@ def copy_raw_files() -> None:
         shutil.copy(GENERATED / name, TABLEAU / name)
 
 
+def build_monthly_metrics(
+    subs: pd.DataFrame, events: pd.DataFrame
+) -> pd.DataFrame:
+    """One row per month: MRR + waterfall components + TTM NRR/GRR/Logo Retention.
+
+    TTM columns (nrr, grr, logo_retention) are NaN for the first 12 months
+    because there's not yet a 12-month-prior cohort to compare against.
+    """
+    months = sorted(subs["month"].unique())
+    rows = []
+    for i, m in enumerate(months):
+        prev = months[i - 1] if i > 0 else None
+        m12_prior = months[i - 12] if i >= 12 else None
+
+        total_mrr = float(
+            subs[(subs["month"] == m) & (subs["status"] == "active")]["mrr"].sum()
+        )
+
+        if prev is not None:
+            walk = metrics.mrr_waterfall(subs, events, prev, m)
+            new_mrr, exp_mrr, con_mrr, chu_mrr = (
+                walk["new"], walk["expansion"], walk["contraction"], walk["churn"],
+            )
+        else:
+            new_mrr = exp_mrr = con_mrr = chu_mrr = 0.0
+
+        if m12_prior is not None:
+            nrr_v = metrics.nrr(subs, m12_prior, m)
+            grr_v = metrics.grr(subs, m12_prior, m)
+            logo_v = 1.0 - metrics.logo_churn(subs, m12_prior, m)
+        else:
+            nrr_v = grr_v = logo_v = float("nan")
+
+        rows.append({
+            "month": m,
+            "total_mrr": total_mrr,
+            "new_mrr": new_mrr,
+            "expansion_mrr": exp_mrr,
+            "contraction_mrr": con_mrr,
+            "churn_mrr": chu_mrr,
+            "nrr": nrr_v,
+            "grr": grr_v,
+            "logo_retention": logo_v,
+        })
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     TABLEAU.mkdir(parents=True, exist_ok=True)
     data = load_inputs()
 
-    # Task 2-6 will add build_* function calls here.
+    monthly = build_monthly_metrics(data["subscriptions"], data["events"])
+    monthly.to_csv(TABLEAU / "tableau_monthly_metrics.csv", index=False)
+
     copy_raw_files()
     print(f"Wrote outputs to {TABLEAU.resolve()}")
 
