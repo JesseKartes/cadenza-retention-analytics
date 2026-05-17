@@ -86,12 +86,49 @@ def build_monthly_metrics(
     return pd.DataFrame(rows)
 
 
+def build_cohort_retention(
+    subs: pd.DataFrame, customers: pd.DataFrame
+) -> pd.DataFrame:
+    """Long-format cohort retention with channel dimension.
+
+    Rows: (signup_cohort, acquisition_channel, months_since_signup, retention_pct, n_customers).
+    Includes channel='All' as the weighted-overall view.
+    """
+    channels = list(customers["acquisition_channel"].unique()) + ["All"]
+    out = []
+    for ch in channels:
+        if ch == "All":
+            ch_customers = customers
+        else:
+            ch_customers = customers[customers["acquisition_channel"] == ch]
+        if ch_customers.empty:
+            continue
+        matrix = cohorts.logo_retention_matrix(subs, ch_customers, max_months_since_signup=24)
+        cohort_sizes = ch_customers.groupby("signup_cohort").size()
+        long = matrix.reset_index().melt(
+            id_vars="signup_cohort",
+            var_name="months_since_signup",
+            value_name="retention_pct",
+        )
+        long = long.dropna(subset=["retention_pct"])
+        long["acquisition_channel"] = ch
+        long["n_customers"] = long["signup_cohort"].map(cohort_sizes).astype(int)
+        out.append(long)
+    return pd.concat(out, ignore_index=True)[
+        ["signup_cohort", "acquisition_channel", "months_since_signup",
+         "retention_pct", "n_customers"]
+    ]
+
+
 def main() -> None:
     TABLEAU.mkdir(parents=True, exist_ok=True)
     data = load_inputs()
 
     monthly = build_monthly_metrics(data["subscriptions"], data["events"])
     monthly.to_csv(TABLEAU / "tableau_monthly_metrics.csv", index=False)
+
+    cohort = build_cohort_retention(data["subscriptions"], data["customers"])
+    cohort.to_csv(TABLEAU / "tableau_cohort_retention.csv", index=False)
 
     copy_raw_files()
     print(f"Wrote outputs to {TABLEAU.resolve()}")
