@@ -70,3 +70,21 @@ def test_cohort_retention_q3_2024_self_serve_visible(cohort: pd.DataFrame) -> No
     assert promo_churn > 1.5 * other_churn, (
         f"Q3 Promo churn ({promo_churn:.2%}) should be >1.5x other channels' churn ({other_churn:.2%})"
     )
+
+
+@pytest.fixture(scope="module")
+def rep_attainment() -> pd.DataFrame:
+    return pd.read_csv(TABLEAU / "tableau_rep_attainment.csv")
+
+
+def test_rep_attainment_row_count(rep_attainment: pd.DataFrame) -> None:
+    # 12 reps × 12 quarters = 144 max; with staggered hire dates (4 reps in 2022,
+    # rest dripped through 2025), actual count is ~97. Allow a wide band so a
+    # generator change that shifts hire dates doesn't break this test.
+    assert 80 <= len(rep_attainment) <= 144
+
+
+def test_rep_attainment_q4_2025_team_total_positive(rep_attainment: pd.DataFrame) -> None:
+    q4 = rep_attainment[rep_attainment["quarter"] == "2025Q4"]
+    assert q4["closed_amount"].sum() > 0
+    assert "specialty" in rep_attainment.columns

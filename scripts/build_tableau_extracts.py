@@ -120,6 +120,40 @@ def build_cohort_retention(
     ]
 
 
+def build_rep_attainment(
+    opps: pd.DataFrame, reps: pd.DataFrame
+) -> pd.DataFrame:
+    """One row per (rep × quarter). Includes pre-hire filtering — reps don't get rows
+    for quarters before their hire date.
+    """
+    opps = opps.copy()
+    opps["close_date"] = pd.to_datetime(opps["close_date"])
+    reps = reps.copy()
+    reps["hire_date"] = pd.to_datetime(reps["hire_date"])
+
+    quarters = pd.period_range(start="2023Q1", end="2025Q4", freq="Q")
+    rows = []
+    for q in quarters:
+        attainment = quota.quarterly_attainment(opps, reps, q)
+        for _, r in attainment.iterrows():
+            rep_row = reps[reps["rep_id"] == r["rep_id"]].iloc[0]
+            quarter_end = q.end_time
+            if rep_row["hire_date"] > quarter_end:
+                continue  # rep not yet hired
+            tenure_months = (quarter_end - rep_row["hire_date"]).days / 30.44
+            rows.append({
+                "rep_id": r["rep_id"],
+                "name": r["name"],
+                "specialty": rep_row["segment_specialty"],
+                "quarter": str(q),
+                "closed_amount": float(r["closed_amount"]),
+                "quarterly_quota": float(r["quarterly_quota"]),
+                "attainment_pct": float(r["attainment_pct"]),
+                "tenure_months_at_quarter_end": float(tenure_months),
+            })
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     TABLEAU.mkdir(parents=True, exist_ok=True)
     data = load_inputs()
@@ -129,6 +163,9 @@ def main() -> None:
 
     cohort = build_cohort_retention(data["subscriptions"], data["customers"])
     cohort.to_csv(TABLEAU / "tableau_cohort_retention.csv", index=False)
+
+    rep_attainment = build_rep_attainment(data["opportunities"], data["reps"])
+    rep_attainment.to_csv(TABLEAU / "tableau_rep_attainment.csv", index=False)
 
     copy_raw_files()
     print(f"Wrote outputs to {TABLEAU.resolve()}")
