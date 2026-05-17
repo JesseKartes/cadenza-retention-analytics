@@ -1,6 +1,6 @@
-# Cadenza Retention Analytics
+# Cadenza — SaaS Revenue Operations Portfolio
 
-A SaaS retention analytics application I built as a portfolio project while interviewing for Revenue Operations / Sales Operations roles in SaaS.
+A SaaS analytics application I built as a portfolio project while interviewing for Revenue Operations / Sales Operations roles. The dashboard covers retention, pipeline & forecasting, and rep performance & quota attainment.
 
 **Live dashboard:** https://cadenza-retention-analytics.streamlit.app
 
@@ -22,7 +22,7 @@ The dataset deliberately encodes a pattern that real RevOps teams encounter: cus
 - **Pipeline** — new-business pipeline coverage, weighted pipeline, stage velocity heatmap (surfaces the Mid-Market POC stall), stage conversion, and aging deals. Renewal and expansion analytics are deferred — see About.
 - **Forecasting** — commit/best-case/pipeline buckets, forecast accuracy trend across 8 quarterly snapshots, and per-segment forecast bias.
 - **Quota** — quarterly attainment, attainment distribution, ramp curve, territory balance, rep scorecard.
-- **About** — methodology, metric formulas, and what I'd recommend at a real company (CSM intervention plan, channel-quality scoring, tighter promo gating).
+- **About** — methodology, metric formulas, and what I'd recommend at a real company (tech-touch CSM motion, channel-quality scoring, tighter promo gating, Mid-Market POC playbook, ramp-aware comp & reviews).
 
 ## How it's built
 

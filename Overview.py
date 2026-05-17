@@ -1,4 +1,4 @@
-"""Cadenza Retention Analytics — Streamlit entry point + Overview page.
+"""Cadenza — Streamlit entry point + Overview page.
 
 Other pages live in pages/. Streamlit auto-discovers them and renders them
 in the sidebar nav.
@@ -13,7 +13,7 @@ import streamlit as st
 from src import metrics, viz
 
 st.set_page_config(
-    page_title="Cadenza Retention Analytics",
+    page_title="Cadenza",
     page_icon=":bar_chart:",
     layout="wide",
 )

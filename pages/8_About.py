@@ -11,90 +11,92 @@ def main():
 
     st.markdown(
         """
-        **Cadenza Retention Analytics** is a portfolio project demonstrating SaaS
-        revenue operations fluency. The data is synthetic. The dashboard, the metric
-        calculations, and the insight it surfaces are real.
+        **Cadenza** is a (fictional) B2B sales engagement platform. This dashboard
+        is a portfolio project demonstrating SaaS revenue operations fluency
+        across retention, pipeline, and rep performance. The data is synthetic
+        and deterministically generated; the dashboard, the metric calculations,
+        and the insights they surface are real.
 
-        ## The story
-        Cadenza is a (fictional) B2B sales engagement platform. On the surface,
-        the company's retention metrics look healthy — NRR around 108%, GRR around 91%.
-        But when you decompose by acquisition channel, a **Self-Serve Promo** cohort
-        from Q3 2024 churns at roughly **2× the rate** of customers from other channels.
-        The Cohort Analysis and Segment & Channel pages of this dashboard surface that
-        pattern.
+        ## What this dashboard covers
 
-        ## What I'd do next at a real company
-        - **CSM intervention playbook** for the Self-Serve Promo cohort: contract-end
+        Three motions of the SaaS revenue funnel:
+
+        - **Retention** — ARR, NRR, GRR, logo churn, and cohort decay.
+          *Overview*, *Cohort Analysis*, *Segment & Channel* pages.
+        - **Pipeline & Forecasting** — open pipeline, weighted coverage,
+          stage velocity, win rates, and forecast accuracy.
+          *Pipeline*, *Forecasting* pages.
+        - **Quota & Rep Performance** — quarterly attainment, attainment
+          distribution, ramp curves, and territory × segment balance.
+          *Quota* page.
+
+        ## Three insights this dashboard surfaces
+
+        ### Insight 1 — Self-Serve Promo churns ~2× faster
+
+        On the surface, Cadenza's retention looks healthy — NRR around 108%,
+        GRR around 91%. Decomposed by acquisition channel, a **Self-Serve Promo**
+        cohort from Q3 2024 churns at roughly **2× the rate** of other channels.
+        Surfaces on the *Cohort Analysis* and *Segment & Channel* pages.
+
+        **What I'd do next at a real company**
+        - **Tech-touch CSM motion** for the Self-Serve Promo cohort: contract-end
           outreach 60 days early, value-realization check-ins, expansion offers.
         - **Channel-quality scoring** partnered with marketing: weight new-customer
-          acquisitions by 12-month retention probability, not just first-month MRR.
+          acquisitions by M6 retention rate, not just first-month MRR.
         - **Tighter promo gating**: require a minimum 90-day product engagement
           threshold before discount eligibility on future promotional campaigns.
 
-        ## Phase 2 — Pipeline & Forecasting
+        ### Insight 2 — Mid-Market deals stall in POC ~2× longer
 
-        Phase 2 adds opportunity-level data on top of the Phase 1 subscription model.
-        Each non-Self-Serve Phase 1 customer was won as a new-business opportunity
-        that closed on their signup date; each annual renewal and each Phase 1
-        upgrade event spawns its own opportunity record. Self-Serve Promo customers
-        have no opportunity (self-serve is no-touch).
+        Mid-Market new-business deals dwell in **Proof of Concept** roughly 2×
+        longer than SMB or Enterprise deals, with markedly worse POC → Negotiation
+        conversion. The POC motion is built for SMB (fast, self-guided) and
+        Enterprise (custom, white-glove); Mid-Market falls in the gap. Surfaces
+        on the *Pipeline* page's Stage Velocity Heatmap.
 
-        Three motions are modeled distinctly:
+        **What I'd do next at a real company**
+        - **Mid-Market-specific POC playbook**: dedicated SE coverage, time-boxed
+          to 30 days, with defined success criteria agreed and emailed back to the
+          buyer up front.
+        - **Segment routing**: define Mid-Market by clear thresholds (revenue band,
+          headcount, or tech stack signals) and route those deals to a dedicated
+          SE pod — not handled as overgrown SMB or junior Enterprise.
+        - **POC exit gates**: if a deal hasn't transitioned to Negotiation within
+          45 days, trigger a forced review — escalate, re-scope, or disqualify.
 
-        - **New Business** — five-stage cycle (Discovery → Qualification → POC → Negotiation → Closed)
-        - **Renewal** — short two-stage cycle on each annual anniversary; lost renewals align
-          to Phase 1 churn events within ±30 days
-        - **Expansion** — one-stage cycle, closes on the date of the Phase 1 upgrade event
+        ### Insight 3 — Ramp is ~9 months, not 6
 
-        The engineered Phase 2 insight: **Mid-Market deals stall in Proof of Concept ~2×
-        longer than SMB or Enterprise**, with markedly worse POC → Negotiation conversion.
-        Surfaces in the Stage Velocity Heatmap on the Pipeline page. The recommendation:
-        the POC motion is built for SMB (fast, self-guided) and Enterprise (custom,
-        white-glove); Mid-Market falls in the gap and needs its own playbook.
+        The team's longitudinal ramp curve hits full productivity around **month 9**,
+        not the industry-standard month 6. New hires below 70% attainment in their
+        first two quarters aren't underperforming — they're tracking the team's
+        normal ramp. Surfaces on the *Quota* page's ramp curve.
 
-        ### Scope and deferrals
+        **What I'd do next at a real company**
+        - **Hiring lead times**: start backfill recruiting ~3 months earlier; assume a
+          new rep contributes meaningful capacity at month 9, not month 6.
+        - **Ramped quota schedule**: 25% / 50% / 100% over a 9-month curve instead of
+          front-loading full quota at month 6.
+        - **Performance reviews**: separate "tracking to ramp" from "underperforming."
+          Reps below 70% in months 0-6 are on-curve, not a coaching problem.
 
-        The Pipeline page is scoped to **net-new acquisition only** — the funnel,
-        stage velocity, and conversion analyses all assume the new-business
-        five-stage cycle. Renewals and expansions exist in the data model and
-        feed the Forecasting page's commit/best-case/pipeline buckets (because
-        a real forecast call blends all three motions), but dedicated
-        renewal-management and expansion-pipeline analytics — at-risk renewals,
-        gross renewal rate trend, expansion attainment, cross-sell mix — are
-        **deferred to a future phase (Phase 2.5+)**. In a real RevOps stack
-        those workflows are typically owned by CSM/AM teams in a separate
-        tool surface (e.g., Gainsight for renewals); they deserve their own
-        page rather than being grafted onto a new-business funnel.
+        ## Scope and deferrals
 
-        - **Quota is new-business only.** Renewal and expansion bookings do not count
-          toward AE attainment. Matches how most SaaS organizations separate AE comp
-          from CSM/AM comp. Renewal and expansion analytics live on the Pipeline and
-          Forecasting pages.
+        **Pipeline analysis is new-business only.** Funnel, stage velocity, and
+        conversion metrics on the *Pipeline* page assume the five-stage new-business
+        cycle. Renewals and expansions exist in the data model and contribute to the
+        *Forecasting* page's commit / best-case / pipeline buckets (because a real
+        forecast call blends all three motions), but dedicated renewal-management
+        and expansion-pipeline analytics — at-risk renewals, gross renewal rate trend,
+        expansion attainment, cross-sell mix — are deferred. In a real RevOps stack
+        those workflows are typically owned by CSM/AM teams in a separate tool
+        surface (e.g., Gainsight for renewals); they deserve their own dashboard
+        rather than being grafted onto a new-business funnel.
+
+        **Quota attainment is new-business only.** Renewal and expansion ACV do not
+        count toward AE quota. Matches the typical SaaS comp structure where AEs are
+        paid on new-logo bookings and CSM/AM teams are paid on renewal & expansion.
         """
-    )
-
-    st.markdown("---")
-    st.markdown("### Phase 3: Quota Attainment & Rep Performance")
-    st.markdown(
-        """
-The Quota page surfaces rep-level performance: quarterly attainment,
-attainment distribution across the team, a longitudinal ramp curve, and
-territory × segment balance. Twelve reps carry tiered quotas
-(SMB \\$80K, Mid-Market \\$150K, Enterprise \\$500K per quarter) and are
-staggered across hire cohorts — four veterans (hired pre-2023), four
-mid-tenure, four still ramping at dataset end.
-Tiers calibrated against the dataset's actual per-rep deal volume so attainment percentages land in a realistic 30-150% range across the team.
-
-**Hidden insight #3 — ramp longer than assumed.** The team's actual ramp curve
-hits full productivity around month 9, not the industry-standard month 6.
-New hires below 70% attainment aren't underperforming — they're tracking
-the team's normal ramp. Adjust hiring lead times and ramped-quota schedules
-accordingly.
-
-**Quota scope:** new-business only. Renewal and expansion ACV do not count
-toward attainment. Matches typical SaaS comp structures where AEs are paid
-on new-logo bookings.
-"""
     )
 
     st.divider()
@@ -146,19 +148,21 @@ on new-logo bookings.
 
     st.divider()
 
-    st.subheader("Tech stack")
+    st.subheader("Tech stack & architecture")
     st.markdown(
         """
         - Python 3.12, pandas, numpy
         - Streamlit (app) + Plotly (charts)
-        - pytest (~44 tests across two phases, hand-built fixtures)
+        - pytest (69 tests, hand-built fixtures with hand-calculated expected values)
         - GitHub + Streamlit Community Cloud (deployment)
 
         **Architecture:** Pure-function data pipeline. `src/data_generator.py` produces
-        deterministic CSVs (seed=42). `src/metrics.py` + `src/cohorts.py` compute
-        retention; `src/pipeline.py` + `src/forecast.py` compute pipeline metrics.
-        `src/viz.py` builds Plotly figures with no Streamlit imports. Pages in
-        `Overview.py` and `pages/*.py` are presentation-only.
+        deterministic CSVs (seed=42). `src/metrics.py` and `src/cohorts.py` compute
+        retention; `src/pipeline.py` and `src/forecast.py` compute pipeline metrics;
+        `src/quota.py` computes quota and rep performance. `src/viz.py` builds Plotly
+        figures with no Streamlit imports — so charts can be unit-tested or reused
+        outside Streamlit. Pages in `Overview.py` and `pages/*.py` are
+        presentation-only.
         """
     )
 
