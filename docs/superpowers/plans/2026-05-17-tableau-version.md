@@ -1308,9 +1308,13 @@ Data source: Opportunities.
 
 - Calc field: `Open Pipeline Q1 2026`. Formula:
   ```
-  SUM(IF [Status] = "open" THEN [Amount] END)
+  SUM(
+    IF [Status] = "open"
+       AND DATETRUNC("quarter", [Close Date]) = #2026-01-01#
+    THEN [Amount] END
+  )
   ```
-  (Open opps are forward-looking; we're measuring coverage for the next selling cycle.)
+  (The close-date filter is critical — without it the calc grabs all 274 open deals across multiple quarters and inflates coverage to ~8.6×. With the filter you get the ~90 deals actually expected next quarter, around $5.9M, giving 2.03× coverage.)
 
 - Calc field: `Q1 2026 Quota Estimate`. Formula:
   ```
