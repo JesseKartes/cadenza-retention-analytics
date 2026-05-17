@@ -108,3 +108,19 @@ def test_ramp_curve_shows_gradient(ramp: pd.DataFrame) -> None:
     early = ramp[ramp["tenure_month_bucket"] <= 2]["median_attainment_pct"].mean()
     late = ramp[ramp["tenure_month_bucket"] >= 9]["median_attainment_pct"].mean()
     assert late - early >= 0.15
+
+
+@pytest.fixture(scope="module")
+def fc() -> pd.DataFrame:
+    return pd.read_csv(TABLEAU / "tableau_forecast_accuracy.csv")
+
+
+def test_forecast_accuracy_has_three_categories(fc: pd.DataFrame) -> None:
+    assert set(fc["forecast_category"]) == {"Commit", "Best Case", "Pipeline"}
+
+
+def test_forecast_accuracy_commit_tightest(fc: pd.DataFrame) -> None:
+    """Commit should hit closer to actual than Pipeline category does (engineered)."""
+    commit_dev = (fc[fc["forecast_category"] == "Commit"]["accuracy_pct"] - 1.0).abs().mean()
+    pipe_dev = (fc[fc["forecast_category"] == "Pipeline"]["accuracy_pct"] - 1.0).abs().mean()
+    assert commit_dev < pipe_dev
