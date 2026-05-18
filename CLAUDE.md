@@ -1,8 +1,9 @@
 # Cadenza Retention Analytics
 
-SaaS retention analytics portfolio project. **Phase 1** (retention metrics + cohort analysis), **Phase 2** (Pipeline & Forecasting), and **Phase 3** (Quota & Rep Performance) are shipped and live.
+SaaS retention analytics portfolio project. **Phase 1** (retention metrics + cohort analysis), **Phase 2** (Pipeline & Forecasting), and **Phase 3** (Quota & Rep Performance) are shipped and live. A **Tableau Public companion** (2026-05-17) mirrors the analysis in a four-dashboard workbook for tooling versatility.
 
-**Live dashboard:** https://cadenza-retention-analytics.streamlit.app
+**Live Streamlit dashboard:** https://cadenza-retention-analytics.streamlit.app
+**Tableau Public companion:** https://public.tableau.com/app/profile/jesse.kartes/viz/Cadenza/CadenzaRetention
 
 The dataset deliberately encodes a hidden insight: the Q3 2024 Self-Serve Promo cohort churns at ~2× the rate of other channels. The dashboard's job is to surface that pattern.
 
@@ -10,21 +11,28 @@ The dataset deliberately encodes a hidden insight: the Q3 2024 Self-Serve Promo 
 
 ```bash
 source .venv/bin/activate
-pytest -v                          # 69 tests; must stay green
-streamlit run Overview.py          # local dashboard at :8501
-python -m src.data_generator       # regenerate CSVs (deterministic, seed=42)
+pytest -v                                   # 81 tests; must stay green
+streamlit run Overview.py                   # local dashboard at :8501
+python -m src.data_generator                # regenerate generated CSVs (deterministic, seed=42)
+python -m scripts.build_tableau_extracts    # regenerate Tableau-friendly extracts in data/tableau/
+bash scripts/build_plan_html.sh             # regenerate the browser-friendly Tableau build guide
 ```
 
 ## Architecture
 
 ```
-src/data_generator.py → data/generated/*.csv (customers, subscriptions, events, opportunities, opportunity_stage_history, pipeline_snapshots, reps) → src/metrics.py + src/cohorts.py + src/pipeline.py + src/forecast.py + src/quota.py → src/viz.py → Overview.py + pages/
+src/data_generator.py → data/generated/*.csv (customers, subscriptions, events, opportunities, opportunity_stage_history, pipeline_snapshots, reps)
+                          │
+                          ├──→ src/{metrics,cohorts,pipeline,forecast,quota}.py → src/viz.py → Overview.py + pages/ (Streamlit)
+                          │
+                          └──→ scripts/build_tableau_extracts.py → data/tableau/*.csv → tableau/cadenza.twb (Tableau Public)
 ```
 
 - `src/*.py` modules are **pure functions** — no IO, no Streamlit imports, no global state.
 - The entry script is `Overview.py` (not `streamlit_app.py` — renamed so the sidebar reads "Overview").
 - Generated CSVs are committed to the repo because Streamlit Cloud doesn't regenerate them.
 - `src/viz.py` returns `plotly.graph_objects.Figure` objects; Streamlit pages just wrap them in `st.plotly_chart`.
+- The Tableau extracts pipeline is **read-only** — it calls existing `src/*.py` functions and writes long-format CSVs. Never modify `src/*.py` to suit Tableau; metric definitions are owned by Phase 1-3 and Tableau adapts.
 
 ## Conventions
 

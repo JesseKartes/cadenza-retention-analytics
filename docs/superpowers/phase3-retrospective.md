@@ -74,13 +74,14 @@ Phase 4 (if any) should follow the same patterns established in Phases 1-3.
 
 These are items captured on 2026-05-17 during the About-page polish session — smaller than a Phase 4 build, but worth doing before, alongside, or instead of starting Phase 4. Listed in rough order of likely value.
 
-### Tableau version of the dashboard
+### ✅ Tableau version of the dashboard — DONE 2026-05-17
 
-Build a simplified Tableau workbook covering the same three motions (retention, pipeline & forecasting, quota & rep performance) — fewer pages, the headline metrics, and the three engineered insights. Estimated time: a few hours.
+Shipped as a three-analytical-dashboard Tableau Public workbook (Retention / Sales Performance / Pipeline) plus an About page, all reading from a new `data/tableau/*.csv` extracts pipeline produced by `scripts/build_tableau_extracts.py`. Live at https://public.tableau.com/app/profile/jesse.kartes/viz/Cadenza/CadenzaRetention. Spec at `docs/superpowers/specs/2026-05-17-tableau-version-design.md`; step-by-step plan at `docs/superpowers/plans/2026-05-17-tableau-version.md` (also rendered to an HTML guide via `scripts/build_plan_html.sh`).
 
-**Why:** Most RevOps and Sales Operations roles use Tableau, Looker, or Power BI rather than Streamlit. A Tableau version demonstrates tooling versatility and de-risks the "they only know how to code dashboards" objection. It also makes the portfolio shareable through Tableau Public, where the audience overlaps with the role's hiring market.
-
-**How to start:** Open a new chat and develop a build plan — what to keep, what to drop, where the dataset CSVs live (`data/generated/*.csv`), and the layout strategy. The Cadenza brand palette, the metric definitions table, and the three engineered insights are all reusable; the Streamlit interactivity patterns are not.
+**Lessons from the build worth carrying forward:**
+- Pre-aggregate metrics in Python; let Tableau focus on visualization. Re-implementing NRR/GRR/cohort retention as Tableau LOD calcs would have burned 4-6 hours and risked subtle drift from the Streamlit version. The hybrid (pre-agg the hard stuff, leave raw data for filters) was the right call.
+- Methodology bugs surface when test assertions are too generic. The forecast accuracy extract was rewritten twice (aggregate $ ratio → deal-level hit rate) because the first version's numbers told the wrong story even while passing weak tests. Lock test thresholds to the *spec's claim* (e.g., "Commit closer to 1.0 than Pipeline") not arbitrary deviations.
+- Tableau Public dashboard size defaults are wrong for the typical viewer. 1200×900 fixed is the sweet spot, not 1366×768.
 
 ### Practice the recommendations learning guide
 
@@ -88,17 +89,15 @@ Build a simplified Tableau workbook covering the same three motions (retention, 
 
 **Why:** The portfolio is already strong; the bottleneck for converting it into offers is *talking* about it confidently. Hiring managers don't read GitHub repos in interviews — they listen to how you frame the work.
 
-### External promotion of the portfolio
+### Resume + private link sharing (LinkedIn deferred)
 
-LinkedIn headline update, resume / portfolio links, and one short post about the project. No code.
+Adding "Cadenza portfolio" links to resume bullets and sharing privately with recruiters / hiring managers. *Not* LinkedIn — the search is still hidden from Jesse's current employer, so any surface his employer might monitor (LinkedIn featured section, public posts, profile updates) is off-limits until an offer is signed. See memory `feedback_no_linkedin_in_portfolio`.
 
-**Why:** A portfolio is only useful if the hiring market sees it. The dashboard is live at `cadenza-retention-analytics.streamlit.app`; what's missing is the distribution. Adding "Cadenza portfolio" to a LinkedIn headline or featured section, dropping the URL into resume bullets, and a one-paragraph post explaining the project + the three engineered insights covers the basics.
+**Why:** A portfolio is only useful if the hiring market sees it. The dashboards are live at `cadenza-retention-analytics.streamlit.app` and `public.tableau.com/app/profile/jesse.kartes/viz/Cadenza`; what's missing is targeted distribution. Resume bullets, direct recruiter shares, and 1:1 hiring-manager conversations cover the basics without exposing the search.
 
-### Naming inconsistency on the Segment & Channel page
+### ✅ Naming inconsistency on the Segment & Channel page — DONE 2026-05-17
 
-`pages/3_Segment_Drilldown.py` renders as **"Segment Drilldown"** in the Streamlit sidebar (driven by filename) but the page header (`st.title`) and browser tab (`page_title`) both say **"Segment & Channel Deep-Dive"** / **"Cadenza — Segment & Channel"**. Pick one name and propagate — either rename the file to `3_Segment_and_Channel.py` (and update references in About page + this retrospective) or change the in-page title to match "Segment Drilldown." Roughly 10 minutes.
-
-**Why:** Minor cosmetic, but hiring managers screen-sharing the dashboard will notice when the sidebar label and the page header don't agree.
+Renamed `pages/3_Segment_Drilldown.py` → `pages/3_Segment_and_Channel.py`. Sidebar now reads "Segment And Channel" instead of "Segment Drilldown", aligning with the page header's "Segment & Channel Deep-Dive" framing.
 
 ---
 

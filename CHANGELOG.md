@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented here.
 
+## Tableau Public companion (2026-05-17)
+
+### Added
+- `scripts/build_tableau_extracts.py` — pre-aggregation script that consumes `data/generated/*.csv` and produces 5 flat, Tableau-friendly CSVs in `data/tableau/`, plus 3 raw passthroughs. Metric definitions stay identical to the Streamlit dashboard by calling the existing `src/{metrics,cohorts,forecast,quota}.py` pure functions.
+- `tests/test_tableau_extracts.py` — 12 smoke tests (row-count bands, NaN guards, insight-protection assertions for all three engineered insights). Total suite now 81 tests.
+- `data/tableau/` — generated extracts: `tableau_monthly_metrics.csv`, `tableau_cohort_retention.csv` (with channel dimension + "All" rollup), `tableau_rep_attainment.csv`, `tableau_ramp_curve.csv` (team-wide, 3mo rolling smooth), `tableau_forecast_accuracy.csv` (deal-level hit rate).
+- `tableau/cadenza.twb` — Tableau workbook with four dashboards: Cadenza Retention (cohort heatmap + KPIs + M12-by-channel + NRR trend), Cadenza Sales Performance (rep attainment + forecast accuracy + ramp curve), Cadenza Pipeline (pipeline-by-stage + win-rate-by-segment + stage velocity), and About.
+- `scripts/build_plan_html.sh` — pandoc-based generator that converts the build plan markdown into a browser-friendly HTML guide with sticky TOC, clickable checkboxes (state persisted in localStorage), and Cadenza-palette CSS.
+- Published to Tableau Public: https://public.tableau.com/app/profile/jesse.kartes/viz/Cadenza/CadenzaRetention
+
+### Changed
+- README + Streamlit About page link to the Tableau Public companion.
+
+### Renamed
+- `pages/3_Segment_Drilldown.py` → `pages/3_Segment_and_Channel.py` — aligns sidebar label with the page header's "Segment & Channel" framing (was a flagged inconsistency in the Phase 3 retrospective).
+
+---
+
 ## Phase 3 — Quota Attainment & Rep Performance (2026-05-16)
 
 ### Added
