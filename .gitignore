@@ -26,3 +26,6 @@ qa-*.png
 
 # Generated HTML guide (regenerate via scripts/build_plan_html.sh)
 tableau/build-guide.html
+
+# Tableau workbook (published to Tableau Public; not tracked in git)
+tableau/cadenza.twb
